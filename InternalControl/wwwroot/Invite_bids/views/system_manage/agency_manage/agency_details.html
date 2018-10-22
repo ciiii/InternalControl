@@ -1,0 +1,81 @@
+<div class="modal-content ms-controller add-user" ms-controller="details">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">查看详情</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12">
+                <h5 class="title"><span>基本信息</span></h5>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">单位名称：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.Name}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">联系人：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.LinkmanName}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">联系方式：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.ContactWay}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">单位电话：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.ContactNumber}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">地址：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.Address}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <h5 class="title"><span>代理信息</span></h5>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">代理方式：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.ProxyMode}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">代理开始时间：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.BeginDatetimeOfAgent}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">代理结束时间：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.EndDatetimeOfAgent}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">综合评分(分)：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.ComprehensiveScore}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">关闭
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/system_manage/department_manage/department_details.js" ></script>

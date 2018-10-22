@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>首页-任务消息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/ztree/metroStyle/metroStyle.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <link rel="stylesheet" href="/Invite_bids/css/child_pages.css"/>
+    <!--[if lt IE 9]>
+    <script src="/Invite_bids/libs/html5shiv.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/Invite_bids/libs/ztree/jquery.ztree.all.min.js"></script>
+    <script src="/Invite_bids/libs/avalon.min.js"></script>
+
+    <script src="/Invite_bids/js/pager.js"></script>
+    <script src="/Invite_bids/js/main.js"></script>
+    <script src="/Invite_bids/js/get_connect/code.js"></script>
+    <script src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script src="/Invite_bids/js/get_connect/return_data.js"></script>
+    <script>
+        document.write(' <script src="/Invite_bids/js/home/task_message.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+    </script>
+</head>
+<body ms-controller="root" class="ms-controller">
+<div class="page-statistics page-common page-paper">
+    <div class="main">
+        <div class="col-md-8 module module-left">
+            <div class="notice box">
+                <div class="box-header">
+                    <h3><i class="icon iconfont icon-hangzhenggonggao"></i> </h3>
+                    <a class="more" ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/我的通知公告.html')}">
+                        更多 <i class="icon iconfont icon-down1"></i>
+                    </a>
+                </div>
+                <div class="content list">
+                    <ul ms-if="@notice!=null&&@notice.length>0">
+                        <li ms-for="el in @notice" ms-class="@getStateClass(el.是否已接收)">
+                            <a ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/通知公告详情.html')}" data-toggle="modal"
+                               data-target=".modal-add"
+                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
+                                <span class="btn-icon"><i class="icon iconfont icon-tongzhi"></i></span>
+                                <span class="title">【{{el.通知标识}}】{{el.通知名称}}</span>
+                                <span class="time">{{el.建立时间}}<i class="icon iconfont icon-xiayibu"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div ms-if="@nothing">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                </div>
+                <div class="page paging text-center">
+                    <div class="pager paging"></div>
+                </div>
+            </div>
+            <div class="regulation box">
+                <div class="box-header">
+                    <h3><i class="icon iconfont icon-gongneng"></i> 科研待办</h3>
+                    <a class="more" ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/我的科研/科研待办.html')}">更多 <i
+                            class="icon iconfont icon-down1"></i></a>
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>事项类别</th>
+                                <th>项目名称</th>
+                                <th>事项详情</th>
+                                <th>发起人姓名</th>
+                                <th>创建时间</th>
+                                <th>当前步骤</th>
+                                <th class="operation">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @ScientificResearch"
+                                ms-if="@ScientificResearch!= null && @ScientificResearch.length != 0">
+                                <td>{{el.number}}</td>
+                                <td>{{el.流程名称}}</td>
+                                <td>{{el.项目名称}}</td>
+                                <td>{{el.步骤名称}}</td>
+                                <td>{{el.发起人姓名}}</td>
+                                <td>{{el.流程创建时间|date("yyyy-MM-dd")}}</td>
+                                <td ms-class="getClass(el.步骤状态说明)">
+                                    {{el.步骤名称==null?'':el.步骤名称}}-{{el.步骤状态说明==null?'':el.步骤状态说明}}
+                                </td>
+                                <td class="operation">
+                                    <li class="bs-tooltip" ms-class="getScientificResearchClass(el.步骤链接名称)" data-toggle="tooltip" data-placement="bottom" ms-attr="{'title':@el.步骤名称}" ms-if="el.是否可处理">
+                                        <a data-toggle="modal" data-target=".modal-add"
+                                           ms-attr="{'href':@getUrl(@el.步骤链接路径)}"
+                                           ms-on-click="@clickBtnEdit(el)" onclick="changeUrl(this)">
+                                            <i class="icon iconfont" ms-class="@el.步骤链接样式"></i>
+                                        </a>
+                                    </li>
+                                    <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
+                                        title="详情">
+                                        <a href="javascript:;" data-toggle="modal" data-target=".modal-details"
+                                           ms-on-click="@details(el)">
+                                            <i class="icon iconfont icon-16"></i>
+                                        </a>
+                                    </li>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@nothing3">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                    <div class="page paging text-center">
+                        <div class="pager paging"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 module">
+           <!-- <div class="statistics box">
+                <div class="box-header">
+                    <h3><i class="icon iconfont icon-tongjichakan"></i> 统计总览</h3>
+                    <a class="more" href="javascript:;">更多 <i class="icon iconfont icon-down1"></i></a>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li><a href="javascript:;"><img src="../images/详情.png"> <span>站内信息</span></a></li>
+                        <li><a href="javascript:;"><img src="../images/检索.png"> <span>待办信息</span></a></li>
+                    </ul>
+                </div>
+            </div>-->
+            <div class="shortcuts box" ms-if="newNavList.length!=0">
+                <div class="box-header">
+                    <h3><i class="icon iconfont icon-leimupinleifenleileibie2"></i> 快捷功能</h3>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li ms-for="el in @newNavList">
+                            <a ms-attr="{'href':@getUrl('/Invite_bids/views/'+@el.url)}">
+                                <img ms-attr="{'src':@getUrl('../images/'+@el.icon)}"> <span>{{el.title}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="procedure box">
+                <div class="box-header">
+                    <h3><i class="icon iconfont icon-liucheng"></i> 办事流程</h3>
+                    <a class="more" ms-attr="{'href':@getUrl('/Invite_bids/views/系统管理/权限管理/流程一览.html')}">
+                        更多 <i class="icon iconfont icon-down1"></i>
+                    </a>
+                </div>
+                <div class="content list">
+                    <ul ms-if="@workFlow!=null&&@workFlow.length>0">
+                        <li ms-for="el in @workFlow">
+                            <a href="javascript:;" data-toggle="modal" data-target=".modal-details"
+                               ms-on-click="@workFlowDetails(el)">
+                                <span class="btn-icon"><i class="icon iconfont icon-liucheng"></i></span>
+                                <span class="title">{{el.名称}}</span>
+                                <span class="time"><i class="icon iconfont icon-xiayibu"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div ms-if="@nothing4">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                </div>
+                <div class="page paging text-center">
+                    <div class="pager paging"></div>
+                </div>
+            </div>
+            <div class="doc-download box">
+                <div class="box-header">
+                    <h3><i class="icon iconfont icon-download"></i> 文档下载</h3>
+                    <a class="more" ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/下载中心.html')}">更多 <i
+                            class="icon iconfont icon-down1"></i></a>
+                </div>
+                <div class="content list">
+                    <ul ms-if="@downFile!=null&&@downFile.length>0">
+                        <li ms-for="el in @downFile">
+                            <a ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/下载详情.html')}" data-toggle="modal"
+                               data-target=".modal-add"
+                               ms-on-click="@downloadDetails(el)" onclick="changeUrl(this)">
+                                <span class="btn-icon"><i class="icon iconfont icon-16"></i></span>
+                                <span class="title">【{{el.文件类型}}】{{el.文件名称}}</span>
+                                <span class="time">{{el.建立时间}}<i class="icon iconfont icon-xiayibu"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div ms-if="@nothing2">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                </div>
+                <div class="page paging text-center">
+                    <div class="pager paging"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
+    </div>
+    <div class="modal fade modal-min" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+    <div class="modal fade modal-choice" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
+    </div>
+    <div class="modal fade modal-details" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content add-user details">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="NoPermissionModalLabel">查看详情</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="details-content">
+                        <iframe class="detailsPage" scrolling="auto" frameborder="0" src=""></iframe>
+                    </div>
+                </div>
+                <div class="modal-footer submit-wrapper">
+                    <div class="form-group">
+                        <div class="submit-box text-center">
+                            <button type="button" class="btn btn-default" ms-on-click="@clickBtnReturn">返回</button>
+                            <div class="tip-box"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<div class="modal-content ms-controller add-user" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">项目合并 - 信息补全</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12">
+                <h5 class="title"><span>基本信息</span></h5>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目名称：
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control project-name" ms-duplex="@model.Model.Name"
+                               ms-on-change="@inputVal('.expert-name')">
+                        <span class="error-texe">项目名称不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">技术清单：</label>
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="60">序号</th>
+                                    <th>技术清单</th>
+                                    <th>单位</th>
+                                    <th>数量</th>
+                                    <th>单价（元）</th>
+                                    <th>项目详情</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ms-for="($index,el) in @selectedModel">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{el.BudgetProject.Name}}</td>
+                                    <td>{{el.Package[0].Unit}}</td>
+                                    <td>{{el.BudgetProject.allNumber}}</td>
+                                    <td>{{el.BudgetProject.budgetAmount|currency}}</td>
+                                    <td class="operation">
+                                        <ul>
+                                            <li class="bs-tooltip btn-details" data-toggle="tooltip"
+                                                data-placement="bottom"
+                                                title="详情">
+                                                <a data-toggle="modal" data-target=".modal-details"
+                                                   href="budget_details.html"
+                                                   ms-on-click="@clickDetails(el)"
+                                                   onclick="changeUrlChoice(this,'.modal-details')">
+                                                    <i class="icon iconfont icon-16"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>采购人名称：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control purchaser" ms-duplex="@model.Model.PurchaserName">
+                        <span class="error-texe">采购人不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">预算金额(元)：</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@allPrice" readonly>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>采购方式：
+                    </label>
+                    <div class="col-sm-7">
+                        <select class="form-control roles" ms-on-change="changePurchaseMetho($event)"
+                                ms-duplex="@model.Model.PurchaseMethod">
+                            <option value="">请选择</option>
+                            <option ms-for="el in @purchaseMetho" ms-attr="{'value':@el.Value}">{{el.Value}}
+                            </option>
+                        </select>
+                        <span class="error-texe">请选择采购方式！</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">项目类型：</label>
+                    <div class="col-sm-7">
+                        <ul class="select-ul">
+                            <li ms-class="getObjClass('货物')" ms-on-click="clickObjType($event)">
+                                <a href="javascript:;">货物</a>
+                            </li>
+                            <li ms-class="getObjClass('工程')" ms-on-click="clickObjType($event)">
+                                <a href="javascript:;">工程</a>
+                            </li>
+                            <li ms-class="getObjClass('服务')" ms-on-click="clickObjType($event)">
+                                <a href="javascript:;">服务</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label ">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目拟实施时间：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-month implement-time"
+                               ms-duplex="@model.Model.TimePlanToImplement">
+                        <span class="error-texe">项目拟实施时间不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>采购人地址：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.PurchaserAddress">
+                        <span class="error-texe">采购人地址不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">项目联系人：</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.LinkmanName">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">联系电话：</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.LinkmanPhone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">备注：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.Remark">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/project_argumentation/add_merge.js"></script>

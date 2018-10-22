@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>发布通知</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/发布通知_1/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/发布通知_1/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u9145" class="ax_default">
+        <div id="u9145_state0" class="panel_state" data-label="State1" style="">
+          <div id="u9145_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9146" class="ax_default box_2">
+              <div id="u9146_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9147" class="ax_default heading_3">
+              <div id="u9147_div" class=""></div>
+              <div id="u9147_text" class="text ">
+                <p><span>采购项目管理系统</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9148" class="ax_default label">
+              <div id="u9148_div" class=""></div>
+              <div id="u9148_text" class="text ">
+                <p><span>角色名称：归口管理部门</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9149" class="ax_default label">
+              <div id="u9149_div" class=""></div>
+              <div id="u9149_text" class="text ">
+                <p><span>角色编码：SCDXCM</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9150" class="ax_default label">
+              <div id="u9150_div" class=""></div>
+              <div id="u9150_text" class="text ">
+                <p><span>日期：2018年07月08日&nbsp; 18:28:32</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u9151" class="ax_default image">
+              <img id="u9151_img" class="img " src="images/列表-任务消息查看_2/u1386.png"/>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u9152" class="ax_default image">
+              <img id="u9152_img" class="img " src="images/列表-任务消息查看_2/u1387.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u9153" class="ax_default">
+        <div id="u9153_state0" class="panel_state" data-label="PurListContainer" style="">
+          <div id="u9153_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9154" class="ax_default label">
+              <div id="u9154_div" class=""></div>
+              <div id="u9154_text" class="text ">
+                <p><span>通知标题</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9155" class="ax_default label">
+              <div id="u9155_div" class=""></div>
+              <div id="u9155_text" class="text ">
+                <p><span>发布单位</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9156" class="ax_default label">
+              <div id="u9156_div" class=""></div>
+              <div id="u9156_text" class="text ">
+                <p><span>发布时间</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9157" class="ax_default label">
+              <div id="u9157_div" class=""></div>
+              <div id="u9157_text" class="text ">
+                <p><span>发布内容</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u9158" class="ax_default text_field">
+              <input id="u9158_input" type="text" value=""/>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u9159" class="ax_default text_field">
+              <input id="u9159_input" type="text" value=""/>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u9160" class="ax_default text_field">
+              <input id="u9160_input" type="text" value=""/>
+            </div>
+
+            <!-- Unnamed (Text Area) -->
+            <div id="u9161" class="ax_default text_area">
+              <textarea id="u9161_input"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u9162" class="ax_default">
+        <div id="u9162_state0" class="panel_state" data-label="State1" style="">
+          <div id="u9162_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9163" class="ax_default primary_button">
+              <div id="u9163_div" class=""></div>
+              <div id="u9163_text" class="text ">
+                <p><span>发布</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--        (Dynamic Panel) -->
+      <div id="u9164" class="ax_default" data-label="&nbsp;&nbsp; &nbsp;&nbsp; ">
+        <div id="u9164_state0" class="panel_state" data-label="State1" style="">
+          <div id="u9164_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9165" class="ax_default heading_3">
+              <div id="u9165_div" class=""></div>
+              <div id="u9165_text" class="text ">
+                <p><span>项目申报</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9166" class="ax_default label">
+              <div id="u9166_div" class=""></div>
+              <div id="u9166_text" class="text ">
+                <p><span>新建项目</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9167" class="ax_default heading_3">
+              <div id="u9167_div" class=""></div>
+              <div id="u9167_text" class="text ">
+                <p><span>项目执行</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9168" class="ax_default heading_3">
+              <div id="u9168_div" class=""></div>
+              <div id="u9168_text" class="text ">
+                <p><span>首&nbsp; &nbsp; &nbsp;&nbsp; 页</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9169" class="ax_default label">
+              <div id="u9169_div" class=""></div>
+              <div id="u9169_text" class="text ">
+                <p><span>任务消息</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9170" class="ax_default label">
+              <div id="u9170_div" class=""></div>
+              <div id="u9170_text" class="text ">
+                <p><span>数据统计</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9171" class="ax_default label">
+              <div id="u9171_div" class=""></div>
+              <div id="u9171_text" class="text ">
+                <p><span>查看项目</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9172" class="ax_default heading_3">
+              <div id="u9172_div" class=""></div>
+              <div id="u9172_text" class="text ">
+                <p><span>校内规章</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u9173" class="ax_default icon">
+              <img id="u9173_img" class="img " src="images/列表-任务消息查看_2/u1397.png"/>
+              <div id="u9173_text" class="text ">
+                <p><span>3</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u9174" class="ax_default icon">
+              <img id="u9174_img" class="img " src="images/列表-任务消息查看_2/u1398.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9175" class="ax_default label">
+              <div id="u9175_div" class=""></div>
+              <div id="u9175_text" class="text ">
+                <p><span>新建规章</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9176" class="ax_default label">
+              <div id="u9176_div" class=""></div>
+              <div id="u9176_text" class="text ">
+                <p><span>规章列表</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9177" class="ax_default heading_3">
+              <div id="u9177_div" class=""></div>
+              <div id="u9177_text" class="text ">
+                <p><span>通知管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9178" class="ax_default label">
+              <div id="u9178_div" class=""></div>
+              <div id="u9178_text" class="text ">
+                <p><span>发布通知</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9179" class="ax_default label">
+              <div id="u9179_div" class=""></div>
+              <div id="u9179_text" class="text ">
+                <p><span>发布列表</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

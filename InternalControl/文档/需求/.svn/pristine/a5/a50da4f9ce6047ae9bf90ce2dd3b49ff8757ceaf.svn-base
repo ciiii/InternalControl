@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>执行项目-编辑-质疑投诉</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/执行项目-编辑-质疑投诉/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/执行项目-编辑-质疑投诉/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8540" class="ax_default label">
+        <div id="u8540_div" class=""></div>
+        <div id="u8540_text" class="text ">
+          <p><span>&nbsp;&nbsp;&nbsp; </span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u8541" class="ax_default image">
+        <img id="u8541_img" class="img " src="images/执行项目-编辑-质疑投诉/u8541.jpg"/>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8542" class="ax_default label">
+        <div id="u8542_div" class=""></div>
+        <div id="u8542_text" class="text ">
+          <p><span>是否有投诉</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Radio Button) -->
+      <div id="u8543" class="ax_default radio_button">
+        <label for="u8543_input" style="position: absolute; left: 0px;">
+          <div id="u8543_text" class="text ">
+            <p><span>是</span></p>
+          </div>
+        </label>
+        <input id="u8543_input" type="radio" value="radio" name="u8543" checked/>
+      </div>
+
+      <!-- Unnamed (Radio Button) -->
+      <div id="u8544" class="ax_default radio_button">
+        <label for="u8544_input" style="position: absolute; left: 0px;">
+          <div id="u8544_text" class="text ">
+            <p><span>否</span></p>
+          </div>
+        </label>
+        <input id="u8544_input" type="radio" value="radio" name="u8544" checked/>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8545" class="ax_default label">
+        <div id="u8545_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8546" class="ax_default primary_button">
+        <div id="u8546_div" class=""></div>
+        <div id="u8546_text" class="text ">
+          <p><span>分包废标重招</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8547" class="ax_default box_1">
+        <div id="u8547_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8548" class="ax_default">
+        <div id="u8548_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8548_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u8549" class="ax_default">
+              <div id="u8549_state0" class="panel_state" data-label="State1" style="">
+                <div id="u8549_state0_content" class="panel_state_content">
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8550" class="ax_default box_1">
+                    <div id="u8550_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8551" class="ax_default box_2">
+                    <div id="u8551_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8552" class="ax_default box_1">
+                    <div id="u8552_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Image) -->
+                  <div id="u8553" class="ax_default image">
+                    <img id="u8553_img" class="img " src="images/主题模板_-_弹窗/u680.png"/>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8554" class="ax_default label">
+                    <div id="u8554_div" class=""></div>
+                    <div id="u8554_text" class="text ">
+                      <p><span>分包废标</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8555" class="ax_default box_1">
+                    <div id="u8555_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u8556" class="ax_default checkbox">
+                    <label for="u8556_input" style="position: absolute; left: 0px;">
+                      <div id="u8556_text" class="text ">
+                        <p><span>第1包 - 绘画展览服务</span></p>
+                      </div>
+                    </label>
+                    <input id="u8556_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u8557" class="ax_default checkbox">
+                    <label for="u8557_input" style="position: absolute; left: 0px;">
+                      <div id="u8557_text" class="text ">
+                        <p><span>第2包 - 音乐节会务服务</span></p>
+                      </div>
+                    </label>
+                    <input id="u8557_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8558" class="ax_default label">
+                    <div id="u8558_div" class=""></div>
+                    <div id="u8558_text" class="text ">
+                      <p><span>所选分包废标原因</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Text Area) -->
+                  <div id="u8559" class="ax_default text_area">
+                    <textarea id="u8559_input"></textarea>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u8560" class="ax_default primary_button">
+                    <div id="u8560_div" class=""></div>
+                    <div id="u8560_text" class="text ">
+                      <p><span>确认重新招标</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

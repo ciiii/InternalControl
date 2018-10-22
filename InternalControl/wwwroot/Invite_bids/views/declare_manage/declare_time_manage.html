@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>申报时间管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/main.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+
+    <script>
+        document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/declare_manage/declare_time_manage.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+
+    </script>
+
+</head>
+<body ms-controller="root" class="ms-controller" onload="IFrameResize()">
+<div class="page-template page-declare-time page-common page-paper">
+    <div class="main">
+        <form class="form-horizontal">
+            <div class="module">
+                <div class="form-group">
+                    <label class="control-label">预算所属年度</label>
+                    <div class="box">
+                        <span class="year">{{@nextYear}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">申报起止时间</label>
+                    <div class="box">
+                        <input type="text" class="form-control form-hour" placeholder="开始时间"
+                               ms-duplex="@model.DeclareBeginDatetime"/>
+                        <span class="reach">到</span>
+                        <input type="text" class="form-control form-hour" placeholder="结束时间"
+                               ms-duplex="@model.DeclareEndDatetime"/>
+                    </div>
+                </div>
+            </div>
+            <div class="module this-year">
+                <div class="form-group">
+                    <label class="control-label">补充{{@thisYear}}年度预算项目</label>
+                    <div class="box">
+                        <label class="radio-inline">
+                            <input type="radio" name="isThisYear" value="true" ms-duplex="@model.IsCanChooseThisYear"
+                                   ms-on-change="isThisYear"> 是
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="isThisYear" value="false" ms-duplex="@model.IsCanChooseThisYear"
+                                   ms-on-change="isThisYear"> 否
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group thisYear" ms-if="@model.IsCanChooseThisYear">
+                    <label class="control-label">补充起止时间</label>
+                    <div class="box">
+                        <input type="text" class="form-control form-hour" placeholder="开始时间"
+                               ms-duplex="@model.SupplementBeginDatetime"/>
+                        <span class="reach">到</span>
+                        <input type="text" class="form-control form-hour" placeholder="结束时间"
+                               ms-duplex="@model.SupplementEndDatetime"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer submit-wrapper">
+                <div class="form-group">
+                    <div class="col-sm-offset-1 submit-box">
+                        <button type="button" class="btn btn-primary" ms-on-click="@clickSubmit">保存</button>
+                        <div class="tip-box"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

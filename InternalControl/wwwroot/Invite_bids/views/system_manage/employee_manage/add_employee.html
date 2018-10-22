@@ -1,0 +1,99 @@
+<div class="modal-content ms-controller add-user" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">{{@title}}</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12">
+                <h5 class="title"><span>基本信息</span></h5>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>姓名：
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control full-name" ms-duplex="@info.Name" ms-on-change="@inputVal('.full-name')">
+                        <span class="error-texe">姓名不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>工号：
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control work-number" ms-duplex="@info.WorkNumber" ms-on-change="@inputVal('.work-number')">
+                        <span class="error-texe">工号不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group" ms-if="!@editType">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>密码：
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control password" ms-duplex="@info.Password" ms-on-change="@inputVal('.password')">
+                        <span class="error-texe">密码不能为空！</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">性别：</label>
+                    <div class="col-sm-8">
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" value="男" ms-duplex="@info.Sex"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" value="女" ms-duplex="@info.Sex" > 女
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">联系方式：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ms-duplex="@info.Phone">
+                    </div>
+                </div>
+                <div class="form-group" ms-if="@editType&&@info.DepartmentName">
+                    <label class="col-md-2 col-sm-2 control-label">所属部门：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ms-attr="{'value':@info.DepartmentName}" readonly>
+                    </div>
+                </div>
+                <div class="form-group" ms-if="@editType&&@info.RoleName">
+                    <label class="col-md-2 col-sm-2 control-label">账号类型：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ms-attr="{'value':@info.RoleName}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">职务名称：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ms-duplex="@info.DutyName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">岗位名称：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ms-duplex="@info.PostName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">岗位类型：</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ms-duplex="@info.PostType">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/system_manage/employee_manage/add_employee.js" ></script>

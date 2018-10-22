@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>集采品目管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/main.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/file_upload.js"></script>
+
+    <script>
+        document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/system_manage/collection_item_manage.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+
+    </script>
+
+</head>
+<body ms-controller="root" class="ms-controller" onload="IFrameResize()">
+<div class="page-collection page-common page-paper">
+    <div class="nav">
+        <ul>
+            <li><a href="javascript:;">服务器</a></li>
+            <li><a href="javascript:;">台式计算机</a></li>
+            <li><a href="javascript:;">便捷式计算机</a></li>
+            <li><a href="javascript:;">平板电脑</a></li>
+            <li><a href="javascript:;">交换设备</a></li>
+            <li class="active"><a href="javascript:;">打印设备</a></li>
+            <li><a href="javascript:;">显示设备</a></li>
+            <li><a href="javascript:;">扫描仪</a></li>
+            <li><a href="javascript:;">复印机</a></li>
+            <li><a href="javascript:;">投影仪</a></li>
+            <li><a href="javascript:;">多功能一体机</a></li>
+            <li><a href="javascript:;">电视</a></li>
+            <li><a href="javascript:;">空调</a></li>
+            <li><a href="javascript:;">办公家具</a></li>
+            <li><a href="javascript:;">打印纸</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="content-top">
+            <a class="btn btn-primary" data-toggle="modal" data-target=".modal-add" href="javascript:;">新增分类</a>
+            <a class="btn btn-default" href="javascript:;">编辑分类</a>
+        </div>
+        <div class="personnel-box">
+            <div class="screen-box">
+                <div class="left">当前分类：<span>打印设备</span></div>
+                <div class="ringh">
+                    <a class="btn btn-primary" data-toggle="modal" data-target=".modal-add"
+                       href="javascript:;">新增</a>
+                    <a class="btn btn-default" href="javascript:;">保存</a>
+                </div>
+            </div>
+            <div class="personnel-list">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="number">序号</th>
+                            <th class="name">资产名称</th>
+                            <th>计价单位</th>
+                            <th>价格上限标准</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>A3打印机</td>
+                            <td>元/台</td>
+                            <td>3500</td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-edit" ms-on-click="@clickBtnEdit(el)">
+                                        <a data-toggle="modal" data-target=".modal-add"
+                                           href="agency_manage/add_collection_item.html" onclick="changeUrl(this)">
+                                            编辑
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>多功能一体机</td>
+                            <td>元/台</td>
+                            <td>2000</td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-edit" ms-on-click="@clickBtnEdit(el)">
+                                        <a data-toggle="modal" data-target=".modal-add"
+                                           href="agency_manage/add_collection_item.html" onclick="changeUrl(this)">
+                                            编辑
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>A3打印机</td>
+                            <td>元/台</td>
+                            <td>1000</td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-edit" ms-on-click="@clickBtnEdit(el)">
+                                        <a data-toggle="modal" data-target=".modal-add"
+                                           href="agency_manage/add_collection_item.html" onclick="changeUrl(this)">
+                                            编辑
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>A3打印机</td>
+                            <td>元/台</td>
+                            <td>2770</td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-edit" ms-on-click="@clickBtnEdit(el)">
+                                        <a data-toggle="modal" data-target=".modal-add"
+                                           href="agency_manage/collection_item.html" onclick="changeUrl(this)">
+                                            编辑
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <!--<tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">-->
+                        <!--<td class="number text-center">{{el.number}}</td>-->
+                        <!--<td>{{el.Name}}</td>-->
+                        <!--<td>{{el.LinkmanName}}</td>-->
+                        <!--<td>{{el.ProxyMode}}</td>-->
+                        <!--<td>{{el.BeginDatetimeOfAgent|date("yyyy-MM-dd")}}</td>-->
+                        <!--<td>{{el.EndDatetimeOfAgent|date("yyyy-MM-dd")}}</td>-->
+                        <!--<td class="operation">-->
+                        <!--<ul>-->
+                        <!--<li class="btn-edit" ms-on-click="@clickBtnEdit(el)">-->
+                        <!--<a data-toggle="modal" data-target=".modal-add" href="agency_manage/add_agency.html" onclick="changeUrl(this)">-->
+                        <!--编辑-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="btn-details" ms-on-click="@clickDetails(el)">-->
+                        <!--<a data-toggle="modal" data-target=".modal-add" href="agency_manage/agency_details.html" onclick="changeUrl(this)">-->
+                        <!--查看-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--&lt;!&ndash;<li class="bs-tooltip btn-del" data-toggle="tooltip" data-placement="bottom"&ndash;&gt;-->
+                        <!--&lt;!&ndash;title="删除">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a data-toggle="modal" data-target=".modal-del" href="javascript:;"&ndash;&gt;-->
+                        <!--&lt;!&ndash;ms-on-click="clickBtnDel(el)">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<i class="icon iconfont icon-shanchu1"></i>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--</ul>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+
+                        </tbody>
+                    </table>
+                </div>
+                <div ms-if="@nothing">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                </div>
+            </div>
+        </div>
+        <!-- <form class="form-horizontal">
+             <div class="module fileUpload-box col-md-12" ms-for="($index,el) in @model">
+                 <h5 class="title"><span>{{el.Name}}</span></h5>
+                 <div class="form-group col-md-4 col-sm-4 item" ms-for="($itemIndex,item) in @el.Type">
+                     <div class="item-top">
+                         <span class="item-name">{{item.Name}}</span>
+                         <div class="file-box">
+                             <input type="file" ms-attr="{'id':'input-file'+$index+'-'+$itemIndex}" class="input-file"
+                                    name="fileUpload"
+                                    ms-on-click="@upload($event,item)">
+
+                             <a class="file-text btn btn-primary" href="javascript:;">附件上传</a>
+                         </div>
+                     </div>
+                     <div class="file col-md-12">
+                         <a class="file-name col-md-11" ms-if="@item.FileName" ms-attr="{'href':item.Url}" download="">{{item.FileName}}</a>
+                         <span class="file-name col-md-11" ms-if="!@item.FileName">暂未上传附件</span>
+                         <a class="btn-del" ms-if="@item.FileName" href="javascript:;" ms-on-click="btnDel(item)">
+                             <i class="icon iconfont icon-shanchu"></i>
+                         </a>
+                     </div>
+                 </div>
+             </div>
+             <div class="submit-wrapper col-md-12">
+                 <div class="form-group">
+                     <div class="submit-box text-center">
+                         <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">保存</button>
+                         <button type="button" class="btn btn-default" data-dismiss="modal"
+                                 ms-on-click="@clickBtnReturn">取消
+                         </button>
+
+                     </div>
+                 </div>
+             </div>
+         </form>-->
+    </div>
+    <div class="modal fade modal-del" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">您确定要执行删除操作吗？</h4>
+                </div>
+                <div class="modal-footer submit-wrapper">
+                    <div class="submit-box text-center">
+                        <button type="submit" class="btn btn-primary btn-submit" ms-on-click="@confirmDel(@arr)">提交
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                ms-on-click="@clickBtnReturn">返回
+                        </button>
+                        <div class="tip-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+</div>
+</body>
+</html>

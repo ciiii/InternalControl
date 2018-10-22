@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页-招标采购管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/css/index.css"/>
+    <link title="black" rel="stylesheet" href="/Invite_bids/css/black.css" ty="theme" disabled="disabled"/>
+    <link title="brown" rel="stylesheet" href="/Invite_bids/css/brown.css" ty="theme" disabled="disabled"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+    <script>
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/index.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+    </script>
+</head>
+<body ms-controller="root" class="ms-controller" ms-class="[@toggle && 'mini-sidebar']">
+<div class="header">
+    <div class="left">
+        <img class="logo" src="images/logo2.png"/>
+        <a href="javascript:;" class="sidebar-toggle bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="菜单切换" ms-on-click="@clickBtnToggle">
+            <i class="icon iconfont icon-leimupinleifenleileibie2"></i>
+        </a>
+    </div>
+    <div class="right">
+        <ul class="user-info">
+            <li ms-if="userInfo.DepartmentName">部门：{{userInfo.DepartmentName}}</li>
+            <li>日期：{{@time|date("yyyy年MM月dd日 HH:mm:ss")}}</li>
+            <li class="user">
+                <a class="dropdown-toggle" href="javascript:;">
+                    <img class="userimg" src="images/user.png" alt="user"/>
+                </a>
+                <div class="dropdown-menu">
+                    <i class="icon iconfont icon-shangla"></i>
+                    <ul>
+                        <li>
+                            <a href="javascript:;" ms-on-click="@clickBtnEdit(true)">
+                                <i class="icon iconfont icon-account2"></i>个人资料</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" ms-on-click="@clickPassWord()">
+                                <i class="icon iconfont icon-xiugaimima1"></i>修改密码
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="bs-tooltip btn-out" data-toggle="tooltip" data-placement="bottom" title="退出登录">
+                <a class="btn-out" href="javascript:;" ms-on-click="@logOut">
+                    <img class="userimg" src="images/out.png" alt="退出系统"/>
+                </a>
+            </li>
+            <!--<li class="user">
+                <a class="dropdown-toggle" href="javascript:;">
+                    <img class="userimg" src="images/user.png" alt="user"/>
+                    &lt;!&ndash;<span class="caret"></span>&ndash;&gt;
+                </a>
+                <div class="dropdown-menu">
+                    <i class="icon iconfont icon-shangla"></i>
+                    <ul>
+                        <li>
+                            <a href="javascript:;" ms-on-click="@clickBtnEdit(true)">
+                                <i class="icon iconfont icon-account2"></i>个人资料管理</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" ms-on-click="@clickPassWord()">
+                                <i class="icon iconfont icon-xiugaimima1"></i>修改密码
+                            </a>
+                        </li>
+                        <li>
+                            <a ms-attr="{'href':@getUrl('/Invite_bids/views/组织架构/员工学术任职情况.html?name='+@userInfo.姓名)}">
+                                <i class="icon iconfont icon-zhuanjiajiangzuo"></i>我的学术任职
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>-->
+            <!--<li class="theme">-->
+            <!--<a class="dropdown-toggle" href="javascript:;">-->
+            <!--<i class="icon iconfont icon-pifu"></i>-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu">-->
+            <!--<i class="icon iconfont icon-shangla"></i>-->
+            <!--<ul id="styles">-->
+            <!--<li id="default"><a href="javascript:;"><i class="icon iconfont icon-pifu"></i> 默认</a>-->
+            <!--</li>-->
+            <!--<li id="black"><a href="javascript:;"><i class="icon iconfont icon-pifu"></i> 暗夜黑</a></li>-->
+            <!--<li id="brown"><a href="javascript:;"><i class="icon iconfont icon-pifu"></i> 薄荷绿</a>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="sidebar" sroll="no">
+        <div class="nav-sidebar-box">
+            <ul class="nav-sidebar">
+                <li class="parent-li" ms-for="($index,el) in @jurisdiction" ms-class="getClass($index)">
+                    <a href="javascript:;" ms-on-click="@ClickLiParent($index,el)">
+                        <img ms-attr="{'src':'/Invite_bids/images/'+el.menu.Style}"/>
+                        <span class="title">{{el.menu.Name}}</span>
+                        <i ms-if="el.children.length>0" class="icon iconfont icon-shouqi" ms-class="getClassToggle($index)" ></i>
+                    </a>
+                    <ul class="treeview-menu" ms-if="el.children.length>0">
+                        <li ms-for="($childrenIndex,aa) in @el.children" ms-class="getChildrenClass($index,$childrenIndex)">
+                            <a href="javascript:;" ms-on-click="@ClickLiTwo($index,$childrenIndex,aa)">
+                                <i class="icon iconfont icon-yuandianzhong"></i>
+                                <span class="title">{{aa.menu.Name}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="subpage">
+        <div class="tab-content">
+            <iframe id="subpage" scrolling="auto" frameborder="0" src="/Invite_bids/views/home/home.html"></iframe>
+        </div>
+    </div>
+</div>
+</body>
+</html>

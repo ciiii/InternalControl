@@ -1,0 +1,696 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>登录账号管理-列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/登录账号管理-列表/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/登录账号管理-列表/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u9817" class="ax_default">
+        <div id="u9817_state0" class="panel_state" data-label="PurListContainer" style="">
+          <div id="u9817_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9818" class="ax_default box_1">
+              <div id="u9818_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9819" class="ax_default primary_button">
+              <div id="u9819_div" class=""></div>
+              <div id="u9819_text" class="text ">
+                <p><span>+ 新增账号</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u9820" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9821" class="ax_default table_cell">
+                <img id="u9821_img" class="img " src="images/合并-其他项目合并-合并操作/u4235.png"/>
+                <div id="u9821_text" class="text ">
+                  <p><span>序号</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9822" class="ax_default table_cell">
+                <img id="u9822_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9822_text" class="text ">
+                  <p><span>名称</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9823" class="ax_default table_cell">
+                <img id="u9823_img" class="img " src="images/合并-通用项目合并/u4692.png"/>
+                <div id="u9823_text" class="text ">
+                  <p><span>性别</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9824" class="ax_default table_cell">
+                <img id="u9824_img" class="img " src="images/合并-其他项目合并-合并操作/u4237.png"/>
+                <div id="u9824_text" class="text ">
+                  <p><span>联系方式</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9825" class="ax_default table_cell">
+                <img id="u9825_img" class="img " src="images/登录账号管理-列表/u9825.png"/>
+                <div id="u9825_text" class="text ">
+                  <p><span>所属部门</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9826" class="ax_default table_cell">
+                <img id="u9826_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9826_text" class="text ">
+                  <p><span>最后登录时间</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9827" class="ax_default table_cell">
+                <img id="u9827_img" class="img " src="images/登录账号管理-列表/u9827.png"/>
+                <div id="u9827_text" class="text ">
+                  <p><span>详情</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9828" class="ax_default table_cell">
+                <img id="u9828_img" class="img " src="images/登录账号管理-列表/u9828.png"/>
+                <div id="u9828_text" class="text ">
+                  <p><span>账号类型</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9829" class="ax_default table_cell">
+                <img id="u9829_img" class="img " src="images/合并-其他项目合并-合并操作/u4235.png"/>
+                <div id="u9829_text" class="text ">
+                  <p><span>1</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9830" class="ax_default table_cell">
+                <img id="u9830_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9830_text" class="text ">
+                  <p><span>XXX</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9831" class="ax_default table_cell">
+                <img id="u9831_img" class="img " src="images/合并-通用项目合并/u4692.png"/>
+                <div id="u9831_text" class="text ">
+                  <p><span>男</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9832" class="ax_default table_cell">
+                <img id="u9832_img" class="img " src="images/合并-其他项目合并-合并操作/u4237.png"/>
+                <div id="u9832_text" class="text ">
+                  <p><span>1388888888</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9833" class="ax_default table_cell">
+                <img id="u9833_img" class="img " src="images/登录账号管理-列表/u9825.png"/>
+                <div id="u9833_text" class="text ">
+                  <p><span>行政部</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9834" class="ax_default table_cell">
+                <img id="u9834_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9834_text" class="text ">
+                  <p><span>2017-08-08 13:00:56</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9835" class="ax_default table_cell">
+                <img id="u9835_img" class="img " src="images/登录账号管理-列表/u9827.png"/>
+                <div id="u9835_text" class="text ">
+                  <p><span>查看</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9836" class="ax_default table_cell">
+                <img id="u9836_img" class="img " src="images/登录账号管理-列表/u9828.png"/>
+                <div id="u9836_text" class="text ">
+                  <p><span>项目申请</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9837" class="ax_default table_cell">
+                <img id="u9837_img" class="img " src="images/合并-其他项目合并-合并操作/u4235.png"/>
+                <div id="u9837_text" class="text ">
+                  <p><span>1</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9838" class="ax_default table_cell">
+                <img id="u9838_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9838_text" class="text ">
+                  <p><span>XXX</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9839" class="ax_default table_cell">
+                <img id="u9839_img" class="img " src="images/合并-通用项目合并/u4692.png"/>
+                <div id="u9839_text" class="text ">
+                  <p><span>男</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9840" class="ax_default table_cell">
+                <img id="u9840_img" class="img " src="images/合并-其他项目合并-合并操作/u4237.png"/>
+                <div id="u9840_text" class="text ">
+                  <p><span>1388888888</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9841" class="ax_default table_cell">
+                <img id="u9841_img" class="img " src="images/登录账号管理-列表/u9825.png"/>
+                <div id="u9841_text" class="text ">
+                  <p><span>国资</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9842" class="ax_default table_cell">
+                <img id="u9842_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9842_text" class="text ">
+                  <p><span>2017-08-08 13:00:56</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9843" class="ax_default table_cell">
+                <img id="u9843_img" class="img " src="images/登录账号管理-列表/u9827.png"/>
+                <div id="u9843_text" class="text ">
+                  <p><span>查看</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9844" class="ax_default table_cell">
+                <img id="u9844_img" class="img " src="images/登录账号管理-列表/u9828.png"/>
+                <div id="u9844_text" class="text ">
+                  <p><span>归口部门-国资</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9845" class="ax_default table_cell">
+                <img id="u9845_img" class="img " src="images/合并-其他项目合并-合并操作/u4235.png"/>
+                <div id="u9845_text" class="text ">
+                  <p><span>1</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9846" class="ax_default table_cell">
+                <img id="u9846_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9846_text" class="text ">
+                  <p><span>XXX</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9847" class="ax_default table_cell">
+                <img id="u9847_img" class="img " src="images/合并-通用项目合并/u4692.png"/>
+                <div id="u9847_text" class="text ">
+                  <p><span>男</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9848" class="ax_default table_cell">
+                <img id="u9848_img" class="img " src="images/合并-其他项目合并-合并操作/u4237.png"/>
+                <div id="u9848_text" class="text ">
+                  <p><span>1388888888</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9849" class="ax_default table_cell">
+                <img id="u9849_img" class="img " src="images/登录账号管理-列表/u9825.png"/>
+                <div id="u9849_text" class="text ">
+                  <p><span>后勤</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9850" class="ax_default table_cell">
+                <img id="u9850_img" class="img " src="images/合并-通用项目合并/u4444.png"/>
+                <div id="u9850_text" class="text ">
+                  <p><span>2017-08-08 13:00:56</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9851" class="ax_default table_cell">
+                <img id="u9851_img" class="img " src="images/登录账号管理-列表/u9827.png"/>
+                <div id="u9851_text" class="text ">
+                  <p><span>查看</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9852" class="ax_default table_cell">
+                <img id="u9852_img" class="img " src="images/登录账号管理-列表/u9828.png"/>
+                <div id="u9852_text" class="text ">
+                  <p><span>项目申请</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9853" class="ax_default table_cell">
+                <img id="u9853_img" class="img " src="images/代理机构管理-列表/u9274.png"/>
+                <div id="u9853_text" class="text ">
+                  <p><span>1</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9854" class="ax_default table_cell">
+                <img id="u9854_img" class="img " src="images/合并-通用项目合并/u4540.png"/>
+                <div id="u9854_text" class="text ">
+                  <p><span>XXX</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9855" class="ax_default table_cell">
+                <img id="u9855_img" class="img " src="images/合并-通用项目合并/u4702.png"/>
+                <div id="u9855_text" class="text ">
+                  <p><span>男</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9856" class="ax_default table_cell">
+                <img id="u9856_img" class="img " src="images/代理机构管理-列表/u9276.png"/>
+                <div id="u9856_text" class="text ">
+                  <p><span>1388888888</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9857" class="ax_default table_cell">
+                <img id="u9857_img" class="img " src="images/登录账号管理-列表/u9857.png"/>
+                <div id="u9857_text" class="text ">
+                  <p><span>行政部</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9858" class="ax_default table_cell">
+                <img id="u9858_img" class="img " src="images/合并-通用项目合并/u4540.png"/>
+                <div id="u9858_text" class="text ">
+                  <p><span>2017-08-08 13:00:56</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9859" class="ax_default table_cell">
+                <img id="u9859_img" class="img " src="images/登录账号管理-列表/u9859.png"/>
+                <div id="u9859_text" class="text ">
+                  <p><span>查看</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u9860" class="ax_default table_cell">
+                <img id="u9860_img" class="img " src="images/登录账号管理-列表/u9860.png"/>
+                <div id="u9860_text" class="text ">
+                  <p><span>项目申请</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9861" class="ax_default label">
+              <div id="u9861_div" class=""></div>
+              <div id="u9861_text" class="text ">
+                <p><span>所属单位</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u9862" class="ax_default droplist">
+              <select id="u9862_input">
+                <option value="本部">本部</option>
+                <option selected value="xx代理机构">xx代理机构</option>
+              </select>
+            </div>
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u9863" class="ax_default">
+              <div id="u9863_state0" class="panel_state" data-label="State1" style="">
+                <div id="u9863_state0_content" class="panel_state_content">
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u9864" class="ax_default label">
+                    <div id="u9864_div" class=""></div>
+                    <div id="u9864_text" class="text ">
+                      <p><span>共有49条, 每页显示：10条</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Table) -->
+                  <div id="u9865" class="ax_default">
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9866" class="ax_default table_cell">
+                      <img id="u9866_img" class="img " src="images/主题模板_-_弹窗/u837.png"/>
+                      <div id="u9866_text" class="text ">
+                        <p><span>«</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9867" class="ax_default table_cell">
+                      <img id="u9867_img" class="img " src="images/主题模板_-_弹窗/u837.png"/>
+                      <div id="u9867_text" class="text ">
+                        <p><span>‹</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9868" class="ax_default table_cell">
+                      <img id="u9868_img" class="img " src="images/主题模板_-_弹窗/u839.png"/>
+                      <div id="u9868_text" class="text ">
+                        <p><span>1</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9869" class="ax_default table_cell">
+                      <img id="u9869_img" class="img " src="images/主题模板_-_弹窗/u840.png"/>
+                      <div id="u9869_text" class="text ">
+                        <p><span>2</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9870" class="ax_default table_cell">
+                      <img id="u9870_img" class="img " src="images/主题模板_-_弹窗/u837.png"/>
+                      <div id="u9870_text" class="text ">
+                        <p><span>3</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9871" class="ax_default table_cell">
+                      <img id="u9871_img" class="img " src="images/主题模板_-_弹窗/u842.png"/>
+                      <div id="u9871_text" class="text ">
+                        <p><span>›</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u9872" class="ax_default table_cell">
+                      <img id="u9872_img" class="img " src="images/主题模板_-_弹窗/u843.png"/>
+                      <div id="u9872_text" class="text ">
+                        <p><span>»</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Text Field) -->
+                  <div id="u9873" class="ax_default text_field">
+                    <input id="u9873_input" type="text" value=""/>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u9874" class="ax_default button">
+                    <div id="u9874_div" class=""></div>
+                    <div id="u9874_text" class="text ">
+                      <p><span>GO</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9875" class="ax_default label">
+              <div id="u9875_div" class=""></div>
+              <div id="u9875_text" class="text ">
+                <p><span>所属部门</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u9876" class="ax_default droplist">
+              <select id="u9876_input">
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u9877" class="ax_default">
+        <div id="u9877_state0" class="panel_state" data-label="State1" style="">
+          <div id="u9877_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9878" class="ax_default label">
+              <div id="u9878_div" class=""></div>
+              <div id="u9878_text" class="text ">
+                <p><span>角色名称：项目申请部门1</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9879" class="ax_default label">
+              <div id="u9879_div" class=""></div>
+              <div id="u9879_text" class="text ">
+                <p><span>日期：2018年07月08日&nbsp; 18:28:32</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u9880" class="ax_default image">
+              <img id="u9880_img" class="img " src="images/代理机构管理-列表/u9304.png"/>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u9881" class="ax_default image">
+              <img id="u9881_img" class="img " src="images/主题模板-顶部/u462.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--        (Dynamic Panel) -->
+      <div id="u9882" class="ax_default" data-label="&nbsp;&nbsp; &nbsp;&nbsp; ">
+        <div id="u9882_state0" class="panel_state" data-label="State1" style="">
+          <div id="u9882_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9883" class="ax_default box_1">
+              <div id="u9883_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9884" class="ax_default heading_3">
+              <div id="u9884_div" class=""></div>
+              <div id="u9884_text" class="text ">
+                <p><span>项目申报</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9885" class="ax_default label">
+              <div id="u9885_div" class=""></div>
+              <div id="u9885_text" class="text ">
+                <p><span>新建项目</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9886" class="ax_default heading_3">
+              <div id="u9886_div" class=""></div>
+              <div id="u9886_text" class="text ">
+                <p><span>项目执行</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9887" class="ax_default heading_3">
+              <div id="u9887_div" class=""></div>
+              <div id="u9887_text" class="text ">
+                <p><span>首&nbsp; &nbsp; &nbsp;&nbsp; 页</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9888" class="ax_default label">
+              <div id="u9888_div" class=""></div>
+              <div id="u9888_text" class="text ">
+                <p><span>任务消息</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9889" class="ax_default label">
+              <div id="u9889_div" class=""></div>
+              <div id="u9889_text" class="text ">
+                <p><span>数据统计</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9890" class="ax_default label">
+              <div id="u9890_div" class=""></div>
+              <div id="u9890_text" class="text ">
+                <p><span>查看项目</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9891" class="ax_default heading_3">
+              <div id="u9891_div" class=""></div>
+              <div id="u9891_text" class="text ">
+                <p><span>校内规章</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u9892" class="ax_default icon">
+              <img id="u9892_img" class="img " src="images/列表-任务消息查看_2/u1397.png"/>
+              <div id="u9892_text" class="text ">
+                <p><span>3</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u9893" class="ax_default icon">
+              <img id="u9893_img" class="img " src="images/列表-任务消息查看_2/u1398.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9894" class="ax_default label">
+              <div id="u9894_div" class=""></div>
+              <div id="u9894_text" class="text ">
+                <p><span>新建规章</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9895" class="ax_default label">
+              <div id="u9895_div" class=""></div>
+              <div id="u9895_text" class="text ">
+                <p><span>规章列表</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9896" class="ax_default heading_3">
+              <div id="u9896_div" class=""></div>
+              <div id="u9896_text" class="text ">
+                <p><span>通知管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9897" class="ax_default label">
+              <div id="u9897_div" class=""></div>
+              <div id="u9897_text" class="text ">
+                <p><span>发布通知</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9898" class="ax_default label">
+              <div id="u9898_div" class=""></div>
+              <div id="u9898_text" class="text ">
+                <p><span>发布列表</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9899" class="ax_default heading_3">
+              <div id="u9899_div" class=""></div>
+              <div id="u9899_text" class="text ">
+                <p><span>系统管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9900" class="ax_default label">
+              <div id="u9900_div" class=""></div>
+              <div id="u9900_text" class="text ">
+                <p><span>代理机构管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9901" class="ax_default label">
+              <div id="u9901_div" class=""></div>
+              <div id="u9901_text" class="text ">
+                <p><span>评审专家管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9902" class="ax_default label">
+              <div id="u9902_div" class=""></div>
+              <div id="u9902_text" class="text ">
+                <p><span>部门信息管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u9903" class="ax_default label">
+              <div id="u9903_div" class=""></div>
+              <div id="u9903_text" class="text ">
+                <p><span>登录账号管理</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

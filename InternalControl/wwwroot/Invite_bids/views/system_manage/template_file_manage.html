@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>模板文件管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/main.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/file_upload.js"></script>
+
+    <script>
+        document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/system_manage/template_file_manage.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+
+    </script>
+
+</head>
+<body ms-controller="root" class="ms-controller" onload="IFrameResize()">
+<div class="page-template page-common page-paper">
+    <div class="main">
+        <form class="form-horizontal">
+            <div class="module fileUpload-box col-md-12" ms-for="($index,el) in @model">
+                <h5 class="title"><span>{{el.Name}}</span></h5>
+                <div class="form-group col-md-4 col-sm-4 item" ms-for="($itemIndex,item) in @el.Type">
+                    <div class="item-top">
+                        <span class="item-name">{{item.Name}}</span>
+                        <div class="file-box">
+                            <input type="file" ms-attr="{'id':'input-file'+$index+'-'+$itemIndex}" class="input-file"
+                                   name="fileUpload"
+                                   ms-on-click="@upload($event,item)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">附件上传</a>
+                        </div>
+                    </div>
+                    <div class="file col-md-12">
+                        <a class="file-name col-md-11" ms-if="@item.FileName" ms-attr="{'href':item.Url}" download="">{{item.FileName}}</a>
+                        <span class="file-name col-md-11" ms-if="!@item.FileName">暂未上传附件</span>
+                        <a class="btn-del" ms-if="@item.FileName" href="javascript:;" ms-on-click="btnDel(item)">
+                            <i class="icon iconfont icon-shanchu"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="submit-wrapper col-md-12">
+                <div class="form-group">
+                    <div class="submit-box text-center">
+                        <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                ms-on-click="@clickBtnReturn">取消
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

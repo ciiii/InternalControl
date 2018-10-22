@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>执行项目-编辑-更正情况</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/执行项目-编辑-更正情况/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/执行项目-编辑-更正情况/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8003" class="ax_default label">
+        <div id="u8003_div" class=""></div>
+        <div id="u8003_text" class="text ">
+          <p><span>&nbsp;&nbsp;&nbsp; </span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8004" class="ax_default">
+        <div id="u8004_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8004_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8005" class="ax_default box_1">
+              <div id="u8005_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u8006" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8007" class="ax_default table_cell">
+                <img id="u8007_img" class="img " src="images/执行项目-编辑_项目论证/u6992.png"/>
+                <div id="u8007_text" class="text ">
+                  <p><span>项目名称</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8008" class="ax_default table_cell">
+                <img id="u8008_img" class="img " src="images/执行项目-编辑_项目论证/u6993.png"/>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u8009" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8010" class="ax_default table_cell">
+                <img id="u8010_img" class="img " src="images/执行项目-编辑-更正情况/u8010.png"/>
+                <div id="u8010_text" class="text ">
+                  <p><span>更正公告确认函</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8011" class="ax_default table_cell">
+                <img id="u8011_img" class="img " src="images/执行项目-编辑-更正情况/u8011.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8012" class="ax_default table_cell">
+                <img id="u8012_img" class="img " src="images/执行项目-编辑-更正情况/u8010.png"/>
+                <div id="u8012_text" class="text ">
+                  <p><span>更正公告</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8013" class="ax_default table_cell">
+                <img id="u8013_img" class="img " src="images/执行项目-编辑-更正情况/u8011.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8014" class="ax_default table_cell">
+                <img id="u8014_img" class="img " src="images/执行项目-编辑-更正情况/u8010.png"/>
+                <div id="u8014_text" class="text ">
+                  <p><span>更正公告截图</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8015" class="ax_default table_cell">
+                <img id="u8015_img" class="img " src="images/执行项目-编辑-更正情况/u8011.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8016" class="ax_default table_cell">
+                <img id="u8016_img" class="img " src="images/执行项目-编辑-更正情况/u8010.png"/>
+                <div id="u8016_text" class="text ">
+                  <p><span>更正附件</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8017" class="ax_default table_cell">
+                <img id="u8017_img" class="img " src="images/执行项目-编辑-更正情况/u8011.png"/>
+                <div id="u8017_text" class="text ">
+                  <p><span>+ 上传附件</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8018" class="ax_default table_cell">
+                <img id="u8018_img" class="img " src="images/执行项目-编辑-更正情况/u8018.png"/>
+                <div id="u8018_text" class="text ">
+                  <p><span>更正内容</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8019" class="ax_default table_cell">
+                <img id="u8019_img" class="img " src="images/执行项目-编辑-更正情况/u8019.png"/>
+                <div id="u8019_text" class="text ">
+                  <p><span>请填写。</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u8020" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8021" class="ax_default table_cell">
+                <img id="u8021_img" class="img " src="images/执行项目-编辑-更正情况/u8021.png"/>
+                <div id="u8021_text" class="text ">
+                  <p><span>http://xxxxxxxxxxxxxxxx/view/staticpags/gkzbcggg/2018-07-10/91b93ce1b79745c6a4f0cb22f9790d72.html</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8022" class="ax_default table_cell">
+                <img id="u8022_img" class="img " src="images/执行项目-编辑-更正情况/u8022.png"/>
+                <div id="u8022_text" class="text ">
+                  <p><span>公示网站名称</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8023" class="ax_default table_cell">
+                <img id="u8023_img" class="img " src="images/执行项目-编辑-更正情况/u8023.png"/>
+                <div id="u8023_text" class="text ">
+                  <p><span>中国政府采购网</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u8024" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8025" class="ax_default table_cell">
+                <img id="u8025_img" class="img " src="images/执行项目-编辑-更正情况/u8025.png"/>
+                <div id="u8025_text" class="text ">
+                  <p><span>+ 新增</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8026" class="ax_default label">
+              <div id="u8026_div" class=""></div>
+              <div id="u8026_text" class="text ">
+                <p><span>是否有更正</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8027" class="ax_default radio_button">
+              <label for="u8027_input" style="position: absolute; left: 0px;">
+                <div id="u8027_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8027_input" type="radio" value="radio" name="u8027" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8028" class="ax_default radio_button">
+              <label for="u8028_input" style="position: absolute; left: 0px;">
+                <div id="u8028_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8028_input" type="radio" value="radio" name="u8028"/>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u8029" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8030" class="ax_default table_cell">
+                <img id="u8030_img" class="img " src="images/执行项目-编辑-更正情况/u8021.png"/>
+                <div id="u8030_text" class="text ">
+                  <p><span>+ 上传</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8031" class="ax_default table_cell">
+                <img id="u8031_img" class="img " src="images/执行项目-编辑-更正情况/u8022.png"/>
+                <div id="u8031_text" class="text ">
+                  <p><span>更正公告确认函（盖章）</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8032" class="ax_default table_cell">
+                <img id="u8032_img" class="img " src="images/执行项目-编辑-更正情况/u8023.png"/>
+                <div id="u8032_text" class="text ">
+                  <p><span>+ 上传附件</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8033" class="ax_default label">
+              <div id="u8033_div" class=""></div>
+              <div id="u8033_text" class="text ">
+                <p><span>是否更正开标信息</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8034" class="ax_default radio_button">
+              <label for="u8034_input" style="position: absolute; left: 0px;">
+                <div id="u8034_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8034_input" type="radio" value="radio" name="u8034" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8035" class="ax_default radio_button">
+              <label for="u8035_input" style="position: absolute; left: 0px;">
+                <div id="u8035_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8035_input" type="radio" value="radio" name="u8035"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8036" class="ax_default label">
+              <div id="u8036_div" class=""></div>
+              <div id="u8036_text" class="text ">
+                <p><span>投标保证金缴纳截至时间</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8037" class="ax_default text_field">
+              <input id="u8037_input" type="text" value=""/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8038" class="ax_default label">
+              <div id="u8038_div" class=""></div>
+              <div id="u8038_text" class="text ">
+                <p><span>开标时间</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8039" class="ax_default text_field">
+              <input id="u8039_input" type="text" value=""/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8040" class="ax_default">
+        <div id="u8040_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8040_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8041" class="ax_default box_2">
+              <div id="u8041_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8042" class="ax_default heading_3">
+              <div id="u8042_div" class=""></div>
+              <div id="u8042_text" class="text ">
+                <p><span>采购项目管理系统</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8043" class="ax_default label">
+              <div id="u8043_div" class=""></div>
+              <div id="u8043_text" class="text ">
+                <p><span>角色名称：代理机构</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8044" class="ax_default label">
+              <div id="u8044_div" class=""></div>
+              <div id="u8044_text" class="text ">
+                <p><span>角色编码：SCDXCM</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8045" class="ax_default label">
+              <div id="u8045_div" class=""></div>
+              <div id="u8045_text" class="text ">
+                <p><span>日期：2018年07月08日&nbsp; 18:28:32</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8046" class="ax_default image">
+              <img id="u8046_img" class="img " src="images/列表-任务消息查看_2/u1386.png"/>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8047" class="ax_default image">
+              <img id="u8047_img" class="img " src="images/列表-任务消息查看_2/u1387.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8048" class="ax_default">
+        <div id="u8048_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8048_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8049" class="ax_default box_2">
+              <div id="u8049_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8050" class="ax_default button">
+              <div id="u8050_div" class=""></div>
+              <div id="u8050_text" class="text ">
+                <p><span>预览</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8051" class="ax_default primary_button">
+              <div id="u8051_div" class=""></div>
+              <div id="u8051_text" class="text ">
+                <p><span>保存</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8052" class="ax_default primary_button">
+              <div id="u8052_div" class=""></div>
+              <div id="u8052_text" class="text ">
+                <p><span>提交</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

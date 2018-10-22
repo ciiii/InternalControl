@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>执行项目-编辑-签订合同</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/执行项目-编辑-签订合同/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/执行项目-编辑-签订合同/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8156" class="ax_default">
+        <div id="u8156_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8156_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Table) -->
+            <div id="u8157" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8158" class="ax_default table_cell">
+                <img id="u8158_img" class="img " src="images/执行项目-编辑-结果确认/u7673.png"/>
+                <div id="u8158_text" class="text ">
+                  <p><span>包号-包名</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8159" class="ax_default table_cell">
+                <img id="u8159_img" class="img " src="images/执行项目-编辑-结果确认/u7674.png"/>
+                <div id="u8159_text" class="text ">
+                  <p><span>01包 - 一体机设备一批</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8160" class="ax_default table_cell">
+                <img id="u8160_img" class="img " src="images/执行项目-编辑-结果确认/u7673.png"/>
+                <div id="u8160_text" class="text ">
+                  <p><span>合同签订时间</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8161" class="ax_default table_cell">
+                <img id="u8161_img" class="img " src="images/执行项目-编辑-结果确认/u7674.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8162" class="ax_default table_cell">
+                <img id="u8162_img" class="img " src="images/执行项目-编辑-签订合同/u8162.png"/>
+                <div id="u8162_text" class="text ">
+                  <p><span>采购合同附件</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8163" class="ax_default table_cell">
+                <img id="u8163_img" class="img " src="images/执行项目-编辑-签订合同/u8163.png"/>
+                <div id="u8163_text" class="text ">
+                  <p><span>+ 上传合同扫描附件</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8164" class="ax_default table_cell">
+                <img id="u8164_img" class="img " src="images/执行项目-编辑-签订合同/u8162.png"/>
+                <div id="u8164_text" class="text ">
+                  <p><span>履约验收期限（天）</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8165" class="ax_default table_cell">
+                <img id="u8165_img" class="img " src="images/执行项目-编辑-签订合同/u8163.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8166" class="ax_default table_cell">
+                <img id="u8166_img" class="img " src="images/执行项目-编辑-签订合同/u8162.png"/>
+                <div id="u8166_text" class="text ">
+                  <p><span>履约验收期限</span></p><p><span>计算方式</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8167" class="ax_default table_cell">
+                <img id="u8167_img" class="img " src="images/执行项目-编辑-签订合同/u8163.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8168" class="ax_default table_cell">
+                <img id="u8168_img" class="img " src="images/执行项目-编辑-签订合同/u8168.png"/>
+                <div id="u8168_text" class="text ">
+                  <p><span>履约验收时间</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8169" class="ax_default table_cell">
+                <img id="u8169_img" class="img " src="images/执行项目-编辑-签订合同/u8169.png"/>
+                <div id="u8169_text" class="text ">
+                  <p><span>自动计算生成</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8170" class="ax_default label">
+              <div id="u8170_div" class=""></div>
+              <div id="u8170_text" class="text ">
+                <p><span>结果公告发布后30天内签订合同</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8171" class="ax_default label">
+              <div id="u8171_div" class=""></div>
+              <div id="u8171_text" class="text ">
+                <p><span>合同签订后2个工作日内公示</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u8172" class="ax_default droplist">
+              <select id="u8172_input">
+                <option selected value="自然天">自然天</option>
+                <option value="工作日">工作日</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8173" class="ax_default">
+        <div id="u8173_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8173_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8174" class="ax_default box_1">
+              <div id="u8174_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8175" class="ax_default image">
+              <img id="u8175_img" class="img " src="images/主题模板_-_流程/u485.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8176" class="ax_default box_1">
+              <div id="u8176_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8177" class="ax_default image">
+              <img id="u8177_img" class="img " src="images/主题模板_-_流程/u487.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8178" class="ax_default label">
+              <div id="u8178_div" class=""></div>
+              <div id="u8178_text" class="text ">
+                <p><span>开始实施</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8179" class="ax_default label">
+              <div id="u8179_div" class=""></div>
+              <div id="u8179_text" class="text ">
+                <p><span>项目论证</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8180" class="ax_default label">
+              <div id="u8180_div" class=""></div>
+              <div id="u8180_text" class="text ">
+                <p><span>采购公示</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8181" class="ax_default label">
+              <div id="u8181_div" class=""></div>
+              <div id="u8181_text" class="text ">
+                <p><span>结果信息</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8182" class="ax_default label">
+              <div id="u8182_div" class=""></div>
+              <div id="u8182_text" class="text ">
+                <p><span>拟定合同</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8183" class="ax_default label">
+              <div id="u8183_div" class=""></div>
+              <div id="u8183_text" class="text ">
+                <p><span>履约验收</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8184" class="ax_default label">
+              <div id="u8184_div" class=""></div>
+              <div id="u8184_text" class="text ">
+                <p><span>快速预览</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8185" class="ax_default label">
+              <div id="u8185_div" class=""></div>
+              <div id="u8185_text" class="text ">
+                <p><span>技术确认</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8186" class="ax_default marker">
+              <img id="u8186_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8187" class="ax_default marker">
+              <img id="u8187_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8188" class="ax_default marker">
+              <img id="u8188_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8189" class="ax_default marker">
+              <img id="u8189_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8190" class="ax_default marker">
+              <img id="u8190_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8191" class="ax_default marker">
+              <img id="u8191_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8192" class="ax_default marker">
+              <img id="u8192_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8193" class="ax_default marker">
+              <img id="u8193_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8194" class="ax_default label">
+              <div id="u8194_div" class=""></div>
+              <div id="u8194_text" class="text ">
+                <p><span>执行方式</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8195" class="ax_default label">
+              <div id="u8195_div" class=""></div>
+              <div id="u8195_text" class="text ">
+                <p><span>开标评标</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8196" class="ax_default label">
+              <div id="u8196_div" class=""></div>
+              <div id="u8196_text" class="text ">
+                <p><span>合同签订</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8197" class="ax_default marker">
+              <img id="u8197_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8198" class="ax_default marker">
+              <img id="u8198_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8199" class="ax_default marker">
+              <img id="u8199_img" class="img " src="images/执行项目-编辑-开始实施/u6229.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8200" class="ax_default marker">
+              <img id="u8200_img" class="img " src="images/执行项目-编辑-开始实施/u6229.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8201" class="ax_default marker">
+              <img id="u8201_img" class="img " src="images/执行项目-编辑-开始实施/u6229.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8202" class="ax_default label">
+              <div id="u8202_div" class=""></div>
+              <div id="u8202_text" class="text ">
+                <p><span>合同公示</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8203" class="ax_default label">
+              <div id="u8203_div" class=""></div>
+              <div id="u8203_text" class="text ">
+                <p><span>采购确认</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8204" class="ax_default marker">
+              <img id="u8204_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8205" class="ax_default label">
+              <div id="u8205_div" class=""></div>
+              <div id="u8205_text" class="text ">
+                <p><span>专家抽取</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8206" class="ax_default marker">
+              <img id="u8206_img" class="img " src="images/主题模板_-_流程/u497.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8207" class="ax_default label">
+              <div id="u8207_div" class=""></div>
+              <div id="u8207_text" class="text ">
+                <p><span>结果确认</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8208" class="ax_default image">
+              <img id="u8208_img" class="img " src="images/主题模板_-_流程/u522.png"/>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u8209" class="ax_default icon">
+              <img id="u8209_img" class="img " src="images/主题模板_-_流程/u523.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8210" class="ax_default box_1">
+              <div id="u8210_div" class=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8211" class="ax_default">
+        <div id="u8211_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8211_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8212" class="ax_default box_1">
+              <div id="u8212_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8213" class="ax_default image">
+              <img id="u8213_img" class="img " src="images/主题模板-顶部/u462.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8214" class="ax_default label">
+              <div id="u8214_div" class=""></div>
+              <div id="u8214_text" class="text ">
+                <p><span>部门：采购中心部门</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8215" class="ax_default label">
+              <div id="u8215_div" class=""></div>
+              <div id="u8215_text" class="text ">
+                <p><span>日期：2018年07月08日</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8216" class="ax_default image">
+              <img id="u8216_img" class="img " src="images/主题模板-顶部/u465.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

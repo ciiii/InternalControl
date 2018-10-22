@@ -1,0 +1,1126 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>合并-其他项目合并-合并之后</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/合并-其他项目合并-合并之后/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/合并-其他项目合并-合并之后/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u4077" class="ax_default">
+        <div id="u4077_state0" class="panel_state" data-label="State1" style="">
+          <div id="u4077_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4078" class="ax_default label">
+              <div id="u4078_div" class=""></div>
+              <div id="u4078_text" class="text ">
+                <p><span>共有49条, 每页显示：10条</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u4079" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4080" class="ax_default table_cell">
+                <img id="u4080_img" class="img " src="images/主题模板_-_弹窗/u837.png"/>
+                <div id="u4080_text" class="text ">
+                  <p><span>«</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4081" class="ax_default table_cell">
+                <img id="u4081_img" class="img " src="images/主题模板_-_弹窗/u837.png"/>
+                <div id="u4081_text" class="text ">
+                  <p><span>‹</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4082" class="ax_default table_cell">
+                <img id="u4082_img" class="img " src="images/主题模板_-_弹窗/u839.png"/>
+                <div id="u4082_text" class="text ">
+                  <p><span>1</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4083" class="ax_default table_cell">
+                <img id="u4083_img" class="img " src="images/主题模板_-_弹窗/u840.png"/>
+                <div id="u4083_text" class="text ">
+                  <p><span>2</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4084" class="ax_default table_cell">
+                <img id="u4084_img" class="img " src="images/主题模板_-_弹窗/u837.png"/>
+                <div id="u4084_text" class="text ">
+                  <p><span>3</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4085" class="ax_default table_cell">
+                <img id="u4085_img" class="img " src="images/主题模板_-_弹窗/u842.png"/>
+                <div id="u4085_text" class="text ">
+                  <p><span>›</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u4086" class="ax_default table_cell">
+                <img id="u4086_img" class="img " src="images/主题模板_-_弹窗/u843.png"/>
+                <div id="u4086_text" class="text ">
+                  <p><span>»</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u4087" class="ax_default text_field">
+              <input id="u4087_input" type="text" value=""/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4088" class="ax_default button">
+              <div id="u4088_div" class=""></div>
+              <div id="u4088_text" class="text ">
+                <p><span>GO</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u4089" class="ax_default button">
+        <div id="u4089_div" class=""></div>
+        <div id="u4089_text" class="text ">
+          <p><span>合并项目</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u4090" class="ax_default">
+        <div id="u4090_state0" class="panel_state" data-label="PurListContainer" style="">
+          <div id="u4090_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u4091" class="ax_default">
+              <div id="u4091_state0" class="panel_state" data-label="State1" style="">
+                <div id="u4091_state0_content" class="panel_state_content">
+
+                  <!-- Unnamed (Table) -->
+                  <div id="u4092" class="ax_default">
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4093" class="ax_default table_cell">
+                      <img id="u4093_img" class="img " src="images/合并-其他项目合并-合并之前/u3953.png"/>
+                      <div id="u4093_text" class="text ">
+                        <p><span>选择</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4094" class="ax_default table_cell">
+                      <img id="u4094_img" class="img " src="images/列表-申报项目管理/u2720.png"/>
+                      <div id="u4094_text" class="text ">
+                        <p><span>项目名称</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4095" class="ax_default table_cell">
+                      <img id="u4095_img" class="img " src="images/合并-其他项目合并-合并之前/u3955.png"/>
+                      <div id="u4095_text" class="text ">
+                        <p><span>预算金额(万元)</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4096" class="ax_default table_cell">
+                      <img id="u4096_img" class="img " src="images/合并-其他项目合并-合并之前/u3955.png"/>
+                      <div id="u4096_text" class="text ">
+                        <p><span>项目申报部门</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4097" class="ax_default table_cell">
+                      <img id="u4097_img" class="img " src="images/合并-其他项目合并-合并之前/u3957.png"/>
+                      <div id="u4097_text" class="text ">
+                        <p><span>申报提交时间</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4098" class="ax_default table_cell">
+                      <img id="u4098_img" class="img " src="images/合并-其他项目合并-合并之前/u3958.png"/>
+                      <div id="u4098_text" class="text ">
+                        <p><span>项目详情</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4099" class="ax_default table_cell">
+                      <img id="u4099_img" class="img " src="images/合并-其他项目合并-合并之前/u3959.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4100" class="ax_default table_cell">
+                      <img id="u4100_img" class="img " src="images/合并-其他项目合并-合并之前/u3960.png"/>
+                      <div id="u4100_text" class="text ">
+                        <p><span>申报项目 - 艺术院美术用具一批</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4101" class="ax_default table_cell">
+                      <img id="u4101_img" class="img " src="images/合并-其他项目合并-合并之前/u3961.png"/>
+                      <div id="u4101_text" class="text ">
+                        <p><span>20</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4102" class="ax_default table_cell">
+                      <img id="u4102_img" class="img " src="images/合并-其他项目合并-合并之前/u3961.png"/>
+                      <div id="u4102_text" class="text ">
+                        <p><span>艺术院</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4103" class="ax_default table_cell">
+                      <img id="u4103_img" class="img " src="images/合并-其他项目合并-合并之前/u3963.png"/>
+                      <div id="u4103_text" class="text ">
+                        <p><span>2018-07-14</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4104" class="ax_default table_cell">
+                      <img id="u4104_img" class="img " src="images/合并-其他项目合并-合并之前/u3964.png"/>
+                      <div id="u4104_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4105" class="ax_default table_cell">
+                      <img id="u4105_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4106" class="ax_default table_cell">
+                      <img id="u4106_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4106_text" class="text ">
+                        <p><span>申报项目 - 艺术院电子绘画一批</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4107" class="ax_default table_cell">
+                      <img id="u4107_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4107_text" class="text ">
+                        <p><span>30</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4108" class="ax_default table_cell">
+                      <img id="u4108_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4108_text" class="text ">
+                        <p><span>艺术院</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4109" class="ax_default table_cell">
+                      <img id="u4109_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4109_text" class="text ">
+                        <p><span>2018-07-14</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4110" class="ax_default table_cell">
+                      <img id="u4110_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4110_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4111" class="ax_default table_cell">
+                      <img id="u4111_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4112" class="ax_default table_cell">
+                      <img id="u4112_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4112_text" class="text ">
+                        <p><span>申报项目 - 合并项目 - 综合办公设备一批</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4113" class="ax_default table_cell">
+                      <img id="u4113_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4113_text" class="text ">
+                        <p><span>20</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4114" class="ax_default table_cell">
+                      <img id="u4114_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4114_text" class="text ">
+                        <p><span>艺术院等</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4115" class="ax_default table_cell">
+                      <img id="u4115_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4115_text" class="text ">
+                        <p><span>2018-07-15</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4116" class="ax_default table_cell">
+                      <img id="u4116_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4116_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4117" class="ax_default table_cell">
+                      <img id="u4117_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4118" class="ax_default table_cell">
+                      <img id="u4118_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4118_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4119" class="ax_default table_cell">
+                      <img id="u4119_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4119_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4120" class="ax_default table_cell">
+                      <img id="u4120_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4120_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4121" class="ax_default table_cell">
+                      <img id="u4121_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4121_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4122" class="ax_default table_cell">
+                      <img id="u4122_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4122_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4123" class="ax_default table_cell">
+                      <img id="u4123_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4124" class="ax_default table_cell">
+                      <img id="u4124_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4124_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4125" class="ax_default table_cell">
+                      <img id="u4125_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4125_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4126" class="ax_default table_cell">
+                      <img id="u4126_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4126_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4127" class="ax_default table_cell">
+                      <img id="u4127_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4127_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4128" class="ax_default table_cell">
+                      <img id="u4128_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4128_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4129" class="ax_default table_cell">
+                      <img id="u4129_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4130" class="ax_default table_cell">
+                      <img id="u4130_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4130_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4131" class="ax_default table_cell">
+                      <img id="u4131_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4131_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4132" class="ax_default table_cell">
+                      <img id="u4132_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4132_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4133" class="ax_default table_cell">
+                      <img id="u4133_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4133_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4134" class="ax_default table_cell">
+                      <img id="u4134_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4134_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4135" class="ax_default table_cell">
+                      <img id="u4135_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4136" class="ax_default table_cell">
+                      <img id="u4136_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4136_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4137" class="ax_default table_cell">
+                      <img id="u4137_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4137_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4138" class="ax_default table_cell">
+                      <img id="u4138_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4138_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4139" class="ax_default table_cell">
+                      <img id="u4139_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4139_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4140" class="ax_default table_cell">
+                      <img id="u4140_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4140_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4141" class="ax_default table_cell">
+                      <img id="u4141_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4142" class="ax_default table_cell">
+                      <img id="u4142_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4142_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4143" class="ax_default table_cell">
+                      <img id="u4143_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4143_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4144" class="ax_default table_cell">
+                      <img id="u4144_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4144_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4145" class="ax_default table_cell">
+                      <img id="u4145_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4145_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4146" class="ax_default table_cell">
+                      <img id="u4146_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4146_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4147" class="ax_default table_cell">
+                      <img id="u4147_img" class="img " src="images/合并-其他项目合并-合并之前/u3965.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4148" class="ax_default table_cell">
+                      <img id="u4148_img" class="img " src="images/合并-其他项目合并-合并之前/u3966.png"/>
+                      <div id="u4148_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4149" class="ax_default table_cell">
+                      <img id="u4149_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4149_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4150" class="ax_default table_cell">
+                      <img id="u4150_img" class="img " src="images/合并-其他项目合并-合并之前/u3967.png"/>
+                      <div id="u4150_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4151" class="ax_default table_cell">
+                      <img id="u4151_img" class="img " src="images/合并-其他项目合并-合并之前/u3969.png"/>
+                      <div id="u4151_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4152" class="ax_default table_cell">
+                      <img id="u4152_img" class="img " src="images/合并-其他项目合并-合并之前/u3970.png"/>
+                      <div id="u4152_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4153" class="ax_default table_cell">
+                      <img id="u4153_img" class="img " src="images/合并-其他项目合并-合并之前/u4013.png"/>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4154" class="ax_default table_cell">
+                      <img id="u4154_img" class="img " src="images/合并-其他项目合并-合并之前/u4014.png"/>
+                      <div id="u4154_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4155" class="ax_default table_cell">
+                      <img id="u4155_img" class="img " src="images/合并-其他项目合并-合并之前/u4015.png"/>
+                      <div id="u4155_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4156" class="ax_default table_cell">
+                      <img id="u4156_img" class="img " src="images/合并-其他项目合并-合并之前/u4015.png"/>
+                      <div id="u4156_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4157" class="ax_default table_cell">
+                      <img id="u4157_img" class="img " src="images/合并-其他项目合并-合并之前/u4017.png"/>
+                      <div id="u4157_text" class="text ">
+                        <p><span>---</span></p>
+                      </div>
+                    </div>
+
+                    <!-- Unnamed (Table Cell) -->
+                    <div id="u4158" class="ax_default table_cell">
+                      <img id="u4158_img" class="img " src="images/合并-其他项目合并-合并之前/u4018.png"/>
+                      <div id="u4158_text" class="text ">
+                        <p><span>查看</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4159" class="ax_default checkbox">
+                    <label for="u4159_input" style="position: absolute; left: 0px;">
+                      <div id="u4159_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4159_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4160" class="ax_default checkbox">
+                    <label for="u4160_input" style="position: absolute; left: 0px;">
+                      <div id="u4160_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4160_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4161" class="ax_default checkbox">
+                    <label for="u4161_input" style="position: absolute; left: 0px;">
+                      <div id="u4161_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4161_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4162" class="ax_default checkbox">
+                    <label for="u4162_input" style="position: absolute; left: 0px;">
+                      <div id="u4162_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4162_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4163" class="ax_default checkbox">
+                    <label for="u4163_input" style="position: absolute; left: 0px;">
+                      <div id="u4163_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4163_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4164" class="ax_default checkbox">
+                    <label for="u4164_input" style="position: absolute; left: 0px;">
+                      <div id="u4164_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4164_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4165" class="ax_default checkbox">
+                    <label for="u4165_input" style="position: absolute; left: 0px;">
+                      <div id="u4165_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4165_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4166" class="ax_default checkbox">
+                    <label for="u4166_input" style="position: absolute; left: 0px;">
+                      <div id="u4166_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4166_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4167" class="ax_default checkbox">
+                    <label for="u4167_input" style="position: absolute; left: 0px;">
+                      <div id="u4167_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4167_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u4168" class="ax_default checkbox">
+                    <label for="u4168_input" style="position: absolute; left: 0px;">
+                      <div id="u4168_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </label>
+                    <input id="u4168_input" type="checkbox" value="checkbox"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4169" class="ax_default label">
+              <div id="u4169_div" class=""></div>
+              <div id="u4169_text" class="text ">
+                <p><span>项目状态</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u4170" class="ax_default radio_button">
+              <label for="u4170_input" style="position: absolute; left: 0px;">
+                <div id="u4170_text" class="text ">
+                  <p><span>所有</span></p>
+                </div>
+              </label>
+              <input id="u4170_input" type="radio" value="radio" name="rdo_pur_0001" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u4171" class="ax_default radio_button">
+              <label for="u4171_input" style="position: absolute; left: 0px;">
+                <div id="u4171_text" class="text ">
+                  <p><span>待审批</span></p>
+                </div>
+              </label>
+              <input id="u4171_input" type="radio" value="radio" name="rdo_pur_0001"/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u4172" class="ax_default radio_button">
+              <label for="u4172_input" style="position: absolute; left: 0px;">
+                <div id="u4172_text" class="text ">
+                  <p><span>已通过</span></p>
+                </div>
+              </label>
+              <input id="u4172_input" type="radio" value="radio" name="rdo_pur_0001"/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u4173" class="ax_default radio_button">
+              <label for="u4173_input" style="position: absolute; left: 0px;">
+                <div id="u4173_text" class="text ">
+                  <p><span>未通过</span></p>
+                </div>
+              </label>
+              <input id="u4173_input" type="radio" value="radio" name="rdo_pur_0001"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4174" class="ax_default label">
+              <div id="u4174_div" class=""></div>
+              <div id="u4174_text" class="text ">
+                <p><span>预算金额</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4175" class="ax_default label">
+              <div id="u4175_div" class=""></div>
+              <div id="u4175_text" class="text ">
+                <p><span>项目申报部门</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u4176" class="ax_default droplist">
+              <select id="u4176_input">
+                <option value="请选择">请选择</option>
+              </select>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4177" class="ax_default label">
+              <div id="u4177_div" class=""></div>
+              <div id="u4177_text" class="text ">
+                <p><span>年度</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u4178" class="ax_default droplist">
+              <select id="u4178_input">
+                <option selected value="2018">2018</option>
+              </select>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4179" class="ax_default button">
+              <div id="u4179_div" class=""></div>
+              <div id="u4179_text" class="text ">
+                <p><span>降序</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4180" class="ax_default primary_button">
+              <div id="u4180_div" class=""></div>
+              <div id="u4180_text" class="text ">
+                <p><span>升序</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4181" class="ax_default label">
+              <div id="u4181_div" class=""></div>
+              <div id="u4181_text" class="text ">
+                <p><span>项目名称</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u4182" class="ax_default text_field">
+              <input id="u4182_input" type="text" value=""/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u4183" class="ax_default label">
+        <div id="u4183_div" class=""></div>
+        <div id="u4183_text" class="text ">
+          <p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">待审批：</span><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">新申报的项目，归口部门审核之前（入选项目审核）。</span></p><p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">已通过：</span><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">表示已入选。</span></p><p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">未通过：</span><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">表示未通过必要性论证或未成功入选。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u4184" class="ax_default label">
+        <div id="u4184_div" class=""></div>
+        <div id="u4184_text" class="text ">
+          <p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">待执行：</span><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">已成功入选的申报项目并且是合并后的 或 第一次招标未成功的项目。</span></p><p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">进行中：</span><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">表示已成功发布了采购公告。</span></p><p><span style="font-family:'Arial Negreta', 'Arial Normal', 'Arial';font-weight:700;">已完成：</span><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">表示 履约验收结束的项目。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u4185" class="ax_default label">
+        <div id="u4185_div" class=""></div>
+        <div id="u4185_text" class="text ">
+          <p><span>项目状态：</span></p><p><span>&nbsp;&nbsp;&nbsp; 待确认参数：&nbsp; &nbsp; &nbsp; &nbsp; 需要检查技术、服务、商务要求，或者上传</span></p><p><span>&nbsp;&nbsp;&nbsp; 待确认招标文件： 需要确认招标文件。</span></p><p><span>&nbsp;&nbsp;&nbsp; 上报中：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 已确认入选后的项目</span></p><p><span>&nbsp;&nbsp;&nbsp; 待论证：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 开始执行预算的项目</span></p><p><span>&nbsp;&nbsp;&nbsp; 待发布：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 已论证完毕</span></p><p><span>&nbsp;&nbsp;&nbsp; 进行中：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 已发布采购公告</span></p><p><span>&nbsp;&nbsp;&nbsp; 待签订合同：&nbsp; &nbsp; &nbsp; &nbsp; 已中标/成交的项目</span></p><p><span>&nbsp;&nbsp;&nbsp; 待验收：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 已签订合同，待验收</span></p><p><span>&nbsp;&nbsp;&nbsp; 已完成：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 已验收</span></p><p><span><br></span></p><p><span>&nbsp;&nbsp; &nbsp; 待重招：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 废标、流标等需要第二次招标</span></p><p><span>&nbsp;&nbsp; &nbsp; 待启动：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 其它原因暂时停止。&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u4186" class="ax_default">
+        <div id="u4186_state0" class="panel_state" data-label="State1" style="">
+          <div id="u4186_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4187" class="ax_default box_2">
+              <div id="u4187_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4188" class="ax_default heading_3">
+              <div id="u4188_div" class=""></div>
+              <div id="u4188_text" class="text ">
+                <p><span>采购项目管理系统</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4189" class="ax_default label">
+              <div id="u4189_div" class=""></div>
+              <div id="u4189_text" class="text ">
+                <p><span>角色名称：归口管理部门</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4190" class="ax_default label">
+              <div id="u4190_div" class=""></div>
+              <div id="u4190_text" class="text ">
+                <p><span>角色编码：SCDXCM</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4191" class="ax_default label">
+              <div id="u4191_div" class=""></div>
+              <div id="u4191_text" class="text ">
+                <p><span>日期：2018年07月08日&nbsp; 18:28:32</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u4192" class="ax_default image">
+              <img id="u4192_img" class="img " src="images/列表-任务消息查看_2/u1386.png"/>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u4193" class="ax_default image">
+              <img id="u4193_img" class="img " src="images/列表-任务消息查看_2/u1387.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u4194" class="ax_default">
+        <div id="u4194_state0" class="panel_state" data-label="State1" style="">
+          <div id="u4194_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4195" class="ax_default heading_3">
+              <div id="u4195_div" class=""></div>
+              <div id="u4195_text" class="text ">
+                <p><span>项目申报</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4196" class="ax_default label">
+              <div id="u4196_div" class=""></div>
+              <div id="u4196_text" class="text ">
+                <p><span>新建项目</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4197" class="ax_default heading_3">
+              <div id="u4197_div" class=""></div>
+              <div id="u4197_text" class="text ">
+                <p><span>项目执行</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4198" class="ax_default heading_3">
+              <div id="u4198_div" class=""></div>
+              <div id="u4198_text" class="text ">
+                <p><span>首&nbsp; &nbsp; &nbsp;&nbsp; 页</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4199" class="ax_default label">
+              <div id="u4199_div" class=""></div>
+              <div id="u4199_text" class="text ">
+                <p><span>任务消息</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4200" class="ax_default label">
+              <div id="u4200_div" class=""></div>
+              <div id="u4200_text" class="text ">
+                <p><span>数据统计</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4201" class="ax_default label">
+              <div id="u4201_div" class=""></div>
+              <div id="u4201_text" class="text ">
+                <p><span>查看项目</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4202" class="ax_default heading_3">
+              <div id="u4202_div" class=""></div>
+              <div id="u4202_text" class="text ">
+                <p><span>校内规章</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u4203" class="ax_default icon">
+              <img id="u4203_img" class="img " src="images/列表-任务消息查看_2/u1397.png"/>
+              <div id="u4203_text" class="text ">
+                <p><span>3</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4204" class="ax_default heading_3">
+              <div id="u4204_div" class=""></div>
+              <div id="u4204_text" class="text ">
+                <p><span>项目论证</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4205" class="ax_default heading_3">
+              <div id="u4205_div" class=""></div>
+              <div id="u4205_text" class="text ">
+                <p><span>执行预算</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u4206" class="ax_default icon">
+              <img id="u4206_img" class="img " src="images/列表-任务消息查看_2/u1398.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4207" class="ax_default label">
+              <div id="u4207_div" class=""></div>
+              <div id="u4207_text" class="text ">
+                <p><span>通用项目合并</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4208" class="ax_default label">
+              <div id="u4208_div" class=""></div>
+              <div id="u4208_text" class="text ">
+                <p><span>其他项目合并</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4209" class="ax_default label">
+              <div id="u4209_div" class=""></div>
+              <div id="u4209_text" class="text ">
+                <p><span>项目论证管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4210" class="ax_default label">
+              <div id="u4210_div" class=""></div>
+              <div id="u4210_text" class="text ">
+                <p><span>预算指标</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4211" class="ax_default label">
+              <div id="u4211_div" class=""></div>
+              <div id="u4211_text" class="text ">
+                <p><span>进入预算</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4212" class="ax_default heading_3">
+              <div id="u4212_div" class=""></div>
+              <div id="u4212_text" class="text ">
+                <p><span>申报管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4213" class="ax_default heading_3">
+              <div id="u4213_div" class=""></div>
+              <div id="u4213_text" class="text ">
+                <p><span>通知管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4214" class="ax_default label">
+              <div id="u4214_div" class=""></div>
+              <div id="u4214_text" class="text ">
+                <p><span>发布通知</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4215" class="ax_default label">
+              <div id="u4215_div" class=""></div>
+              <div id="u4215_text" class="text ">
+                <p><span>发布列表</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4216" class="ax_default label">
+              <div id="u4216_div" class=""></div>
+              <div id="u4216_text" class="text ">
+                <p><span>申报管理</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u4217" class="ax_default label">
+              <div id="u4217_div" class=""></div>
+              <div id="u4217_text" class="text ">
+                <p><span>时间管理</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

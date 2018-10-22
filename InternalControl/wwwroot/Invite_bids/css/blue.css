@@ -1,0 +1,88 @@
+.header {
+  background: #389af0;
+}
+.header a {
+  color: #d2eded;
+}
+.header .main-nav .parent-li > a {
+  border-bottom: 3px solid #1e1b29;
+}
+.header .main-nav .parent-li.active > a {
+  border-bottom: 3px solid #1976d2;
+}
+.table tbody tr:hover {
+  background: #ecf5fd;
+}
+.operation a:hover {
+  color: #389af0;
+}
+.btn-import i,
+.btn-export i {
+  color: #389af0;
+}
+.pager {
+  margin: 0;
+  float: right;
+  padding: 10px 0 0;
+}
+.pager li > span,
+.pager li > a {
+  color: #389af0;
+}
+.pager .page-input {
+  border: 1px solid #389af0;
+  color: #389af0;
+}
+.pager .active a,
+.pager .active span {
+  background: #389af0;
+  border-color: #389af0;
+  color: #fff;
+}
+.pager .active a:hover,
+.pager .active span:hover {
+  border-color: #389af0;
+}
+.ztree li a:hover {
+  color: #389af0;
+}
+.other .dropdown-menu > .active > a {
+  color: #389af0;
+}
+.btn-person a {
+  color: #389af0;
+}
+.sidebar {
+  background: #fff;
+  background: #ffffff url("../images/bg3.jpg") no-repeat center bottom;
+}
+.sidebar .logo {
+  background: #1c81d9;
+}
+.sidebar .profile-img {
+  background: #ffffff url("../images/user-bg3.jpg") no-repeat center bottom;
+}
+.nav-sidebar > li > ul > li > ul > li:hover > a,
+.nav-sidebar > li > ul > li > ul li.active > a {
+  color: #389af0;
+}
+.nav-sidebar > li > ul > li:hover > a,
+.nav-sidebar > li > ul li.active > a {
+  color: #389af0;
+}
+.nav-sidebar > li:hover > a {
+  background: #389af0 !important;
+}
+.nav-sidebar > li.active > a {
+  background: #389af0 !important;
+}
+.nav-sidebar > li.active > ul .active > a {
+  color: #389af0;
+}
+.mini-sidebar .nav-sidebar > li:hover > a {
+  background: #389af0;
+}
+.mini-sidebar .nav-sidebar > li:hover ul.treeview-menu > li:hover > a,
+.mini-sidebar .nav-sidebar > li:hover ul.treeview-menu li.active > a {
+  color: #389af0;
+}

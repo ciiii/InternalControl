@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>新建申报</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/ztree/metroStyle/metroStyle.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/main.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/file_upload.js"></script>
+
+    <script>
+        document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/project_declare/add_declare.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+
+    </script>
+
+</head>
+<body ms-controller="root" class="ms-controller" onload="IFrameResize()">
+<div class="page-add-declare page-common page-paper">
+    <div class="main">
+        <div class="form-horizontal content">
+            <div class="item clo-md-12 col-sm-12">
+                <div class="form-group clo-md-12 col-sm-12">
+                <button class="btn btn-primary btn-back" ms-if="@editType" ms-on-click="clickBtnCancel">
+                    <i class="icon iconfont icon-ai207"></i> 返回
+                </button>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目名称
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control project-name" ms-duplex="@model.Data.Model.Name">
+                    </div>
+                </div>
+                <div class="form-group  clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>归口管理部门
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <select class="form-control relevant-department" ms-on-change="changeDepartment($event)"
+                                ms-duplex="@model.Data.Model.RelevantDepartmentId">
+                            <option value="">全部</option>
+                            <option ms-for="el in @relevantDepartment"
+                                    ms-attr="{'value':@el.Id,'data-time':@el.IsCanChooseThisYear}">
+                                {{el.Name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="clo-md-12 col-sm-12"/>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">项目联系人</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control contacts" ms-duplex="@model.Data.Model.LinkmanName">
+                    </div>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">联系电话</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control phone" ms-duplex="@model.Data.Model.LinkmanPhone">
+                    </div>
+                </div>
+            </div>
+            <div class="item collection-box clo-md-12 col-sm-12">
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否为政府集中采购
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <ul class="select-ul">
+                            <li ms-class="getClass(true)" ms-on-click="clickType(true)">
+                                <a href="javascript:;">是</a>
+                            </li>
+                            <li ms-class="getClass(false)" ms-on-click="clickType(false)">
+                                <a href="javascript:;">否</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6 text-a">
+                    <a class="col-md-10 col-sm-10" href="javascript:;" download="">
+                        《四川省2018-2019年政府集中采购目录及采购限额标准》国办发〔2016〕96号
+                    </a>
+                </div>
+            </div>
+            <div class="item table-box clo-md-12 col-sm-12" ms-if="@model.Data.Model.IsCenterPurchase&&@isGoods">
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目概况
+                    </label>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6 text-span">
+                    <span class="col-md-10 col-sm-10">注：货物（服务）不得与工程一起申报。</span>
+                </div>
+                <div class="table-responsive clo-md-12 col-sm-12">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>单项名称</th>
+                            <th>技术要求</th>
+                            <th>单位</th>
+                            <th>数量</th>
+                            <th>单价(元)</th>
+                            <th>合计(元)</th>
+                            <th>备注</th>
+                            <th>是否为进口产品</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="($index,el) in @model.Data.List" ms-attr="{'id':'items-'+$index}">
+                            <td class="number text-center">{{$index+1}}</td>
+                            <td class="majorItem-box">
+                                <a class="project-item form-control" data-toggle="modal" data-target=".modal-choice"
+                                   href="choice_items.html" onclick="changeUrlChoice(this,'.modal-choice')"
+                                   ms-on-click="changeItems($index)">{{el.ItemName}}<b class="caret"></b>
+                                </a>
+                            </td>
+                            <td>
+                                <textarea class="form-control" rows="2"
+                                          ms-duplex="el.DeclareTechnicalRequirements"></textarea>
+                            </td>
+                            <td class="unit">
+                                <input type="text" class="form-control" ms-duplex="el.Unit"/>
+                            </td>
+                            <td class="unit">
+                                <input type="text" class="form-control" ms-duplex="el.DeclareNumber"
+                                       ms-on-keyup="countNumber,countCollectionPrice" onkeyup="onlyNum(this)"/>
+                            </td>
+                            <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')" ms-class="limitOfPrice(el,'warn-tip-info')">
+                                <input type="text" class="form-control" ms-duplex="el.DeclareUnitPrice"
+                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" />
+                                <div class="tip-info">
+                                    <span class="icon-tabxiala"></span>
+                                    <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置
+                                        标准》川 财资产〔2017〕20号</a>
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>单位</th>
+                                            <th>价格上限标准</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{el.ItemName}}</td>
+                                            <td>{{el.Unit}}</td>
+                                            <td>{{el.LimitOfPrice}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control"
+                                       ms-duplex="el.DeclareNumber*el.DeclareUnitPrice"/>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ms-duplex="el.Remark"/>
+                            </td>
+                            <td>
+                                <select class="form-contro" ms-on-change="changeIsImported($event,el)"
+                                        ms-duplex="el.IsImported">
+                                    <option value="true">是</option>
+                                    <option value="false">否</option>
+                                </select>
+                            </td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-del" ms-on-click="removeCollectionEl(el)">
+                                        <a href="javascript:;">删除</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10">
+                                <a href="javascript:;" class="btn-add" ms-on-click="addCollection"> +添加</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="item table-box clo-md-12 col-sm-12" ms-if="@model.Data.Model.IsCenterPurchase&&!@isGoods">
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目概况
+                    </label>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6 text-span">
+                    <span class="col-md-10 col-sm-10">注：货物（服务）不得与工程一起申报。</span>
+                </div>
+                <div class="table-responsive clo-md-12 col-sm-12">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>单项名称</th>
+                            <th>技术要求</th>
+                            <th>合计(元)</th>
+                            <th>备注</th>
+                            <th>是否为进口产品</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="($index,el) in @model.Data.List" ms-attr="{'id':'items-'+$index}">
+                            <td class="number text-center">{{$index+1}}</td>
+                            <td class="majorItem-box">
+                                <a class="project-item form-control" data-toggle="modal" data-target=".modal-choice"
+                                   href="choice_items.html" onclick="changeUrlChoice(this,'.modal-choice')"
+                                   ms-on-click="changeItems($index)">{{el.ItemName}}<b class="caret"></b>
+                                </a>
+                            </td>
+                            <td class="fileUpload-box">
+                                <div class="file-box form-control">
+                                    <input type="file" ms-attr="{'id':'collection-'+$index}" class="input-file"
+                                           name="fileUpload" ms-on-click="@upload($event,el)">
+                                    <a class="file-text" href="javascript:;" ms-if="el.Attachment==''">+上传附件</a>
+                                    <a class="file-text" href="javascript:;" ms-if="el.Attachment!=''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                </div>
+                            </td>
+                            <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')" ms-class="limitOfPrice(el,'warn-tip-info')">
+                                <input type="text" class="form-control"  ms-duplex="el.DeclareUnitPrice"
+                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" />
+
+                                <div class="tip-info">
+                                    <span class="icon-tabxiala"></span>
+                                    <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置
+                                        标准》川 财资产〔2017〕20号</a>
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>单位</th>
+                                            <th>价格上限标准</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{el.ItemName}}</td>
+                                            <td>{{el.Unit}}</td>
+                                            <td>{{el.LimitOfPrice}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ms-duplex="el.Remark"/>
+                            </td>
+                            <td>
+                                <select class="form-contro" ms-on-change="changeIsImported($event,el)"
+                                        ms-duplex="el.IsImported">
+                                    <option value="true">是</option>
+                                    <option value="false">否</option>
+                                </select>
+                            </td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-del" ms-on-click="removeCollectionEl(el)">
+                                        <a href="javascript:;">删除</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr ms-if="@model.Data.List.length==0">
+                            <td colspan="10">
+                                <a href="javascript:;" class="btn-add" ms-on-click="addCollection"> +添加</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="item table-box clo-md-12 col-sm-12" ms-if="!@model.Data.Model.IsCenterPurchase">
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>采购需求
+                    </label>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6 text-a">
+                    <a class="col-md-10 col-sm-10" href="javascript:;" download="">
+                        《四川省省级行政事业单位通用办公设备和家具配置标准》川财资产〔2017〕20号
+                    </a>
+                </div>
+                <div class="table-responsive clo-md-12 col-sm-12">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>包号</th>
+                            <th>包名称</th>
+                            <th>预算金额(元)</th>
+                            <th>采购品目</th>
+                            <th>技术要求</th>
+                            <th>是否为进口产品</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="($index,el) in @model.Data.List">
+                            <td class="number text-center">第{{$index+1}}包</td>
+                            <td>
+                                <input type="text" class="form-control" ms-duplex="el.Name"/>
+                            </td>
+                            <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')" ms-class="limitOfPrice(el,'warn-tip-info')">
+                                <input type="text" class="form-control" ms-duplex="el.DeclareUnitPrice"
+                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)"/>
+                                <div class="tip-info">
+                                    <span class="icon-tabxiala"></span>
+                                    <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置
+                                        标准》川 财资产〔2017〕20号</a>
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>单位</th>
+                                            <th>价格上限标准</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{el.ItemName}}</td>
+                                            <td>{{el.Unit}}</td>
+                                            <td>{{el.LimitOfPrice}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td class="majorItem-box" ms-on-click="clickMajorItem">
+                                <a class="project-item form-control" data-toggle="modal" data-target=".modal-choice"
+                                   href="choice_items.html" onclick="changeUrlChoice(this,'.modal-choice')"
+                                   ms-on-click="changeItems($index)">{{el.ItemName}}<b class="caret"></b>
+                                </a>
+                            </td>
+                            <td class="fileUpload-box">
+                                <div class="file-box form-control">
+                                    <input type="file" ms-attr="{'id':'collection-'+$index}" class="input-file"
+                                           name="fileUpload" ms-on-click="@upload($event,el)">
+
+                                    <a class="file-text" href="javascript:;" ms-if="el.Attachment==''">+上传附件</a>
+                                    <a class="file-text" href="javascript:;" ms-if="!el.Attachment==''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                </div>
+                            </td>
+                            <td>
+                                <select class="form-contro" ms-on-change="changeIsImported($event,el)"
+                                        ms-duplex="el.IsImported">
+                                    <option value="true">是</option>
+                                    <option value="false">否</option>
+                                </select>
+                            </td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="btn-del" ms-on-click="removeNonCollectionEl(el)">
+                                        <a href="javascript:;">删除</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <a href="javascript:;" class="btn-add" ms-on-click="addCollection"> +添加</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="item clo-md-12 col-sm-12">
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">数量</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@declareNumber" readonly>
+                    </div>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@allPrice" readonly>
+                    </div>
+                </div>
+                <hr class="clo-md-12 col-sm-12"/>
+                <div class="form-group clo-md-6 col-sm-6" ms-if="!@model.Data.Model.IsCenterPurchase">
+                    <label class="control-label col-md-3 col-sm-3">采购方式</label>
+                    <div class="col-md-7 col-sm-7">
+                        <select class="form-control roles" ms-on-change="changePurchaseMetho($event)"
+                                ms-duplex="@model.Data.Model.PlanPurchaseMethod">
+                            <option value="">全部</option>
+                            <option ms-for="el in @purchaseMetho" ms-attr="{'value':@el.Value}">{{el.Value}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6 text-a" ms-if="!@model.Data.Model.IsCenterPurchase">
+                    <a class="col-md-10 col-sm-10" href="javascript:;" download="">《各类采购方式简介》</a>
+                </div>
+                <hr class="clo-md-12 col-sm-12" ms-if="!@model.Data.Model.IsCenterPurchase"/>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">品目名称</label>
+                    <div class="clo-md-7 col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@allName">
+                    </div>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6 text-a">
+                    <a class="col-md-10 col-sm-10" href="javascript:;" download="">
+                        《政府采购品目分类目录》财库[2013]189号
+                    </a>
+                </div>
+                <hr class="clo-md-12 col-sm-12"/>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目拟实施时间
+                    </label>
+                    <div class="clo-md-7 col-sm-7">
+                        <input type="text" class="form-control form-month implement-time"
+                               ms-duplex="@model.Data.Model.DateOfPlanToImplement">
+                    </div>
+                </div>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">采购对象</label>
+                    <div class="clo-md-7 col-sm-7">
+                        <ul class="select-ul">
+                            <li ms-class="getObjClass('货物')" ms-on-click="clickObjType($event)">
+                                <a href="javascript:;">货物</a>
+                            </li>
+                            <li ms-class="getObjClass('工程')" ms-on-click="clickObjType($event)">
+                                <a href="javascript:;">工程</a>
+                            </li>
+                            <li ms-class="getObjClass('服务')" ms-on-click="clickObjType($event)">
+                                <a href="javascript:;">服务</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item clo-md-12 col-sm-12">
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">申报申请</label>
+                </div>
+                <hr class="clo-md-12 col-sm-12"/>
+                <div class="form-group clo-md-12 col-sm-12">
+                    <div class="form-group clo-md-6 col-sm-6">
+                        <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
+                            <div class="item-top">
+                                <a class="file-text btn btn-default" href="javascript:;" download="">下载样本</a>
+                                <div class="file-box">
+                                    <input type="file" id="apply-upload" class="input-file" name="fileUpload"
+                                           ms-on-click="@upload($event,@apply)">
+
+                                    <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                                </div>
+                            </div>
+                            <div class="file col-md-12 col-sm-12">
+                                <a class="file-name col-md-11 col-sm-11" ms-if="@apply.FileName"
+                                   ms-attr="{'href':apply.Url}" download="">{{@apply.FileName}}</a>
+                                <span class="file-name col-md-11 col-sm-11" ms-if="!@apply.FileName">暂未上传附件</span>
+                                <a class="btn-del" ms-if="@apply.FileName" href="javascript:;"
+                                   ms-on-click="btnDel(apply)">
+                                    <i class="icon iconfont icon-shanchu"></i>
+                                </a>
+                            </div>
+                            <span class="remark">注：请上传签署、盖章完成的PDF文件。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item declare-box clo-md-12 col-sm-12">
+                <div class="form-group clo-md-12 col-sm-12 reason-box">
+                    <label class="control-label col-md-1 col-sm-1">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>申报原因
+                    </label>
+                    <div class="clo-md-9 col-sm-9">
+                        <textarea class="form-control content declare-reason" rows="3" ms-duplex="@model.Data.Model.Reason"></textarea>
+                    </div>
+                </div>
+                <hr class="clo-md-12 col-sm-12"/>
+                <div class="form-group clo-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>申报年度
+                    </label>
+                    <div class="clo-md-7 col-sm-7">
+                        <select class="form-control declare-year" ms-duplex="@model.Data.Model.Year">
+                            <option value="">请选择</option>
+                            <option ms-attr="{'value':@year}" ms-if="thisYaer">{{@year}}</option>
+                            <option ms-attr="{'value':@nextYear}">{{@nextYear}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="item clo-md-12 col-sm-12">
+                <div class="submit-wrapper">
+                    <div class="form-group">
+                        <div class="submit-box text-center">
+                            <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit">提交
+                            </button>
+                            <button type="button" class="btn btn-success btn-submit" ms-on-click="@temporary">暂存
+                            </button>
+                            <button type="button" class="btn btn-default" ms-on-click="clickBtnCancel">取消
+                            </button>
+                            <div class="tip-box"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+    <div class="modal fade modal-choice" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+</div>
+</body>
+</html>

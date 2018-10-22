@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>四川省省级行政事业单位通用办公设备和家具配置标准2017-20</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Image) -->
+      <div id="u10011" class="ax_default image">
+        <img id="u10011_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10011.png"/>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u10012" class="ax_default image">
+        <img id="u10012_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10012.png"/>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u10013" class="ax_default image">
+        <img id="u10013_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10013.png"/>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u10014" class="ax_default image">
+        <img id="u10014_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10014.png"/>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u10015" class="ax_default image">
+        <img id="u10015_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10015.png"/>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u10016" class="ax_default image">
+        <img id="u10016_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10016.png"/>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u10017" class="ax_default image">
+        <img id="u10017_img" class="img " src="images/四川省省级行政事业单位通用办公设备和家具配置标准2017-20/u10017.png"/>
+      </div>
+    </div>
+  </body>
+</html>

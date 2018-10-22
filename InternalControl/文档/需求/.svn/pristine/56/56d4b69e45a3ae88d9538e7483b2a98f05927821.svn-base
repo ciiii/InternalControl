@@ -1,0 +1,833 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>执行项目-编辑-开标评标</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/执行项目-编辑-开标评标/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/执行项目-编辑-开标评标/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u7568" class="ax_default">
+        <div id="u7568_state0" class="panel_state" data-label="State1" style="">
+          <div id="u7568_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7569" class="ax_default box_1">
+              <div id="u7569_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7570" class="ax_default box_1">
+              <div id="u7570_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u7571" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7572" class="ax_default table_cell">
+                <img id="u7572_img" class="img " src="images/合并-其他项目合并-合并操作/u4354.png"/>
+                <div id="u7572_text" class="text ">
+                  <p><span>开标邀请函</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7573" class="ax_default table_cell">
+                <img id="u7573_img" class="img " src="images/合并-其他项目合并-合并操作/u4355.png"/>
+                <div id="u7573_text" class="text ">
+                  <p><span>+ 上传附件</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7574" class="ax_default table_cell">
+                <img id="u7574_img" class="img " src="images/合并-其他项目合并-合并操作/u4354.png"/>
+                <div id="u7574_text" class="text ">
+                  <p><span>介绍信</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7575" class="ax_default table_cell">
+                <img id="u7575_img" class="img " src="images/合并-其他项目合并-合并操作/u4355.png"/>
+                <div id="u7575_text" class="text ">
+                  <p><span>+ 上传附件</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7576" class="ax_default table_cell">
+                <img id="u7576_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+                <div id="u7576_text" class="text ">
+                  <p><span>采购人代表委托书</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7577" class="ax_default table_cell">
+                <img id="u7577_img" class="img " src="images/执行项目-编辑-开标评标/u7577.png"/>
+                <div id="u7577_text" class="text ">
+                  <p><span>+ 上传附件</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7578" class="ax_default label">
+              <div id="u7578_div" class=""></div>
+              <div id="u7578_text" class="text ">
+                <p><span>&nbsp;&nbsp;&nbsp; </span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7579" class="ax_default label">
+              <div id="u7579_div" class=""></div>
+              <div id="u7579_text" class="text ">
+                <p><span>开标前三个工作日：代理机构需要提供</span></p><p><span>开标邀请函、介绍信、采购人代表委托书、</span></p><p><span>等相关资料发送给采购中心。</span></p><p><span><br></span></p><p><span>开标前三个工作日：专家组成（人数、组成方式）</span></p><p><span>采购中心通知项目部门。</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u7580" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7581" class="ax_default table_cell">
+                <img id="u7581_img" class="img " src="images/合并-其他项目合并-合并操作/u4354.png"/>
+                <div id="u7581_text" class="text ">
+                  <p><span>专家抽取时间</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7582" class="ax_default table_cell">
+                <img id="u7582_img" class="img " src="images/执行项目-编辑-开标评标/u7582.png"/>
+                <div id="u7582_text" class="text ">
+                  <p><span>2018-09-01 09:00:00</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7583" class="ax_default table_cell">
+                <img id="u7583_img" class="img " src="images/合并-其他项目合并-合并操作/u4354.png"/>
+                <div id="u7583_text" class="text ">
+                  <p><span>专家抽取地点</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7584" class="ax_default table_cell">
+                <img id="u7584_img" class="img " src="images/执行项目-编辑-开标评标/u7584.png"/>
+                <div id="u7584_text" class="text ">
+                  <p><span>四川省成都市天府大道…………</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7585" class="ax_default table_cell">
+                <img id="u7585_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+                <div id="u7585_text" class="text ">
+                  <p><span>开标时间</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7586" class="ax_default table_cell">
+                <img id="u7586_img" class="img " src="images/执行项目-编辑-开标评标/u7586.png"/>
+                <div id="u7586_text" class="text ">
+                  <p><span>2018-09-01 10:00:00</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7587" class="ax_default table_cell">
+                <img id="u7587_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+                <div id="u7587_text" class="text ">
+                  <p><span>开标地点</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7588" class="ax_default table_cell">
+                <img id="u7588_img" class="img " src="images/执行项目-编辑-开标评标/u7588.png"/>
+                <div id="u7588_text" class="text ">
+                  <p><span>四川省成都市……号808室</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7589" class="ax_default label">
+              <div id="u7589_div" class=""></div>
+              <div id="u7589_text" class="text ">
+                <p><span>位</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7590" class="ax_default label">
+              <div id="u7590_div" class=""></div>
+              <div id="u7590_text" class="text ">
+                <p><span>是否满足法定家数</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u7591" class="ax_default radio_button">
+              <label for="u7591_input" style="position: absolute; left: 0px;">
+                <div id="u7591_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u7591_input" type="radio" value="radio" name="u7591" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u7592" class="ax_default radio_button">
+              <label for="u7592_input" style="position: absolute; left: 0px;">
+                <div id="u7592_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u7592_input" type="radio" value="radio" name="u7592"/>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u7593" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7594" class="ax_default table_cell">
+                <img id="u7594_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+                <div id="u7594_text" class="text ">
+                  <p><span>投标报名家数</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7595" class="ax_default table_cell">
+                <img id="u7595_img" class="img " src="images/执行项目-编辑-开标评标/u7586.png"/>
+                <div id="u7595_text" class="text ">
+                  <p><span>5个</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7596" class="ax_default table_cell">
+                <img id="u7596_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+                <div id="u7596_text" class="text ">
+                  <p><span>缴纳投标保证金家数</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7597" class="ax_default table_cell">
+                <img id="u7597_img" class="img " src="images/执行项目-编辑-开标评标/u7597.png"/>
+                <div id="u7597_text" class="text ">
+                  <p><span>3个</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7598" class="ax_default label">
+              <div id="u7598_div" class=""></div>
+              <div id="u7598_text" class="text ">
+                <p><span>评审专家构成：采购代理必须小于1/3，不能大于等于1/3。</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7599" class="ax_default label">
+              <div id="u7599_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7600" class="ax_default label">
+              <div id="u7600_div" class=""></div>
+              <div id="u7600_text" class="text ">
+                <p><span>并且专家构成总人数必须是单数。</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u7601" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7602" class="ax_default table_cell">
+                <img id="u7602_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+                <div id="u7602_text" class="text ">
+                  <p><span>评标委员会构成</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7603" class="ax_default table_cell">
+                <img id="u7603_img" class="img " src="images/合并-其他项目合并-合并之前/u4118.png"/>
+                <div id="u7603_text" class="text ">
+                  <p><span>总人数</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7604" class="ax_default table_cell">
+                <img id="u7604_img" class="img " src="images/合并-其他项目合并-合并之前/u4117.png"/>
+                <div id="u7604_text" class="text ">
+                  <p><span>5</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7605" class="ax_default table_cell">
+                <img id="u7605_img" class="img " src="images/合并-其他项目合并-合并之前/u4117.png"/>
+                <div id="u7605_text" class="text ">
+                  <p><span>评审专家</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7606" class="ax_default table_cell">
+                <img id="u7606_img" class="img " src="images/执行项目-编辑-开标评标/u7576.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7607" class="ax_default table_cell">
+                <img id="u7607_img" class="img " src="images/执行项目-编辑-开标评标/u7607.png"/>
+                <div id="u7607_text" class="text ">
+                  <p><span>采购代表</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u7608" class="ax_default table_cell">
+                <img id="u7608_img" class="img " src="images/执行项目-编辑-开标评标/u7608.png"/>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u7609" class="ax_default droplist">
+              <select id="u7609_input">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option selected value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7610" class="ax_default label">
+              <div id="u7610_div" class=""></div>
+              <div id="u7610_text" class="text ">
+                <p><span>位</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u7611" class="ax_default droplist">
+              <select id="u7611_input">
+                <option value="0">0</option>
+                <option selected value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7612" class="ax_default label">
+              <div id="u7612_div" class=""></div>
+              <div id="u7612_text" class="text ">
+                <p><span>位</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7613" class="ax_default primary_button">
+              <div id="u7613_div" class=""></div>
+              <div id="u7613_text" class="text ">
+                <p><span>第一包</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7614" class="ax_default button">
+              <div id="u7614_div" class=""></div>
+              <div id="u7614_text" class="text ">
+                <p><span>第二包</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7615" class="ax_default label">
+              <div id="u7615_div" class=""></div>
+              <div id="u7615_text" class="text ">
+                <p><span>项目名称</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7616" class="ax_default label">
+              <div id="u7616_div" class=""></div>
+              <div id="u7616_text" class="text ">
+                <p><span>展览会务服务</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7617" class="ax_default box_1">
+              <div id="u7617_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7618" class="ax_default label">
+              <div id="u7618_div" class=""></div>
+              <div id="u7618_text" class="text ">
+                <p><span>采购方式</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7619" class="ax_default label">
+              <div id="u7619_div" class=""></div>
+              <div id="u7619_text" class="text ">
+                <p><span>公开招标</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7620" class="ax_default label">
+              <div id="u7620_div" class=""></div>
+              <div id="u7620_text" class="text ">
+                <p><span>预算金额</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7621" class="ax_default label">
+              <div id="u7621_div" class=""></div>
+              <div id="u7621_text" class="text ">
+                <p><span>80万元</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7622" class="ax_default primary_button">
+              <div id="u7622_div" class=""></div>
+              <div id="u7622_text" class="text ">
+                <p><span>未达法定家数重新招标</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u7623" class="ax_default">
+        <div id="u7623_state0" class="panel_state" data-label="State1" style="">
+          <div id="u7623_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7624" class="ax_default box_2">
+              <div id="u7624_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7625" class="ax_default heading_3">
+              <div id="u7625_div" class=""></div>
+              <div id="u7625_text" class="text ">
+                <p><span>采购项目管理系统</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7626" class="ax_default label">
+              <div id="u7626_div" class=""></div>
+              <div id="u7626_text" class="text ">
+                <p><span>角色名称：代理机构</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7627" class="ax_default label">
+              <div id="u7627_div" class=""></div>
+              <div id="u7627_text" class="text ">
+                <p><span>角色编码：SCDXCM</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7628" class="ax_default label">
+              <div id="u7628_div" class=""></div>
+              <div id="u7628_text" class="text ">
+                <p><span>日期：2018年07月08日&nbsp; 18:28:32</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u7629" class="ax_default image">
+              <img id="u7629_img" class="img " src="images/列表-任务消息查看_2/u1385.png"/>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u7630" class="ax_default image">
+              <img id="u7630_img" class="img " src="images/列表-任务消息查看_2/u1386.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u7631" class="ax_default">
+        <div id="u7631_state0" class="panel_state" data-label="State1" style="">
+          <div id="u7631_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7632" class="ax_default box_2">
+              <div id="u7632_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7633" class="ax_default button">
+              <div id="u7633_div" class=""></div>
+              <div id="u7633_text" class="text ">
+                <p><span>返回</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7634" class="ax_default primary_button">
+              <div id="u7634_div" class=""></div>
+              <div id="u7634_text" class="text ">
+                <p><span>保存</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7635" class="ax_default primary_button">
+              <div id="u7635_div" class=""></div>
+              <div id="u7635_text" class="text ">
+                <p><span>提交</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u7636" class="ax_default">
+        <div id="u7636_state0" class="panel_state" data-label="State1" style="">
+          <div id="u7636_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Vertical Line) -->
+            <div id="u7637" class="ax_default line">
+              <img id="u7637_img" class="img " src="images/执行项目-编辑-招标确认/u7310.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7638" class="ax_default heading_3">
+              <div id="u7638_div" class=""></div>
+              <div id="u7638_text" class="text ">
+                <p><span>项目流程</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7639" class="ax_default label">
+              <div id="u7639_div" class=""></div>
+              <div id="u7639_text" class="text ">
+                <p><span>开始实施</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7640" class="ax_default label">
+              <div id="u7640_div" class=""></div>
+              <div id="u7640_text" class="text ">
+                <p><span>项目论证</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7641" class="ax_default label">
+              <div id="u7641_div" class=""></div>
+              <div id="u7641_text" class="text ">
+                <p><span>采购邀请</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7642" class="ax_default label">
+              <div id="u7642_div" class=""></div>
+              <div id="u7642_text" class="text ">
+                <p><span>结果信息</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7643" class="ax_default label">
+              <div id="u7643_div" class=""></div>
+              <div id="u7643_text" class="text ">
+                <p><span>拟定合同</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7644" class="ax_default label">
+              <div id="u7644_div" class=""></div>
+              <div id="u7644_text" class="text ">
+                <p><span>履约验收</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7645" class="ax_default label">
+              <div id="u7645_div" class=""></div>
+              <div id="u7645_text" class="text ">
+                <p><span>快速预览</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7646" class="ax_default label">
+              <div id="u7646_div" class=""></div>
+              <div id="u7646_text" class="text ">
+                <p><span>技术确认</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7647" class="ax_default marker">
+              <img id="u7647_img" class="img " src="images/执行项目-编辑-招标确认/u7320.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7648" class="ax_default marker">
+              <img id="u7648_img" class="img " src="images/执行项目-编辑-招标确认/u7320.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7649" class="ax_default marker">
+              <img id="u7649_img" class="img " src="images/执行项目-编辑-招标确认/u7320.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7650" class="ax_default marker">
+              <img id="u7650_img" class="img " src="images/执行项目-编辑-招标确认/u7320.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7651" class="ax_default marker">
+              <img id="u7651_img" class="img " src="images/执行项目-编辑-招标确认/u7320.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7652" class="ax_default marker">
+              <img id="u7652_img" class="img " src="images/执行项目-编辑-招标确认/u7320.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7653" class="ax_default marker">
+              <img id="u7653_img" class="img " src="images/执行项目-编辑-招标确认/u7324.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7654" class="ax_default marker">
+              <img id="u7654_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7655" class="ax_default label">
+              <div id="u7655_div" class=""></div>
+              <div id="u7655_text" class="text ">
+                <p><span>执行方式</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7656" class="ax_default label">
+              <div id="u7656_div" class=""></div>
+              <div id="u7656_text" class="text ">
+                <p><span>开标评标</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7657" class="ax_default label">
+              <div id="u7657_div" class=""></div>
+              <div id="u7657_text" class="text ">
+                <p><span>合同签订</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7658" class="ax_default marker">
+              <img id="u7658_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7659" class="ax_default marker">
+              <img id="u7659_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7660" class="ax_default marker">
+              <img id="u7660_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7661" class="ax_default marker">
+              <img id="u7661_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7662" class="ax_default marker">
+              <img id="u7662_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7663" class="ax_default label">
+              <div id="u7663_div" class=""></div>
+              <div id="u7663_text" class="text ">
+                <p><span>合同公示</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7664" class="ax_default label">
+              <div id="u7664_div" class=""></div>
+              <div id="u7664_text" class="text ">
+                <p><span>采购确认</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u7665" class="ax_default marker">
+              <img id="u7665_img" class="img " src="images/执行项目-编辑-招标确认/u7325.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u7666" class="ax_default label">
+              <div id="u7666_div" class=""></div>
+              <div id="u7666_text" class="text ">
+                <p><span>专家抽取</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u7667" class="ax_default">
+        <div id="u7667_state0" class="panel_state" data-label="State1" style="">
+          <div id="u7667_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u7668" class="ax_default">
+              <div id="u7668_state0" class="panel_state" data-label="State1" style="">
+                <div id="u7668_state0_content" class="panel_state_content">
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7669" class="ax_default box_1">
+                    <div id="u7669_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7670" class="ax_default box_2">
+                    <div id="u7670_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7671" class="ax_default box_1">
+                    <div id="u7671_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Image) -->
+                  <div id="u7672" class="ax_default image">
+                    <img id="u7672_img" class="img " src="images/主题模板_-_弹窗/u680.png"/>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7673" class="ax_default label">
+                    <div id="u7673_div" class=""></div>
+                    <div id="u7673_text" class="text ">
+                      <p><span>分包废标</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7674" class="ax_default box_1">
+                    <div id="u7674_div" class=""></div>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u7675" class="ax_default checkbox">
+                    <label for="u7675_input" style="position: absolute; left: 0px;">
+                      <div id="u7675_text" class="text ">
+                        <p><span>第1包 - 绘画展览服务</span></p>
+                      </div>
+                    </label>
+                    <input id="u7675_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Checkbox) -->
+                  <div id="u7676" class="ax_default checkbox">
+                    <label for="u7676_input" style="position: absolute; left: 0px;">
+                      <div id="u7676_text" class="text ">
+                        <p><span>第2包 - 音乐节会务服务</span></p>
+                      </div>
+                    </label>
+                    <input id="u7676_input" type="checkbox" value="checkbox"/>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7677" class="ax_default label">
+                    <div id="u7677_div" class=""></div>
+                    <div id="u7677_text" class="text ">
+                      <p><span>所选分包废标原因</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Text Area) -->
+                  <div id="u7678" class="ax_default text_area">
+                    <textarea id="u7678_input"></textarea>
+                  </div>
+
+                  <!-- Unnamed (Rectangle) -->
+                  <div id="u7679" class="ax_default primary_button">
+                    <div id="u7679_div" class=""></div>
+                    <div id="u7679_text" class="text ">
+                      <p><span>确认重新招标</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

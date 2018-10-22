@@ -1,0 +1,941 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>执行项目-编辑-更正情况-发布</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/执行项目-编辑-更正情况-发布/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/执行项目-编辑-更正情况-发布/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u8415" class="ax_default label">
+        <div id="u8415_div" class=""></div>
+        <div id="u8415_text" class="text ">
+          <p><span>&nbsp;&nbsp;&nbsp; </span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8416" class="ax_default">
+        <div id="u8416_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8416_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8417" class="ax_default box_1">
+              <div id="u8417_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8418" class="ax_default box_1">
+              <div id="u8418_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8419" class="ax_default box_1">
+              <div id="u8419_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8420" class="ax_default box_1">
+              <div id="u8420_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8421" class="ax_default box_1">
+              <div id="u8421_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8422" class="ax_default box_1">
+              <div id="u8422_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8423" class="ax_default box_1">
+              <div id="u8423_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8424" class="ax_default box_1">
+              <div id="u8424_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8425" class="ax_default text_field">
+              <input id="u8425_input" type="text" value="2018-09-30 10:00:00"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8426" class="ax_default box_1">
+              <div id="u8426_div" class=""></div>
+              <div id="u8426_text" class="text ">
+                <p><span>+ 上传附件</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8427" class="ax_default box_1">
+              <div id="u8427_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8428" class="ax_default label">
+              <div id="u8428_div" class=""></div>
+              <div id="u8428_text" class="text ">
+                <p><span>项目名称</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8429" class="ax_default label">
+              <div id="u8429_div" class=""></div>
+              <div id="u8429_text" class="text ">
+                <p><span>展览会务服务</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8430" class="ax_default box_1">
+              <div id="u8430_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8431" class="ax_default label">
+              <div id="u8431_div" class=""></div>
+              <div id="u8431_text" class="text ">
+                <p><span>采购方式</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8432" class="ax_default label">
+              <div id="u8432_div" class=""></div>
+              <div id="u8432_text" class="text ">
+                <p><span>公开招标</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8433" class="ax_default label">
+              <div id="u8433_div" class=""></div>
+              <div id="u8433_text" class="text ">
+                <p><span>预算金额</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8434" class="ax_default label">
+              <div id="u8434_div" class=""></div>
+              <div id="u8434_text" class="text ">
+                <p><span>80万元</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8435" class="ax_default box_1">
+              <div id="u8435_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8436" class="ax_default label">
+              <div id="u8436_div" class=""></div>
+              <div id="u8436_text" class="text ">
+                <p><span>是否有更正</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8437" class="ax_default radio_button">
+              <label for="u8437_input" style="position: absolute; left: 0px;">
+                <div id="u8437_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8437_input" type="radio" value="radio" name="u8437" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8438" class="ax_default radio_button">
+              <label for="u8438_input" style="position: absolute; left: 0px;">
+                <div id="u8438_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8438_input" type="radio" value="radio" name="u8438"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8439" class="ax_default box_1">
+              <div id="u8439_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8440" class="ax_default box_1">
+              <div id="u8440_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8441" class="ax_default text_field">
+              <input id="u8441_input" type="text" value="http://xxxxxxxxxxxxxxxx/view/staticpags/gkzbcggg/2018-07-10/91b93ce1b79745c6a4f0cb22f9790d72.html"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8442" class="ax_default box_1">
+              <div id="u8442_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8443" class="ax_default label">
+              <div id="u8443_div" class=""></div>
+              <div id="u8443_text" class="text ">
+                <p><span>更正公告截图</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8444" class="ax_default label">
+              <div id="u8444_div" class=""></div>
+              <div id="u8444_text" class="text ">
+                <p><span>公示网站名称</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8445" class="ax_default box_1">
+              <div id="u8445_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8446" class="ax_default text_field">
+              <input id="u8446_input" type="text" value="中国政府采购网"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8447" class="ax_default primary_button">
+              <div id="u8447_div" class=""></div>
+              <div id="u8447_text" class="text ">
+                <p><span>添加</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8448" class="ax_default box_1">
+              <div id="u8448_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8449" class="ax_default label">
+              <div id="u8449_div" class=""></div>
+              <div id="u8449_text" class="text ">
+                <p><span>第3次更正</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8450" class="ax_default box_1">
+              <div id="u8450_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8451" class="ax_default label">
+              <div id="u8451_div" class=""></div>
+              <div id="u8451_text" class="text ">
+                <p><span>更正内容</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Area) -->
+            <div id="u8452" class="ax_default text_area">
+              <textarea id="u8452_input"></textarea>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8453" class="ax_default box_1">
+              <div id="u8453_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8454" class="ax_default label">
+              <div id="u8454_div" class=""></div>
+              <div id="u8454_text" class="text ">
+                <p><span>更正附件</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8455" class="ax_default box_1">
+              <div id="u8455_div" class=""></div>
+              <div id="u8455_text" class="text ">
+                <p><span>+ 上传附件</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8456" class="ax_default label">
+              <div id="u8456_div" class=""></div>
+              <div id="u8456_text" class="text ">
+                <p><span>更正公告地址</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8457" class="ax_default box_1">
+              <div id="u8457_div" class=""></div>
+              <div id="u8457_text" class="text ">
+                <p><span>+ 上传截图</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8458" class="ax_default label">
+              <div id="u8458_div" class=""></div>
+              <div id="u8458_text" class="text ">
+                <p><span>更正公告确认涵（盖章）</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8459" class="ax_default box_1">
+              <div id="u8459_div" class=""></div>
+              <div id="u8459_text" class="text ">
+                <p><span>下载</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8460" class="ax_default box_1">
+              <div id="u8460_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8461" class="ax_default label">
+              <div id="u8461_div" class=""></div>
+              <div id="u8461_text" class="text ">
+                <p><span>更正类型</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8462" class="ax_default radio_button">
+              <label for="u8462_input" style="position: absolute; left: 0px;">
+                <div id="u8462_text" class="text ">
+                  <p><span>更正采购流程</span></p>
+                </div>
+              </label>
+              <input id="u8462_input" type="radio" value="radio" name="u8462" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8463" class="ax_default radio_button">
+              <label for="u8463_input" style="position: absolute; left: 0px;">
+                <div id="u8463_text" class="text ">
+                  <p><span>更正采购结果</span></p>
+                </div>
+              </label>
+              <input id="u8463_input" type="radio" value="radio" name="u8463"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8464" class="ax_default label">
+              <div id="u8464_div" class=""></div>
+              <div id="u8464_text" class="text ">
+                <p><span>更正原因</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8465" class="ax_default radio_button">
+              <label for="u8465_input" style="position: absolute; left: 0px;">
+                <div id="u8465_text" class="text ">
+                  <p><span>质疑</span></p>
+                </div>
+              </label>
+              <input id="u8465_input" type="radio" value="radio" name="u8465" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8466" class="ax_default radio_button">
+              <label for="u8466_input" style="position: absolute; left: 0px;">
+                <div id="u8466_text" class="text ">
+                  <p><span>投诉</span></p>
+                </div>
+              </label>
+              <input id="u8466_input" type="radio" value="radio" name="u8466"/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8467" class="ax_default radio_button">
+              <label for="u8467_input" style="position: absolute; left: 0px;">
+                <div id="u8467_text" class="text ">
+                  <p><span>其他</span></p>
+                </div>
+              </label>
+              <input id="u8467_input" type="radio" value="radio" name="u8467"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8468" class="ax_default label">
+              <div id="u8468_div" class=""></div>
+              <div id="u8468_text" class="text ">
+                <p><span>是否更正</span></p><p><span>报名截至时间</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8469" class="ax_default text_field">
+              <input id="u8469_input" type="text" value="2018-09-28 17:00:00"/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8470" class="ax_default radio_button">
+              <label for="u8470_input" style="position: absolute; left: 0px;">
+                <div id="u8470_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8470_input" type="radio" value="radio" name="u8470" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8471" class="ax_default radio_button">
+              <label for="u8471_input" style="position: absolute; left: 0px;">
+                <div id="u8471_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8471_input" type="radio" value="radio" name="u8471"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8472" class="ax_default label">
+              <div id="u8472_div" class=""></div>
+              <div id="u8472_text" class="text ">
+                <p><span>是否更正</span></p><p><span>投标保证金缴纳截至时间</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8473" class="ax_default radio_button">
+              <label for="u8473_input" style="position: absolute; left: 0px;">
+                <div id="u8473_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8473_input" type="radio" value="radio" name="u8473" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8474" class="ax_default radio_button">
+              <label for="u8474_input" style="position: absolute; left: 0px;">
+                <div id="u8474_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8474_input" type="radio" value="radio" name="u8474"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8475" class="ax_default label">
+              <div id="u8475_div" class=""></div>
+              <div id="u8475_text" class="text ">
+                <p><span>是否更正</span></p><p><span>开标时间</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8476" class="ax_default radio_button">
+              <label for="u8476_input" style="position: absolute; left: 0px;">
+                <div id="u8476_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8476_input" type="radio" value="radio" name="u8476" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8477" class="ax_default radio_button">
+              <label for="u8477_input" style="position: absolute; left: 0px;">
+                <div id="u8477_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8477_input" type="radio" value="radio" name="u8477"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8478" class="ax_default label">
+              <div id="u8478_div" class=""></div>
+              <div id="u8478_text" class="text ">
+                <p><span>是否更正</span></p><p><span>技术要求</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8479" class="ax_default radio_button">
+              <label for="u8479_input" style="position: absolute; left: 0px;">
+                <div id="u8479_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8479_input" type="radio" value="radio" name="u8479" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8480" class="ax_default radio_button">
+              <label for="u8480_input" style="position: absolute; left: 0px;">
+                <div id="u8480_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8480_input" type="radio" value="radio" name="u8480"/>
+            </div>
+
+            <!-- Unnamed (Text Field) -->
+            <div id="u8481" class="ax_default text_field">
+              <input id="u8481_input" type="text" value="2018-09-29 17:00:00"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8482" class="ax_default label">
+              <div id="u8482_div" class=""></div>
+              <div id="u8482_text" class="text ">
+                <p><span>第1种：更正采购流程时按下面展示</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8483" class="ax_default box_1">
+              <div id="u8483_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8484" class="ax_default box_1">
+              <div id="u8484_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8485" class="ax_default box_1">
+              <div id="u8485_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8486" class="ax_default box_1">
+              <div id="u8486_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8487" class="ax_default box_1">
+              <div id="u8487_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8488" class="ax_default box_1">
+              <div id="u8488_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8489" class="ax_default label">
+              <div id="u8489_div" class=""></div>
+              <div id="u8489_text" class="text ">
+                <p><span>更正类型</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8490" class="ax_default radio_button">
+              <label for="u8490_input" style="position: absolute; left: 0px;">
+                <div id="u8490_text" class="text ">
+                  <p><span>更正采购流程</span></p>
+                </div>
+              </label>
+              <input id="u8490_input" type="radio" value="radio" name="u8490"/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8491" class="ax_default radio_button">
+              <label for="u8491_input" style="position: absolute; left: 0px;">
+                <div id="u8491_text" class="text ">
+                  <p><span>更正采购结果</span></p>
+                </div>
+              </label>
+              <input id="u8491_input" type="radio" value="radio" name="u8491" checked/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8492" class="ax_default label">
+              <div id="u8492_div" class=""></div>
+              <div id="u8492_text" class="text ">
+                <p><span>更正原因</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8493" class="ax_default radio_button">
+              <label for="u8493_input" style="position: absolute; left: 0px;">
+                <div id="u8493_text" class="text ">
+                  <p><span>质疑</span></p>
+                </div>
+              </label>
+              <input id="u8493_input" type="radio" value="radio" name="u8493" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8494" class="ax_default radio_button">
+              <label for="u8494_input" style="position: absolute; left: 0px;">
+                <div id="u8494_text" class="text ">
+                  <p><span>投诉</span></p>
+                </div>
+              </label>
+              <input id="u8494_input" type="radio" value="radio" name="u8494"/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8495" class="ax_default radio_button">
+              <label for="u8495_input" style="position: absolute; left: 0px;">
+                <div id="u8495_text" class="text ">
+                  <p><span>其他</span></p>
+                </div>
+              </label>
+              <input id="u8495_input" type="radio" value="radio" name="u8495"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8496" class="ax_default label">
+              <div id="u8496_div" class=""></div>
+              <div id="u8496_text" class="text ">
+                <p><span>是否更正</span></p><p><span>中标/成交供应商</span></p><p><span><br></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8497" class="ax_default radio_button">
+              <label for="u8497_input" style="position: absolute; left: 0px;">
+                <div id="u8497_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8497_input" type="radio" value="radio" name="u8497" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8498" class="ax_default radio_button">
+              <label for="u8498_input" style="position: absolute; left: 0px;">
+                <div id="u8498_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8498_input" type="radio" value="radio" name="u8498"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8499" class="ax_default label">
+              <div id="u8499_div" class=""></div>
+              <div id="u8499_text" class="text ">
+                <p><span>是否更正</span></p><p><span>中标/成交金额</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8500" class="ax_default radio_button">
+              <label for="u8500_input" style="position: absolute; left: 0px;">
+                <div id="u8500_text" class="text ">
+                  <p><span>是</span></p>
+                </div>
+              </label>
+              <input id="u8500_input" type="radio" value="radio" name="u8500" checked/>
+            </div>
+
+            <!-- Unnamed (Radio Button) -->
+            <div id="u8501" class="ax_default radio_button">
+              <label for="u8501_input" style="position: absolute; left: 0px;">
+                <div id="u8501_text" class="text ">
+                  <p><span>否</span></p>
+                </div>
+              </label>
+              <input id="u8501_input" type="radio" value="radio" name="u8501"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8502" class="ax_default label">
+              <div id="u8502_div" class=""></div>
+              <div id="u8502_text" class="text ">
+                <p><span>第2种：更正采购结果时按下面展示</span></p><p><span>如，选择更正中标供应商则表格中展示中标/成交供应商的修改选项</span></p><p><span>如，选择更正中标/成交金额则表格中展示中标/成交金额的修改选项</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Table) -->
+            <div id="u8503" class="ax_default">
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8504" class="ax_default table_cell">
+                <img id="u8504_img" class="img " src="images/合并-其他项目合并-合并操作/u4378.png"/>
+                <div id="u8504_text" class="text ">
+                  <p><span>包号</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8505" class="ax_default table_cell">
+                <img id="u8505_img" class="img " src="images/执行项目-编辑-技术确认/u6813.png"/>
+                <div id="u8505_text" class="text ">
+                  <p><span>包名称 / 项目名称</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8506" class="ax_default table_cell">
+                <img id="u8506_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8506.png"/>
+                <div id="u8506_text" class="text ">
+                  <p><span>中标 / 成交供应商</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8507" class="ax_default table_cell">
+                <img id="u8507_img" class="img " src="images/执行项目-编辑-技术确认/u6815.png"/>
+                <div id="u8507_text" class="text ">
+                  <p><span>中标 / 成交金额</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8508" class="ax_default table_cell">
+                <img id="u8508_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8508.png"/>
+                <div id="u8508_text" class="text ">
+                  <p><span>企业类型</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8509" class="ax_default table_cell">
+                <img id="u8509_img" class="img " src="images/合并-其他项目合并-合并操作/u4378.png"/>
+                <div id="u8509_text" class="text ">
+                  <p><span>第1包</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8510" class="ax_default table_cell">
+                <img id="u8510_img" class="img " src="images/执行项目-编辑-技术确认/u6813.png"/>
+                <div id="u8510_text" class="text ">
+                  <p><span>展览文演设备一批</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8511" class="ax_default table_cell">
+                <img id="u8511_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8506.png"/>
+                <div id="u8511_text" class="text ">
+                  <p><span>某某投标公司名称1</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8512" class="ax_default table_cell">
+                <img id="u8512_img" class="img " src="images/执行项目-编辑-技术确认/u6815.png"/>
+                <div id="u8512_text" class="text ">
+                  <p><span>30,000.00</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8513" class="ax_default table_cell">
+                <img id="u8513_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8508.png"/>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8514" class="ax_default table_cell">
+                <img id="u8514_img" class="img " src="images/合并-其他项目合并-合并操作/u4384.png"/>
+                <div id="u8514_text" class="text ">
+                  <p><span>第2包</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8515" class="ax_default table_cell">
+                <img id="u8515_img" class="img " src="images/执行项目-编辑-技术确认/u6823.png"/>
+                <div id="u8515_text" class="text ">
+                  <p><span>展览文演绘画套装</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8516" class="ax_default table_cell">
+                <img id="u8516_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8516.png"/>
+                <div id="u8516_text" class="text ">
+                  <p><span>某某投标公司名称2</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8517" class="ax_default table_cell">
+                <img id="u8517_img" class="img " src="images/执行项目-编辑-技术确认/u6825.png"/>
+                <div id="u8517_text" class="text ">
+                  <p><span>30,000.00</span></p>
+                </div>
+              </div>
+
+              <!-- Unnamed (Table Cell) -->
+              <div id="u8518" class="ax_default table_cell">
+                <img id="u8518_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8518.png"/>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8519" class="ax_default box_1">
+              <div id="u8519_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8520" class="ax_default label">
+              <div id="u8520_div" class=""></div>
+              <div id="u8520_text" class="text ">
+                <p><span>第2次更正</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8521" class="ax_default ellipse">
+              <img id="u8521_img" class="img " src="images/执行项目-编辑-更正情况/u8341.png"/>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u8522" class="ax_default icon">
+              <img id="u8522_img" class="img " src="images/执行项目-编辑-更正情况-发布/u8522.png"/>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8523" class="ax_default ellipse">
+              <img id="u8523_img" class="img " src="images/执行项目-编辑-更正情况/u8341.png"/>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u8524" class="ax_default icon">
+              <img id="u8524_img" class="img " src="images/执行项目-编辑-更正情况/u8342.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8525" class="ax_default box_1">
+              <div id="u8525_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8526" class="ax_default label">
+              <div id="u8526_div" class=""></div>
+              <div id="u8526_text" class="text ">
+                <p><span>第1次更正</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Ellipse) -->
+            <div id="u8527" class="ax_default ellipse">
+              <img id="u8527_img" class="img " src="images/执行项目-编辑-更正情况/u8341.png"/>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u8528" class="ax_default icon">
+              <img id="u8528_img" class="img " src="images/执行项目-编辑-更正情况/u8342.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8529" class="ax_default box_1">
+              <div id="u8529_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8530" class="ax_default primary_button">
+              <div id="u8530_div" class=""></div>
+              <div id="u8530_text" class="text ">
+                <p><span>保存</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8531" class="ax_default primary_button">
+              <div id="u8531_div" class=""></div>
+              <div id="u8531_text" class="text ">
+                <p><span>提交</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u8532" class="ax_default droplist">
+              <select id="u8532_input">
+                <option value="大型企业">大型企业</option>
+                <option selected value="中型企业">中型企业</option>
+                <option value="小型企业">小型企业</option>
+                <option value="微型企业">微型企业</option>
+              </select>
+            </div>
+
+            <!-- Unnamed (Droplist) -->
+            <div id="u8533" class="ax_default droplist">
+              <select id="u8533_input">
+                <option value="大型企业">大型企业</option>
+                <option selected value="中型企业">中型企业</option>
+                <option value="小型企业">小型企业</option>
+                <option value="微型企业">微型企业</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u8534" class="ax_default">
+        <div id="u8534_state0" class="panel_state" data-label="State1" style="">
+          <div id="u8534_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8535" class="ax_default box_1">
+              <div id="u8535_div" class=""></div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8536" class="ax_default image">
+              <img id="u8536_img" class="img " src="images/主题模板-顶部/u462.png"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8537" class="ax_default label">
+              <div id="u8537_div" class=""></div>
+              <div id="u8537_text" class="text ">
+                <p><span>部门：社会代理机构</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u8538" class="ax_default label">
+              <div id="u8538_div" class=""></div>
+              <div id="u8538_text" class="text ">
+                <p><span>日期：2018年07月08日</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u8539" class="ax_default image">
+              <img id="u8539_img" class="img " src="images/主题模板-顶部/u465.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
