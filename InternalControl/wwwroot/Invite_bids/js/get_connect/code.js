@@ -170,12 +170,18 @@ var Code = {
 
 
 
-
     //获取执行项目列表,带流程,带包还没有进入执行流程的执行项目也会选取出来,方便"开始实施"
     URL_GET_PAGING_EXECUTE_PROJECT_LIST: getApiHost + '/ExecuteProject/GetPagingExecuteProjectList',
 
     //根据执行项目id,获取执行项目所有的信息,所有可能的步骤,已经走过的步骤,当前的步骤,是否可以执行当前的步骤
     URL_GET_EXECUTE_PROJECT_DETAIL: getApiHost + '/ExecuteProject/GetExecuteProjectDetail',
+
+
+
+
+
+    //测试
+    URL_GET_EXECUTE_PROJECT_DESSSSTAIL: 'http://192.168.0.72:20004/MnfIms/User/GetUsers',
 
 
 

@@ -308,6 +308,15 @@
             <param name="data"></param>
             <returns></returns>
         </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.ExportWhenBudgetProjectOfArgument(InternalControl.Models.BudgetProjectFilter,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            论证时,导出各个项目的包信息;
+            注意是使用BudgetProjectExtendFilter来筛选VBudgetProjectNotInFlow
+            </summary>
+            <param name="filter"></param>
+            <param name="listOfId">勾选的项目,传空则表示所有符合条件的预算项目都要导出</param>
+            <returns></returns>
+        </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.AddAndPassBudgetProjectOfArgument(InternalControl.Infrastucture.PredefindedModelList{InternalControl.Models.BudgetProjectOfArgument,InternalControl.Models.PackageOfArgumentBudget})">
             <summary>
             新增一个预算项目的必要性论证,同时开始一个预算流程,并通过这个论证;
@@ -1410,6 +1419,23 @@
         <member name="T:InternalControl.Models.OrderOfProjectOfEnter">
             <summary>
             进入预算排名返回的数据结构
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.ExportWhenBudgetProjectOfArgument">
+            <summary>
+            必要性论证时导出的预算项目中的包信息
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.ExportWhenBudgetProjectOfArgumentCaseGoods">
+            <summary>
+            必要性论证时导出的预算项目中的包信息
+            当为集采-货物时
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.ExportWhenBudgetProjectOfArgumentCaseOther">
+            <summary>
+            必要性论证时导出的预算项目中的包信息
+            当为集采-服务时或非集采时
             </summary>
         </member>
         <member name="T:InternalControl.Models.DeclareProjectFilter">

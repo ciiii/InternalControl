@@ -149,6 +149,15 @@ $(function () {
                     }
                 });
             },
+            getsssss: function () {
+                ProjectExecute.getDDDDD('get', function getDDDDDListener(success, obj, strErro) {
+                    if (success) {
+                        console.info(obj);
+                    } else {
+                        $.oaNotify.error(' 提交失败：' + strErro);
+                    }
+                });
+            },
             clickDetails: function (el) {
                 vm.myDetails = el.$model;
             },
@@ -199,6 +208,7 @@ $(function () {
             linkField: "mirror_field"
         });
         vm.getCategoryDictionary();
+        vm.getsssss();
         vm.onLoad();
 
         avalon.scan(document.body);

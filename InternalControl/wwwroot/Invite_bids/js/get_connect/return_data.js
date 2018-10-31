@@ -653,6 +653,24 @@ var ProjectExecute = {
             }
         });
     },
+
+
+    //测试
+    getDDDDD: function (type, getDDDDDListener) {
+        var url = Code.URL_GET_EXECUTE_PROJECT_DESSSSTAIL;
+        var postData = {
+            pageIndex: 1,
+            pageSize: 20
+        }
+
+        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getDDDDDListener(true, obj.data, '')
+            } else {
+                getDDDDDListener(false, '', strErro)
+            }
+        });
+    },
 }
 
 

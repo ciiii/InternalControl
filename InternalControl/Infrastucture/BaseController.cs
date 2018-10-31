@@ -80,9 +80,9 @@ namespace InternalControl.Infrastucture
                     {
                         HttpContext.Session.Set<CurrentUser>("user", new CurrentUser()
                         {
-                            Name = "管理员",
-                            WorkNumber = "0001",
-                            Id = 1,
+                            Name = "国有资产管理处-小国0004",
+                            WorkNumber = "0004",
+                            Id = 6,
                             DepartmentId = 20002,
                             DepartmentName = "国有资产管理处"
                         });

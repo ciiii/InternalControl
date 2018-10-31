@@ -45,11 +45,6 @@ $(function () {
                             for (var i = 0; i < obj.length; i++) {
                                 obj[i].number = number;
                                 obj[i].checked = false;
-                                obj[i].DeclareProject.budgetAmount = 0;
-                                for (var j = 0; j < obj[i].Package.length; j++) {
-                                    var item = obj[i].Package[j];
-                                    obj[i].DeclareProject.budgetAmount += item.DeclareUnitPrice;
-                                }
                                 number++;
                             }
                             vm.model = obj;

@@ -61,10 +61,47 @@
         <div class="tab-pane" ms-class="getTabClass(0)">
             <div class="form-horizontal content" ms-if="isEdit">
                 <div class="item col-md-12 col-sm-12">
+
+
+
+
+                </div>
+
+
+
+                <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
                         <div class="col-md-7 col-sm-7">
-                            <span>{{@model.BudgetProject.Name}}</span>
+                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">内部编号</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">项目属性</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">采购方式</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">实施截止时间</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
                         </div>
                     </div>
                 </div>

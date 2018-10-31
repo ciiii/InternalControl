@@ -110,15 +110,16 @@ namespace MyLib
             //var pName = t.GetProperty("Name");
             //var displayName = pName.GetCustomAttribute<DisplayNameAttribute>();
 
-            var displayNameOfT = MyPath.Combine("excel", name);
+            //var displayNameOfT = MyPath.Combine("excel", name);
 
-            string sFileName = $"{displayNameOfT}{Guid.NewGuid()}.xlsx";
+            string sFileName = $"{name}{Guid.NewGuid()}.xlsx";
+            //string sFileName = $"{name}.xlsx";
             FileInfo file = new FileInfo(MyPath.Combine(folder, sFileName));
 
             using (ExcelPackage package = new ExcelPackage(file))
             {
                 // 添加worksheet
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(displayNameOfT);
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(name);
 
                 var propertys = t.GetProperties();
                 for (int i = 0; i < propertys.Count(); i++)

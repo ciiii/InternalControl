@@ -9,6 +9,8 @@ using InternalControl.Business;
 using InternalControl.Infrastucture;
 using InternalControl.Models;
 using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.IO.Compression;
 
 namespace InternalControl.Controllers
 {
@@ -127,6 +129,79 @@ namespace InternalControl.Controllers
                 listOfSourceBudgetProjectId = data.List.ToPredefindedKeyFieldsList().ToDataTable(),
                 CreatorId = CurrentUser.Id
             });
+        }
+
+        /// <summary>
+        /// 论证时,导出各个项目的包信息;
+        /// 注意是使用BudgetProjectExtendFilter来筛选VBudgetProjectNotInFlow
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="listOfId">勾选的项目,传空则表示所有符合条件的预算项目都要导出</param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> ExportWhenBudgetProjectOfArgument(BudgetProjectFilter filter, IEnumerable<int> listOfId)
+        {
+            //后台指定归口部门的过滤条件;
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.RelevantDepartmentId = CurrentUser.DepartmentId;
+            filterExtend.WhereInId = listOfId.Count() == 0 ? null : listOfId.ToStringIdWithSpacer();
+
+            var list = (await Db.GetListSpAsync<VBudgetProjectNotInFlow, BudgetProjectExtendFilter>(filterExtend)).ToList();
+
+            var listOfPackage = (await Db.GetListSpAsync<VPackageOfDeclareProject, PackageOfBudgetProjectFilter>(
+                new PackageOfBudgetProjectFilter()
+                {
+                    WhereInBudgetProjectId = list.Select(i => i.Id).ToStringIdWithSpacer()
+                })).ToList();
+
+            var zipFileName = $"导出待论证项目_{DateTime.Now.ToString("yyyyMMddHHmmss")}";
+            var zipPathName = MyPath.Combine(Env.WebRootPath, "Download", zipFileName);
+            Directory.CreateDirectory(zipPathName);
+
+            zipFileName = $"{zipFileName}.zip";
+            var zipPathFileName = MyPath.Combine(Env.WebRootPath, "Download", zipFileName);
+
+            for (int i = 0, countOfList = list.Count(); i < countOfList; i++)
+            {
+                var item = list[i];
+                var itemName = $"{item.Name}-{item.MergeTypeWhenBudget}";
+                var zipChildPathName = MyPath.Combine(zipPathName, itemName);
+                Directory.CreateDirectory(zipChildPathName);
+                //如果是集采-货物,则生成一个容纳了各个包为ExportWhenBudgetProjectOfArgumentCaseGoods的excel
+                if (item.IsCenterPurchase && item.ProjectType == "货物")
+                {
+                    var packages = from itemOfPackage in listOfPackage
+                                   where itemOfPackage.BudgetProjectId.Equals(item.Id)
+                                   select Tool.ModelToModel<ExportWhenBudgetProjectOfArgumentCaseGoods, VPackageOfDeclareProject>(itemOfPackage);
+
+                    MyXls.Export(zipChildPathName, packages, itemName);
+
+                }
+                else
+                {
+                    var packages = (from itemOfPackage in listOfPackage
+                                    where itemOfPackage.BudgetProjectId.Equals(item.Id)
+                                    select Tool.ModelToModel<ExportWhenBudgetProjectOfArgumentCaseOther, VPackageOfDeclareProject>(itemOfPackage)).ToList();
+
+                    for (int j = 0, countOfPackages = packages.Count(); j < countOfPackages; j++)
+                    {
+                        var itemOfPackage = packages[j];
+                        itemOfPackage.Id = j + 1;
+                        itemOfPackage.Attachment = Path.GetFileName(itemOfPackage.Attachment);
+
+                        System.IO.File.Copy(
+                            MyPath.Combine(Env.WebRootPath,"Upload", itemOfPackage.Attachment),
+                            MyPath.Combine(zipChildPathName, Path.GetFileName(itemOfPackage.Attachment)));
+                    }
+
+                    MyXls.Export(zipChildPathName, packages, itemName);
+                }
+
+                ////最后把Id改为排序
+                //item.Id = i + 1;
+            }
+            ZipFile.CreateFromDirectory(zipPathName, zipPathFileName);
+            return zipPathFileName;
         }
 
         /// <summary>
@@ -317,11 +392,11 @@ namespace InternalControl.Controllers
 
             return new
             {
-                TopIn = result.Where(i=>i.TotolBudgetAmountByDempartment > 0).Take(numberOfTake),
+                TopIn = result.Where(i => i.TotolBudgetAmountByDempartment > 0).Take(numberOfTake),
                 TopNotIn = result.Reverse().Take(numberOfTake)
             };
         }
-           
+
 
         /// <summary>
         /// 进入预算

@@ -73,6 +73,9 @@ namespace InternalControl.Models
         /// 在某一步骤模板之后(包含)
         /// </summary>
         public int? EndLastStepTemplateId { get; set; }
+
+        public string WhereInId { get; set; }
+
     }
 
     /// <summary>
@@ -149,5 +152,91 @@ namespace InternalControl.Models
         public string DeclareDepartmentName { get; set; }
         public int CountOfPackageOfBudgetProject { get; set; }
         public int TotolBudgetAmountByDempartment { get; set; }
+    }
+
+    /// <summary>
+    /// 必要性论证时导出的预算项目中的包信息
+    /// </summary>
+    public class ExportWhenBudgetProjectOfArgument
+    {
+        #region 属性
+        [DisplayName("包号")]
+        public int Id { get; set; }
+
+        [DisplayName("项目申报部门")]
+        public string DeclareDepartmentName { get; set; }
+
+
+        [DisplayName("单项名称")]
+        public string Name { get; set; }
+
+        [DisplayName("备注")]
+        public string Remark { get; set; }
+        #endregion
+    }
+
+    /// <summary>
+    /// 必要性论证时导出的预算项目中的包信息
+    /// 当为集采-货物时
+    /// </summary>
+    public class ExportWhenBudgetProjectOfArgumentCaseGoods 
+    {
+        #region 属性
+        //[DisplayName("包号")]
+        //public int Id { get; set; }
+
+        [DisplayName("项目申报部门")]
+        public string DeclareDepartmentName { get; set; }
+
+        [DisplayName("单项名称")]
+        public string Name { get; set; }
+
+        [DisplayName("技术要求")]
+        public string DeclareTechnicalRequirements { get; set; }
+
+        [DisplayName("单位")]
+        public string Unit { get; set; }
+
+        [DisplayName("数量")]
+        public int DeclareNumber { get; set; }
+
+        [DisplayName("单价")]
+        public int DeclareUnitPrice { get; set; }
+
+        [DisplayName("合计")]
+        public int TotalDeclareAmount { get { return this.DeclareUnitPrice * this.DeclareNumber; } }
+
+        [DisplayName("备注")]
+        public string Remark { get; set; }
+        #endregion
+    }
+
+    /// <summary>
+    /// 必要性论证时导出的预算项目中的包信息
+    /// 当为集采-服务时或非集采时
+    /// </summary>
+    public class ExportWhenBudgetProjectOfArgumentCaseOther 
+    {
+        #region 属性
+
+        [DisplayName("包号")]
+        public int Id { get; set; }
+
+        [DisplayName("项目申报部门")]
+        public string DeclareDepartmentName { get; set; }
+
+
+        [DisplayName("单项名称")]
+        public string Name { get; set; }
+
+        [DisplayName("附件")]
+        public string Attachment { get; set; }
+
+        [DisplayName("预算")]
+        public int DeclareUnitPrice { get; set; }
+
+        [DisplayName("备注")]
+        public string Remark { get; set; }
+        #endregion
     }
 }

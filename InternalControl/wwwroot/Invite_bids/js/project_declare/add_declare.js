@@ -82,7 +82,7 @@ $(function () {
                     vm.model.Data.Model.DateOfPlanToImplement = formatDate(vm.model.Data.Model.DateOfPlanToImplement, 'YY-MM');
                     vm.apply.Url = vm.model.Data.Model.Attachment;
                     vm.apply.FileName = vm.getHtmlDocName(vm.model.Data.Model.Attachment);
-
+                    vm.allPrice = vm.model.Data.Model.TotalDeclareAmount;
                 }
                 vm.GetRelevantDepartmentList();
                 vm.getCategoryDictionary();
@@ -93,7 +93,8 @@ $(function () {
                 }
                 vm.countNumber();
                 vm.changeAllName();
-                vm.countCollectionPrice();
+                vm.changeDepartment();
+
                 if (vm.model.Data.Model.Year == vm.year) {
                     vm.thisYaer = true;
                 } else {
@@ -138,6 +139,8 @@ $(function () {
                 Department.GetRelevantDepartmentList('get', function GetRelevantDepartmentListListener(success, obj, strErro) {
                     if (success) {
                         vm.relevantDepartment = obj;
+                        $('.relevant-department').val(vm.model.Data.Model.RelevantDepartmentId);
+
                     } else {
                         console.info('获取归口部门失败！');
                         console.info(strErro);
@@ -252,6 +255,7 @@ $(function () {
                 var relevantDepartment = vm.inputVal('.relevant-department');
                 var implementTime = vm.inputVal('.implement-time');
                 var declareReason = vm.inputVal('.declare-reason');
+                var declareYear = vm.inputVal('.declare-year');
                 if (!projectName) {
                     $.oaNotify.error('项目名称不能为空！');
                     return;
@@ -268,6 +272,25 @@ $(function () {
                     $.oaNotify.error('申报原因不能为空！');
                     return;
                 }
+                if (!declareYear) {
+                    $.oaNotify.error('请选择申报年度！');
+                    return;
+                }
+                if (vm.model.Data.List.length == 0) {
+                    $.oaNotify.error('至少添加一个包！');
+                    return;
+                } else {
+                    var isNotItem = true;
+                    vm.model.Data.List.forEach(function (index, el) {
+                        if (el.ItemId == 0) {
+                            isNotItem = false;
+                        }
+                    })
+                    if (!isNotItem) {
+                        $.oaNotify.error('第' + (index + 1) + '包没有选择品目！');
+                        return;
+                    }
+                }
                 var isTime;
                 if (vm.yearList.IsCanChooseThisYear) {
                     isTime = vm.compareTime(vm.yearList.SupplementBeginDatetime, vm.yearList.SupplementEndDatetime, new Date());
@@ -282,6 +305,7 @@ $(function () {
                     }
                     return;
                 }
+
                 vm.model.Data.Model.Attachment = vm.apply.Url;
                 if (vm.editType) {
                     var postData = {
@@ -290,10 +314,11 @@ $(function () {
                         Remark: '',
                         Data: vm.model.Data
                     }
-                    vm.editDeclareProject(postData);
+                    // vm.editDeclareProject(postData);
                 } else {
-                    vm.addDeclareProject(vm.model.$model);
+                    // vm.addDeclareProject(vm.model.$model);
                 }
+                debugger;
             },
             clickSubmit: function () {
                 vm.model.IsHold = false;
