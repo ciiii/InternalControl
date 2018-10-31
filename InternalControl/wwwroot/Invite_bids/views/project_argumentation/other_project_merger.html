@@ -40,22 +40,22 @@
 <body ms-controller="root" class="ms-controller" onload="IFrameResize()">
 <div class="page-declare page-budget  page-common page-paper">
     <div class="main">
-        <div class="item-left clo-md-6 col-sm-6">
+        <div class="item-left col-md-6 col-sm-6">
             <div class="screen-box">
                 <div class="form-inline">
                     <p class="title-text">政府集中采购项目列表 <span>当前剩余可合并项：{{total}} 项</span></p>
                     <div class="row search-box">
-                        <div class="form-group clo-md-8 col-sm-8">
-                            <label>预算类型</label>
-                            <div class="type-box clo-md-10">
+                        <div class="form-group col-md-8 col-sm-8">
+                            <label>合并类型</label>
+                            <div class="type-box">
                                 <select class="form-control input-sm left-types" size="2"
                                         ms-duplex="@req.MergeTypeWhenBudget"></select>
                             </div>
                         </div>
-                        <div class="clo-md-4 col-sm-4  form-group year-box">
+                        <div class="col-md-4 col-sm-4  form-group year-box">
                             <label>年度</label>
                             <input type="text" class="form-control input-sm form-year" ms-duplex="@req.Year"
-                                   ms-keydown="@submit">
+                                   ms-keydown="@submit" readonly>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                                 <th class="number">序号</th>
                                 <!--<th>归口部门</th>-->
                                 <th>申报项目</th>
-                                <th>预算类型</th>
+                                <th>合并类型</th>
                                 <th>数量</th>
                                 <th>总价(元)</th>
                                 <th>年度</th>
@@ -97,7 +97,7 @@
                                 </td>
                                 <td rowspan="2" class="number text-center">{{el.number}}</td>
                                 <!--<td>{{el.BudgetProject.RelevantDepartmentName}}</td>-->
-                                <td>{{el.BudgetProject.Name}}</td>
+                                <td class="text-left">{{el.BudgetProject.Name}}</td>
                                 <td>{{el.BudgetProject.MergeTypeWhenBudget}}</td>
                                 <td>{{el.BudgetProject.allNumber}}</td>
                                 <td>{{el.BudgetProject.budgetAmount|currency}}</td>
@@ -107,7 +107,7 @@
                                         <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
                                             title="详情">
                                             <a data-toggle="modal" data-target=".modal-details"
-                                               href="budget_details.html"
+                                               href="../budget_manage/budget_details.html"
                                                ms-on-click="@clickDetails(el)"
                                                onclick="changeUrlChoice(this,'.modal-details')">
                                                 <i class="icon iconfont icon-16"></i>
@@ -146,22 +146,20 @@
                 </div>
             </div>
         </div>
-        <div class="item-right  clo-md-6 col-sm-6">
+        <div class="item-right  col-md-6 col-sm-6">
             <div class="screen-box">
                 <div class="form-inline">
                     <p class="title-text">政府集中采购项目合并<span>当前已选项目：{{selectedModel.length}} 项</span></p>
                     <div class="row search-box">
-                        <div class="form-group clo-md-8 col-sm-8">
-                            <label>预算类型</label>
-                            <div class="type-box clo-md-10">
-                                <select class="form-control input-sm right-types" size="2"
-                                        ms-duplex="@reqTypeTwo.MergeTypeWhenBudget"></select>
+                        <div class="form-group col-md-8 col-sm-8">
+                            <label>合并类型</label>
+                            <div class="type-box">
+                                <span>{{@reqTwo.MergeTypeWhenBudget}}</span>
                             </div>
                         </div>
-                        <div class="clo-md-4 col-sm-4  form-group year-box">
+                        <div class="col-md-4 col-sm-4  form-group year-box">
                             <label>年度</label>
-                            <input type="text" class="form-control input-sm form-year" ms-duplex="@reqTwo.Year"
-                                   ms-keydown="@submit">
+                            <span>{{@req.Year}}</span>
                         </div>
                     </div>
                 </div>
@@ -175,18 +173,18 @@
                                 <th class="number">序号</th>
                                 <!--<th>归口部门</th>-->
                                 <th>申报项目</th>
-                                <th>预算类型</th>
+                                <th>合并类型</th>
                                 <th>数量</th>
                                 <th>总价(元)</th>
                                 <th>年度</th>
                                 <th class="operation">操作</th>
                             </tr>
                             </thead>
-                            <tbody ms-for="el in @selectedModel" ms-if="@selectedModel!= null && @selectedModel.length != 0">
+                            <tbody ms-for="($index,el) in @selectedModel" ms-if="@selectedModel!= null && @selectedModel.length != 0">
                             <tr>
-                                <td rowspan="2" class="number text-center">{{el.number}}</td>
+                                <td rowspan="2" class="number text-center">{{$index+1}}</td>
                                 <!--<td>{{el.BudgetProject.RelevantDepartmentName}}</td>-->
-                                <td>{{el.BudgetProject.Name}}</td>
+                                <td class="text-left">{{el.BudgetProject.Name}}</td>
                                 <td>{{el.BudgetProject.MergeTypeWhenBudget}}</td>
                                 <td>{{el.BudgetProject.allNumber}}</td>
                                 <td>{{el.BudgetProject.budgetAmount|currency}}</td>
@@ -196,7 +194,7 @@
                                         <li class="bs-tooltip btn-del" data-toggle="tooltip" data-placement="bottom"
                                             title="删除">
                                             <a data-toggle="modal" data-target=".modal-del" href="javascript:;"
-                                               ms-on-click="@selectedModel.remove(el),@selectedModelCopy.remove(el),@addModel(el)">
+                                               ms-on-click="@selectedModel.remove(el),@addModel(el)">
                                                 <i class="icon iconfont icon-shanchu1"></i>
                                             </a>
                                         </li>
@@ -224,14 +222,14 @@
                     </div>
                 </div>
                 <div class="footer" ms-if="@selectedModel!= null && @selectedModel.length != 0">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ms-on-click="@clickSubmit">保存并合并</button>
+                    <button type="button" class="btn btn-primary" ms-on-click="@clickSubmit">合并已选项目</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal fade modal-add" tabindex="-1" role="dialog"
          aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog"></div>
+        <div class="modal-dialog modal-lg"></div>
     </div>
     <div class="modal fade modal-details" tabindex="-1" role="dialog"
          aria-labelledby="mySmallModalLabel" aria-hidden="true">

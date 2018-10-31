@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <Folder Include="Models\View\" />
-    <Folder Include="wwwroot\Upload\" />
     <Folder Include="wwwroot\Download\" />
   </ItemGroup>
 
@@ -21,8 +20,16 @@
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="SharpZipLib" Version="1.0.0" />
     <PackageReference Include="StackExchange.Redis" Version="2.0.513" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ip2region.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

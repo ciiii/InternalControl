@@ -7,12 +7,13 @@ $(function () {
             req: {
                 Index: 1,
                 Size: 16,
-                OrderType: false,
+                OrderType: true,
                 LikeName: '',
                 IsCenterPurchase: '',
                 RelevantDepartmentId: '',
                 PlanPurchaseMethod: '',
                 Year: new Date().getFullYear() + 1,
+                State: '',
             },
             userInfo: mUserInfo,
             relevantDepartment: [],
@@ -24,6 +25,7 @@ $(function () {
             allchecked: false,
             myDetails: {},
             activeIndex: 0,
+            activeMoneyIndex:0,
             stepId: '',
             query: function () {
                 vm.loaded = false;
@@ -124,10 +126,25 @@ $(function () {
                     })
                 }
             },
-            clickState: function (e, index) {
-                console.info(e, index);
+            clickBtnUp: function (index) {
+                vm.activeMoneyIndex = index;
+                vm.req.OrderType = true;
+                vm.search();
+            },
+            clickBtnDown: function (index) {
+                vm.activeMoneyIndex = index;
+                vm.req.OrderType = false;
+                vm.search();
+            },
+            getMoneyClass: function (index) {
+                if (index == vm.activeMoneyIndex) {
+                    return 'btn-primary'
+                }
+            },
+            clickState: function (e, index, val) {
                 vm.activeIndex = index;
-                console.info(e.target.innerText);
+                vm.req.State = val
+                vm.search();
             },
             getClass: function (index) {
                 if (index == vm.activeIndex) {
@@ -150,11 +167,7 @@ $(function () {
                 if (name.indexOf('待完善') != -1) {
                     return 'btn-edit';
                 } else {
-                    if (name.indexOf('分配') != -1) {
-                        return 'btn-users';
-                    } else {
-                        return 'btn-examine';
-                    }
+                    return 'btn-examine';
                 }
             },
             getStateClass: function (statue) {
@@ -168,10 +181,6 @@ $(function () {
                     case '待完善项目审核资料':
                         return 'state-remind';
                     case '待项目审核':
-                        return 'state-auditing';
-                    case '待分配专家':
-                        return 'state-auditing';
-                    case '待专家评审':
                         return 'state-auditing';
                     default:
                         return '';

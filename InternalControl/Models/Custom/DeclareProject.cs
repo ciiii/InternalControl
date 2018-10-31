@@ -33,6 +33,11 @@ namespace InternalControl.Models
         /// </summary>
         public string PlanPurchaseMethod { get; set; }
 
+        /// <summary>
+        /// 流程状态
+        /// </summary>
+        public bool? State { get; set; }
+
     }
 
     //2018-10-6 数据权限判断,复杂一点的放到tfn;

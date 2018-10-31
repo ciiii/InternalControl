@@ -21,7 +21,7 @@ namespace InternalControl.Business
     /// </summary>
     public enum StepState
     {
-        Forward = 1, Back = -1, Quit = -2
+        Stay=0, Forward = 1, Back = -1, Quit = -2
     }
 
     /// <summary>

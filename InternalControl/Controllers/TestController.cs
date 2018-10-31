@@ -9,6 +9,7 @@ using InternalControl.Business;
 using InternalControl.Infrastucture;
 using InternalControl.Models;
 using Microsoft.Extensions.Configuration;
+using System.IO.Compression;
 
 namespace InternalControl.Controllers
 {
@@ -42,6 +43,30 @@ namespace InternalControl.Controllers
             return files;
         }
 
+        [HttpGet]
+        public object testSharpZipLib() {
+             MySharpZipLib.CreateZipFile(MyPath.Combine(Env.WebRootPath, "DownLoad", "1.zip"),
+                MyPath.Combine(Env.WebRootPath, "Upload", "测试_20181010205009.txt"),
+                MyPath.Combine(Env.WebRootPath, "Upload", "测试_20181016105034.txt"),
+                MyPath.Combine(Env.WebRootPath, "Upload", "测试_20181016234453.txt"));
+            return 1;
+        }
+
+        [HttpGet]
+        public void testZipfile()
+        {
+            ZipFile.CreateFromDirectory(MyPath.Combine(Env.WebRootPath, "Upload", "testZipFile"), MyPath.Combine(Env.WebRootPath, "Download", "2.zip"));
+        }
+
+        ///// <summary>
+        ///// 这个不好用,发布到服务器就挂
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public object testIp()
+        //{
+        //    return IPTools.Core.IpTool.Search("171.217.156.4");
+        //}
     }
 
     public class MyClass1

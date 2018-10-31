@@ -110,6 +110,11 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
+		//public int TotalDeclareAmount { get; set; }
+        public int? TotalDeclareAmount { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
 		//public int FlowTemplateId { get; set; }
         public int FlowTemplateId { get; set; }
         /// <summary>

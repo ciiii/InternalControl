@@ -21,7 +21,7 @@ $(function () {
     if (localStorage.loginInfo) {
         var loginInfo = JSON.parse(localStorage.loginInfo);
         $('#workNumber').val(loginInfo.WorkNumber);
-        $('#password').val(loginInfo.password);
+        $('#password').val(loginInfo.Password);
         $('.remember').attr('checked', true);
     }
 

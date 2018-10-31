@@ -34,6 +34,11 @@ button:focus {
 textarea {
   resize: none;
 }
+hr {
+  margin: 5px 0 10px;
+  border-color: #eaedf2;
+  padding: 0;
+}
 .btn-primary {
   background-color: #389af0;
   border-color: #348edd;

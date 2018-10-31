@@ -15,6 +15,11 @@ namespace InternalControl.Models
         public string LikeName { get; set; }
 
         /// <summary>
+        /// 项目类型
+        /// </summary>
+        public string ProjectType { get; set; }
+
+        /// <summary>
         /// 是否集采
         /// </summary>
         public bool? ISCenterPurchase { get; set; }
@@ -40,15 +45,19 @@ namespace InternalControl.Models
         [Required]
         public int Year { get; set; }
 
-    }
-
-    public class ExecuteProjectExtendFilter: ExecuteProjectFilter
-    {
         /// <summary>
-        /// 归口部门id,后台来确定;
+        /// 归口部门id
         /// </summary>
         public int? RelevantDepartmentId { get; set; }
     }
+
+    //public class ExecuteProjectExtendFilter: ExecuteProjectFilter
+    //{
+    //    /// <summary>
+    //    /// 归口部门id,后台来确定;
+    //    /// </summary>
+    //    public int? RelevantDepartmentId { get; set; }
+    //}
 
     /// <summary>
     /// 执行大页面左侧的菜单项
@@ -89,6 +98,11 @@ namespace InternalControl.Models
         public string WhereInId { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public int? BudgetProjectId { get; set; }
+
+        /// <summary>
         /// 执行项目编号作为筛选条件
         /// </summary>
         public int? ExecuteProjectId { get; set; }
@@ -123,7 +137,7 @@ namespace InternalControl.Models
         /// <summary>
         /// 300 执行项目基础信息
         /// </summary>
-        public VTFNExecuteProject BaseInfo { get; set; }
+        public VTFNExecuteProject ExecuteProject { get; set; }
 
         /// <summary>
         /// 310 执行方式
@@ -179,7 +193,7 @@ namespace InternalControl.Models
         /// <summary>
         /// 基本的执行包的信息
         /// </summary>
-        public IEnumerable<VTFNPackageOfExcuteBudget> BaseInfo { get; set; }
+        public IEnumerable<VTFNPackageOfExcuteBudget> PackageOfExcuteBudget { get; set; }
 
         /// <summary>
         /// 320 技术确认的包

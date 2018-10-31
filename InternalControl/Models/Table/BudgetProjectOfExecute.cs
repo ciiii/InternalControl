@@ -37,6 +37,11 @@ namespace InternalControl.Models
         [Required(ErrorMessage ="请提供[TimeToImplement]")]
 		public DateTime? TimeToImplement { get; set; }
         /// <summary>
+		/// 
+		/// </summary>
+        [MaxLength(50,ErrorMessage ="PurchaseMethod不能超过[25]字")]
+		public string PurchaseMethod { get; set; }
+        /// <summary>
 		/// 预算批复,附件
 		/// </summary>
         [DisplayName("预算批复,附件")]

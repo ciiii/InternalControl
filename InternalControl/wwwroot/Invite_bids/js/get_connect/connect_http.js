@@ -4,9 +4,16 @@ var Connect_Http = {
         if (type == 'get') {
             if (data != null) {
                 var nowTime = new Date().getTime();
-                url += '?time=' + nowTime+'&';
+                url += '?time=' + nowTime + '&';
                 for (var filed in data) {
-                    url += filed + '=' + data[filed] + '&';
+                    if (isArray(data[filed])) {
+                        var arr = data[filed];
+                        for (var i = 0; i < arr.length; i++) {
+                            url += filed + '=' + arr[i] + '&';
+                        }
+                    } else {
+                        url += filed + '=' + data[filed] + '&';
+                    }
                 }
                 url = url.substring(0, url.length - 1);
             }

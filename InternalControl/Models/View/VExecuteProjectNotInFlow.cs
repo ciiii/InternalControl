@@ -132,6 +132,11 @@ namespace InternalControl.Models
 		/// </summary>
 		//public int ExecutionModeId { get; set; }
         public int? ExecutionModeId { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public int TotalExecuteAmount { get; set; }
+        public int? TotalExecuteAmount { get; set; }
         
           
         #endregion

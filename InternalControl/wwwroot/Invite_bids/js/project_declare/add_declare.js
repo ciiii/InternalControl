@@ -82,6 +82,7 @@ $(function () {
                     vm.model.Data.Model.DateOfPlanToImplement = formatDate(vm.model.Data.Model.DateOfPlanToImplement, 'YY-MM');
                     vm.apply.Url = vm.model.Data.Model.Attachment;
                     vm.apply.FileName = vm.getHtmlDocName(vm.model.Data.Model.Attachment);
+
                 }
                 vm.GetRelevantDepartmentList();
                 vm.getCategoryDictionary();
@@ -90,11 +91,9 @@ $(function () {
                 } else {
                     vm.isGoods = false;
                 }
-                if (vm.model.Data.Model.IsCenterPurchase) {
-                    vm.countCollectionPrice();
-                }
                 vm.countNumber();
                 vm.changeAllName();
+                vm.countCollectionPrice();
                 if (vm.model.Data.Model.Year == vm.year) {
                     vm.thisYaer = true;
                 } else {
@@ -112,29 +111,23 @@ $(function () {
                 vm.allName = names.join();
             },
             countNumber: function () {
-                var numbers = 0;
-                for (var i = 0; i < vm.model.Data.List.length; i++) {
-                    var number = vm.model.Data.List[i].DeclareNumber;
-                    if (number == '') {
-                        number = 0;
+                vm.declareNumber = 0;
+                vm.declareNumber = vm.model.Data.List.reduce(function (total, item) {
+                    if (item.DeclareNumber == '') {
+                        item.DeclareNumber = 0;
                     }
-                    var number = parseInt(vm.model.Data.List[i].DeclareNumber);
-                    numbers += number;
-                }
-                vm.declareNumber = numbers;
+                    return total + parseInt(item.DeclareNumber);
+                }, 0);
                 vm.countCollectionPrice();
             },
             countCollectionPrice: function () {
-                var funds = 0;
-                for (var i = 0; i < vm.model.Data.List.length; i++) {
-                    var price = vm.model.Data.List[i].DeclareUnitPrice;
-                    if (price == '') {
-                        price = 0;
+                vm.allPrice = 0;
+                vm.allPrice = vm.model.Data.List.reduce(function (total, item) {
+                    if (item.DeclareUnitPrice == '') {
+                        item.DeclareUnitPrice = 0;
                     }
-                    var price = parseInt(price) * parseInt(vm.model.Data.List[i].DeclareNumber);
-                    funds += price;
-                }
-                vm.allPrice = funds;
+                    return total + parseInt(item.DeclareNumber) * parseInt(item.DeclareUnitPrice);
+                }, 0)
             },
             removeCollectionEl: function (el) {
                 vm.model.Data.List.remove(el);
@@ -344,8 +337,10 @@ $(function () {
                 console.info(vm.model.Data.Model.ProjectType);
             },
             getHtmlDocName: function (url) {
-                var arr = url.split('\\');
-                return arr[arr.length - 1];
+                if (url) {
+                    var arr = url.split('\\');
+                    return arr[arr.length - 1];
+                }
             },
             clickBtnCancel: function () {
                 location.href = '/Invite_bids/views/project_declare/declare_list.html';

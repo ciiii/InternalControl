@@ -8,6 +8,8 @@ $(function () {
             allName: '',
             name:'',
             isGoods: true,
+            allPrice:0,
+            declareNumber:0,
             onLoad: function () {
                 for (var i in vmDetails.model.DeclareProject) {
                     if (vmDetails.model.DeclareProject[i] == null || vmDetails.model.DeclareProject[i] == 'undefined') {
@@ -23,15 +25,10 @@ $(function () {
                 }
                 if (vmDetails.model.DeclareProject.IsCenterPurchase) {
                     vmDetails.name='项目概况';
-                    if (vmDetails.isGoods) {
-                        vmDetails.countCollectionPrice();
-                    } else {
-                        vmDetails.countNonCollectionPrice();
-                    }
-                } else {
+                }else{
                     vmDetails.name='采购需求';
-                    vmDetails.countNonCollectionPrice();
                 }
+                vmDetails.countCollectionPrice();
                 vmDetails.countNumber();
                 vmDetails.changeAllName();
             },
@@ -46,39 +43,23 @@ $(function () {
                 vmDetails.allName = names.join();
             },
             countNumber: function () {
-                var numbers = 0;
-                for (var i = 0; i < vmDetails.model.Package.length; i++) {
-                    var number = vmDetails.model.Package[i].DeclareNumber;
-                    if (number == '') {
-                        number = 0;
+                vmDetails.declareNumber = 0;
+                vmDetails.declareNumber = vmDetails.model.Package.reduce(function (total, item) {
+                    if (item.DeclareNumber == '') {
+                        item.DeclareNumber = 0;
                     }
-                    var number = parseInt(vmDetails.model.Package[i].DeclareNumber);
-                    numbers += number;
-                }
-                vmDetails.declareNumber = numbers;
+                    return total + parseInt(item.DeclareNumber);
+                }, 0);
+                vmDetails.countCollectionPrice();
             },
             countCollectionPrice: function () {
-                var funds = 0;
-                for (var i = 0; i < vmDetails.model.Package.length; i++) {
-                    var price = vmDetails.model.Package[i].DeclareUnitPrice;
-                    if (price == '') {
-                        price = 0;
+                vmDetails.allPrice = 0;
+                vmDetails.allPrice = vmDetails.model.Package.reduce(function (total, item) {
+                    if (item.DeclareUnitPrice == '') {
+                        item.DeclareUnitPrice = 0;
                     }
-                    var price = parseInt(price) * parseInt(vmDetails.model.Package[i].DeclareNumber);
-                    funds += price;
-                }
-                vmDetails.allPrice = funds;
-            },
-            countNonCollectionPrice: function () {
-                var funds = 0;
-                for (var i = 0; i < vmDetails.model.Package.length; i++) {
-                    var price = vmDetails.model.Package[i].DeclareUnitPrice;
-                    if (price == '') {
-                        price = 0;
-                    }
-                    funds += parseInt(price);
-                }
-                vmDetails.allPrice = funds;
+                    return total + parseInt(item.DeclareNumber) * parseInt(item.DeclareUnitPrice);
+                }, 0)
             },
             getHtmlDocName: function (url) {
                 var arr = url.split('\\');

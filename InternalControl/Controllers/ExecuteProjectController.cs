@@ -63,12 +63,14 @@ namespace InternalControl.Controllers
         async public Task<object> GetPagingExecuteProjectListNotInFlowAndWithPackage(Paging paging, ExecuteProjectFilter filter)
         {
             //后台指定归口部门的过滤条件;
-            var filterExtend = Tool.ModelToModel<ExecuteProjectExtendFilter, ExecuteProjectFilter>(filter);
-            filterExtend.RelevantDepartmentId = CurrentUser.DepartmentId;
+            //var filterExtend = Tool.ModelToModel<ExecuteProjectExtendFilter, ExecuteProjectFilter>(filter);
+            //filterExtend.RelevantDepartmentId = CurrentUser.DepartmentId;
+            filter.RelevantDepartmentId = CurrentUser.DepartmentId;
+
             //返回的始终是VBudgetProject
-            var listOfPaging = await Db.GetPagingListSpAsync<VExecuteProjectNotInFlow, ExecuteProjectExtendFilter>(
+            var listOfPaging = await Db.GetPagingListSpAsync<VExecuteProjectNotInFlow, ExecuteProjectFilter>(
                             paging,
-                            filterExtend);
+                            filter);
 
             var listOfPackage = await Db.GetListSpAsync<VPackageOfExcuteBudget, PackageFilter>(
                 new PackageFilter()
@@ -101,6 +103,8 @@ namespace InternalControl.Controllers
                 executeProjectId,
                 $"TFNExecuteProject({CurrentUser.Id})");
 
+            if (executeProjectBaseInfo == null) throw new Exception("没有找到该执行项目");
+
             var packageOfExecuteProjectBaseInfo = await Db.GetListSpAsync<VTFNPackageOfExcuteBudget, PackageFilter>(
                 new PackageFilter()
                 {
@@ -119,7 +123,9 @@ namespace InternalControl.Controllers
             var stepTemplateOfExecute =
                 Config.GetValue<string>($"StepTemplateOfExecute:{executeProjectBaseInfo.ExecutionModeId ?? 0}").Split(",");
 
+            var isNotInFlow = listOfStepTemplateHavePassed.Count() == 0;
             //TODO:如果还没有开始流程,那么往里面加一条第一个步骤,这个很讨厌;
+            //不应该加这个,为了适应这个,加了
             if (listOfStepTemplateHavePassed.Count() == 0)
             {
                 listOfStepTemplateHavePassed.Add(
@@ -196,14 +202,14 @@ namespace InternalControl.Controllers
                 isCanOperateWhenQuestion = false;
             }
 
-                ListOfMenu.Add(
-                new MenuOfExecuteProject()
-                {
-                    StepTemplateName = "质疑投诉",
-                    IsPassed = executeProjectBaseInfo.LastStepTemplateId >= Config.GetValue<int>("StepTemplateId:ExecuteProjectOfBidEvaluation") ? true : false,
-                    ISCurrentStepTemplate = false,
-                    IsCanOperate = isCanOperateWhenQuestion
-                });
+            ListOfMenu.Add(
+            new MenuOfExecuteProject()
+            {
+                StepTemplateName = "质疑投诉",
+                IsPassed = executeProjectBaseInfo.LastStepTemplateId >= Config.GetValue<int>("StepTemplateId:ExecuteProjectOfBidEvaluation") ? true : false,
+                ISCurrentStepTemplate = false,
+                IsCanOperate = isCanOperateWhenQuestion
+            });
 
             var packageFilter = new PackageFilter()
             {
@@ -218,7 +224,7 @@ namespace InternalControl.Controllers
             {
                 ExecuteProject = new MultiPartOfExecuteProject()
                 {
-                    BaseInfo = executeProjectBaseInfo,
+                    ExecuteProject = executeProjectBaseInfo,
                     ExecuteProjectOfGetRunMode = await Db.GetModelByIdSpAsync<VExecuteProjectOfGetRunMode>(executeProjectId),
                     ExecuteProjectOfArgument = await Db.GetModelByIdSpAsync<ExecuteProjectOfArgument>(executeProjectId),
                     ExecuteProjectOfConfirm = await Db.GetModelByIdSpAsync<ExecuteProjectOfConfirm>(executeProjectId),
@@ -228,12 +234,12 @@ namespace InternalControl.Controllers
                          packageFilterWithExecuteProjectId),
                     ExecuteProjectOfResultNotice = await Db.GetModelByIdSpAsync<ExecuteProjectOfResultNotice>(executeProjectId),
                     ExecuteProjectOfQuestion = await Db.GetListSpAsync<ExecuteProjectOfQuestion, PackageFilter>(packageFilterWithExecuteProjectId),
-                    ExecuteProjectOfCorrection = await Db.GetListSpAsync<ExecuteProjectOfCorrection,PackageFilter>(packageFilterWithExecuteProjectId)
+                    ExecuteProjectOfCorrection = await Db.GetListSpAsync<ExecuteProjectOfCorrection, PackageFilter>(packageFilterWithExecuteProjectId)
                 },
 
                 ExecutePackage = new MultiPartOfExecutePackage()
                 {
-                    BaseInfo = packageOfExecuteProjectBaseInfo,
+                    PackageOfExcuteBudget = packageOfExecuteProjectBaseInfo,
                     PackageOfTechnicalConfirmation = await Db.GetListSpAsync<PackageOfTechnicalConfirmation, PackageFilter>(packageFilter),
                     PackageOfInvitation = await Db.GetListSpAsync<PackageOfInvitation, PackageFilter>(packageFilter),
                     PackageOfBidEvaluation = await Db.GetListSpAsync<PackageOfBidEvaluation, PackageFilter>(packageFilter),

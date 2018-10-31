@@ -1,10 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
 <head>
     <meta charset="UTF-8">
-    <title>预算指标</title>
+    <title>新建申报</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/ztree/metroStyle/metroStyle.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/main.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/file_upload.js"></script>
+
+    <script>
+        document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/budget_manage/budget_manage.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+
+    </script>
+
 </head>
-<body>
-预算指标
+<body ms-controller="root" class="ms-controller" onload="IFrameResize()">
+<div class="page-add-declare page-budget_manage page-common page-paper">
+    <div class="main">
+        <div class="form-horizontal content">
+            <div class="form-group year-box">
+                <span class="year">年度</span>
+                <div class="time-box">
+                    <a class="left" href="javascript:;" ms-on-click="@ClickLeft">
+                        <i class="icon iconfont icon-left"></i>
+                    </a>
+                    <input class="form-year time" type="text" ms-duplex="@req.Year" readonly/>
+                    <a class="right" href="javascript:;" ms-on-click="@ClickRight">
+                        <i class="icon iconfont icon-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="item col-md-12 col-sm-12">
+                <h4>常规预算</h4>
+                <hr class="col-md-12 col-sm-12"/>
+                <div class="col-md-6" ms-for="el in @model" ms-if="el.BudgetTypeId==1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">预算类型名称</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control" ms-duplex="@el.Name" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input class="form-control" ms-if="@el.Id==0" ms-duplex="@el.BudgetAmount"
+                                   onkeyup="onlyNum(this)"/>
+                            <input class="form-control" ms-if="@el.Id!=0" ms-duplex="@el.BudgetAmount|currency"
+                                   readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
+                            <div class="item-top">
+                                <span>预算批复</span>
+                                <div class="file-box" ms-if="@el.Id==0">
+                                    <input type="file" id="apply-upload-routine" class="input-file"
+                                           name="fileUpload"
+                                           ms-on-click="@upload($event,el)">
+
+                                    <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                                </div>
+                            </div>
+                            <div class="file">
+                                <a class="file-name col-md-11 col-sm-11"
+                                   ms-attr="{'href':el.BudgetApproval}"
+                                   ms-if="el.BudgetApproval&&el.BudgetApproval.length>0"
+                                   download="">{{@getHtmlDocName(el.BudgetApproval)}}</a>
+                                <span class="file-name col-md-11 col-sm-11"
+                                      ms-if="!@el.BudgetApproval||el.BudgetApproval.length==0">暂未上传附件</span>
+                                <a class="btn-del" ms-if="el.Id==0&&el.BudgetApproval" href="javascript:;"
+                                   ms-on-click="btnDel(el)">
+                                    <i class="icon iconfont icon-shanchu"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item col-md-12 col-sm-12">
+                <h4>专项预算
+                    <button class="btn btn-primary" ms-on-click="addSpecial">新增</button>
+                </h4>
+                <hr class="col-md-12 col-sm-12"/>
+                <div class="col-md-12 special-box" ms-for="($index,el) in @model" ms-if="el.BudgetTypeId==2">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3">预算类型名称</label>
+                            <div class="col-md-7 col-sm-7">
+                                <input type="text" class="form-control" ms-if="@el.Id==0" ms-duplex="@el.Name">
+                                <input type="text" class="form-control" ms-if="@el.Id!=0" ms-duplex="@el.Name"
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
+                            <div class="col-md-7 col-sm-7">
+                                <input class="form-control" ms-if="@el.Id==0" ms-duplex="@el.BudgetAmount"
+                                       onkeyup="onlyNum(this)"/>
+                                <input class="form-control" ms-if="@el.Id!=0" ms-duplex="@el.BudgetAmount|currency"
+                                       readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
+                                <div class="item-top">
+                                    <span>预算批复</span>
+                                    <div class="file-box" ms-if="@el.Id==0">
+                                        <input type="file" ms-attr="{'id':'apply-upload-special-'+($index+1)}"
+                                               class="input-file" name="fileUpload"
+                                               ms-on-click="@upload($event,el)">
+
+                                        <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                                    </div>
+                                </div>
+                                <div class="file">
+                                    <a class="file-name col-md-11 col-sm-11"
+                                       ms-attr="{'href':el.BudgetApproval}"
+                                       ms-if="el.BudgetApproval&&el.BudgetApproval.length>0"
+                                       download="">{{@getHtmlDocName(el.BudgetApproval)}}</a>
+                                    <span class="file-name col-md-11 col-sm-11"
+                                          ms-if="!@el.BudgetApproval||el.BudgetApproval.length==0">暂未上传附件</span>
+                                    <a class="btn-del" ms-if="el.Id==0&&el.BudgetApproval" href="javascript:;"
+                                       ms-on-click="btnDel(el)">
+                                        <i class="icon iconfont icon-shanchu"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn-del-item" ms-if="@el.Id==0" href="javascript:;" ms-on-click="model.remove(el)">
+                        <i class="icon iconfont icon-shanchu"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="item col-md-12 col-sm-12">
+                <h4>其他预算<span>（非财政资金）</span>
+                    <button class="btn btn-primary" ms-on-clcik="addOther">新增</button>
+                </h4>
+                <hr class="col-md-12 col-sm-12"/>
+                <div class="col-md-12 special-box" ms-for="el in @model" ms-if="el.BudgetTypeId==3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3">预算类型名称</label>
+                            <div class="col-md-7 col-sm-7">
+                                <input type="text" class="form-control" ms-if="@el.Id==0" ms-duplex="@el.Name">
+                                <input type="text" class="form-control" ms-if="@el.Id!=0" ms-duplex="@el.Name"
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
+                            <div class="col-md-7 col-sm-7">
+                                <input class="form-control" ms-if="@el.Id==0" ms-duplex="@el.BudgetAmount"
+                                       onkeyup="onlyNum(this)"/>
+                                <input class="form-control" ms-if="@el.Id!=0" ms-duplex="@el.BudgetAmount|currency"
+                                       readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
+                                <div class="item-top">
+                                    <span>预算批复</span>
+                                    <div class="file-box" ms-if="@el.Id==0">
+                                        <input type="file" ms-attr="{'id':'apply-upload-other-'+($index+1)}"
+                                               class="input-file" name="fileUpload"
+                                               ms-on-click="@upload($event,el)">
+
+                                        <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                                    </div>
+                                </div>
+                                <div class="file">
+                                    <a class="file-name col-md-11 col-sm-11"
+                                       ms-attr="{'href':el.BudgetApproval}"
+                                       ms-if="el.BudgetApproval&&el.BudgetApproval.length>0"
+                                       download="">{{@getHtmlDocName(el.BudgetApproval)}}</a>
+                                    <span class="file-name col-md-11 col-sm-11"
+                                          ms-if="!@el.BudgetApproval||el.BudgetApproval.length==0">暂未上传附件</span>
+                                    <a class="btn-del" ms-if="el.Id==0&&el.BudgetApproval" href="javascript:;"
+                                       ms-on-click="btnDel(el)">
+                                        <i class="icon iconfont icon-shanchu"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn-del-item" ms-if="@el.Id==0" href="javascript:;" ms-on-click="model.remove(el)">
+                        <i class="icon iconfont icon-shanchu"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="item clo-md-12 col-sm-12">
+                <div class="submit-wrapper">
+                    <div class="form-group">
+                        <div class="submit-box text-center">
+                            <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit">提交
+                            </button>
+                            <div class="tip-box"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+    <div class="modal fade modal-choice" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+</div>
 </body>
 </html>

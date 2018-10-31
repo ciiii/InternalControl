@@ -109,10 +109,7 @@
                 </form>
             </div>
             <div role="tabpanel" id="tab2" class="tab-pane">
-                <form class="form-horizontal content ">
-                </form>
                 <div class="item" ms-if="@model.DeclareProject.IsCenterPurchase&&@isGoods">
-                    <h4 class="text-center auditing-title">项目概况</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -148,7 +145,6 @@
                     </div>
                 </div>
                 <div class="item" ms-if="@model.DeclareProject.IsCenterPurchase&&!@isGoods">
-                    <h4 class="text-center auditing-title">项目概况</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -178,7 +174,6 @@
                     </div>
                 </div>
                 <div class="item" ms-if="!@model.DeclareProject.IsCenterPurchase">
-                    <h4 class="text-center auditing-title">采购需求</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>

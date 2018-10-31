@@ -65,8 +65,8 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
-		//public bool ISCenterPurchase { get; set; }
-        public bool ISCenterPurchase { get; set; }
+		//public bool IsCenterPurchase { get; set; }
+        public bool IsCenterPurchase { get; set; }
         /// <summary>
 		/// 
 		/// </summary>
@@ -107,6 +107,31 @@ namespace InternalControl.Models
 		/// </summary>
 		//public string Remark { get; set; }
         public string Remark { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public string BudgetName { get; set; }
+        public string BudgetName { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public string BudgetTypeName { get; set; }
+        public string BudgetTypeName { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public bool IsFinancialCapital { get; set; }
+        public bool? IsFinancialCapital { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public int TotalDeclareAmount { get; set; }
+        public int? TotalDeclareAmount { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public int TotalBudgetAmount { get; set; }
+        public int? TotalBudgetAmount { get; set; }
         
           
         #endregion

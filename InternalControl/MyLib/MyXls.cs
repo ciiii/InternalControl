@@ -110,10 +110,10 @@ namespace MyLib
             //var pName = t.GetProperty("Name");
             //var displayName = pName.GetCustomAttribute<DisplayNameAttribute>();
 
-            var displayNameOfT = Path.Combine("excel", name);
+            var displayNameOfT = MyPath.Combine("excel", name);
 
             string sFileName = $"{displayNameOfT}{Guid.NewGuid()}.xlsx";
-            FileInfo file = new FileInfo(Path.Combine(folder, sFileName));
+            FileInfo file = new FileInfo(MyPath.Combine(folder, sFileName));
 
             using (ExcelPackage package = new ExcelPackage(file))
             {

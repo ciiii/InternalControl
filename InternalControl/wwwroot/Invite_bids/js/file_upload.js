@@ -61,6 +61,7 @@ function fileUpload(data, inputFile, item) {
                 var data = e.data[0];
                 item.Url = data;
                 item.Attachment = data;
+                item.BudgetApproval = data;
                 item.FileName = getHtmlDocName(data);
             }
             $(inputFile).parent().find('.loading').hide();

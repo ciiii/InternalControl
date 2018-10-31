@@ -1,0 +1,490 @@
+<div class="modal-content ms-controller add-user" ms-controller="details">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">查看详情</h4>
+    </div>
+    <div class="modal-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">基本信息</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">申报项目概况</a>
+            </li>
+            <li role="presentation" ms-if="@model.BudgetProject.BudgetProjectOfArgument">
+                <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">论证报告</a>
+            </li>
+            <li role="presentation" ms-if="@model.BudgetProject.BudgetProjectOfEnter">
+                <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">预算审核批复</a>
+            </li>
+            <li role="presentation" ms-if="@model.BudgetPackage.PackageOfBudget.length!=0">
+                <a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">预算项目概况</a>
+            </li>
+            <li role="presentation" ms-if="@model.BudgetProject.BudgetProjectOfExecute">
+                <a href="#tab6" aria-controls="tab6" role="tab" data-toggle="tab">执行预算信息</a>
+            </li>
+            <li role="presentation" ms-if="@model.BudgetPackage.PackageOfExcuteBudget.length!=0">
+                <a href="#tab7" aria-controls="tab7" role="tab" data-toggle="tab">执行预算项目概况</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" id="tab1" class="tab-pane active">
+                <form class="form-horizontal">
+                    <div class="col-sm-12">
+                        <h5 class="title"><span>基本信息</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">项目名称：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.Name}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">归档管理部门：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.RelevantDepartmentName}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">项目联系人：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.LinkmanName}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">联系电话：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.LinkmanPhone}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">是否为政府集中采购：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.IsCenterPurchase?'是':'否'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">预算类型：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.MergeTypeWhenBudget}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">预算金额(元)：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.TotalBudgetAmount|currency}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">采购方式：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.PurchaseMethod}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">项目拟实施时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.TimePlanToImplement|date("yyyy-MM")}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">采购对象：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.ProjectType}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">年度：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.Year}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.CreateDatetime}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">预算状态：</label>
+                            <div class="col-sm-7">
+                                <span ms-class="getStateClass(@model.BudgetProject.BudgetProject.LastStepStateName)">{{@model.BudgetProject.BudgetProject.StateName}} - {{@model.BudgetProject.BudgetProject.LastStepStateName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab2" class="tab-pane">
+                <form class="form-horizontal content ">
+                </form>
+                <div class="item" ms-if="@model.BudgetProject.BudgetProject.IsCenterPurchase&&@isGoods">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>单项名称</th>
+                                <th>技术要求</th>
+                                <th>单位</th>
+                                <th>数量</th>
+                                <th>单价(元)</th>
+                                <th>合计(元)</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfDeclare">
+                                <td>{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{el.DeclareTechnicalRequirements}}</td>
+                                <td>{{el.Unit}}</td>
+                                <td>{{el.DeclareNumber}}</td>
+                                <td>{{el.DeclareUnitPrice|currency}}</td>
+                                <td>{{(el.DeclareNumber*el.DeclareUnitPrice)|currency}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfDeclare.length==0||@model.BudgetPackage.PackageOfDeclare==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item" ms-if="@model.BudgetProject.BudgetProject.IsCenterPurchase&&!@isGoods">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>单项名称</th>
+                                <th>技术要求</th>
+                                <th>合计(元)</th>
+                                <th>备注</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfDeclare">
+                                <td>{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{@getHtmlDocName(el.Attachment)}}</td>
+                                <td>{{el.DeclareUnitPrice|currency}}</td>
+                                <td>{{Remark}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfDeclare.length==0||@model.BudgetPackage.PackageOfDeclare==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item" ms-if="!@model.BudgetProject.BudgetProject.IsCenterPurchase">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">包号</th>
+                                <th>包名称</th>
+                                <th>预算金额(元)</th>
+                                <th>采购品目</th>
+                                <th>技术要求</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfDeclare">
+                                <td>第{{$index+1}}包</td>
+                                <td>{{el.Name}}</td>
+                                <td>{{el.DeclareUnitPrice|currency}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{@getHtmlDocName(el.Attachment)}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfDeclare.length==0||@model.BudgetPackage.PackageOfDeclare==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" id="tab3" class="tab-pane">
+                <form class="form-horizontal">
+                    <div class="col-sm-12 fileUpload-box" >
+                        <h5 class="title"><span>论证报告</span></h5>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-3 control-label">论证报告：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.BudgetProject.BudgetProjectOfArgument.ArgumentReport}" download="">{{@getHtmlDocName(@model.BudgetProject.BudgetProjectOfArgument.ArgumentReport)}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab4" class="tab-pane">
+                <form class="form-horizontal">
+                    <div class="col-sm-12 fileUpload-box">
+                        <h5 class="title"><span>预算审核批复</span></h5>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-3 control-label">预算审核批复：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.BudgetProject.BudgetProjectOfEnter.AuditReply}" download="">{{@getHtmlDocName(@model.BudgetProject.BudgetProjectOfEnter.AuditReply)}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab5" class="tab-pane">
+                <form class="form-horizontal content ">
+                </form>
+                <div class="item" ms-if="@model.BudgetProject.BudgetProject.IsCenterPurchase&&@isGoods">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>单项名称</th>
+                                <th>技术要求</th>
+                                <th>单位</th>
+                                <th>数量</th>
+                                <th>单价(元)</th>
+                                <th>合计(元)</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfBudget">
+                                <td>{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{el.BudgetTechnicalRequirements}}</td>
+                                <td>{{el.Unit}}</td>
+                                <td>{{el.BudgetNumber}}</td>
+                                <td>{{el.BudgetUnitPrice|currency}}</td>
+                                <td>{{(el.BudgetNumber*el.BudgetUnitPrice)|currency}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfBudget.length==0||@model.BudgetPackage.PackageOfBudget==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item" ms-if="@model.BudgetProject.BudgetProject.IsCenterPurchase&&!@isGoods">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>单项名称</th>
+                                <th>技术要求</th>
+                                <th>合计(元)</th>
+                                <th>备注</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfBudget">
+                                <td>{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{@getHtmlDocName(el.Attachment)}}</td>
+                                <td>{{el.BudgetUnitPrice|currency}}</td>
+                                <td>{{Remark}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfBudget.length==0||@model.BudgetPackage.PackageOfBudget==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item" ms-if="!@model.BudgetProject.BudgetProject.IsCenterPurchase">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">包号</th>
+                                <th>包名称</th>
+                                <th>预算金额(元)</th>
+                                <th>采购品目</th>
+                                <th>技术要求</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfBudget">
+                                <td>第{{$index+1}}包</td>
+                                <td>{{el.Name}}</td>
+                                <td>{{el.BudgetUnitPrice|currency}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{@getHtmlDocName(el.Attachment)}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfBudget.length==0||@model.BudgetPackage.PackageOfBudget==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" id="tab6" class="tab-pane">
+                <form class="form-horizontal">
+                    <div class="col-sm-12 fileUpload-box">
+                        <h5 class="title"><span>执行预算信息</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">财政资金：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.IsFinancialCapital?'财政资金':'非财政资金'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">项目属性：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProjectOfExecute.IsGovernmentPurchase?'政府采购':'非政府采购'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">是否专门面向中小企业：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProjectOfExecute.IsMSE?'是':'否'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">预算类型：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.BudgetTypeName}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">采购方式：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.BudgetTypeName}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">执行实施时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.TimeToImplement|truncate(7,'')}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-3 control-label">执行预算批复：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.BudgetProject.BudgetProjectOfExecute.Reply}" download="">{{@getHtmlDocName(@model.BudgetProject.BudgetProjectOfExecute.Reply)}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab7" class="tab-pane">
+                <form class="form-horizontal content ">
+                </form>
+                <div class="item" ms-if="@model.BudgetProject.BudgetProject.IsCenterPurchase&&@isGoods">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>单项名称</th>
+                                <th>技术要求</th>
+                                <th>单位</th>
+                                <th>数量</th>
+                                <th>单价(元)</th>
+                                <th>合计(元)</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfExcuteBudget">
+                                <td>{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{el.ExecuteTechnicalRequirements}}</td>
+                                <td>{{el.Unit}}</td>
+                                <td>{{el.ExecuteNumber}}</td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
+                                <td>{{(el.ExecuteNumber*el.ExecuteUnitPrice)|currency}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfExcuteBudget.length==0||@model.BudgetPackage.PackageOfExcuteBudget==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item" ms-if="@model.BudgetProject.BudgetProject.IsCenterPurchase&&!@isGoods">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">序号</th>
+                                <th>单项名称</th>
+                                <th>技术要求</th>
+                                <th>合计(元)</th>
+                                <th>备注</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfExcuteBudget">
+                                <td>{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{@getHtmlDocName(el.Attachment)}}</td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
+                                <td>{{Remark}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfExcuteBudget.length==0||@model.BudgetPackage.PackageOfExcuteBudget==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item" ms-if="!@model.BudgetProject.BudgetProject.IsCenterPurchase">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">包号</th>
+                                <th>包名称</th>
+                                <th>预算金额(元)</th>
+                                <th>采购品目</th>
+                                <th>技术要求</th>
+                                <th>是否为进口产品</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.BudgetPackage.PackageOfExcuteBudget">
+                                <td>第{{$index+1}}包</td>
+                                <td>{{el.Name}}</td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{@getHtmlDocName(el.Attachment)}}</td>
+                                <td>{{el.IsImported?'是':'否'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ms-if="@model.BudgetPackage.PackageOfExcuteBudget.length==0||@model.BudgetPackage.PackageOfExcuteBudget==null">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">关闭
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/budget_manage/budget_details.js"></script>

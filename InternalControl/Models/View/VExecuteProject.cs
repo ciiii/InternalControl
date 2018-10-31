@@ -135,8 +135,8 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
-		//public int TotalBudgetAmount { get; set; }
-        public int? TotalBudgetAmount { get; set; }
+		//public int TotalExecuteAmount { get; set; }
+        public int? TotalExecuteAmount { get; set; }
         
           
         #endregion

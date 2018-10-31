@@ -10,12 +10,17 @@ $(function () {
                 OrderType: false,
                 LikeName: '',
                 IsCenterPurchase: '',
-                RelevantDepartmentId: '',
-                PlanPurchaseMethod: '',
+                MergeTypeWhenBudget: '',
                 Year: new Date().getFullYear() + 1,
             },
+            reqType: {
+                Index: 1,
+                Size: 10,
+                OrderType: false,
+                IsCenterPurchase: true,
+                LikeMergeTypeWhenBudget: ''
+            },
             userInfo: mUserInfo,
-            relevantDepartment: [],
             purchaseMetho: [],
             total: '',
             model: [],
@@ -23,17 +28,19 @@ $(function () {
             loaded: false,
             allchecked: false,
             myDetails: {},
-            activeIndex: 0,
-            stepId: '',
+            activeMoneyIndex: 0,
+            typesTotal: 0,
+            isShowDel: false,
+            projecId:'',
             query: function () {
                 vm.loaded = false;
                 $.support.cors = true;
-                Declare.getPagingDeclareProjectList('get', vm.req.$model, function getPagingDeclareProjectListListener(success, obj, strErro) {
+                Budget.getPagingBudgetProjectListNotInFlowAndWithPackage('get', vm.req.$model, function getPagingBudgetProjectListNotInFlowAndWithPackageListener(success, obj, strErro) {
                     if (success) {
                         vm.loaded = true;
                         vm.total = obj.Total;
                         if (obj == null || obj.List.length == 0) {
-                            $('.pager').hide();
+                            $('.personnel-box .pager').hide();
                             vm.model = [];
                             vm.nothing = true;
                             return;
@@ -43,20 +50,20 @@ $(function () {
                             for (var i = 0; i < obj.length; i++) {
                                 obj[i].number = number;
                                 obj[i].checked = false;
-                                obj[i].DeclareProject.budgetAmount = 0;
-                                for (var j = 0; j < obj[i].Package.length; j++) {
-                                    var item = obj[i].Package[j];
-                                    obj[i].DeclareProject.budgetAmount += item.DeclareUnitPrice;
-                                }
+                                obj[i].BudgetProject.budgetAmount = 0;
+                                obj[i].BudgetProject.budgetAmount = obj[i].Package.reduce(function (total, item) {
+                                    return total + item.DeclareNumber * item.DeclareUnitPrice;
+                                }, 0)
                                 number++;
                             }
+
                             vm.model = obj;
                             console.info(obj);
-                            $('.pager').show();
+                            $('.personnel-box .pager').show();
                             vm.nothing = false;
                             vm.allchecked = false;
                         }
-                        $('.pager').mamPager({
+                        $('.personnel-box .pager').mamPager({
                             pageSize: vm.req.Size,                       //页大小
                             pageIndex: vm.req.Index,                     //当前页
                             recordTotal: vm.total,                       //数据总数
@@ -73,39 +80,101 @@ $(function () {
                         });
                         $('.bs-tooltip').tooltip();
                     } else {
-                        console.info('获取申报项目列表失败！');
+                        console.info('获取还没有进入预算项目失败！');
                         console.info(strErro);
                     }
                 });
             },
-            GetRelevantDepartmentList: function () {
-                Department.GetRelevantDepartmentList('get', function GetRelevantDepartmentListListener(success, obj, strErro) {
+            getTypes: function () {
+                Set.getPagingVMergeTypeWhenBudgetList('get', vm.reqType.$model, function getPagingVMergeTypeWhenBudgetListListener(success, obj, strErro) {
                     if (success) {
-                        vm.relevantDepartment = obj;
+                        vm.typesTotal = obj.Total;
+                        obj = obj.List;
+                        if (obj.length == 0) {
+                            obj = ['无数据'];
+                        }
+                        vm.initMultiselect('.screen-box .left-types');
+                        var options = [];
+                        for (var i = 0; i < obj.length; i++) {
+                            var option = {
+                                label: obj[i],
+                                title: obj[i],
+                                value: obj[i]
+                            }
+                            options.push(option);
+                        }
+
+                        $('.screen-box .left-types').multiselect('dataprovider', options);
+
+                        $('.screen-box .multiselect-search').val(vm.reqType.LikeMergeTypeWhenBudget);
+                        $('.screen-box .multiselect-search').focus();
+                        var pager = $('<li><div class="page paging text-center">' +
+                            '<div class="pager paging"></div></div></li>');
+
+                        $('.screen-box .type-box .pager').remove();
+                        $('.screen-box .multiselect-container.dropdown-menu').append(pager);
+
+                        $('.screen-box .multiselect-search').on('keyup', debounce(function () {
+                            vm.reqType.LikeMergeTypeWhenBudget = $(this).val();
+                            vm.reqType.Index = 1;
+                            vm.getTypes();
+                        }, 500));
+                        $('.screen-box .pager').mamPager({
+                            pageSize: vm.reqType.Size,              //页大小
+                            pageIndex: vm.reqType.Index,            //当前页
+                            recordTotal: vm.leftTotal,                  //数据总数
+                            type: 1,
+                            prevText: "&laquo;",                        //上一页显示内容
+                            nextText: "&raquo;",
+                            noData: "暂无数据",
+                            pageChange: function (index) {
+                                vm.reqType.Index = index;
+                                vm.getTypes();
+                            }
+                        });
+
                     } else {
-                        console.info('获取归口部门失败！');
+                        console.info('获取预算类型失败！');
                         console.info(strErro);
                     }
-                })
+                });
             },
-            getCategoryDictionary: function () {
-                Dictionary.getCategoryDictionary('get', '采购方式', function getCategoryDictionaryListener(success, obj, strErro) {
-                    if (success) {
-                        vm.purchaseMetho = obj;
-                    } else {
-                        console.info('获取计划采购方式失败！');
-                        console.info(strErro);
-                    }
-                })
+            initMultiselect: function (obj) {
+                $(obj).multiselect({
+                    multiple: true,
+                    buttonWidth: '100%',
+                    maxHeight: 360,
+                    nonSelectedText: '请选择',
+                    enableFiltering: true,//是否显示搜索
+                    filterPlaceholder: '输入关键字...',
+                    onChange: function (option, checked, select) {
+                        if (obj.indexOf('.screen-box') != -1) {
+                            vm.req.Index = 1;
+                            vm.req.MergeTypeWhenBudget = $(option).text();
+                            vm.isShowDel = true;
+                            vm.query();
+                        }
+                    },
+                });
             },
             search: function () {
                 vm.req.Index = 1;
                 vm.query();
             },
+            searchAll: function () {
+                vm.reqType.LikeMergeTypeWhenBudget = '';
+                vm.isShowDel = false;
+                $('.screen-box .left-types').multiselect('deselect', [vm.req.MergeTypeWhenBudget]);
+                vm.req.MergeTypeWhenBudget = '';
+                vm.search();
+            },
             submit: function () {
                 if (event.keyCode == 13) {
                     vm.query();
                 }
+            },
+            batchExport: function () {
+                $('.btn-export').attr('href', '');
             },
             checkAll: function (e) {
                 var checked = e.target.checked
@@ -124,69 +193,24 @@ $(function () {
                     })
                 }
             },
-            clickState: function (e, index) {
-                console.info(e, index);
-                vm.activeIndex = index;
-                console.info(e.target.innerText);
+            clickBtnUp: function (index) {
+                vm.activeMoneyIndex = index;
+                vm.req.OrderType = true;
+                vm.search();
             },
-            getClass: function (index) {
-                if (index == vm.activeIndex) {
-                    return 'active'
+            clickBtnDown: function (index) {
+                vm.activeMoneyIndex = index;
+                vm.req.OrderType = false;
+                vm.search();
+            },
+            getMoneyClass: function (index) {
+                if (index == vm.activeMoneyIndex) {
+                    return 'btn-primary'
                 }
             },
             changeCenterPurchase: function (e) {
                 vm.req.IsCenterPurchase = e.target.value;
                 vm.search();
-            },
-            changeDepartment: function (e) {
-                vm.req.RelevantDepartmentId = e.target.value;
-                vm.search();
-            },
-            changePurchaseMetho: function (e) {
-                vm.req.PlanPurchaseMethod = e.target.value;
-                vm.search();
-            },
-            getFlowClass: function (name) {
-                if (name.indexOf('待完善') != -1) {
-                    return 'btn-edit';
-                } else {
-                    if (name.indexOf('分配') != -1) {
-                        return 'btn-users';
-                    } else {
-                        return 'btn-examine';
-                    }
-                }
-            },
-            getStateClass: function (statue) {
-                switch (statue) {
-                    case '项目审核通过':
-                        return 'state-pass';
-                    case '审核不通过':
-                        return 'state-over';
-                    case '审核已终止':
-                        return 'state-over';
-                    case '待完善项目审核资料':
-                        return 'state-remind';
-                    case '待项目审核':
-                        return 'state-auditing';
-                    case '待分配专家':
-                        return 'state-auditing';
-                    case '待专家评审':
-                        return 'state-auditing';
-                    default:
-                        return '';
-                }
-            },
-            clickBtnEdit: function (el) {
-                vm.clickInfo(el);
-                var url = el.DeclareProject.LastEditStepComponentName;
-                if (url.indexOf('modal') != -1) {
-                    $('.modal-add').modal('show');
-                    changeUrlNew('/Invite_bids/views/' + url)
-                    vm.stepId = el.DeclareProject.LastStepId;
-                } else {
-                    location.href = '/Invite_bids/views/' + url + '?editType=true';
-                }
             },
             clickInfo: function (el) {
                 vm.myDetails = el.$model;
@@ -194,6 +218,7 @@ $(function () {
             },
             clickDetails: function (el) {
                 vm.myDetails = el.$model;
+                vm.projecId = el.BudgetProject.Id;
             },
             clickBtnReturn: function () {
                 $('.modal').modal('hide');
@@ -209,8 +234,7 @@ $(function () {
         }).on('changeDate', function () {
             vm.search();
         });
-        vm.GetRelevantDepartmentList();
-        vm.getCategoryDictionary();
+        vm.getTypes();
         vm.query();
         avalon.scan(document.body);
     });

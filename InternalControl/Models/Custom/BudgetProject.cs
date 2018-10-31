@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace InternalControl.Models
@@ -16,7 +17,7 @@ namespace InternalControl.Models
         /// <summary>
         /// 是否集采
         /// </summary>
-        public bool? ISCenterPurchase { get; set; }
+        public bool? IsCenterPurchase { get; set; }
 
         /// <summary>
         /// 预算时的合并分类
@@ -29,14 +30,49 @@ namespace InternalControl.Models
         [Required]
         public int Year { get; set; }
 
+        /// <summary>
+        /// 项目类型
+        /// </summary>
+        public string ProjectType { get; set; }
+
+        /// <summary>
+        /// 大于等于多少预算总额
+        /// </summary>
+        public int? BeginTotalBudgetAmount { get; set; }
+
+        /// <summary>
+        /// 小于等于多少预算总额
+        /// </summary>
+        public int? EndTotalBudgetAmount { get; set; }
+
     }
 
-    public class BudgetProjectExtendFilter: BudgetProjectFilter
+    public class BudgetProjectExtendFilter : BudgetProjectFilter
     {
         /// <summary>
         /// 归口部门id,后台来确定;
         /// </summary>
         public int? RelevantDepartmentId { get; set; }
+
+        /// <summary>
+        /// 流程状态
+        /// </summary>
+        public int? State { get; set; }
+
+        /// <summary>
+        /// 当前步骤模板编号
+        /// </summary>
+        public int? LastStepTemplateId { get; set; }
+
+        /// <summary>
+        /// 在某一步骤模板之前(包含)
+        /// </summary>
+        public int? BeginLastStepTemplateId { get; set; }
+
+        /// <summary>
+        /// 在某一步骤模板之后(包含)
+        /// </summary>
+        public int? EndLastStepTemplateId { get; set; }
     }
 
     /// <summary>
@@ -103,5 +139,15 @@ namespace InternalControl.Models
     {
         public int StepId { get; set; }
         public int BudgetProjectId { get; set; }
+    }
+
+    /// <summary>
+    /// 进入预算排名返回的数据结构
+    /// </summary>
+    public class OrderOfProjectOfEnter
+    {
+        public string DeclareDepartmentName { get; set; }
+        public int CountOfPackageOfBudgetProject { get; set; }
+        public int TotolBudgetAmountByDempartment { get; set; }
     }
 }

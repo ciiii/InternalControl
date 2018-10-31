@@ -279,6 +279,13 @@
             预算项目
             </summary>
         </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetBudgetProjectDetail(System.Int32)">
+            <summary>
+            获取某预算项目详情
+            </summary>
+            <param name="budgetProjectId"></param>
+            <returns></returns>
+        </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingBudgetProjectListCanCombineAndWithPackage(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
             <summary>
             获取还没有进入预算流程的预算项目,其中集采类的还没有合并过,用于合并
@@ -315,12 +322,12 @@
             <param name="data"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingBudgetProjectList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingQuitedBudgetProjectOfArgumentList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
             <summary>
-            分页获取预算项目列表,包括每个预算项目的流程信息和包信息.
-            对于每个项目,只有相应的归口部门的人可以看到;
+            认证不通过的预算项目
             </summary>
             <param name="paging"></param>
+            <param name="filter"></param>
             <returns></returns>
         </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.GetBudgetList(InternalControl.Models.BudgetFilter)">
@@ -330,11 +337,53 @@
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.BudgetProjectController.AddOrUpdateBudget(InternalControl.Models.Budget)">
+        <member name="M:InternalControl.Controllers.BudgetProjectController.AddOrUpdateBudget(System.Collections.Generic.IEnumerable{InternalControl.Models.Budget})">
             <summary>
             增加预算,不能修改删除哈;
             </summary>
-            <param name="model"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingBudgetProjectList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectExtendFilter)">
+            <summary>
+            分页获取预算项目列表,包括每个预算项目的流程信息和包信息.
+            对于每个项目,只有相应的归口部门的人可以看到;
+            </summary>
+            <param name="paging"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingBudgetProjectOfEnterList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+            <summary>
+            分页获取待进入预算的项目列表,包括每个预算项目的流程信息和包信息.
+            对于每个项目,只有相应的归口部门的人可以看到;
+            </summary>
+            <param name="paging"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingUnfinishedBudgetProjectOfEnterList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+            <summary>
+            未进入预算的预算项目,
+            </summary>
+            <param name="paging"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingFinishedBudgetProjectOfEnterList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+            <summary>
+            已经进入预算的预算项目,
+            </summary>
+            <param name="paging"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetOrderOfProjectOfEnter(InternalControl.Models.BudgetProjectFilter,System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            获取当前勾选的项目按部门统计后,再按本次已经进入预算的总额排序的项目id列表
+            </summary>
+            <param name="filter"></param>
+            <param name="listOfSelectedId">当前选中的id列表</param>
+            <param name="numberOfTake">获取几个</param>
             <returns></returns>
         </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.PassBudgetProjectOfEnter(InternalControl.Infrastucture.PredefindedModelList{InternalControl.Models.EMBudgetProjectOfEnter,InternalControl.Models.StepIdAndBudgetProjectId})">
@@ -342,6 +391,31 @@
             进入预算
             </summary>
             <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingBudgetProjectOfExecuteList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+            <summary>
+            分页获取待预算执行的项目列表,包括每个预算项目的流程信息和包信息.
+            对于每个项目,只有相应的归口部门的人可以看到;
+            </summary>
+            <param name="paging"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingUnfinishedBudgetProjectOfExecuteList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+            <summary>
+            未完成预算执行的预算项目
+            </summary>
+            <param name="paging"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingFinishedBudgetProjectOfExecuteList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
+            <summary>
+            已完成预算执行的预算项目
+            </summary>
+            <param name="paging"></param>
+            <param name="filter"></param>
             <returns></returns>
         </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.PassBudgetProjectOfExecute(InternalControl.Models.StepDone{InternalControl.Infrastucture.PredefindedModelList{InternalControl.Models.BudgetProjectOfExecute,InternalControl.Models.PackageOfExcuteBudget}})">
@@ -871,7 +945,7 @@
             <param name="orderStr"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Infrastucture.PredefinedSpExtention.GetPagingListSpAsync``2(System.Data.IDbConnection,InternalControl.Models.Paging,``1,System.String,System.String,System.String,System.Boolean)">
+        <member name="M:InternalControl.Infrastucture.PredefinedSpExtention.GetPagingListSpAsync``2(System.Data.IDbConnection,InternalControl.Models.Paging,``1,System.String,System.String,System.String,System.Nullable{System.Boolean})">
             <summary>
             有条件的分页获取
             T的作用有2:1默认用T的名称做TbName,2dapper返回类型的指定
@@ -887,7 +961,7 @@
             <param name="orderType"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Infrastucture.PredefinedSpExtention.GetPagingListSpAsync``1(System.Data.IDbConnection,InternalControl.Models.Paging,System.String,System.String,System.String)">
+        <member name="M:InternalControl.Infrastucture.PredefinedSpExtention.GetPagingListSpAsync``1(System.Data.IDbConnection,InternalControl.Models.Paging,System.String,System.String,System.String,System.Nullable{System.Boolean})">
             <summary>
             没有搜索条件的,返回分页数据
             </summary>
@@ -1227,7 +1301,7 @@
             模糊:预算项目名称
             </summary>
         </member>
-        <member name="P:InternalControl.Models.BudgetProjectFilter.ISCenterPurchase">
+        <member name="P:InternalControl.Models.BudgetProjectFilter.IsCenterPurchase">
             <summary>
             是否集采
             </summary>
@@ -1242,9 +1316,44 @@
             年份,必须确定年份
             </summary>
         </member>
+        <member name="P:InternalControl.Models.BudgetProjectFilter.ProjectType">
+            <summary>
+            项目类型
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectFilter.BeginTotalBudgetAmount">
+            <summary>
+            大于等于多少预算总额
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectFilter.EndTotalBudgetAmount">
+            <summary>
+            小于等于多少预算总额
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.BudgetProjectExtendFilter.RelevantDepartmentId">
             <summary>
             归口部门id,后台来确定;
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectExtendFilter.State">
+            <summary>
+            流程状态
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectExtendFilter.LastStepTemplateId">
+            <summary>
+            当前步骤模板编号
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectExtendFilter.BeginLastStepTemplateId">
+            <summary>
+            在某一步骤模板之前(包含)
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectExtendFilter.EndLastStepTemplateId">
+            <summary>
+            在某一步骤模板之后(包含)
             </summary>
         </member>
         <member name="T:InternalControl.Models.PackageOfBudgetProjectFilter">
@@ -1298,6 +1407,11 @@
             批量进入预算时,传入的步骤id和预算项目id
             </summary>
         </member>
+        <member name="T:InternalControl.Models.OrderOfProjectOfEnter">
+            <summary>
+            进入预算排名返回的数据结构
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.DeclareProjectFilter">
             <summary>
             申报项目的过滤条件
@@ -1328,6 +1442,11 @@
             计划采购方式
             </summary>
         </member>
+        <member name="P:InternalControl.Models.DeclareProjectFilter.State">
+            <summary>
+            流程状态
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.PackageOfDeclareProjectFilter">
             <summary>
             申报项目相关包的过滤条件
@@ -1346,6 +1465,11 @@
         <member name="P:InternalControl.Models.ExecuteProjectFilter.LikeName">
             <summary>
             模糊:执行项目名称
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectFilter.ProjectType">
+            <summary>
+            项目类型
             </summary>
         </member>
         <member name="P:InternalControl.Models.ExecuteProjectFilter.ISCenterPurchase">
@@ -1373,9 +1497,9 @@
             年份,必须确定年份
             </summary>
         </member>
-        <member name="P:InternalControl.Models.ExecuteProjectExtendFilter.RelevantDepartmentId">
+        <member name="P:InternalControl.Models.ExecuteProjectFilter.RelevantDepartmentId">
             <summary>
-            归口部门id,后台来确定;
+            归口部门id
             </summary>
         </member>
         <member name="T:InternalControl.Models.MenuOfExecuteProject">
@@ -1418,6 +1542,11 @@
             使用in搜索多项符合=Id条件的结果
             </summary>
         </member>
+        <member name="P:InternalControl.Models.PackageFilter.BudgetProjectId">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.PackageFilter.ExecuteProjectId">
             <summary>
             执行项目编号作为筛选条件
@@ -1448,7 +1577,7 @@
             执行项目的项目信息的多个组成部分;
             </summary>
         </member>
-        <member name="P:InternalControl.Models.MultiPartOfExecuteProject.BaseInfo">
+        <member name="P:InternalControl.Models.MultiPartOfExecuteProject.ExecuteProject">
             <summary>
             300 执行项目基础信息
             </summary>
@@ -1503,7 +1632,7 @@
             执行项目的包的多个组成部门
             </summary>
         </member>
-        <member name="P:InternalControl.Models.MultiPartOfExecutePackage.BaseInfo">
+        <member name="P:InternalControl.Models.MultiPartOfExecutePackage.PackageOfExcuteBudget">
             <summary>
             基本的执行包的信息
             </summary>
@@ -2436,6 +2565,21 @@
             
             </summary>
         </member>
+        <member name="T:InternalControl.Models.SPOrderOfProjectOfEnter">
+            <summary>
+            SPOrderOfProjectOfEnter[类]
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPOrderOfProjectOfEnter.listOfId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPOrderOfProjectOfEnter.listOfSelectedId">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.SPPackageOfAcceptanceCheckAndAcceptanceMerge">
             <summary>
             SPPackageOfAcceptanceCheckAndAcceptanceMerge[类]
@@ -2876,7 +3020,7 @@
             联系电话
             </summary>
         </member>
-        <member name="P:InternalControl.Models.BudgetProject.ISCenterPurchase">
+        <member name="P:InternalControl.Models.BudgetProject.IsCenterPurchase">
             <summary>
             是否为政府集中采购,合并各包此项必须相同,冗余字段
             </summary>
@@ -3009,6 +3153,11 @@
         <member name="P:InternalControl.Models.BudgetProjectOfExecute.TimeToImplement">
             <summary>
             实施时间
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.BudgetProjectOfExecute.PurchaseMethod">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:InternalControl.Models.BudgetProjectOfExecute.Reply">
@@ -5896,7 +6045,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VBudgetProject.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VBudgetProject.IsCenterPurchase">
             <summary>
             
             </summary>
@@ -5937,6 +6086,31 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VBudgetProject.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProject.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProject.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProject.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProject.TotalDeclareAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProject.TotalBudgetAmount">
             <summary>
             
             </summary>
@@ -5996,7 +6170,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.IsCenterPurchase">
             <summary>
             
             </summary>
@@ -6037,6 +6211,31 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.TotalDeclareAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.TotalBudgetAmount">
             <summary>
             
             </summary>
@@ -6096,7 +6295,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.IsCenterPurchase">
             <summary>
             
             </summary>
@@ -6137,6 +6336,81 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.TotalDeclareAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.TotalBudgetAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.VBudgetProjectOfEnter">
+            <summary>
+            VBudgetProjectOfEnter[类]
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.BudgetId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.AuditReply">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.CreatorId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.CreateDatetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectOfEnter.IsFinancialCapital">
             <summary>
             
             </summary>
@@ -6237,6 +6511,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VDeclareProject.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VDeclareProject.TotalDeclareAmount">
             <summary>
             
             </summary>
@@ -6516,7 +6795,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VExecuteProject.TotalBudgetAmount">
+        <member name="P:InternalControl.Models.VExecuteProject.TotalExecuteAmount">
             <summary>
             
             </summary>
@@ -6702,6 +6981,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VExecuteProjectNotInFlow.ExecutionModeId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VExecuteProjectNotInFlow.TotalExecuteAmount">
             <summary>
             
             </summary>
@@ -7256,6 +7540,11 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VPackageOfBudgetProject.LimitOfPrice">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VPackageOfBudgetProject.IsImported">
             <summary>
             
@@ -7666,7 +7955,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VTFNBudgetProject.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VTFNBudgetProject.IsCenterPurchase">
             <summary>
             
             </summary>
@@ -7707,6 +7996,31 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VTFNBudgetProject.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.TotalDeclareAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.TotalBudgetAmount">
             <summary>
             
             </summary>
@@ -7877,6 +8191,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VTFNDeclareProject.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNDeclareProject.TotalDeclareAmount">
             <summary>
             
             </summary>
@@ -8087,6 +8406,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VTFNExecuteProject.ExecutionModeId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProject.TotalExecuteAmount">
             <summary>
             
             </summary>

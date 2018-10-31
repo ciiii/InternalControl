@@ -1,5 +1,4 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
     window.addVm = null;
     avalon.ready(function () {
         window.addVm = avalon.define({
@@ -15,14 +14,14 @@ $(function () {
                 Model: {
                     Id: 0,
                     SourcePackageId: 0,
-                    Year: 0,
+                    Year: vm.req.Year,
                     ProjectType: '',
                     MergeTypeWhenBudget: '',
                     Name: '',
                     RelevantDepartmentId: vm.userInfo.user.DepartmentId,
                     LinkmanName: '',
                     LinkmanPhone: '',
-                    ISCenterPurchase: vm.req.ISCenterPurchase,
+                    IsCenterPurchase: vm.req.IsCenterPurchase,
                     PurchaserName: '',
                     PurchaserAddress: '',
                     PurchaseMethod: '',

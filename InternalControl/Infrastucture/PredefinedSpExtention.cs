@@ -214,7 +214,7 @@ namespace InternalControl.Infrastucture
             string tbName = null,
             string keyFields = null,
             string orderStr = "",
-            bool orderType = true) where TFilter : class
+            bool? orderType = null) where TFilter : class
         {
             if (paging == null) paging = new Paging();
             var result = await cnn.QueryMultipleSpAsync(new sp_GetPagingList
@@ -224,7 +224,7 @@ namespace InternalControl.Infrastucture
                 keyFields = keyFields ?? PredefindedKeyFields,
                 PageSize = paging.Size,
                 PageIndex = paging.Index,
-                OrderType = orderType,
+                OrderType = orderType??paging.OrderType,
                 OrderStr = orderStr,
                 tbFields = "*"
             });
@@ -248,9 +248,10 @@ namespace InternalControl.Infrastucture
             Paging paging = null,
             string tbName = null,
             string keyFields = null,
-            string orderStr = "")
+            string orderStr = "",
+            bool? orderType = null)
         {
-            return await cnn.GetPagingListSpAsync<T, object>(paging, null, tbName, keyFields, orderStr);
+            return await cnn.GetPagingListSpAsync<T, object>(paging, null, tbName, keyFields, orderStr, orderType);
         }
 
         /// <summary>

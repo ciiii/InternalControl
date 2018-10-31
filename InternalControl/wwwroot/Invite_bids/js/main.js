@@ -905,7 +905,17 @@ function getHtmlDocName(url) {
     var arr = url.split('\\');
     return arr[arr.length - 1];
 }
+//拷贝对象
+function copy(obj){
+    var newobj = {};
+    for ( var attr in obj) {
+        newobj[attr] = obj[attr];
+    }
+    return newobj;
+}
 
-
-
+//是否为数组
+function isArray(obj) {
+    return typeof obj == 'object' && obj.constructor == Array
+}
 

@@ -106,7 +106,8 @@ namespace InternalControl.Controllers
             var listOfPaging = await Db.GetPagingListSpAsync<VTFNDeclareProject, DeclareProjectFilter>(
                 paging,
                 filter,
-                $"TFNDeclareProject({CurrentUser.Id})");
+                $"TFNDeclareProject({CurrentUser.Id})", 
+                orderStr: nameof(VTFNDeclareProject.TotalDeclareAmount));
 
             var listOfPackage = await Db.GetListSpAsync<VPackageOfDeclareProject, PackageOfDeclareProjectFilter>(
                 new PackageOfDeclareProjectFilter()

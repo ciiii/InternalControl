@@ -75,6 +75,11 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
+		//public int LimitOfPrice { get; set; }
+        public int? LimitOfPrice { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
 		//public bool IsImported { get; set; }
         public bool IsImported { get; set; }
         /// <summary>

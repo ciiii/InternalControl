@@ -107,6 +107,11 @@ namespace InternalControl.Models
 		/// </summary>
 		//public string Remark { get; set; }
         public string Remark { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		//public int TotalDeclareAmount { get; set; }
+        public int? TotalDeclareAmount { get; set; }
         
           
         #endregion

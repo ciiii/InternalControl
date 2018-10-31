@@ -1,0 +1,259 @@
+<div class="modal-content ms-controller add-user" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">项目论证 - 信息确认</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12">
+                <h5 class="title"><span>基本信息</span></h5>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">项目名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control project-name" ms-duplex="@model.BudgetProject.Name" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">技术清单：</label>
+                    <div class="col-sm-9">
+                        <div class="item" ms-if="@model.BudgetProject.IsCenterPurchase&&@isGoods">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="50">序号</th>
+                                        <th>单项名称</th>
+                                        <th>技术要求</th>
+                                        <th>数量</th>
+                                        <th>单价(元)</th>
+                                        <th>合计(元)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ms-for="($index,el) in @model.Package">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{el.ItemName}}</td>
+                                        <td>
+                                            <textarea class="form-control" rows="2"
+                                                      ms-duplex="el.DeclareTechnicalRequirements"></textarea>
+                                        </td>
+                                        <td width="80">
+                                            <input type="text" class="form-control text-center"
+                                                   ms-duplex="el.DeclareNumber" ms-on-keyup="@countNumber" onkeyup="onlyNum(this)"/>
+                                        </td>
+                                        <td width="100" class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
+                                            ms-class="limitOfPrice(el,'warn-tip-info')">
+                                            <input type="text" class="form-control text-center" ms-duplex="el.DeclareUnitPrice"
+                                                   ms-on-keyup="@countCollectionPrice" onkeyup="onlyNum(this)"/>
+                                            <div class="tip-info">
+                                                <span class="icon-tabxiala"></span>
+                                                <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置标准》川财资产〔2017〕20号</a>
+                                                <table class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>名称</th>
+                                                        <th>单位</th>
+                                                        <th>价格上限标准</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{el.ItemName}}</td>
+                                                        <td>{{el.Unit}}</td>
+                                                        <td>{{el.LimitOfPrice}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                        <td width="100">
+                                            <input type="text" class="form-control"
+                                                   ms-duplex="el.DeclareNumber*el.DeclareUnitPrice" readonly/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div ms-if="@model.Package.length==0||@model.Package==null">
+                                <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                            </div>
+                        </div>
+                        <div class="item" ms-if="@model.BudgetProject.IsCenterPurchase&&!@isGoods">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="60">序号</th>
+                                        <th>单项名称</th>
+                                        <th>技术要求</th>
+                                        <th>合计(元)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ms-for="($index,el) in @model.Package">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{el.ItemName}}</td>
+                                        <td class="fileUpload-box">
+                                            <div class="file-box form-control">
+                                                <input type="file" ms-attr="{'id':'collection-'+$index}"
+                                                       class="input-file"
+                                                       name="fileUpload" ms-on-click="@upload($event,el)">
+                                                <a class="file-text" href="javascript:;"
+                                                   ms-if="el.Attachment==''">+上传附件</a>
+                                                <a class="file-text" href="javascript:;" ms-if="el.Attachment!=''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                            </div>
+                                        </td>
+                                        <td width="100" class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
+                                            ms-class="limitOfPrice(el,'warn-tip-info')">
+                                            <input type="text" class="form-control text-center"
+                                                   ms-duplex="el.DeclareUnitPrice"
+                                                   ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)"/>
+
+                                            <div class="tip-info">
+                                                <span class="icon-tabxiala"></span>
+                                                <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置
+                                                    标准》川 财资产〔2017〕20号</a>
+                                                <table class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>名称</th>
+                                                        <th>单位</th>
+                                                        <th>价格上限标准</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{el.ItemName}}</td>
+                                                        <td>{{el.Unit}}</td>
+                                                        <td>{{el.LimitOfPrice}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div ms-if="@model.Package.length==0||@model.Package==null">
+                                <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                            </div>
+                        </div>
+                        <div class="item" ms-if="!@model.BudgetProject.IsCenterPurchase">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="60">包号</th>
+                                        <th>包名称</th>
+                                        <th>预算金额(元)</th>
+                                        <th>采购品目</th>
+                                        <th>技术要求</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ms-for="($index,el) in @model.Package">
+                                        <td>第{{$index+1}}包</td>
+                                        <td>{{el.Name}}</td>
+                                        <td width="100" class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
+                                            ms-class="limitOfPrice(el,'warn-tip-info')">
+                                            <input type="text" class="form-control text-center"
+                                                   ms-duplex="el.DeclareUnitPrice"
+                                                   ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)"/>
+                                            <div class="tip-info">
+                                                <span class="icon-tabxiala"></span>
+                                                <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置标准》川 财资产〔2017〕20号</a>
+                                                <table class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>名称</th>
+                                                        <th>单位</th>
+                                                        <th>价格上限标准</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{el.ItemName}}</td>
+                                                        <td>{{el.Unit}}</td>
+                                                        <td>{{el.LimitOfPrice}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                        <td>{{el.ItemName}}</td>
+                                        <td class="fileUpload-box">
+                                            <div class="file-box form-control">
+                                                <input type="file" ms-attr="{'id':'collection-'+$index}"
+                                                       class="input-file"
+                                                       name="fileUpload" ms-on-click="@upload($event,el)">
+
+                                                <a class="file-text" href="javascript:;"
+                                                   ms-if="el.Attachment==''">+上传附件</a>
+                                                <a class="file-text" href="javascript:;" ms-if="!el.Attachment==''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div ms-if="@model.Package.length==0||@model.Package==null">
+                                <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">总数量</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@declareNumber" readonly>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label class="control-label col-md-3 col-sm-3">总预算金额(元)</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@allPrice" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="item col-sm-12 item-fileUpload">
+                <h5 class="title"><span>论证报告</span></h5>
+                <div class="form-group">
+                    <div class="fileUpload-box col-md-8 col-sm-8 col-md-offset-2">
+                        <div class="item-top">
+                            <div class="file-box">
+                                <input type="file" id="apply-upload" class="input-file" name="fileUpload"
+                                       ms-on-click="@upload($event,@apply)">
+
+                                <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                            </div>
+                        </div>
+                        <div class="file">
+                            <a class="file-name col-md-11 col-sm-11" ms-if="@apply.FileName"
+                               ms-attr="{'href':apply.Url}" download="">{{@apply.FileName}}</a>
+                            <span class="file-name col-md-11 col-sm-11" ms-if="!@apply.FileName">暂未上传附件</span>
+                            <a class="btn-del" ms-if="@apply.FileName" href="javascript:;"
+                               ms-on-click="btnDel(apply)">
+                                <i class="icon iconfont icon-shanchu"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-success btn-submit" ms-on-click="@clickSubmit(1)">
+                    通过
+                </button>
+                <button type="button" class="btn btn-danger btn-submit" ms-on-click="@clickSubmit(-1)">
+                    不通过
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/project_argumentation/add_argumentation.js"></script>

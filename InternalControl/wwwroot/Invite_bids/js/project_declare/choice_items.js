@@ -11,6 +11,12 @@ $(function () {
             },
             model: {},
             nothing: false,
+            onLoad: function () {
+                if (!addVm.req.IsCenterPurchase) {
+                    addVm.req.IsCenterPurchase = '';
+                }
+                addVm.getPagingItemList();
+            },
             getPagingItemList: function () {
                 var setting = {
                     async: {
@@ -79,7 +85,7 @@ $(function () {
                         return;
                     } else {
                         addVm.nothing = false;
-                        childNodes = childNodes.data;
+                        childNodes = childNodes.data.reverse();
                         for (var i = 0; i < childNodes.length; i++) {
                             childNodes[i].allName = '【' + childNodes[i].TopItemName + '】- ' + childNodes[i].ItemKey + ' - ' + childNodes[i].Name;
                             if (childNodes[i].IsHasChild) {
@@ -166,7 +172,8 @@ $(function () {
         } else {
             addVm.req.ParentId = 0;
         }
-        addVm.getPagingItemList();
+
+        addVm.onLoad();
         avalon.scan(document.body);
     });
 });

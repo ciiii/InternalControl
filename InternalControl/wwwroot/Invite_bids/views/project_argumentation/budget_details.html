@@ -117,8 +117,7 @@
             <div role="tabpanel" id="tab2" class="tab-pane">
                 <form class="form-horizontal content ">
                 </form>
-                <div class="item" ms-if="@model.BudgetProject.ISCenterPurchase&&@isGoods">
-                    <h4 class="text-center auditing-title">项目概况</h4>
+                <div class="item" ms-if="@model.BudgetProject.IsCenterPurchase&&@isGoods">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -153,8 +152,7 @@
                         <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                     </div>
                 </div>
-                <div class="item" ms-if="@model.BudgetProject.ISCenterPurchase&&!@isGoods">
-                    <h4 class="text-center auditing-title">项目概况</h4>
+                <div class="item" ms-if="@model.BudgetProject.IsCenterPurchase&&!@isGoods">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -183,8 +181,7 @@
                         <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                     </div>
                 </div>
-                <div class="item" ms-if="!@model.BudgetProject.ISCenterPurchase">
-                    <h4 class="text-center auditing-title">采购需求</h4>
+                <div class="item" ms-if="!@model.BudgetProject.IsCenterPurchase">
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>

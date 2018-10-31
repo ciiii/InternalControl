@@ -20,6 +20,47 @@ namespace InternalControl.Controllers
         private int FlowTemplateIdOfBudgetProject { get { return Config.GetValue<int>("FlowTemplateId:BudgetProject"); } }
 
         /// <summary>
+        /// 获取某预算项目详情
+        /// </summary>
+        /// <param name="budgetProjectId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetBudgetProjectDetail(int budgetProjectId)
+        {
+            var budgetProject = await Db.GetModelByIdSpAsync<VTFNBudgetProject>(
+                budgetProjectId,
+                $"TFNBudgetProject({CurrentUser.Id})");
+
+            var packageOfDeclareProjectBaseInfo = await Db.GetListSpAsync<VPackageOfDeclareProject, PackageFilter>(
+                new PackageFilter()
+                {
+                    BudgetProjectId = budgetProjectId
+                });
+            var packageFilter = new PackageFilter()
+            {
+                WhereInId = packageOfDeclareProjectBaseInfo.Select(i => i.Id).ToStringIdWithSpacer()
+            };
+
+            return new
+            {
+                BudgetProject = new
+                {
+                    BudgetProject = budgetProject,
+                    BudgetProjectOfArgument = await Db.GetModelByIdSpAsync<BudgetProjectOfArgument>(budgetProjectId),
+                    BudgetProjectOfEnter = await Db.GetModelByIdSpAsync<BudgetProjectOfEnter>(budgetProjectId),
+                    BudgetProjectOfExecute = await Db.GetModelByIdSpAsync<BudgetProjectOfExecute>(budgetProjectId)
+                },
+
+                BudgetPackage = new
+                {
+                    PackageOfDeclare = packageOfDeclareProjectBaseInfo,
+                    PackageOfBudget = await Db.GetListSpAsync<VPackageOfBudgetProject, PackageFilter>(packageFilter),
+                    PackageOfExcuteBudget = await Db.GetListSpAsync<VPackageOfExcuteBudget, PackageFilter>(packageFilter)
+                }
+            };
+        }
+
+        /// <summary>
         /// 获取还没有进入预算流程的预算项目,其中集采类的还没有合并过,用于合并
         /// </summary>
         /// <param name="paging"></param>
@@ -27,7 +68,6 @@ namespace InternalControl.Controllers
         [HttpGet]
         async public Task<object> GetPagingBudgetProjectListCanCombineAndWithPackage(Paging paging, BudgetProjectFilter filter)
         {
-            
             return await GetPagingBudgetProjectListNotInFlowAndCanCombineAndWithPackage<VBudgetProjectNotInFlowAndCanCombine>(paging, filter);
         }
 
@@ -52,7 +92,8 @@ namespace InternalControl.Controllers
             var listOfPaging = await Db.GetPagingListSpAsync<VBudgetProject, BudgetProjectExtendFilter>(
                             paging,
                             filterExtend,
-                            typeof(T).Name);
+                            typeof(T).Name,
+                             orderStr: nameof(VBudgetProject.TotalDeclareAmount));
             //注意这里获取的是申报时候的包信息,下面的大意是:由一组预算项目找到对应的包,但是取这组包的申报信息;
             var listOfPackage = await Db.GetListSpAsync<VPackageOfDeclareProject, PackageOfBudgetProjectFilter>(
                 new PackageOfBudgetProjectFilter()
@@ -127,17 +168,56 @@ namespace InternalControl.Controllers
                 State: (int)StepState.Quit);
         }
 
+
+        /// <summary>
+        /// 认证不通过的预算项目
+        /// </summary>
+        /// <param name="paging"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetPagingQuitedBudgetProjectOfArgumentList(Paging paging, BudgetProjectFilter filter)
+        {
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.State = (int)StepState.Quit;
+            return await GetPagingBudgetProjectList(paging, filterExtend);
+        }
+
+
+        /// <summary>
+        /// 得到当前归口部门的某年度的预算
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetBudgetList(BudgetFilter filter)
+        {
+            filter.OwnDepartmentsId = (int)CurrentUser.DepartmentId;
+            return await Db.GetListSpAsync<VBudget, BudgetFilter>(filter);
+        }
+
+        /// <summary>
+        /// 增加预算,不能修改删除哈;
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        [HttpPost]
+        async public Task AddOrUpdateBudget([FromBody]IEnumerable<Budget> list)
+        {
+            await Db.ExecuteSpAsync(new SPBudgetAdd() { List = list.ToDataTable() });
+        }
+
+
         /// <summary>
         /// 分页获取预算项目列表,包括每个预算项目的流程信息和包信息.
         /// 对于每个项目,只有相应的归口部门的人可以看到;
         /// </summary>
         /// <param name="paging"></param>
         /// <returns></returns>
-        [HttpGet]
-        async public Task<object> GetPagingBudgetProjectList(Paging paging, BudgetProjectFilter filter)
+        async private Task<object> GetPagingBudgetProjectList(Paging paging, BudgetProjectExtendFilter filterExtend)
         {
             //TODO:仅保留这个地方的使用FilterExtend的方式的规律"只有归口部门"条件,其他的数据过滤都放到tfn里面了,哪种方便日后再说;
-            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            //var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
             filterExtend.RelevantDepartmentId = CurrentUser.DepartmentId;
 
             var listOfPaging = await Db.GetPagingListSpAsync<VTFNBudgetProject, BudgetProjectExtendFilter>(
@@ -165,27 +245,83 @@ namespace InternalControl.Controllers
         }
 
         /// <summary>
-        /// 得到当前归口部门的某年度的预算
+        /// 分页获取待进入预算的项目列表,包括每个预算项目的流程信息和包信息.
+        /// 对于每个项目,只有相应的归口部门的人可以看到;
         /// </summary>
+        /// <param name="paging"></param>
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet]
-        async public Task<object> GetBudgetList(BudgetFilter filter)
+        async public Task<object> GetPagingBudgetProjectOfEnterList(Paging paging, BudgetProjectFilter filter)
         {
-            filter.OwnDepartmentsId = (int)CurrentUser.DepartmentId;
-            return await Db.GetListSpAsync<VBudget, BudgetFilter>(filter);
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.State = (int)StepState.Stay;
+            filterExtend.LastStepTemplateId = Config.GetValue<int>("StepTemplateId:BudgetProjectOfEnter");
+            return await GetPagingBudgetProjectList(paging, filterExtend);
         }
 
         /// <summary>
-        /// 增加预算,不能修改删除哈;
+        /// 未进入预算的预算项目,
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="paging"></param>
+        /// <param name="filter"></param>
         /// <returns></returns>
-        [HttpPost]
-        async public Task AddOrUpdateBudget([FromBody]Budget model)
+        [HttpGet]
+        async public Task<object> GetPagingUnfinishedBudgetProjectOfEnterList(Paging paging, BudgetProjectFilter filter)
         {
-            await Db.ExecuteSpAsync(new SPBudgetAdd() { List = model.ToDataTable() });
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            //整个项目未完成,在210以及之前的
+            filterExtend.State = (int)StepState.Stay;
+            filterExtend.EndLastStepTemplateId = Config.GetValue<int>("StepTemplateId:BudgetProjectOfEnter");
+            return await GetPagingBudgetProjectList(paging, filterExtend);
         }
+
+        /// <summary>
+        /// 已经进入预算的预算项目,
+        /// </summary>
+        /// <param name="paging"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetPagingFinishedBudgetProjectOfEnterList(Paging paging, BudgetProjectFilter filter)
+        {
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            //整个项目,在220以及之后的
+            //filterExtend.State = (int)StepState.Stay;
+            filterExtend.BeginLastStepTemplateId = Config.GetValue<int>("StepTemplateId:BudgetProjectOfExecute");
+            return await GetPagingBudgetProjectList(paging, filterExtend);
+        }
+
+        /// <summary>
+        /// 获取当前勾选的项目按部门统计后,再按本次已经进入预算的总额排序的项目id列表
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="listOfSelectedId">当前选中的id列表</param>
+        /// <param name="numberOfTake">获取几个</param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetOrderOfProjectOfEnter(BudgetProjectFilter filter, IEnumerable<int> listOfSelectedId, int numberOfTake)
+        {
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.State = (int)StepState.Stay;
+            filterExtend.LastStepTemplateId = Config.GetValue<int>("StepTemplateId:BudgetProjectOfEnter");
+            var budgetProjectList = await Db.GetListSpAsync<VTFNBudgetProject, BudgetProjectExtendFilter>(filterExtend);
+            var listOfId = budgetProjectList.Select(i => i.Id);
+
+
+            var result = await Db.QuerySpAsync<SPOrderOfProjectOfEnter, OrderOfProjectOfEnter>(new SPOrderOfProjectOfEnter()
+            {
+                listOfId = listOfId.ToPredefindedKeyFieldsList().ToDataTable(),
+                listOfSelectedId = listOfSelectedId.ToPredefindedKeyFieldsList().ToDataTable()
+            });
+
+            return new
+            {
+                TopIn = result.Where(i=>i.TotolBudgetAmountByDempartment > 0).Take(numberOfTake),
+                TopNotIn = result.Reverse().Take(numberOfTake)
+            };
+        }
+           
 
         /// <summary>
         /// 进入预算
@@ -221,6 +357,50 @@ namespace InternalControl.Controllers
         }
 
         /// <summary>
+        /// 分页获取待预算执行的项目列表,包括每个预算项目的流程信息和包信息.
+        /// 对于每个项目,只有相应的归口部门的人可以看到;
+        /// </summary>
+        /// <param name="paging"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetPagingBudgetProjectOfExecuteList(Paging paging, BudgetProjectFilter filter)
+        {
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.State = (int)StepState.Stay;
+            filterExtend.LastStepTemplateId = Config.GetValue<int>("StepTemplateId:BudgetProjectOfExecute");
+            return await GetPagingBudgetProjectList(paging, filterExtend);
+        }
+
+        /// <summary>
+        /// 未完成预算执行的预算项目
+        /// </summary>
+        /// <param name="paging"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetPagingUnfinishedBudgetProjectOfExecuteList(Paging paging, BudgetProjectFilter filter)
+        {
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.State = (int)StepState.Stay;
+            return await GetPagingBudgetProjectList(paging, filterExtend);
+        }
+
+        /// <summary>
+        /// 已完成预算执行的预算项目
+        /// </summary>
+        /// <param name="paging"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetPagingFinishedBudgetProjectOfExecuteList(Paging paging, BudgetProjectFilter filter)
+        {
+            var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
+            filterExtend.State = (int)StepState.Forward;
+            return await GetPagingBudgetProjectList(paging, filterExtend);
+        }
+
+        /// <summary>
         /// 预算执行
         /// </summary>
         /// <param name="data"></param>
@@ -249,5 +429,6 @@ namespace InternalControl.Controllers
                 CurrentUser.Id,
                 spList, stepDone.IsHold);
         }
+
     }
 }

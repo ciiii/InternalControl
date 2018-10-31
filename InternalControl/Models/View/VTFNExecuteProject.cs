@@ -135,6 +135,11 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
+		//public int TotalExecuteAmount { get; set; }
+        public int? TotalExecuteAmount { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
 		//public int FlowTemplateId { get; set; }
         public int? FlowTemplateId { get; set; }
         /// <summary>

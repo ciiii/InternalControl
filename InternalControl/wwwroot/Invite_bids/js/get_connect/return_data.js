@@ -451,6 +451,208 @@ var Budget = {
             }
         });
     },
+    //获取还没有进入预算流程的预算项目,用于开始必要性认证
+    getPagingBudgetProjectListNotInFlowAndWithPackage: function (type, options, getPagingBudgetProjectListNotInFlowAndWithPackageListener) {
+        var url = Code.URL_GET_PAGING_BUDGET_PROJECT_LIST_NOTIN_FILOW_AND_WITH_PACKAGE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingBudgetProjectListNotInFlowAndWithPackageListener(true, obj.data, '')
+            } else {
+                getPagingBudgetProjectListNotInFlowAndWithPackageListener(false, '', strErro)
+            }
+        });
+    },
+    //认证不通过的预算项目
+    getPagingQuitedBudgetProjectOfArgumentList: function (type, options, getPagingQuitedBudgetProjectOfArgumentListListener) {
+        var url = Code.URL_GET_PAGING_QUITED_BUDGET_PROJECT_OF_ARGUMENT_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingQuitedBudgetProjectOfArgumentListListener(true, obj.data, '')
+            } else {
+                getPagingQuitedBudgetProjectOfArgumentListListener(false, '', strErro)
+            }
+        });
+    },
+    //分页获取预算项目列表,包括每个预算项目的流程信息和包信息
+    getPagingBudgetProjectList: function (type, options, getPagingBudgetProjectListListener) {
+        var url = Code.URL_GET_PAGING_BUDGET_PROJECT_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingBudgetProjectListListener(true, obj.data, '')
+            } else {
+                getPagingBudgetProjectListListener(false, '', strErro)
+            }
+        });
+    },
+    //新增一个预算项目的必要性论证,同时开始一个预算流程,并通过这个论证
+    addAndPassBudgetProjectOfArgument: function (type, options, addAndPassBudgetProjectOfArgumentListener) {
+        var url = Code.URL_POST_ADD_AND_PASS_BUDGET_PROJECT_OF_ARGUMENT;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                addAndPassBudgetProjectOfArgumentListener(true, obj, '')
+            } else {
+                addAndPassBudgetProjectOfArgumentListener(false, '', strErro)
+            }
+        });
+    },
+    //新增一个预算项目的必要性论证,同时开始一个预算流程,并不通过这个论证
+    addAndQuitBudgetProjectOfArgument: function (type, options, addAndQuitBudgetProjectOfArgumentListener) {
+        var url = Code.URL_POST_ADD_AND_QUIT_BUDGET_PROJECT_OF_ARGUMENT;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                addAndQuitBudgetProjectOfArgumentListener(true, obj, '')
+            } else {
+                addAndQuitBudgetProjectOfArgumentListener(false, '', strErro)
+            }
+        });
+    },
+    //得到当前归口部门的某年度的预算
+    getBudgetList: function (type, options, getBudgetListListener) {
+        var url = Code.URL_GET_BUDGET_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getBudgetListListener(true, obj.data, '')
+            } else {
+                getBudgetListListener(false, '', strErro)
+            }
+        });
+    },
+    //增加预算,不能修改删除
+    addOrUpdateBudget: function (type, options, addOrUpdateBudgetListener) {
+        var url = Code.URL_POST_ADD_OR_UPDATE_BUDGET;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                addOrUpdateBudgetListener(true, obj, '')
+            } else {
+                addOrUpdateBudgetListener(false, '', strErro)
+            }
+        });
+    },
+    //分页获取待进入预算的项目列表,包括每个预算项目的流程信息和包信息
+    getPagingBudgetProjectOfEnterList: function (type, options, getPagingBudgetProjectOfEnterListListener) {
+        var url = Code.URL_GET_PAGING_BUDGET_PROJECT_OF_ENTER_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingBudgetProjectOfEnterListListener(true, obj.data, '')
+            } else {
+                getPagingBudgetProjectOfEnterListListener(false, '', strErro)
+            }
+        });
+    },
+    //获取当前勾选的项目按部门统计后,再按本次已经进入预算的总额排序的项目id列表
+    getOrderOfProjectOfEnter: function (type, options, getOrderOfProjectOfEnterListener) {
+        var url = Code.URL_GET_ORDER_OF_PROJECT_OF_ENTER;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getOrderOfProjectOfEnterListener(true, obj.data, '')
+            } else {
+                getOrderOfProjectOfEnterListener(false, '', strErro)
+            }
+        });
+    },
+    //进入预算
+    passBudgetProjectOfEnter: function (type, options, passBudgetProjectOfEnterListener) {
+        var url = Code.URL_POST_PASS_BUDGET_PROJECT_OF_ENTER;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passBudgetProjectOfEnterListener(true, obj, '')
+            } else {
+                passBudgetProjectOfEnterListener(false, '', strErro)
+            }
+        });
+    },
+    //预算执行
+    passBudgetProjectOfExecute: function (type, options, passBudgetProjectOfExecuteListener) {
+        var url = Code.URL_POST_PASS_BUDGET_PROJECT_OF_EXECUTE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passBudgetProjectOfExecuteListener(true, obj, '')
+            } else {
+                passBudgetProjectOfExecuteListener(false, '', strErro)
+            }
+        });
+    },
+    //获取某预算项目详情
+    getBudgetProjectDetail: function (type, id, getBudgetProjectDetailListener) {
+        var url = Code.URL_GET_BUDGET_PROJECT_DETAIL;
+        var postData = {
+            budgetProjectId: id
+        }
+
+        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getBudgetProjectDetailListener(true, obj.data, '')
+            } else {
+                getBudgetProjectDetailListener(false, '', strErro)
+            }
+        });
+    },
+    //分页获取待进入预算的项目列表,包括每个预算项目的流程信息和包信息
+    getPagingBudgetProjectOfExecuteList: function (type, options, getPagingBudgetProjectOfExecuteListListener) {
+        var url = Code.URL_GET_PAGING_BUDGET_PROJECT_OF_EXECUTE_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingBudgetProjectOfExecuteListListener(true, obj.data, '')
+            } else {
+                getPagingBudgetProjectOfExecuteListListener(false, '', strErro)
+            }
+        });
+    },
+    //已完成预算执行的预算项目
+    getPagingFinishedBudgetProjectOfExecuteList: function (type, options, getPagingFinishedBudgetProjectOfExecuteListListener) {
+        var url = Code.URL_GET_PAGING_FINISHED_BUDGET_PROJECT_OF_EXECUTE_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingFinishedBudgetProjectOfExecuteListListener(true, obj.data, '')
+            } else {
+                getPagingFinishedBudgetProjectOfExecuteListListener(false, '', strErro)
+            }
+        });
+    },
+}
+
+
+var ProjectExecute = {
+    //获取执行项目列表,带流程,带包还没有进入执行流程的执行项目也会选取出来,方便"开始实施"
+    getPagingExecuteProjectList: function (type, options, getPagingExecuteProjectListListener) {
+        var url = Code.URL_GET_PAGING_EXECUTE_PROJECT_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getPagingExecuteProjectListListener(true, obj.data, '')
+            } else {
+                getPagingExecuteProjectListListener(false, '', strErro)
+            }
+        });
+    },
+    //根据执行项目id,获取执行项目所有的信息,所有可能的步骤,已经走过的步骤,当前的步骤,是否可以执行当前的步骤
+    getExecuteProjectDetail: function (type, id, getExecuteProjectDetailListener) {
+        var url = Code.URL_GET_EXECUTE_PROJECT_DETAIL;
+        var postData = {
+            executeProjectId: id
+        }
+
+        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getExecuteProjectDetailListener(true, obj.data, '')
+            } else {
+                getExecuteProjectDetailListener(false, '', strErro)
+            }
+        });
+    },
 }
 
 

@@ -13,6 +13,9 @@ $(function () {
             openIndex: 0,
             childrenOpenIndex: null,
             time: new Date(),
+            toggle: false,
+            isFlow: false,
+            classToggle: 'icon-shouqi',
             home: {
                 menu: {
                     Id: 1,
@@ -79,9 +82,6 @@ $(function () {
                     },
                 ]
             },
-            toggle: false,
-
-            classToggle: 'icon-shouqi',
             onload: function () {
                 if (localStorage.getItem('mUserinfo')) {
                     window.mUserInfo = JSON.parse(localStorage.getItem('mUserinfo')).data;
@@ -113,6 +113,8 @@ $(function () {
 
             },
             ClickLiParent: function (index, el) {
+                vm.isFlow = false;
+                vm.toggle = false;
                 ParentIndex = index;
                 var li = $('.nav-sidebar .parent-li:eq(' + ParentIndex + ')');
                 li.siblings().find('.treeview-menu').slideUp();
@@ -131,6 +133,8 @@ $(function () {
                 }
             },
             ClickLiTwo: function (pIndex, index, aa) {
+                vm.isFlow = false;
+                vm.toggle = false;
                 TwoIndex = index;
                 vm.childrenOpenIndex = pIndex + '-' + index;
                 var url = aa.menu.ComponentName;
@@ -162,9 +166,14 @@ $(function () {
                 $('.subpage #subpage').attr('src', '/Invite_bids/views/system_manage/edit_password.html');
             },
             clickBtnToggle: function () {
-                vm.toggle = !vm.toggle;
-                if (vm.toggle == true) {
-                    $('.parent-li ul').hide();
+                if (vm.isFlow) {
+                    vm.toggle = true;
+                } else {
+                    vm.toggle = !vm.toggle;
+                    if (vm.toggle == true) {
+                        $('.parent-li ul').hide();
+                    }
+                    console.info(vm.toggle);
                 }
             },
             getUrl: function (url) {
@@ -184,7 +193,11 @@ $(function () {
                     vm.toggle = true
                     $('.parent-li ul').hide();
                 } else {
-                    vm.toggle = false;
+                    if (vm.isFlow) {
+                        vm.toggle = true;
+                    } else {
+                        vm.toggle = false;
+                    }
                 }
             }
         });

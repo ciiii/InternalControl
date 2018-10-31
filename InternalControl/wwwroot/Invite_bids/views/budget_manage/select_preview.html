@@ -1,0 +1,51 @@
+<div class="modal-content add-user" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">入选预览</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <h5 class="title"><span>项目列表</span></h5>
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>项目名称</th>
+                            <th>预算金额（元）</th>
+                            <th>归口管理部门</th>
+                            <th>采购目录类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="($index,el) in @model">
+                            <td>{{$index+1}}</td>
+                            <td>{{el.BudgetProject.Name}}</td>
+                            <td>{{el.BudgetProject.TotalBudgetAmount|currency}}</td>
+                            <td>{{el.BudgetProject.RelevantDepartmentName}}</td>
+                            <td>{{el.BudgetProject.sCenterPurchase?'政府集中采购目录':'非政府集中采购目录'}}</td>
+                            <td>
+                                <a class="btn-cancel" href="javascript:;" ms-on-click="clickRemove($index,el)">取消</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button class="btn btn-primary btn-submit" ms-on-click="@clickSubmit">立即导出</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/budget_manage/select_preview.js"></script>

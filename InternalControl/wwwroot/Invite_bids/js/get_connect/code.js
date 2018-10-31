@@ -121,8 +121,61 @@ var Code = {
     //获取还没有进入预算流程的集采和非集采预算项目,用于合并
     URL_GET_PAGING_COLLECTION_OR_NON_PROJECT_MERGEABLE_LIST: getApiHost + '/BudgetProject/GetPagingBudgetProjectListCanCombineAndWithPackage',
 
+    //获取还没有进入预算流程的预算项目,用于开始必要性认证
+    URL_GET_PAGING_BUDGET_PROJECT_LIST_NOTIN_FILOW_AND_WITH_PACKAGE: getApiHost + '/BudgetProject/GetPagingBudgetProjectListNotInFlowAndWithPackage',
+
+    //认证不通过的预算项目
+    URL_GET_PAGING_QUITED_BUDGET_PROJECT_OF_ARGUMENT_LIST: getApiHost + '/BudgetProject/GetPagingQuitedBudgetProjectOfArgumentList',
+
     //合并多个未进入流程的
     URL_POST_COMBINE_BUDGET_PROJECT: getApiHost + '/BudgetProject/CombineBudgetProject',
+
+    //分页获取预算项目列表,包括每个预算项目的流程信息和包信息
+    URL_GET_PAGING_BUDGET_PROJECT_LIST: getApiHost + '/BudgetProject/GetPagingBudgetProjectList',
+
+    //新增一个预算项目的必要性论证,同时开始一个预算流程,并通过这个论证
+    URL_POST_ADD_AND_PASS_BUDGET_PROJECT_OF_ARGUMENT: getApiHost + '/BudgetProject/AddAndPassBudgetProjectOfArgument',
+
+    //新增一个预算项目的必要性论证,同时开始一个预算流程,并不通过这个论证;注意这个是不通过
+    URL_POST_ADD_AND_QUIT_BUDGET_PROJECT_OF_ARGUMENT: getApiHost + '/BudgetProject/AddAndQuitBudgetProjectOfArgument',
+
+
+
+    //分页获取待进入预算的项目列表,包括每个预算项目的流程信息和包信息,对于每个项目,只有相应的归口部门的人可以看到
+    URL_GET_PAGING_BUDGET_PROJECT_OF_ENTER_LIST: getApiHost + '/BudgetProject/GetPagingBudgetProjectOfEnterList',
+
+    //获取当前勾选的项目按部门统计后,再按本次已经进入预算的总额排序的项目id列表
+    URL_GET_ORDER_OF_PROJECT_OF_ENTER: getApiHost + '/BudgetProject/GetOrderOfProjectOfEnter',
+
+    //得到当前归口部门的某年度的预算
+    URL_GET_BUDGET_LIST: getApiHost + '/BudgetProject/GetBudgetList',
+
+    //增加预算,不能修改删除
+    URL_POST_ADD_OR_UPDATE_BUDGET: getApiHost + '/BudgetProject/AddOrUpdateBudget',
+
+    //进入预算
+    URL_POST_PASS_BUDGET_PROJECT_OF_ENTER: getApiHost + '/BudgetProject/PassBudgetProjectOfEnter',
+
+    //预算执行
+    URL_POST_PASS_BUDGET_PROJECT_OF_EXECUTE: getApiHost + '/BudgetProject/PassBudgetProjectOfExecute',
+
+    //获取某预算项目详情
+    URL_GET_BUDGET_PROJECT_DETAIL: getApiHost + '/BudgetProject/GetBudgetProjectDetail',
+
+    //分页获取待预算执行的项目列表,包括每个预算项目的流程信息和包信息.对于每个项目,只有相应的归口部门的人可以看到
+    URL_GET_PAGING_BUDGET_PROJECT_OF_EXECUTE_LIST: getApiHost + '/BudgetProject/GetPagingBudgetProjectOfExecuteList',
+
+    //已完成预算执行的预算项目
+    URL_GET_PAGING_FINISHED_BUDGET_PROJECT_OF_EXECUTE_LIST: getApiHost + '/BudgetProject/GetPagingFinishedBudgetProjectOfExecuteList',
+
+
+
+
+    //获取执行项目列表,带流程,带包还没有进入执行流程的执行项目也会选取出来,方便"开始实施"
+    URL_GET_PAGING_EXECUTE_PROJECT_LIST: getApiHost + '/ExecuteProject/GetPagingExecuteProjectList',
+
+    //根据执行项目id,获取执行项目所有的信息,所有可能的步骤,已经走过的步骤,当前的步骤,是否可以执行当前的步骤
+    URL_GET_EXECUTE_PROJECT_DETAIL: getApiHost + '/ExecuteProject/GetExecuteProjectDetail',
 
 
 
