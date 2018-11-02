@@ -653,24 +653,56 @@ var ProjectExecute = {
             }
         });
     },
+    //获取还没有进入执行流程的执行项目,用于合并
+    getPagingExecuteProjectListNotInFlowAndWithPackage: function (type, options, getPagingExecuteProjectListNotInFlowAndWithPackageListener) {
+        var url = Code.URL_GET_PAGING_EXECUTE_PROJECT_LIST_NOTIN_FLOW_AND_WITH_PACKAGE;
 
-
-    //测试
-    getDDDDD: function (type, getDDDDDListener) {
-        var url = Code.URL_GET_EXECUTE_PROJECT_DESSSSTAIL;
-        var postData = {
-            pageIndex: 1,
-            pageSize: 20
-        }
-
-        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
             if (success) {
-                getDDDDDListener(true, obj.data, '')
+                debugger;
+                getPagingExecuteProjectListNotInFlowAndWithPackageListener(true, obj.data, '')
             } else {
-                getDDDDDListener(false, '', strErro)
+                getPagingExecuteProjectListNotInFlowAndWithPackageListener(false, '', strErro)
             }
         });
     },
+    //开始执行,同时可能会合并多个符合条件的执行项目
+    beginExecuteProject: function (type, options, beginExecuteProjectListener) {
+        var url = Code.URL_POST_BEGIN_EXECUTE_PROJECT;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                beginExecuteProjectListener(true, obj, '')
+            } else {
+                beginExecuteProjectListener(false, '', strErro)
+            }
+        });
+    },
+    //执行方式,IsHold设为false,目前没有暂存的功能
+    passExecuteProjectOfGetRunMode: function (type, options, passExecuteProjectOfGetRunModeListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_GET_RUN_MODE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectOfGetRunModeListener(true, obj, '')
+            } else {
+                passExecuteProjectOfGetRunModeListener(false, '', strErro)
+            }
+        });
+    },
+    //技术确认如果全部包的技术确认都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
+    passPackageOfTechnicalConfirmation: function (type, options, passPackageOfTechnicalConfirmationListener) {
+        var url = Code.URL_POST_PASS_PACKAGE_OF_TECHNICAL_CONFIRMATION;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passPackageOfTechnicalConfirmationListener(true, obj, '')
+            } else {
+                passPackageOfTechnicalConfirmationListener(false, '', strErro)
+            }
+        });
+    },
+
 }
 
 

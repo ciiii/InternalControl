@@ -24,7 +24,7 @@
                     </label>
                     <div class="col-sm-8">
                         <label class="radio-inline" ms-for="el in @roles">
-                            <input type="radio" name="roles" ms-attr="{'value':@el.Id}" /> {{el.Name}}
+                            <input type="radio" name="roles" ms-attr="{'value':@el.Id}"/> {{el.Name}}
                         </label>
                     </div>
                 </div>
@@ -33,12 +33,10 @@
                         <i class="icon iconfont icon-text-sign icon-sign"></i>负责人：
                     </label>
                     <div class="col-sm-8">
-                        <select class="form-control principal" ms-duplex="@info.PrincipalId"
-                                ms-on-change="@inputVal('.principal')">
+                        <select class="form-control principal" ms-on-change="changePrincipalId($event)">
                             <option value="">请选择</option>
                             <option ms-for="el in @users" ms-attr="{'value':@el.Id}">{{el.Name}}</option>
                         </select>
-                        <span class="error-texe">请选择负责人！</span>
                     </div>
                 </div>
             </div>

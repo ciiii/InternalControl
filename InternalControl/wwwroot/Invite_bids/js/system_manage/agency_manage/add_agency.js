@@ -54,12 +54,15 @@ $(function () {
                 User.getUsersList('get', '', function getUsersListListener(success, obj, strErro) {
                     if (success) {
                         addVm.users = obj;
-                        $('.contact').val(addVm.info.LinkmanId);
+                        $('.modal-add .contact').val(addVm.info.LinkmanId);
                     } else {
                         console.info('获取所有用户列表失败！');
                         console.info(strErro);
                     }
                 })
+            },
+            changePrincipalId: function (e) {
+                addVm.info.LinkmanId = e.target.value;
             },
             getHtmlDocName: function (url) {
                 var arr = url.split('\\');
@@ -77,8 +80,8 @@ $(function () {
                 }
             },
             clickSubmit: function () {
-                var unitName = addVm.inputVal('.unit-name');
-                var contact = addVm.inputVal('.contact');
+                var unitName = addVm.inputVal('.modal-add .unit-name');
+                var contact = addVm.inputVal('.modal-add .contact');
                 if (!unitName) {
                     $.oaNotify.error(' 单位名称不能为空！');
                     return;

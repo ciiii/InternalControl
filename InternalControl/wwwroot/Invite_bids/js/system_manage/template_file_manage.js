@@ -17,7 +17,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item);
+                fileChange(id, item,true);
             },
             btnDel: function (item) {
                 item.Url = null;

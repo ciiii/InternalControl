@@ -316,6 +316,7 @@ function changeUrl(a) {
         }
     });
 }
+
 function changeUrlNew(url) {
     $.ajax({
         url: url,
@@ -859,9 +860,9 @@ function len(s) {
 //判断登录信息localStorage是否过期
 function isOverdue(exp) {
     if (localStorage.getItem('mUserinfo') == null) {
-         alert('登录信息已过期，请重新登录！');
+        alert('登录信息已过期，请重新登录！');
         location.href = '/Invite_bids/login.html';
-    }else{
+    } else {
         window.mUserInfo = JSON.parse(localStorage.mUserinfo).data;
         console.info('mUserInfo');
         console.info(mUserInfo);
@@ -879,13 +880,13 @@ function isOverdue(exp) {
 
 //父级页面刷新
 function parentRefresh(mUserInfo) {
-    if(sessionStorage.mUserId){
+    if (sessionStorage.mUserId) {
         var userId = JSON.parse(sessionStorage.mUserId);
         if (userId != mUserInfo.user.Id) {
             parent.location.reload();
             sessionStorage.mUserId = mUserInfo.user.Id;
         }
-    }else{
+    } else {
         location.href = '/Invite_bids/login.html';
     }
 
@@ -905,10 +906,11 @@ function getHtmlDocName(url) {
     var arr = url.split('\\');
     return arr[arr.length - 1];
 }
+
 //拷贝对象
-function copy(obj){
+function copy(obj) {
     var newobj = {};
-    for ( var attr in obj) {
+    for (var attr in obj) {
         newobj[attr] = obj[attr];
     }
     return newobj;
@@ -919,3 +921,10 @@ function isArray(obj) {
     return typeof obj == 'object' && obj.constructor == Array
 }
 
+
+function matchingProperty(objA, objB) {
+    for (var i in objA) {
+        objA[i] = objB[i];
+    }
+    return objA
+}

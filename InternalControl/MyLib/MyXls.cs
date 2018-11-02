@@ -112,7 +112,8 @@ namespace MyLib
 
             //var displayNameOfT = MyPath.Combine("excel", name);
 
-            string sFileName = $"{name}{Guid.NewGuid()}.xlsx";
+            //string sFileName = $"{name}{Guid.NewGuid()}.xlsx";
+            string sFileName = $"{name}{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
             //string sFileName = $"{name}.xlsx";
             FileInfo file = new FileInfo(MyPath.Combine(folder, sFileName));
 
@@ -151,6 +152,7 @@ namespace MyLib
                         //}
 
                         worksheet.Cells[j + 2, i + 1].Value = value;
+
                     }
                 }
 
@@ -167,6 +169,7 @@ namespace MyLib
                 //worksheet.Cells["B3"].Value = "LineZero GitHub";
                 //worksheet.Cells["C3"].Value = "https://github.com/linezero";
                 //worksheet.Cells["C3"].Style.Font.Bold = true;
+                
 
                 package.Save();
             }

@@ -134,6 +134,7 @@ namespace InternalControl.Controllers
         /// <summary>
         /// 论证时,导出各个项目的包信息;
         /// 注意是使用BudgetProjectExtendFilter来筛选VBudgetProjectNotInFlow
+        /// TODO:这里可能需要重构一下
         /// </summary>
         /// <param name="filter"></param>
         /// <param name="listOfId">勾选的项目,传空则表示所有符合条件的预算项目都要导出</param>
@@ -175,7 +176,6 @@ namespace InternalControl.Controllers
                                    select Tool.ModelToModel<ExportWhenBudgetProjectOfArgumentCaseGoods, VPackageOfDeclareProject>(itemOfPackage);
 
                     MyXls.Export(zipChildPathName, packages, itemName);
-
                 }
                 else
                 {
@@ -187,18 +187,15 @@ namespace InternalControl.Controllers
                     {
                         var itemOfPackage = packages[j];
                         itemOfPackage.Id = j + 1;
-                        itemOfPackage.Attachment = Path.GetFileName(itemOfPackage.Attachment);
+                        //itemOfPackage.Attachment = Path.GetFileName(itemOfPackage.Attachment);
 
                         System.IO.File.Copy(
-                            MyPath.Combine(Env.WebRootPath,"Upload", itemOfPackage.Attachment),
-                            MyPath.Combine(zipChildPathName, Path.GetFileName(itemOfPackage.Attachment)));
+                            MyPath.Combine(Env.WebRootPath, itemOfPackage.Attachment),
+                            MyPath.Combine(zipChildPathName, $"第{itemOfPackage.Id }包-{Path.GetFileName(itemOfPackage.Attachment)}"));
                     }
 
                     MyXls.Export(zipChildPathName, packages, itemName);
                 }
-
-                ////最后把Id改为排序
-                //item.Id = i + 1;
             }
             ZipFile.CreateFromDirectory(zipPathName, zipPathFileName);
             return zipPathFileName;
@@ -282,7 +279,6 @@ namespace InternalControl.Controllers
             await Db.ExecuteSpAsync(new SPBudgetAdd() { List = list.ToDataTable() });
         }
 
-
         /// <summary>
         /// 分页获取预算项目列表,包括每个预算项目的流程信息和包信息.
         /// 对于每个项目,只有相应的归口部门的人可以看到;
@@ -316,7 +312,42 @@ namespace InternalControl.Controllers
                            Package = from itemOfPackage in listOfPackage where itemOfPackage.BudgetProjectId.Equals(item.Id) select itemOfPackage,
                        }
             };
+        }
 
+        /// <summary>
+        /// 进入预算时,选中的项目导出
+        /// </summary>
+        /// <param name="listOfId">勾选的项目,不能传空</param>
+        /// <param name="BudgetTypeName">预算类型名称</param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> ExportWhenBudgetProjectOfEnter(IEnumerable<int> listOfId,string BudgetTypeName)
+        {
+            if (listOfId.Count() == 0)
+                throw new Exception("没有选中项目");
+
+            //后台指定归口部门的过滤条件;
+            var filterExtend = new BudgetProjectExtendFilter();
+            filterExtend.WhereInId = listOfId.ToStringIdWithSpacer();
+
+            var list = (await Db.GetListSpAsync<VBudgetProject, BudgetProjectExtendFilter>(filterExtend)).ToList();
+            var listOfExportWhenBudgetProjectOfEnter = new List<ExportWhenBudgetProjectOfEnter>();
+
+            for (int i = 0,count = list.Count(); i < count; i++)
+            {
+                var vBudgetProject = list[i];
+                var exportWhenBudgetProjectOfEnter = Tool.ModelToModel<ExportWhenBudgetProjectOfEnter, VBudgetProject>(vBudgetProject);
+                exportWhenBudgetProjectOfEnter.Id = i + 1;
+                exportWhenBudgetProjectOfEnter.IsCenterPurchase = vBudgetProject.IsCenterPurchase == true ? "是" : "否";
+                exportWhenBudgetProjectOfEnter.BudgetTypeName = BudgetTypeName;
+                listOfExportWhenBudgetProjectOfEnter.Add(exportWhenBudgetProjectOfEnter);
+            }
+            var fileName =  $"导出进入预算项目_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
+            var filePath = MyPath.Combine(Env.WebRootPath, "Download");
+
+            var result = MyXls.Export(filePath, listOfExportWhenBudgetProjectOfEnter, fileName);
+
+            return MyPath.Combine(filePath, result);
         }
 
         /// <summary>

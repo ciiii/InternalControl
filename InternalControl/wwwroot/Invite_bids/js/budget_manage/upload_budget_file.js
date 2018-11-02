@@ -49,7 +49,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item);
+                fileChange(id, item,true);
             },
             getHtmlDocName: function (url) {
                 if (url) {

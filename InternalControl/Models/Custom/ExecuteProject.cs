@@ -22,7 +22,7 @@ namespace InternalControl.Models
         /// <summary>
         /// 是否集采
         /// </summary>
-        public bool? ISCenterPurchase { get; set; }
+        public bool? IsCenterPurchase { get; set; }
 
         /// <summary>
         /// 是否政府采购

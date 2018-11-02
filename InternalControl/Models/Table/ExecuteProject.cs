@@ -65,8 +65,8 @@ namespace InternalControl.Models
 		/// 是否为政府集中采购,合并各包此项必须相同,冗余字段
 		/// </summary>
         [DisplayName("是否为政府集中采购,合并各包此项必须相同,冗余字段")]
-        [Required(ErrorMessage ="请提供[ISCenterPurchase]")]
-		public bool ISCenterPurchase { get; set; }
+        [Required(ErrorMessage ="请提供[IsCenterPurchase]")]
+		public bool IsCenterPurchase { get; set; }
         /// <summary>
 		/// 是否政府采购(项目属性)
 		/// </summary>

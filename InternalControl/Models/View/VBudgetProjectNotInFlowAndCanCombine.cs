@@ -125,6 +125,11 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
+		//public int CountOfPackage { get; set; }
+        public int? CountOfPackage { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
 		//public int TotalDeclareAmount { get; set; }
         public int? TotalDeclareAmount { get; set; }
         /// <summary>

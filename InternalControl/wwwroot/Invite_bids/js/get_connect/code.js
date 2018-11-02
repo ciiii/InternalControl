@@ -176,6 +176,21 @@ var Code = {
     //根据执行项目id,获取执行项目所有的信息,所有可能的步骤,已经走过的步骤,当前的步骤,是否可以执行当前的步骤
     URL_GET_EXECUTE_PROJECT_DETAIL: getApiHost + '/ExecuteProject/GetExecuteProjectDetail',
 
+    //获取还没有进入执行流程的执行项目,用于合并
+    URL_GET_PAGING_EXECUTE_PROJECT_LIST_NOTIN_FLOW_AND_WITH_PACKAGE: getApiHost + '/ExecuteProject/GetPagingExecuteProjectListNotInFlowAndWithPackage',
+
+
+    //开始执行,同时可能会合并多个符合条件的执行项目
+    URL_POST_BEGIN_EXECUTE_PROJECT: getApiHost + '/ExecuteProject/BeginExecuteProject',
+
+    //执行方式,IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_EXECUTE_PROJECT_OF_GET_RUN_MODE: getApiHost + '/ExecuteProject/PassExecuteProjectOfGetRunMode',
+
+    //技术确认如果全部包的技术确认都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_PACKAGE_OF_TECHNICAL_CONFIRMATION: getApiHost + '/ExecuteProject/PassPackageOfTechnicalConfirmation',
+
+
+
 
 
 

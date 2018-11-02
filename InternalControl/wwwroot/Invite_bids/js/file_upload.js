@@ -1,5 +1,5 @@
 //文件上传前处理
-function fileChange(inputFile, item) {
+function fileChange(inputFile, item, val) {
     var format;
     var fileName;
     var fileInfo;
@@ -26,7 +26,11 @@ function fileChange(inputFile, item) {
         var data = new FormData();
         data.append('file', $(inputFile).get(0).files[0]);
         $(inputFile).parent().find('.loading').show();
-        fileUpload(data, inputFile, item);
+        if (val) {
+            fileUpload(data, inputFile, item);
+        } else {
+            fileUploadArr(data, inputFile, item)
+        }
     });
 
     function getfileInfo($this) {
@@ -63,6 +67,34 @@ function fileUpload(data, inputFile, item) {
                 item.Attachment = data;
                 item.BudgetApproval = data;
                 item.FileName = getHtmlDocName(data);
+            }
+            $(inputFile).parent().find('.loading').hide();
+
+        }, error: function (e) {
+            e = JSON.parse(e);
+            $(inputFile).parent().find('.loading').hide();
+            $.oaNotify.error('上传失败：' + e.error);
+        }
+    });
+}
+
+function fileUploadArr(data, inputFile, item) {
+    $.ajax({
+        url: Code.URL_POST_UPLOAD_FILE,
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        dataType: 'text',
+        success: function (e) {
+            e = JSON.parse(e);
+            if (e.error) {
+                $.oaNotify.error(' 上传失败：' + e.error);
+            } else {
+                $.oaNotify.ok(' 上传成功!');
+
+                var data = e.data[0];
+                item.push(data);
             }
             $(inputFile).parent().find('.loading').hide();
 

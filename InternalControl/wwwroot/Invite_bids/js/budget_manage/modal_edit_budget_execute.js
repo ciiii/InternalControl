@@ -94,7 +94,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item);
+                fileChange(id, item,true);
             },
             inputVal: function (name) {
                 if ($(name).val() != '') {

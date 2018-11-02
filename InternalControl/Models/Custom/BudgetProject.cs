@@ -28,7 +28,7 @@ namespace InternalControl.Models
         /// 年份,必须确定年份
         /// </summary>
         [Required]
-        public int Year { get; set; }
+        public int ?Year { get; set; }
 
         /// <summary>
         /// 项目类型
@@ -225,7 +225,6 @@ namespace InternalControl.Models
         [DisplayName("项目申报部门")]
         public string DeclareDepartmentName { get; set; }
 
-
         [DisplayName("单项名称")]
         public string Name { get; set; }
 
@@ -237,6 +236,68 @@ namespace InternalControl.Models
 
         [DisplayName("备注")]
         public string Remark { get; set; }
+        #endregion
+    }
+
+    public partial class ExportWhenBudgetProjectOfEnter
+    {
+
+        #region 属性
+
+        /// <summary>
+        /// 这个要重新排序
+        /// </summary>
+        [DisplayName("序号")]
+        public int Id { get; set; }
+
+        [DisplayName("申报部门")]
+        public string RelevantDepartmentName { get; set; }
+
+        [DisplayName("项目名称")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 这个要转一下
+        /// </summary>
+        [DisplayName("是否属于政府集中采购目录")]
+        public string IsCenterPurchase { get; set; }
+
+        /// <summary>
+        /// 这个要前台传
+        /// </summary>
+        [DisplayName("预算类型")]
+        public string BudgetTypeName { get; set; }
+
+        [DisplayName("采购需求")]
+        public string PurchasingDemand { get; set; } = "详情见附件";
+
+        [DisplayName("申报申请")]
+        public string ApplicationForDeclaration { get; set; } = "详情见附件";
+
+        [DisplayName("包件数量")]
+        public int? CountOfPackage { get; set; }
+
+        [DisplayName("预算金额")]
+        public int? TotalBudgetAmount { get; set; }
+
+        [DisplayName("采购方式")]
+        public string PurchaseMethod { get; set; }
+
+        [DisplayName("项目拟实施时间")]
+        public DateTime TimePlanToImplement { get; set; }
+
+        [DisplayName("采购对象")]
+        public string ProjectType { get; set; }
+
+        [DisplayName("项目预算所属年")]
+        public int Year { get; set; }
+
+        [DisplayName("项目联系人")]
+        public string LinkmanName { get; set; }
+
+        [DisplayName("联系方式")]
+        public string LinkmanPhone { get; set; }
+
         #endregion
     }
 }

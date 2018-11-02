@@ -93,7 +93,6 @@ $(function () {
                 }
                 vm.countNumber();
                 vm.changeAllName();
-                vm.changeDepartment();
 
                 if (vm.model.Data.Model.Year == vm.year) {
                     vm.thisYaer = true;
@@ -140,6 +139,20 @@ $(function () {
                     if (success) {
                         vm.relevantDepartment = obj;
                         $('.relevant-department').val(vm.model.Data.Model.RelevantDepartmentId);
+                        if (vm.editType) {
+                            vm.relevantDepartment.forEach(function (el) {
+                                if (vm.model.Data.Model.RelevantDepartmentId == el.Id) {
+                                    vm.yearList = {
+                                        DeclareBeginDatetime: el.DeclareBeginDatetime,
+                                        DeclareEndDatetime: el.DeclareEndDatetime,
+                                        IsCanChooseThisYear: el.IsCanChooseThisYear,
+                                        SupplementBeginDatetime: el.SupplementBeginDatetime,
+                                        SupplementEndDatetime: el.SupplementEndDatetime
+                                    }
+                                    return false;
+                                }
+                            });
+                        }
 
                     } else {
                         console.info('获取归口部门失败！');
@@ -281,13 +294,16 @@ $(function () {
                     return;
                 } else {
                     var isNotItem = true;
-                    vm.model.Data.List.forEach(function (index, el) {
+                    var i;
+                    vm.model.Data.List.forEach(function (el, index) {
                         if (el.ItemId == 0) {
                             isNotItem = false;
+                            i = index;
+                            return false;
                         }
                     })
                     if (!isNotItem) {
-                        $.oaNotify.error('第' + (index + 1) + '包没有选择品目！');
+                        $.oaNotify.error('第' + (i + 1) + '包没有选择品目！');
                         return;
                     }
                 }
@@ -314,11 +330,10 @@ $(function () {
                         Remark: '',
                         Data: vm.model.Data
                     }
-                    // vm.editDeclareProject(postData);
+                    vm.editDeclareProject(postData);
                 } else {
-                    // vm.addDeclareProject(vm.model.$model);
+                    vm.addDeclareProject(vm.model.$model);
                 }
-                debugger;
             },
             clickSubmit: function () {
                 vm.model.IsHold = false;
@@ -350,7 +365,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item);
+                fileChange(id, item, true);
             },
             getObjClass: function (text) {
                 if (vm.model.Data.Model.ProjectType == text) {

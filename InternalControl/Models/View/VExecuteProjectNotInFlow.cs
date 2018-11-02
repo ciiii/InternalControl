@@ -65,8 +65,8 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
-		//public bool ISCenterPurchase { get; set; }
-        public bool ISCenterPurchase { get; set; }
+		//public bool IsCenterPurchase { get; set; }
+        public bool IsCenterPurchase { get; set; }
         /// <summary>
 		/// 
 		/// </summary>

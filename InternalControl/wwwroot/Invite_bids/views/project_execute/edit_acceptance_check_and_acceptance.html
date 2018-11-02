@@ -27,6 +27,7 @@
     <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
     <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
     <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/file_upload.js"></script>
 
     <script>
         document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
@@ -43,8 +44,10 @@
             <span class="up"></span>
             <span class="down"></span>
             <ul class="menu">
-                <li ms-class="getClass($index,el)" ms-for="($index,el) in @menu"  ms-if="@menu!= null && @menu.length != 0">
-                    <a href="javascript:;" ms-if="el.IsPassed&&!el.ISCurrentStepTemplate||el.ISCurrentStepTemplate&&el.IsCanOperate"
+                <li ms-class="getClass($index,el)" ms-for="($index,el) in @menu"
+                    ms-if="@menu!= null && @menu.length != 0">
+                    <a href="javascript:;"
+                       ms-if="el.IsPassed&&!el.ISCurrentStepTemplate||el.ISCurrentStepTemplate&&el.IsCanOperate"
                        ms-on-click="clickLi($index,el)">
                         {{el.StepTemplateName}}
                     </a>
@@ -58,64 +61,103 @@
         <button class="btn btn-primary btn-back" ms-on-click="clickBtnCancel">
             <i class="icon iconfont icon-ai207"></i> 返回列表
         </button>
-        <div class="tab-pane" ms-class="getTabClass(0)">
+        <div class="tab-pane" ms-class="getTabClass('开始实施')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item col-md-12 col-sm-12">
-
-
-
-
-                </div>
-
-
-
+                <div class="item col-md-12 col-sm-12">进度条</div>
                 <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.Name">
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">内部编号</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@myDetails.ExecuteProject.ExecuteProject.ProjectNumber" readonly>
                         </div>
                     </div>
-                </div>
-                <div class="item col-md-12 col-sm-12">
+                    <hr class="col-md-12 col-sm-12"/>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目属性</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.IsGovernmentPurchase?'政府采购':'非政府采购'" readonly>
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">采购方式</label>
+                        <label class="control-label col-md-3 col-sm-3">
+                            <i class="icon iconfont icon-text-sign icon-sign"></i>采购方式
+                        </label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                            <select class="form-control roles" ms-on-change="changePurchaseMethoOne($event)"
+                                    ms-duplex="@modelOne.Model.PurchaseMethod">
+                                <option value="">请选择</option>
+                                <option ms-for="el in @purchaseMethoOne" ms-attr="{'value':@el.Value}">{{el.Value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">实施截止时间</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@newTimeToImplement|truncate(10,'')"
+                                   ms-on-keyup="changeTime">
                         </div>
                     </div>
                 </div>
                 <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">实施截止时间</label>
+                        <label class="control-label col-md-3 col-sm-3">采购人</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money" ms-duplex="@model.BudgetProject.TotalBudgetAmount">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.PurchaserName">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">采购人地址</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.PurchaserAddress">
+                        </div>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">联系人</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.LinkmanName">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">联系方式</label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.LinkmanPhone">
                         </div>
                     </div>
                 </div>
                 <div class="item table-box col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6 item-title">
-                        <label class="control-label col-md-3 col-sm-3">清单信息</label>
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 add-project-merge">
+                        <a class="btn btn-primary" data-toggle="modal" data-target=".modal-add"
+                           href="add_project_merge.html"
+                           onclick="changeUrl(this)">添加及管理合并项目</a>
                     </div>
                     <hr class="col-md-12 col-sm-12"/>
                     <div class="table-responsive col-md-12 col-sm-12"
-                         ms-if="@model.BudgetProject.IsCenterPurchase&&@isGoods">
+                         ms-if="@modelOne.Model.IsCenterPurchase&&@isGoods">
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>序号</th>
+                                <th>项目名称</th>
                                 <th>单项名称</th>
                                 <th>申报部门</th>
                                 <th>单位</th>
@@ -125,53 +167,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @model.Package" ms-attr="{'id':'items-'+$index}">
+                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget" ms-attr="{'id':'items-'+$index}">
                                 <td class="number text-center">{{$index+1}}</td>
+                                <td>{{el.ProjectName}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td>{{el.Unit}}</td>
-                                <td class="unit">
-                                    <input type="text" class="form-control" ms-duplex="el.BudgetNumber"
-                                           ms-on-keyup="@countCollectionPrice" onkeyup="onlyNum(this)"/>
-                                </td>
-                                <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
-                                    ms-class="limitOfPrice(el,'warn-tip-info')">
-                                    <input type="text" class="form-control" ms-duplex="el.BudgetUnitPrice"
-                                           ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)"/>
-                                    <div class="tip-info">
-                                        <span class="icon-tabxiala"></span>
-                                        <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置标准》川 财资产〔2017〕20号</a>
-                                        <table class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>名称</th>
-                                                <th>单位</th>
-                                                <th>价格上限标准</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>{{el.ItemName}}</td>
-                                                <td>{{el.Unit}}</td>
-                                                <td>{{el.LimitOfPrice}}</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control"
-                                           ms-duplex="el.BudgetNumber*el.BudgetUnitPrice" readonly/>
-                                </td>
+                                <td>{{el.ExecuteNumber}}</td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
+                                <td>{{(el.ExecuteNumber*el.ExecuteUnitPrice)|currency}}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="table-responsive col-md-12 col-sm-12"
-                         ms-if="@model.BudgetProject.IsCenterPurchase&&!@isGoods">
+                         ms-if="@modelOne.Model.IsCenterPurchase&&!@isGoods">
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>序号</th>
+                                <th>项目名称</th>
                                 <th>单项名称</th>
                                 <th>申报部门</th>
                                 <th>预算金额(元)</th>
@@ -179,129 +194,76 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @model.Package" ms-attr="{'id':'items-'+$index}">
+                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget" ms-attr="{'id':'items-'+$index}">
                                 <td class="number text-center">{{$index+1}}</td>
+                                <td>{{el.ProjectName}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
-                                <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
-                                    ms-class="limitOfPrice(el,'warn-tip-info')">
-                                    <input type="text" class="form-control" ms-duplex="el.BudgetUnitPrice"
-                                           ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)"/>
-
-                                    <div class="tip-info">
-                                        <span class="icon-tabxiala"></span>
-                                        <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置
-                                            标准》川 财资产〔2017〕20号</a>
-                                        <table class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>名称</th>
-                                                <th>单位</th>
-                                                <th>价格上限标准</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>{{el.ItemName}}</td>
-                                                <td>{{el.Unit}}</td>
-                                                <td>{{el.LimitOfPrice}}</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
                                 <td>{{el.Unit}}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="table-responsive col-md-12 col-sm-12" ms-if="!@model.BudgetProject.IsCenterPurchase">
+                    <div class="table-responsive col-md-12 col-sm-12" ms-if="!@modelOne.Model.IsCenterPurchase">
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>包号</th>
+                                <th>项目名称</th>
                                 <th>包名称</th>
                                 <th>申报部门</th>
                                 <th>预算金额(元)</th>
                                 <th>采购品目</th>
-                                <th class="operation">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @model.Package">
+                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget">
                                 <td class="number text-center">第{{$index+1}}包</td>
+                                <td>{{el.ProjectName}}</td>
                                 <td>{{el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
-                                <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
-                                    ms-class="limitOfPrice(el,'warn-tip-info')">
-                                    <input type="text" class="form-control" ms-duplex="el.BudgetUnitPrice"
-                                           ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)"/>
-                                    <div class="tip-info">
-                                        <span class="icon-tabxiala"></span>
-                                        <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置标准》川 财资产〔2017〕20号</a>
-                                        <table class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>名称</th>
-                                                <th>单位</th>
-                                                <th>价格上限标准</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>{{el.ItemName}}</td>
-                                                <td>{{el.Unit}}</td>
-                                                <td>{{el.LimitOfPrice}}</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
                                 <td>{{el.ItemName}}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="item collection-box col-md-12 col-sm-12">
+                <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">资金来源</label>
+                        <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
                         <div class="col-md-7 col-sm-7">
-                            <span ms-if="@model.BudgetProject.IsFinancialCapital">财政资金</span>
-                            <span ms-if="!@model.BudgetProject.IsFinancialCapital">非财政资金</span>
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.TotalExecuteAmount|currency" readonly >
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>项目属性
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3">最高限价(元)</label>
                         <div class="col-md-7 col-sm-7">
-                            <ul class="select-ul">
-                                <li ms-class="getClass(true)" ms-on-click="clickType(true)">
-                                    <a href="javascript:;">政府采购</a>
-                                </li>
-                                <li ms-class="getClass(false)" ms-on-click="clickType(false)">
-                                    <a href="javascript:;">非政府采购</a>
-                                </li>
-                            </ul>
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@modelOne.Model.CeilingPrice" ms-on-keyup="changeCeilingPrice">
                         </div>
                     </div>
                     <hr class="col-md-12 col-sm-12"/>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">品目名称</label>
                         <div class="col-md-7 col-sm-7">
-                            <span>{{@allName}}</span>
+                            <input type="text" class="form-control budget-money"
+                                   ms-duplex="@allName" readonly>
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>是否专门面向中小企业
+                            <i class="icon iconfont icon-text-sign icon-sign"></i>评审方法
                         </label>
                         <div class="col-md-7 col-sm-7">
                             <ul class="select-ul">
-                                <li ms-class="getClassTwo(true)" ms-on-click="clickTypeTwo(true)">
-                                    <a href="javascript:;">是</a>
+                                <li ms-class="getClassMethod('综合评分')" ms-on-click="clickMethod($event)">
+                                    <a href="javascript:;">综合评分</a>
                                 </li>
-                                <li ms-class="getClassTwo(false)" ms-on-click="clickTypeTwo(false)">
-                                    <a href="javascript:;">否</a>
+                                <li ms-class="getClassMethod('最低评标价法')" ms-on-click="clickMethod($event)">
+                                    <a href="javascript:;">最低评标价法</a>
                                 </li>
                             </ul>
                         </div>
@@ -309,67 +271,31 @@
                 </div>
                 <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6 item-title">
-                        <label class="control-label col-md-3 col-sm-3">财政批复</label>
-                    </div>
-                    <hr class="col-md-12 col-sm-12"/>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>项目实施时间
-                        </label>
-                        <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control form-month implement-time"
-                                   ms-duplex="@newModal.Data.Model.TimeToImplement|truncate(7,'')">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
-                        <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
-                                   ms-duplex="@model.BudgetProject.TotalBudgetAmount" readonly>
-                        </div>
-                    </div>
-                    <hr class="col-md-12 col-sm-12"/>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>采购方式
-                        </label>
-                        <div class="col-md-7 col-sm-7">
-                            <select class="form-control roles" ms-on-change="changePurchaseMetho($event)"
-                                    ms-duplex="@newModal.Data.Model.PurchaseMethod">
-                                <option value="">请选择</option>
-                                <option ms-for="el in @purchaseMetho" ms-attr="{'value':@el.Value}">{{el.Value}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="item col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6 item-title">
-                        <label class="control-label col-md-3 col-sm-3">预算批复</label>
-                        <div class="col-md-7 col-sm-7">
-                            <span>(财政通知)</span>
-                        </div>
+                        <label class="control-label col-md-3 col-sm-3">合同主要条款</label>
                     </div>
                     <hr class="col-md-12 col-sm-12"/>
                     <div class="form-group col-md-12 col-sm-12">
                         <div class="form-group col-md-6 col-sm-6">
                             <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
                                 <div class="item-top">
+                                    <a class="file-text btn btn-default" href="javascript:;" download="">下载样本</a>
                                     <div class="file-box">
                                         <input type="file" id="apply-upload" class="input-file" name="fileUpload"
-                                               ms-on-click="@upload($event,@apply)">
+                                               ms-on-click="@upload($event,@fileArr)">
 
                                         <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
                                     </div>
                                 </div>
-                                <div class="file col-md-12 col-sm-12">
-                                    <a class="file-name col-md-11 col-sm-11" ms-if="@apply.FileName"
-                                       ms-attr="{'href':apply.Url}" download="">{{@apply.FileName}}</a>
-                                    <span class="file-name col-md-11 col-sm-11" ms-if="!@apply.FileName">暂未上传附件</span>
-                                    <a class="btn-del" ms-if="@apply.FileName" href="javascript:;"
-                                       ms-on-click="btnDel(apply)">
-                                        <i class="icon iconfont icon-shanchu"></i>
-                                    </a>
+                                <div class="file file-arr col-md-12 col-sm-12">
+                                    <div ms-for="el in @fileArr" class="column" ms-if="@fileArr!= null&&@fileArr.length!=0">
+                                        <a class="file-name col-md-11 col-sm-11"
+                                           ms-attr="{'href':el}" download="">{{@getHtmlDocName(el)}}</a>
+                                        <a class="btn-del" ms-if="@el" href="javascript:;"
+                                           ms-on-click="btnDel(el)">
+                                            <i class="icon iconfont icon-shanchu"></i>
+                                        </a>
+                                    </div>
+                                    <span class="file-name col-md-11 col-sm-11" ms-if="!@fileArr||@fileArr.length==0">暂未上传附件</span>
                                 </div>
                                 <span class="remark">注：请上传签署、盖章完成的PDF文件。</span>
                             </div>
@@ -384,8 +310,6 @@
                                 </button>
                                 <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit">提交
                                 </button>
-                                <button type="button" class="btn btn-default" ms-on-click="clickBtnCancel">取消
-                                </button>
                                 <div class="tip-box"></div>
                             </div>
                         </div>
@@ -395,55 +319,70 @@
             </div>
             <div ms-if="!isEdit">详情</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(1)">
+        <div class="tab-pane" ms-class="getTabClass('执行方式')">
             <div ms-if="isEdit">编辑2</div>
             <div ms-if="!isEdit">详情2</div>
-
         </div>
-        <div class="tab-pane" ms-class="getTabClass(2)">
+        <div class="tab-pane" ms-class="getTabClass('技术确认')">
             <div ms-if="isEdit">编辑3</div>
             <div ms-if="!isEdit">详情3</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(3)">
+        <div class="tab-pane" ms-class="getTabClass('项目论证')">
             <div ms-if="isEdit">编辑4</div>
             <div ms-if="!isEdit">详情4</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(4)">
+        <div class="tab-pane" ms-class="getTabClass('采购确认')">
             <div ms-if="isEdit">编辑5</div>
             <div ms-if="!isEdit">详情5</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(5)">
+        <div class="tab-pane" ms-class="getTabClass('采购邀请')">
             <div ms-if="isEdit">编辑6</div>
             <div ms-if="!isEdit">详情6</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(6)">
+        <div class="tab-pane" ms-class="getTabClass('开标评标')">
             <div ms-if="isEdit">编辑7</div>
             <div ms-if="!isEdit">详情7</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(7)">
+        <div class="tab-pane" ms-class="getTabClass('专家抽取')">
             <div ms-if="isEdit">编辑8</div>
             <div ms-if="!isEdit">详情8</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(8)">
+        <div class="tab-pane" ms-class="getTabClass('结果信息')">
             <div ms-if="isEdit">编辑9</div>
             <div ms-if="!isEdit">详情9</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(9)">
+        <div class="tab-pane" ms-class="getTabClass('拟定合同')">
             <div ms-if="isEdit">编辑10</div>
             <div ms-if="!isEdit">详情10</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(10)">
+        <div class="tab-pane" ms-class="getTabClass('合同签订')">
             <div ms-if="isEdit">编辑11</div>
             <div ms-if="!isEdit">详情11</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(11)">
+        <div class="tab-pane" ms-class="getTabClass('合同公示')">
             <div ms-if="isEdit">编辑12</div>
             <div ms-if="!isEdit">详情12</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass(12)">
+        <div class="tab-pane" ms-class="getTabClass('履约验收')">
             <div ms-if="isEdit">编辑13</div>
             <div ms-if="!isEdit">详情13</div>
         </div>
+        <div class="tab-pane" ms-class="getTabClass('更正情况')">
+            <div ms-if="isEdit">编辑14</div>
+            <div ms-if="!isEdit">详情14</div>
+        </div>
+        <div class="tab-pane" ms-class="getTabClass('质疑投诉')">
+            <div ms-if="isEdit">编辑15</div>
+            <div ms-if="!isEdit">详情15</div>
+        </div>
+    </div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
+    </div>
+    <div class="modal fade modal-details" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
     </div>
 </div>
 </body>

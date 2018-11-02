@@ -5,7 +5,7 @@ $(function () {
             $id: 'Add',
             model: {},
             editType: vm.editType,
-            roles:vm.roles,
+            roles: vm.roles,
             title: '',
             users: [],
             info: {
@@ -14,7 +14,7 @@ $(function () {
                 Name: '',
                 RoleId: '',
                 PrincipalId: '',
-                Sort: '',
+                Sort: 0,
                 Remark: ''
             },
             onLoad: function () {
@@ -26,23 +26,28 @@ $(function () {
                             addVm.info[i] = '';
                         }
                     }
-                    console.info(addVm.info);
+                    $('.modal-add .principal').val(addVm.info.PrincipalId);
+                    $("input[name='roles'][value='" + addVm.info.RoleId + "']").attr('checked', true);
                 } else {
                     addVm.title = '添加部门';
                 }
-                addVm.getUsersList();
+                console.info(addVm.info);
+                console.info(addVm.info.RoleId);
+
             },
             getUsersList: function () {
                 User.getUsersList('get', '', function getUsersListListener(success, obj, strErro) {
                     if (success) {
                         addVm.users = obj;
-                        $('.principal').val(addVm.info.PrincipalId);
-                        $('input:radio[value="' + addVm.info.RoleId + '"]').attr('checked', true);
+                        addVm.onLoad();
                     } else {
                         console.info('获取所有用户列表失败！');
                         console.info(strErro);
                     }
                 })
+            },
+            changePrincipalId: function (e) {
+                addVm.info.PrincipalId = e.target.value;
             },
             inputVal: function (name) {
                 if ($(name).val() != '') {
@@ -56,14 +61,14 @@ $(function () {
                 }
             },
             clickSubmit: function () {
-                var unitName = addVm.inputVal('.department-name');
-                var principal = addVm.inputVal('.principal');
+                var unitName = addVm.inputVal('.modal-add .department-name');
+                var principal = addVm.inputVal('.modal-add .principal');
                 var role = $("input[type='radio']:checked").val();
                 if (!unitName) {
                     $.oaNotify.error(' 部门名称不能为空！');
                     return;
                 }
-                if (role == '') {
+                if (!role || role == '') {
                     $.oaNotify.error(' 部门类型不能为空！');
                     return;
                 }
@@ -90,7 +95,7 @@ $(function () {
         $('.modal-add .tab-pane').mCustomScrollbar({
             theme: 'dark-3',
         });
-        addVm.onLoad();
+        addVm.getUsersList();
         avalon.scan(document.body);
     });
 });

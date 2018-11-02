@@ -312,6 +312,7 @@
             <summary>
             论证时,导出各个项目的包信息;
             注意是使用BudgetProjectExtendFilter来筛选VBudgetProjectNotInFlow
+            TODO:这里可能需要重构一下
             </summary>
             <param name="filter"></param>
             <param name="listOfId">勾选的项目,传空则表示所有符合条件的预算项目都要导出</param>
@@ -359,6 +360,14 @@
             对于每个项目,只有相应的归口部门的人可以看到;
             </summary>
             <param name="paging"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.ExportWhenBudgetProjectOfEnter(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
+            <summary>
+            进入预算时,选中的项目导出
+            </summary>
+            <param name="listOfId">勾选的项目,不能传空</param>
+            <param name="BudgetTypeName">预算类型名称</param>
             <returns></returns>
         </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.GetPagingBudgetProjectOfEnterList(InternalControl.Models.Paging,InternalControl.Models.BudgetProjectFilter)">
@@ -1438,6 +1447,21 @@
             当为集采-服务时或非集采时
             </summary>
         </member>
+        <member name="P:InternalControl.Models.ExportWhenBudgetProjectOfEnter.Id">
+            <summary>
+            这个要重新排序
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExportWhenBudgetProjectOfEnter.IsCenterPurchase">
+            <summary>
+            这个要转一下
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExportWhenBudgetProjectOfEnter.BudgetTypeName">
+            <summary>
+            这个要前台传
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.DeclareProjectFilter">
             <summary>
             申报项目的过滤条件
@@ -1498,7 +1522,7 @@
             项目类型
             </summary>
         </member>
-        <member name="P:InternalControl.Models.ExecuteProjectFilter.ISCenterPurchase">
+        <member name="P:InternalControl.Models.ExecuteProjectFilter.IsCenterPurchase">
             <summary>
             是否集采
             </summary>
@@ -3516,7 +3540,7 @@
             实施时间,(默认取最小的拟实施时间)
             </summary>
         </member>
-        <member name="P:InternalControl.Models.ExecuteProject.ISCenterPurchase">
+        <member name="P:InternalControl.Models.ExecuteProject.IsCenterPurchase">
             <summary>
             是否为政府集中采购,合并各包此项必须相同,冗余字段
             </summary>
@@ -6131,6 +6155,11 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VBudgetProject.CountOfPackage">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VBudgetProject.TotalDeclareAmount">
             <summary>
             
@@ -6256,6 +6285,11 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.CountOfPackage">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.TotalDeclareAmount">
             <summary>
             
@@ -6377,6 +6411,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.CountOfPackage">
             <summary>
             
             </summary>
@@ -6751,7 +6790,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VExecuteProject.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VExecuteProject.IsCenterPurchase">
             <summary>
             
             </summary>
@@ -6941,7 +6980,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VExecuteProjectNotInFlow.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VExecuteProjectNotInFlow.IsCenterPurchase">
             <summary>
             
             </summary>
@@ -8041,6 +8080,11 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.CountOfPackage">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VTFNBudgetProject.TotalDeclareAmount">
             <summary>
             
@@ -8366,7 +8410,7 @@
             
             </summary>
         </member>
-        <member name="P:InternalControl.Models.VTFNExecuteProject.ISCenterPurchase">
+        <member name="P:InternalControl.Models.VTFNExecuteProject.IsCenterPurchase">
             <summary>
             
             </summary>

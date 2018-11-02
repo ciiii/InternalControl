@@ -22,7 +22,7 @@
                         <i class="icon iconfont icon-text-sign icon-sign"></i>联系人：
                     </label>
                     <div class="col-sm-8">
-                        <select class="form-control contact" ms-duplex="@info.LinkmanId" ms-on-change="@inputVal('.contact')">
+                        <select class="form-control contact" ms-on-change="@changeContact($event)">
                             <option value="">请选择</option>
                             <option ms-for="el in @users" ms-attr="{'value':@el.Id}">{{el.Name}}</option>
                         </select>

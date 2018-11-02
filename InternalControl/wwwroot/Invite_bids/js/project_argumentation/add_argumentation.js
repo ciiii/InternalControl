@@ -60,7 +60,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item);
+                fileChange(id, item,true);
             },
             clickPass: function (data) {
                 Budget.addAndPassBudgetProjectOfArgument('post', data, function addAndPassBudgetProjectOfArgumentListener(success, obj, strErro) {
