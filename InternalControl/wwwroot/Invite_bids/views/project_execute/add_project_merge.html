@@ -1,4 +1,3 @@
-<script type="text/javascript" src="/Invite_bids/js/project_execute/add_project_merge.js"></script>
 <div class="modal-content ms-controller add-user" ms-controller="Add">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -13,7 +12,7 @@
                         <p class="title-text">可合并的项目列表 <span>当前剩余：{{total}} 项</span></p>
                         <div class="row search-box">
                             <div class="form-group col-md-8 col-sm-8">
-                                <label>项目名称</label>
+                                <label>项目名称 </label>
                                 <input type="text" class="form-control like-name" ms-duplex="@req.LikeName"
                                        ms-keydown="@submit">
                                 <a class="search-name" href="javascript:;">
@@ -24,25 +23,24 @@
                     </div>
                 </div>
             </form>
-            <div class="personnel-box">
-                <div class="personnel-list">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th class="number">序号</th>
-                                <th>项目名称</th>
-                                <th>总价(元)</th>
-                                <th class="operation">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">
-                            <tr>
-                                <td class="number text-center">{{el.number}}</td>
-                                <td class="text-left">{{el.ExecuteProject.Name}}</td>
-                                <td>{{el.ExecuteProject.TotalExecuteAmount|currency}}</td>
-                                <td class="operation">
-                                    <ul>
+            <div class="personnel-list">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="number">序号</th>
+                            <th>项目名称</th>
+                            <th>总价(元)</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0&&el.ExecuteProject.Id!=oneselfId">
+                            <td class="number text-center">{{el.number}}</td>
+                            <td class="text-left">{{el.ExecuteProject.Name}}</td>
+                            <td>{{el.ExecuteProject.TotalExecuteAmount|currency}}</td>
+                            <td class="operation">
+                                <ul>
                                     <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
                                         title="详情">
                                         <a data-toggle="modal" data-target=".modal-details"
@@ -53,68 +51,63 @@
                                         </a>
                                     </li>
                                     <li class="bs-tooltip btn-details">
-                                        <a class="added" href="JavaScript:;" ms-on-click="@clickAdd(el)" >
-                                            <span class="btn-add" ms-if="el.checked">添加</span>
-                                            <span class="btn-remove" ms-if="!el.checked">取消</span>
+                                        <a class="added" href="JavaScript:;" ms-on-click="@clickAdd(el)">
+                                            <span class="btn-add" ms-if="!el.checked">添加</span>
+                                            <span class="btn-remove" ms-if="el.checked">取消</span>
                                         </a>
                                     </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div ms-if="@nothing">
-                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
-                    </div>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="page paging text-center">
-                    <div class="pager paging"></div>
+                <div ms-if="@nothing">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                 </div>
+            </div>
+            <div class="page paging text-center" ms-if="!@nothing">
+                <div class="pager paging"></div>
             </div>
         </div>
         <div class="item-right  col-md-6 col-sm-6">
             <div class="screen-box">
                 <div class="form-inline">
-                    <p class="title-text">当前已选项目<span>共计：{{selectedModel.length}} 项</span></p>
+                    <p class="title-text">当前已选项目<span>共计：{{@selectedModel.length}} 项</span></p>
                 </div>
             </div>
-            <div class="personnel-box">
-                <div class="personnel-list">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th class="number">序号</th>
-                                <th>项目名称</th>
-                                <th>总价(元)</th>
-                                <th class="operation">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ms-for="($index,el) in @selectedModel"
-                                ms-if="@selectedModel!= null && @selectedModel.length != 0">
-                                <td class="number text-center">{{$index+1}}</td>
-                                <td class="text-left">{{el.ExecuteProject.Name}}</td>
-                                <td>{{el.ExecuteProject.TotalExecuteAmount|currency}}</td>
-                                <td class="operation">
-                                    <ul>
-                                        <li class="bs-tooltip btn-del" data-toggle="tooltip" data-placement="bottom"
-                                            title="删除">
-                                            <a data-toggle="modal" data-target=".modal-del" href="javascript:;"
-                                               ms-on-click="@selectedModel.remove(el),@addModel(el)">
-                                                <i class="icon iconfont icon-shanchu1"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div ms-if="@selectedModel.length==0">
-                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
-                    </div>
+            <div class="personnel-list">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="number">序号</th>
+                            <th>项目名称</th>
+                            <th>总价(元)</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="($index,el) in @selectedModel" ms-if="@selectedModel!= null&&@selectedModel.length!=0">
+                            <td class="number text-center">{{$index+1}}</td>
+                            <td class="text-left">{{el.ExecuteProject.Name}}</td>
+                            <td>{{el.ExecuteProject.TotalExecuteAmount|currency}}</td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="bs-tooltip btn-del" data-toggle="tooltip" data-placement="bottom" title="删除">
+                                        <a data-toggle="modal" data-target=".modal-del" href="javascript:;"
+                                           ms-on-click="@addModel(el)">
+                                            <i class="icon iconfont icon-shanchu1"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ms-if="@selectedModel.length==0">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                 </div>
             </div>
         </div>
@@ -130,4 +123,4 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="/Invite_bids/js/project_execute/add_project_merge.js"></script>

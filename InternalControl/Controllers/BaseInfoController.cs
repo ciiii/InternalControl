@@ -173,6 +173,16 @@ namespace InternalControl.Controllers
             });
         #endregion
 
+        #region 执行方式
+        /// <summary>
+        /// 执行方式
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<object> GetExecutionModeList() =>
+            await Db.GetListSpAsync<ExecutionMode>(orderType:true);
+        #endregion
+
         #region 代理机构
         /// <summary>
         /// 获取全部代理机构
@@ -182,6 +192,10 @@ namespace InternalControl.Controllers
         [HttpGet]
         async public Task<PagingResult<VAgency>> GetPagingAgencyList(Paging paging, AgencyFilter filter) =>
             await Db.GetPagingListSpAsync<VAgency, AgencyFilter>(paging, filter);
+
+        [HttpGet]
+        async public Task<IEnumerable<VAgency>> GetAgencyList(AgencyFilter filter) =>
+            await Db.GetListSpAsync<VAgency, AgencyFilter>(filter);
 
         /// <summary>
         /// 增改代理机构,
@@ -286,7 +300,7 @@ namespace InternalControl.Controllers
         [HttpGet]
         async public Task<PagingResult<string>> GetPagingVMergeTypeWhenBudgetList(
             Paging paging,
-            [Required]bool ISCenterPurchase, 
+            [Required]bool ISCenterPurchase,
             VMergeTypeWhenBudgetFilter filter) =>
             await Db.GetPagingListSpAsync<string, VMergeTypeWhenBudgetFilter>(
                 paging,

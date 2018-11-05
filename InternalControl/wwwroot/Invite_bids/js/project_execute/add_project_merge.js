@@ -17,12 +17,14 @@ $(function () {
             },
             total: '',
             model: [],
-            selectedModel: vm.selectModel,
+            selectedModel: vm.selectedModel,
             nothing: false,
             loaded: false,
+            oneselfId: vm.oneselfId,
             query: function () {
                 addVm.loaded = false;
                 $.support.cors = true;
+                console.info(addVm.selectedModel);
                 ProjectExecute.getPagingExecuteProjectListNotInFlowAndWithPackage('get', addVm.req.$model, function getPagingExecuteProjectListNotInFlowAndWithPackageListener(success, obj, strErro) {
                     if (success) {
                         addVm.loaded = true;
@@ -35,22 +37,28 @@ $(function () {
                         } else {
                             obj = obj.List;
                             var number = (addVm.req.Index - 1) * addVm.req.Size + 1;
+                            addVm.nothing = false;
                             for (var i = 0; i < obj.length; i++) {
                                 obj[i].number = number;
                                 obj[i].checked = false;
-                                if (addVm.selectedModel.length != 0) {
+                                if (obj[i].ExecuteProject.Id == addVm.oneselfId) {
+                                    addVm.nothing = true;
+                                }
+                                if (addVm.selectedModel && addVm.selectedModel.length != 0) {
                                     for (var a = 0; a < addVm.selectedModel.length; a++) {
                                         if (obj[i].ExecuteProject.Id == addVm.selectedModel[a].ExecuteProject.Id) {
                                             obj[i].checked = true;
                                         }
                                     }
+                                } else {
+                                    addVm.selectedModel = [];
                                 }
+
                                 number++;
                             }
                             addVm.model = obj;
                             console.info(obj);
                             $('.add-project-merge .pager').show();
-                            addVm.nothing = false;
                         }
                         $('.add-project-merge .pager').mamPager({
                             pageSize: addVm.req.Size,                       //页大小
@@ -96,10 +104,12 @@ $(function () {
             },
             doWithAddProject: function (project) {
                 var exsit = false;
-                for (var i = 0; i < addVm.selectedModel.length; i++) {
-                    if (addVm.selectedModel[i].ExecuteProject.Id == project.ExecuteProject.Id) {
-                        exsit = true;
-                        break;
+                if (addVm.selectedModel && addVm.selectedModel.length > 0) {
+                    for (var i = 0; i < addVm.selectedModel.length; i++) {
+                        if (addVm.selectedModel[i].ExecuteProject.Id == project.ExecuteProject.Id) {
+                            exsit = true;
+                            break;
+                        }
                     }
                 }
                 return exsit;
@@ -110,6 +120,7 @@ $(function () {
                         item.checked = false;
                     }
                 });
+                addVm.selectedModel.remove(el);
             },
             clickDetails: function (el) {
                 vm.projecId = el.ExecuteProject.Id;
@@ -122,12 +133,29 @@ $(function () {
                 vm.selectedModel = addVm.selectedModel;
                 for (var i = 0; i < addVm.selectedModel.length; i++) {
                     var arr = addVm.selectedModel[i].Package;
-                    // vm.myDetails.ExecutePackage.PackageOfExcuteBudget = vm.myDetails.ExecutePackage.PackageOfExcuteBudget.concat(arr);
+                    var exsit = addVm.doWithAddPackage(addVm.selectedModel[i]);
+
                     for (var j = 0; j < arr.length; j++) {
                         arr[j].ProjectName = addVm.selectedModel[i].ExecuteProject.Name;
-                        vm.myDetails.ExecutePackage.PackageOfExcuteBudget.push(arr);
+                        if (!exsit) {
+                            vm.myDetails.ExecutePackage.PackageOfExcuteBudget.push(arr);
+                        }
                     }
                 }
+                vm.changeAllName();
+                addVm.clickBtnReturn();
+            },
+            doWithAddPackage: function (project) {
+                var exsit = false;
+                if (vm.myDetails.ExecutePackage.PackageOfExcuteBudget && vm.myDetails.ExecutePackage.PackageOfExcuteBudget.length > 0) {
+                    for (var i = 0; i < vm.myDetails.ExecutePackage.PackageOfExcuteBudget.length; i++) {
+                        if (vm.myDetails.ExecutePackage.PackageOfExcuteBudget.ExecuteProjectId == project.ExecuteProject.Id) {
+                            exsit = true;
+                            break;
+                        }
+                    }
+                }
+                return exsit;
             },
             clickBtnReturn: function () {
                 $('.modal-add').modal('hide');

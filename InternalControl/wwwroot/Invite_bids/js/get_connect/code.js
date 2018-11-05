@@ -97,6 +97,9 @@ var Code = {
     //归口部门增改自己部门的时间设置
     URL_POST_ADD_OR_EDIT_RELEVANT_DEPARTMENT_SETTING: getApiHost + '/BaseInfo/AddOrUpdateGetRelevantDepartmentsSetting',
 
+    //执行方式
+    URL_GET_EXECUTION_MODE: getApiHost + '/BaseInfo/GetExecutionModeList',
+
 
     //根据归口部门id,得到可以选择的年份
     URL_GET_YEARS_CAN_CHOOSE: getApiHost + '/DeclareProject/GetYearsCanChoose',

@@ -187,6 +187,12 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:InternalControl.Controllers.BaseInfoController.GetExecutionModeList">
+            <summary>
+            执行方式
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:InternalControl.Controllers.BaseInfoController.GetPagingAgencyList(InternalControl.Models.Paging,InternalControl.Models.AgencyFilter)">
             <summary>
             获取全部代理机构

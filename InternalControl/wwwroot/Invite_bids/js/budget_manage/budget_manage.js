@@ -14,6 +14,7 @@ $(function () {
             getBudgetList: function () {
                 Budget.getBudgetList('get', vm.req.$model, function getBudgetListListener(success, obj, strErro) {
                     if (success) {
+                        var routine = false;
                         var isSpecial = false;
                         var isOther = false;
                         obj = obj.reverse();
@@ -30,6 +31,7 @@ $(function () {
                                 Remark: obj[i].Remark
                             }
                             if (obj[i].BudgetTypeId == 1) {
+                                routine = true;
                                 newObj.Name = '常规预算';
                             }
                             if (obj[i].BudgetTypeId == 2) {
@@ -39,6 +41,19 @@ $(function () {
                                 isOther = true;
                             }
                             vm.model.push(newObj);
+                        }
+                        if (!routine) {
+                            var obj = {
+                                Id: 0,
+                                Year: vm.req.Year,
+                                OwnDepartmentsId: mUserInfo.user.DepartmentId,
+                                BudgetTypeId: 1,
+                                Name: '常规预算',
+                                BudgetAmount: 0,
+                                BudgetApproval: '',
+                                Remark: ''
+                            }
+                            vm.model.push(obj);
                         }
                         if (!isSpecial) {
                             var obj = {
@@ -167,7 +182,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item,true);
+                fileChange(id, item, true);
             },
             getHtmlDocName: function (url) {
                 if (url) {

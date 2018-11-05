@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label class="col-sm-3 control-label">归档管理部门：</label>
+                            <label class="col-sm-3 control-label">归口管理部门：</label>
                             <div class="col-sm-7">
                                 <span>{{@model.BudgetProject.BudgetProject.RelevantDepartmentName}}</span>
                             </div>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label class="col-sm-3 control-label">预算类型：</label>
+                            <label class="col-sm-3 control-label">合并预算类型：</label>
                             <div class="col-sm-7">
                                 <span>{{@model.BudgetProject.BudgetProject.MergeTypeWhenBudget}}</span>
                             </div>
@@ -73,6 +73,12 @@
                             <label class="col-sm-3 control-label">预算金额(元)：</label>
                             <div class="col-sm-7">
                                 <span>{{@model.BudgetProject.BudgetProject.TotalBudgetAmount|currency}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">预算类型：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.BudgetProject.BudgetProject.PurchaseMethod}}</span>
                             </div>
                         </div>
                         <div class="form-group col-sm-6">

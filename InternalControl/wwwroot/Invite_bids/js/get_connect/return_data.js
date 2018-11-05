@@ -204,6 +204,18 @@ var Set = {
             }
         });
     },
+    //执行方式
+    getExecutionMode: function (type,  getExecutionModeListener) {
+        var url = Code.URL_GET_EXECUTION_MODE;
+        Connect_Http.httpDatas(type, url, '', function getBackListener(success, obj, strErro) {
+            if (success) {
+                getExecutionModeListener(true, obj.data, '');
+            } else {
+                getExecutionModeListener(false, '', strErro);
+
+            }
+        });
+    },
 }
 
 
@@ -659,7 +671,6 @@ var ProjectExecute = {
 
         Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
             if (success) {
-                debugger;
                 getPagingExecuteProjectListNotInFlowAndWithPackageListener(true, obj.data, '')
             } else {
                 getPagingExecuteProjectListNotInFlowAndWithPackageListener(false, '', strErro)
@@ -672,6 +683,7 @@ var ProjectExecute = {
 
         Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
             if (success) {
+                debugger;
                 beginExecuteProjectListener(true, obj, '')
             } else {
                 beginExecuteProjectListener(false, '', strErro)
