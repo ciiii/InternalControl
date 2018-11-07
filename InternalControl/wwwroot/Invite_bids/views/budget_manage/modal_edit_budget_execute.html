@@ -110,7 +110,7 @@
                             </td>
                             <td>
                                 <input type="text" class="form-control"
-                                       ms-duplex="el.BudgetNumber*el.BudgetUnitPrice" readonly/>
+                                       ms-duplex="el.BudgetNumber*el.BudgetUnitPrice|currency" readonly/>
                             </td>
                         </tr>
                         </tbody>
@@ -275,7 +275,7 @@
                     <label class="control-label col-md-3 col-sm-3">预算金额(元)</label>
                     <div class="col-md-7 col-sm-7">
                         <input type="text" class="form-control budget-money"
-                               ms-duplex="@model.BudgetProject.TotalBudgetAmount" readonly>
+                               ms-duplex="@model.BudgetProject.TotalBudgetAmount|currency" readonly>
                     </div>
                 </div>
                 <hr class="col-md-12 col-sm-12"/>
@@ -330,10 +330,10 @@
                 <div class="submit-wrapper">
                     <div class="form-group">
                         <div class="submit-box text-center">
-                            <button type="button" class="btn btn-success btn-submit" ms-on-click="@temporary">暂存
-                            </button>
                             <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit">提交
                             </button>
+                            <!--<button type="button" class="btn btn-success btn-submit" ms-on-click="@temporary">暂存-->
+                            <!--</button>-->
                             <button type="button" class="btn btn-default" ms-on-click="clickBtnCancel">取消
                             </button>
                             <div class="tip-box"></div>

@@ -29,7 +29,8 @@ namespace InternalControl.Models
 		/// </summary>
         [DisplayName("招标方式")]
         [Required(ErrorMessage ="请提供[BiddingMethod]")]
-		public int BiddingMethod { get; set; }
+        [MaxLength(50,ErrorMessage ="BiddingMethod不能超过[25]字")]
+		public string BiddingMethod { get; set; }
         /// <summary>
 		/// 是否接受联合体
 		/// </summary>
@@ -80,7 +81,6 @@ namespace InternalControl.Models
 		/// 资格条件
 		/// </summary>
         [DisplayName("资格条件")]
-        [MaxLength(1000,ErrorMessage ="Prerequisites不能超过[500]字")]
 		public string Prerequisites { get; set; }
         /// <summary>
 		/// 付款方式
@@ -89,11 +89,16 @@ namespace InternalControl.Models
         [MaxLength(1000,ErrorMessage ="PaymentMethod不能超过[500]字")]
 		public string PaymentMethod { get; set; }
         /// <summary>
-		/// 项目概况
+		/// 技术参数附件地址
 		/// </summary>
-        [DisplayName("项目概况")]
-        [MaxLength(200,ErrorMessage ="ProjectOverview不能超过[100]字")]
-		public string ProjectOverview { get; set; }
+        [DisplayName("技术参数附件地址")]
+        [MaxLength(200,ErrorMessage ="Attachment不能超过[100]字")]
+		public string Attachment { get; set; }
+        /// <summary>
+		/// 新的技术参数
+		/// </summary>
+        [DisplayName("新的技术参数")]
+		public string TechnicalRequirements { get; set; }
         /// <summary>
 		/// 评分标准
 		/// </summary>

@@ -76,9 +76,9 @@ var Set = {
         });
     },
     //获取全部代理机构
-    getAgencyList: function (type, options, getAgencyListListener) {
+    getAgencyList: function (type, getAgencyListListener) {
         var url = Code.URL_GET_AGENCY_LIST;
-        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+        Connect_Http.httpDatas(type, url, '', function getBackListener(success, obj, strErro) {
             if (success) {
                 getAgencyListListener(true, obj.data, '');
             } else {

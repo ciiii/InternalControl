@@ -21,7 +21,7 @@ namespace InternalControl.Business
     /// </summary>
     public enum StepState
     {
-        Stay=0, Forward = 1, Back = -1, Quit = -2
+        Stay = 0, Forward = 1, Back = -1, Quit = -2
     }
 
     /// <summary>
@@ -32,13 +32,15 @@ namespace InternalControl.Business
     /// </summary>
     public class WorkFlowBusiness
     {
+        private const string _nextStepIdPropName = "NextStepId";
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dbConnectionString"></param>
-        public WorkFlowBusiness(string dbConnectionString) { DbConnectionString = dbConnectionString; }
+        public WorkFlowBusiness(string dbConnectionString) { _dbConnectionString = dbConnectionString; }
 
-        private string DbConnectionString { get; set; }
+        private string _dbConnectionString { get; set; }
 
         #region flow
         /// <summary>
@@ -61,7 +63,7 @@ namespace InternalControl.Business
             int? CreatorId = null)
             where T : class
         {
-            using (var dbForTransaction = new SqlConnection(DbConnectionString))
+            using (var dbForTransaction = new SqlConnection(_dbConnectionString))
             {
                 dbForTransaction.Open();
                 using (var transaction = dbForTransaction.BeginTransaction())
@@ -142,13 +144,26 @@ namespace InternalControl.Business
             List<PredefindedSPStructure> SPList,
             bool isHold = false)
         {
-            using (var dbForTransaction = new SqlConnection(DbConnectionString))
+            using (var dbForTransaction = new SqlConnection(_dbConnectionString))
             {
                 dbForTransaction.Open();
                 using (var transaction = dbForTransaction.BeginTransaction())
                 {
                     try
                     {
+                        //如果没有有下一步骤编号这个参数;则在推进step之前执行
+                        foreach (var model in SPList)
+                        {
+                            if (!model.ContainProperty(_nextStepIdPropName))
+                            {
+                                await dbForTransaction.ExecuteAsync(
+                                    model.Name,
+                                    model.Parameter,
+                                    transaction,
+                                    commandType: CommandType.StoredProcedure);
+                            }
+                        }
+
                         var NextStepId = 0;
 
                         if (!isHold)   //可以完成步骤,即不暂存;
@@ -164,10 +179,10 @@ namespace InternalControl.Business
                             NextStepId = result.FirstOrDefault();
                         }
 
+                        //如果sp有下一步骤编号这个需要的参数;比如设置下一步的可执行人
                         foreach (var model in SPList)
                         {
-                            //如果有下一步骤编号这个需要的参数;比如设置下一步的可执行人
-                            if (model.ContainProperty("NextStepId"))
+                            if (model.ContainProperty(_nextStepIdPropName))
                             {
                                 if (isHold)
                                 {
@@ -178,18 +193,18 @@ namespace InternalControl.Business
                                 //确实有下一步步骤id传回,则传入这个参数;
                                 if (NextStepId > 0)
                                 {
-                                    model.SetValueByPropertyName("NextStepId", NextStepId);
+                                    model.SetValueByPropertyName(_nextStepIdPropName, NextStepId);
                                 }
                                 else
                                 {
                                     throw new Exception("生成下一步骤失败");
                                 }
+                                await dbForTransaction.ExecuteAsync(
+                                    model.Name,
+                                    model.Parameter,
+                                    transaction,
+                                    commandType: CommandType.StoredProcedure);
                             }
-                            await dbForTransaction.ExecuteAsync(
-                                model.Name,
-                                model.Parameter,
-                                transaction,
-                                commandType: CommandType.StoredProcedure);
                         }
                         transaction.Commit();
 

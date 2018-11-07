@@ -57,7 +57,6 @@ namespace InternalControl.Models
 		/// 申报技术要求
 		/// </summary>
         [DisplayName("申报技术要求")]
-        [MaxLength(1000,ErrorMessage ="DeclareTechnicalRequirements不能超过[500]字")]
 		public string DeclareTechnicalRequirements { get; set; }
         /// <summary>
 		/// 申报数量,默认1

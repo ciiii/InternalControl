@@ -285,6 +285,7 @@ namespace InternalControl.Controllers
         async public Task PassExecuteProjectOfGetRunMode([FromBody]StepDone<ExecuteProjectOfGetRunMode> stepDone)
         {
             stepDone.Data.CreatorId = CurrentUser.Id;
+
             var spList = new List<PredefindedSPStructure>();
             spList.AddItem(
                 new SPExecuteProjectOfGetRunModeMerge()
@@ -292,23 +293,30 @@ namespace InternalControl.Controllers
                     List = stepDone.Data.ToDataTable(),
                 });
 
-            //暂时放到[FNIsEmployeeCanOperateStep]去做了;
+            //await Db.ExecuteSpAsync(
+            //    new SPExecuteProjectOfGetRunModeMerge()
+            //    {
+            //        List = stepDone.Data.ToDataTable(),
+            //    });
+            //var spList = new List<PredefindedSPStructure>();
+
+            #region 暂时放到[FNIsEmployeeCanOperateStep]去做了;
             ////TODO:日后考虑移到sp
             //var executeProject = await Db.GetModelByIdSpAsync<ExecuteProject>(stepDone.Data.Id);
-
-            ////如果是自主采购or非集采,则指定执行人为申报相关人
+            //如果是自主采购or非集采,则指定执行人为申报相关人
             //if (stepDone.Data.ExecutionModeId == 1 || !executeProject.ISCenterPurchase)
             //{
             //    var listOfPackageOfExecute = await Db.GetListSpAsync<VPackageOfExcuteBudget, PackageOfExecuteProjectFilter>(
             //        new PackageOfExecuteProjectFilter() { WhereInExecuteProjectId = stepDone.Data.Id.ToString() }
             //        );
-
             //    spList.AddItem(new SPStepAssignedEmployeeAdd()
             //    {
             //        //NextStepId
             //        EmpIdList = listOfPackageOfExecute.Select(i => i.DeclareCreatorId).ToPredefindedKeyFieldsList().ToDataTable()
             //    });
-            //}
+            //} 
+            #endregion
+
             await MyWorkFlowBusiness.DoneStep(
                 stepDone.ToSimple((int)StepState.Forward),
                 CurrentUser.Id,
@@ -345,7 +353,7 @@ namespace InternalControl.Controllers
                 CurrentUser.Id,
                 spList,
                 isHold || stepDone.IsHold);
-
+             
             //如果全部结束了,返回true,方便前台跳转/刷新
             return !isHold;
         }

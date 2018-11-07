@@ -444,7 +444,7 @@
         </member>
         <member name="M:InternalControl.Controllers.BudgetProjectController.PassBudgetProjectOfExecute(InternalControl.Models.StepDone{InternalControl.Infrastucture.PredefindedModelList{InternalControl.Models.BudgetProjectOfExecute,InternalControl.Models.PackageOfExcuteBudget}})">
             <summary>
-            预算执行
+            预算执行,不允许暂存;
             </summary>
             <param name="data"></param>
             <returns></returns>
@@ -5156,7 +5156,12 @@
             付款方式
             </summary>
         </member>
-        <member name="P:InternalControl.Models.PackageOfRejected.ProjectOverview">
+        <member name="P:InternalControl.Models.PackageOfRejected.TechnicalRequirementsAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.PackageOfRejected.TechnicalRequirements">
             <summary>
             项目概况
             </summary>
@@ -5486,9 +5491,14 @@
             付款方式
             </summary>
         </member>
-        <member name="P:InternalControl.Models.PackageOfTechnicalConfirmation.ProjectOverview">
+        <member name="P:InternalControl.Models.PackageOfTechnicalConfirmation.Attachment">
             <summary>
-            项目概况
+            技术参数附件地址
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.PackageOfTechnicalConfirmation.TechnicalRequirements">
+            <summary>
+            新的技术参数
             </summary>
         </member>
         <member name="P:InternalControl.Models.PackageOfTechnicalConfirmation.GradingStandard">
@@ -6161,6 +6171,16 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VBudgetProject.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProject.ExecutePurchaseMethod">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VBudgetProject.CountOfPackage">
             <summary>
             
@@ -6291,6 +6311,16 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.ExecutePurchaseMethod">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VBudgetProjectNotInFlow.CountOfPackage">
             <summary>
             
@@ -6417,6 +6447,16 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VBudgetProjectNotInFlowAndCanCombine.ExecutePurchaseMethod">
             <summary>
             
             </summary>
@@ -7871,6 +7911,26 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VPackageOfExcuteBudget.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfExcuteBudget.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfExcuteBudget.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfExcuteBudget.ExecutePurchaseMethod">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.VStep">
             <summary>
             VStep[类]
@@ -8082,6 +8142,16 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VTFNBudgetProject.IsFinancialCapital">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNBudgetProject.ExecutePurchaseMethod">
             <summary>
             
             </summary>
@@ -8737,6 +8807,26 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VTFNPackageOfExcuteBudget.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNPackageOfExcuteBudget.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNPackageOfExcuteBudget.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNPackageOfExcuteBudget.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNPackageOfExcuteBudget.ExecutePurchaseMethod">
             <summary>
             
             </summary>

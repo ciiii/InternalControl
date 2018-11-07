@@ -507,7 +507,7 @@ namespace InternalControl.Controllers
         }
 
         /// <summary>
-        /// 预算执行
+        /// 预算执行,不允许暂存;
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -533,7 +533,13 @@ namespace InternalControl.Controllers
             await MyWorkFlowBusiness.DoneStep(
                 stepDone.ToSimple((int)StepState.Forward),
                 CurrentUser.Id,
-                spList, stepDone.IsHold);
+                spList, false);
+
+            //18-11-6 暂时取消暂存
+            //await MyWorkFlowBusiness.DoneStep(
+            //    stepDone.ToSimple((int)StepState.Forward),
+            //    CurrentUser.Id,
+            //    spList, stepDone.IsHold);
         }
 
     }

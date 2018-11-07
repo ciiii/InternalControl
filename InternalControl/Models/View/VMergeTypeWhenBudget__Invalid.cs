@@ -15,7 +15,6 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
-		//public string MergeTypeWhenBudget { get; set; }
         public string MergeTypeWhenBudget { get; set; }
         
           

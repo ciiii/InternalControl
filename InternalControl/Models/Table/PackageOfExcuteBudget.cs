@@ -22,7 +22,6 @@ namespace InternalControl.Models
 		/// 论证技术要求
 		/// </summary>
         [DisplayName("论证技术要求")]
-        [MaxLength(1000,ErrorMessage ="ExecuteTechnicalRequirements不能超过[500]字")]
 		public string ExecuteTechnicalRequirements { get; set; }
         /// <summary>
 		/// 包号

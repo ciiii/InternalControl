@@ -51,7 +51,6 @@ namespace InternalControl.Models
 		/// 申报技术要求
 		/// </summary>
         [DisplayName("申报技术要求")]
-        [MaxLength(1000,ErrorMessage ="DeclareTechnicalRequirements不能超过[500]字")]
 		public string DeclareTechnicalRequirements { get; set; }
         /// <summary>
 		/// 申报数量,默认1
@@ -82,7 +81,6 @@ namespace InternalControl.Models
 		/// 论证技术要求
 		/// </summary>
         [DisplayName("论证技术要求")]
-        [MaxLength(1000,ErrorMessage ="BudgetTechnicalRequirements不能超过[500]字")]
 		public string BudgetTechnicalRequirements { get; set; }
         /// <summary>
 		/// 论证数量
@@ -108,7 +106,6 @@ namespace InternalControl.Models
 		/// 执行技术要求
 		/// </summary>
         [DisplayName("执行技术要求")]
-        [MaxLength(1000,ErrorMessage ="ExecuteTechnicalRequirements不能超过[500]字")]
 		public string ExecuteTechnicalRequirements { get; set; }
         /// <summary>
 		/// 执行数量
@@ -135,7 +132,8 @@ namespace InternalControl.Models
 		/// 招标方式
 		/// </summary>
         [DisplayName("招标方式")]
-		public int? BiddingMethod { get; set; }
+        [MaxLength(50,ErrorMessage ="BiddingMethod不能超过[25]字")]
+		public string BiddingMethod { get; set; }
         /// <summary>
 		/// 是否接受联合体
 		/// </summary>
@@ -192,11 +190,15 @@ namespace InternalControl.Models
         [MaxLength(1000,ErrorMessage ="PaymentMethod不能超过[500]字")]
 		public string PaymentMethod { get; set; }
         /// <summary>
+		/// 
+		/// </summary>
+        [MaxLength(200,ErrorMessage ="TechnicalRequirementsAttachment不能超过[100]字")]
+		public string TechnicalRequirementsAttachment { get; set; }
+        /// <summary>
 		/// 项目概况
 		/// </summary>
         [DisplayName("项目概况")]
-        [MaxLength(200,ErrorMessage ="ProjectOverview不能超过[100]字")]
-		public string ProjectOverview { get; set; }
+		public string TechnicalRequirements { get; set; }
         /// <summary>
 		/// 评分标准
 		/// </summary>

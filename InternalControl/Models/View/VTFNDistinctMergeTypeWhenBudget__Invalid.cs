@@ -15,12 +15,10 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
-		//public string MergeTypeWhenBudget { get; set; }
         public string MergeTypeWhenBudget { get; set; }
         /// <summary>
 		/// 
 		/// </summary>
-		//public int CountOfBudgetProject { get; set; }
         public int? CountOfBudgetProject { get; set; }
         
           
