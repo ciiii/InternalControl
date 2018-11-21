@@ -49,6 +49,24 @@ namespace InternalControl.Models
         [MaxLength(200,ErrorMessage ="ResultAnnouncementScreenshot不能超过[100]字")]
 		public string ResultAnnouncementScreenshot { get; set; }
         /// <summary>
+		/// 采购小组
+		/// </summary>
+        [DisplayName("采购小组")]
+        [MaxLength(1000,ErrorMessage ="ProcurementTeam不能超过[500]字")]
+		public string ProcurementTeam { get; set; }
+        /// <summary>
+		/// 监督人员
+		/// </summary>
+        [DisplayName("监督人员")]
+        [MaxLength(1000,ErrorMessage ="Inspectors不能超过[500]字")]
+		public string Inspectors { get; set; }
+        /// <summary>
+		/// 采购流程文件
+		/// </summary>
+        [DisplayName("采购流程文件")]
+        [MaxLength(1000,ErrorMessage ="ProcurementProcessDocument不能超过[500]字")]
+		public string ProcurementProcessDocument { get; set; }
+        /// <summary>
 		/// CreatorId
 		/// </summary>
         [DisplayName("CreatorId")]

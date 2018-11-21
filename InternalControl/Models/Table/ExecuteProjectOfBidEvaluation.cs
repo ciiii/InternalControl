@@ -22,21 +22,18 @@ namespace InternalControl.Models
 		/// 开标邀请函,附件
 		/// </summary>
         [DisplayName("开标邀请函,附件")]
-        [Required(ErrorMessage ="请提供[BidOpeningInvitation]")]
         [MaxLength(200,ErrorMessage ="BidOpeningInvitation不能超过[100]字")]
 		public string BidOpeningInvitation { get; set; }
         /// <summary>
 		/// 介绍信,附件
 		/// </summary>
         [DisplayName("介绍信,附件")]
-        [Required(ErrorMessage ="请提供[IntroductionLetter]")]
         [MaxLength(200,ErrorMessage ="IntroductionLetter不能超过[100]字")]
 		public string IntroductionLetter { get; set; }
         /// <summary>
 		/// 采购人代表委托书
 		/// </summary>
         [DisplayName("采购人代表委托书")]
-        [Required(ErrorMessage ="请提供[PowerOfAttorney]")]
         [MaxLength(200,ErrorMessage ="PowerOfAttorney不能超过[100]字")]
 		public string PowerOfAttorney { get; set; }
         /// <summary>
@@ -64,6 +61,17 @@ namespace InternalControl.Models
         [Required(ErrorMessage ="请提供[PlaceOfGetExperts]")]
         [MaxLength(200,ErrorMessage ="PlaceOfGetExperts不能超过[100]字")]
 		public string PlaceOfGetExperts { get; set; }
+        /// <summary>
+		/// 专家评审时间
+		/// </summary>
+        [DisplayName("专家评审时间")]
+		public DateTime? TimeOfExpertReview { get; set; }
+        /// <summary>
+		/// 专家评审地点
+		/// </summary>
+        [DisplayName("专家评审地点")]
+        [MaxLength(200,ErrorMessage ="PlaceOfExpertReview不能超过[100]字")]
+		public string PlaceOfExpertReview { get; set; }
         /// <summary>
 		/// 开标时间
 		/// </summary>

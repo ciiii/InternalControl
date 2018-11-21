@@ -170,7 +170,8 @@
                     <div class="form-group col-md-11 col-sm-11">
                         <select class="form-control budget-list" ms-on-change="changeBudgetList($event)"
                                 ms-duplex="@BudgetId">
-                            <option ms-for="el in @budgetList" ms-attr="{'value':el.Id}">{{el.Name}}</option>
+                            <option ms-for="el in @budgetList" ms-attr="{'value':el.Id}" ms-if="@budgetList.length!=0">{{el.Name}}</option>
+                            <option ms-for="el in @budgetList" ms-attr="{'value':el.Id}" ms-if="@budgetList.length==0">无预算类型</option>
                         </select>
                     </div>
                     <ul class="col-md-12 col-sm-12">
@@ -208,7 +209,7 @@
                 <div class="col-md-4 col-sm-4 after">
                     <p class="small-title"><img src="../../images/budget-ranking-end.png"> 后三</p>
                     <ul>
-                        <li ms-for="el in @ranking.TopNotIn">
+                        <li ms-for="el in @ranking.TopNotIn.reverse()">
                             {{el.DeclareDepartmentName}}：
                             <span>{{el.CountOfPackageOfBudgetProject}}</span>个项目
                             <span>{{el.TotolBudgetAmountByDempartment|currency}}</span>预算

@@ -43,6 +43,10 @@ var Code = {
     //增改专家
     URL_POST_ADD_OR_EDIT_EXPERT: getApiHost + '/BaseInfo/AddOrUpdateExpert',
 
+    //随机获取满足条件的N个专家
+    URL_GET_RANDOM_EXPERT_LIST: getApiHost + '/BaseInfo/GetRandomExpertList',
+
+
 
     //获取模板文件
     URL_GET_TEMPLATE_FILE_LIST: getApiHost + '/BaseInfo/GetTemplateFileList',
@@ -191,6 +195,46 @@ var Code = {
 
     //技术确认如果全部包的技术确认都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
     URL_POST_PASS_PACKAGE_OF_TECHNICAL_CONFIRMATION: getApiHost + '/ExecuteProject/PassPackageOfTechnicalConfirmation',
+
+    //执行论证通过,IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_EXECUTE_PROJECT_OF_ARGUMENT: getApiHost + '/ExecuteProject/PassExecuteProjectOfArgument',
+
+    //采购确认通过,IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_EXECUTE_PROJECT_OF_CONFIRM: getApiHost + '/ExecuteProject/PassExecuteProjectOfConfirm',
+
+    //采购邀请,IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_EXECUTE_PROJECT_OF_INVITAION: getApiHost + '/ExecuteProject/PassExecuteProjectOfInvitation',
+
+    //开标评标
+    URL_POST_PASS_EXECUTE_PROJECT_OF_BID_EVALUATION: getApiHost + '/ExecuteProject/PassExecuteProjectOfBidEvaluation',
+
+    //抽取专家,Id是执行项目的id,数组是专家id构成的数组
+    URL_POST_PASS_EXECUTE_PROJECT_EXPERS: getApiHost + '/ExecuteProject/PassExecuteProjectExperts',
+
+    //结果信息
+    URL_POST_PASS_EXECUTE_PROJECT_OF_RESULT_NOTICE: getApiHost + '/ExecuteProject/PassExecuteProjectOfResultNotice',
+
+    //拟定合同,如果全部包的拟定合同都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_PACKAGE_OF_DRAW_UP_CONTRACT: getApiHost + '/ExecuteProject/PassPackageOfDrawUpContract',
+
+    //合同签订,如果全部包的合同签订都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_PACKAGE_OF_CONTRACT_SIGNING: getApiHost + '/ExecuteProject/PassPackageOfContractSigning',
+
+    //合同公示
+    URL_POST_PASS_PACKAGE_OF_CONTRACT_PUBLICITY: getApiHost + '/ExecuteProject/PassPackageOfContractPublicity',
+
+    //履约验收,如果全部包的合同签订都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
+    URL_POST_PASS_PACKAGE_OF_ACCEPTAN_CHECK_AND_ACCEPTANCE: getApiHost + '/ExecuteProject/PassPackageOfAcceptanceCheckAndAcceptance',
+
+    //增改质疑
+    URL_POST_QUESTOPM_EXECUTE_PROJECT: getApiHost + '/ExecuteProject/QuestionExecuteProject',
+
+    //新增更正,注意没有修改和删除;
+    URL_POST_ADD_EXECUTE_PROJECT_OF_CORRECTION: getApiHost + '/ExecuteProject/AddExecuteProjectOfCorrection',
+
+    //根据更正id,获取这个更正的详情
+    URL_GET_EXECUTE_PROJECT_OF_CORRECTION_BY_ID: getApiHost + '/ExecuteProject/GetExecuteProjectOfCorrectionById',
+
 
 
 

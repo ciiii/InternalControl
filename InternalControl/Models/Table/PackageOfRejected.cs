@@ -230,6 +230,11 @@ namespace InternalControl.Models
         [MaxLength(1000,ErrorMessage ="ExtractSupplierLibraryNname不能超过[500]字")]
 		public string ExtractSupplierLibraryNname { get; set; }
         /// <summary>
+		/// 是否满足报名家数
+		/// </summary>
+        [DisplayName("是否满足报名家数")]
+		public bool? IsSatisfiedBidCompanyNumber { get; set; }
+        /// <summary>
 		/// 投标报名家数
 		/// </summary>
         [DisplayName("投标报名家数")]

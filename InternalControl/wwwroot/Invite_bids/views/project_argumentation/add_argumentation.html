@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">技术清单：</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-12">
                         <div class="item" ms-if="@model.BudgetProject.IsCenterPurchase&&@isGoods">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
@@ -24,6 +24,7 @@
                                     <tr>
                                         <th width="50">序号</th>
                                         <th>单项名称</th>
+                                        <th>申报部门</th>
                                         <th>技术要求</th>
                                         <th>数量</th>
                                         <th>单价(元)</th>
@@ -34,6 +35,7 @@
                                     <tr ms-for="($index,el) in @model.Package">
                                         <td>{{$index+1}}</td>
                                         <td>{{el.ItemName}}</td>
+                                        <td>{{el.DeclareDepartmentName}}</td>
                                         <td>
                                             <textarea class="form-control" rows="2"
                                                       ms-duplex="el.DeclareTechnicalRequirements"></textarea>

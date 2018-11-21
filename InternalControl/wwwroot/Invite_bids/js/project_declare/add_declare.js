@@ -56,7 +56,7 @@ $(function () {
                             ExecuteProjectId: 0,
                             ItemId: 0,
                             ItemName: '请选择品目',
-                            IsImported: true,
+                            IsImported: false,
                             DeclareTechnicalRequirements: '',
                             DeclareNumber: 1,
                             DeclareUnitPrice: 0,

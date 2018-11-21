@@ -247,8 +247,15 @@ namespace InternalControl.Controllers
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet]
-        async public Task<IEnumerable<VExpert>> GetRandomExpertList(int number, ExpertFilter filter)
+        async public Task<IEnumerable<VExpert>> GetRandomExpertList([Required]int number, ExpertFilter filter)
         {
+            var temp = filter.WhereNotInCompany;
+            if (!string.IsNullOrEmpty(temp))
+            {
+                temp = string.Join(",", temp.Split(",").Select(i => $"'{i}'"));
+                filter.WhereNotInCompany = temp;
+            }
+
             var pagingResult = await Db.GetPagingListSpAsync<VExpert, ExpertFilter>(new Paging()
             {
                 Index = 1,

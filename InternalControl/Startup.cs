@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using InternalControl.Infrastucture;
 using log4net;
 using log4net.Config;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
@@ -50,10 +52,40 @@ namespace InternalControl
         {
             services.AddSingleton<ILog>(p =>
             {
-                var repository = LogManager.CreateRepository("ScientificResearch");
+                var repository = LogManager.CreateRepository("InternalControl");
                 XmlConfigurator.Configure(repository, new FileInfo("log4net.xml"));
                 return LogManager.GetLogger(repository.Name, repository.Name);
             });
+
+            //test jwt 1/4
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        //// 将下面两个参数设置为false，可以不验证Issuer和Audience，但是不建议这样做。
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+
+                        //// 是否要求Token的Claims中必须包含Expires
+                        RequireExpirationTime = false,
+                        //// 是否验证Token有效期，使用当前时间与Token的Claims中的NotBefore和Expires对比
+                        ValidateLifetime = false,
+                        ValidIssuer = "我们网站的域名",
+                        ValidAudience = "某个前端的域名",
+
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecurityKey"])),
+
+                        // RequireSignedTokens = true,
+                        // SaveSigninToken = false,
+                        // ValidateActor = false,
+                        // ValidateIssuerSigningKey = false,
+                        // 允许的服务器时间偏移量
+                        // ClockSkew = TimeSpan.FromSeconds(300),
+                    };
+                });
+
 
             services.AddResponseCompression();
 
@@ -75,10 +107,22 @@ namespace InternalControl
             {
                 c.OperationFilter<SwaggerFileUploadFilter>();//增加文件过滤处理
 
+                //var security = new Dictionary<string, IEnumerable<string>> { { "Bearer", new string[] { } }, };
+                //c.AddSecurityRequirement(security);//添加一个必须的全局安全信息，和AddSecurityDefinition方法指定的方案名称要一致，这里是Bearer。
+
+                //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                //{
+                //    Description = "权限认证(数据将在请求头中进行传输) 参数结构: \"Authorization: Bearer {token}\"",
+                //    Name = "Authorization",//jwt默认的参数名称
+                //    In = "header",//jwt默认存放Authorization信息的位置(请求头中)
+                //    Type = "apiKey"
+                //});//Authorization的设置
+
                 c.IgnoreObsoleteActions();
                 c.IgnoreObsoleteProperties();
 
                 c.SwaggerDoc("v1", new Info { Title = "InternalControle API", Version = "v1" });
+
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "InternalControl.xml");
                 c.IncludeXmlComments(filePath);
             });
@@ -139,7 +183,7 @@ namespace InternalControl
                         $"FIXME:data参数:{bodyStr}\r\n" +
                         $"FIXME:时间{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}——{ex.GetType().ToString()}：{ex.Message}\r\n" +
                         $"FIXME:堆栈信息：\r\n" +
-                        $"{ex.StackTrace}\r\n");
+                        $"{ex.StackTrace}\r\n",ex);
 
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(new { error = ex.Message }));
                 }
@@ -174,6 +218,9 @@ namespace InternalControl
                     await next();
                 }
             });
+
+            //test jwt 2/4
+            app.UseAuthentication();
 
             app.UseMvc();
 

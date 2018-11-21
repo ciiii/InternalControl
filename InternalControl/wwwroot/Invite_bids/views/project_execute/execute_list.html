@@ -160,7 +160,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">
+                        <tr ms-for="el in @model" ms-if="@loaded && @model&& @model.length != 0">
                             <td class="checkbox-box">
                                 <div class="checkbox">
                                     <label>
@@ -182,12 +182,12 @@
                                     <li class="bs-tooltip btn-details">
                                         <a ms-if="el.ExecuteProject.IsCanOperate"
                                            ms-attr="{'href':'edit_acceptance_check_and_acceptance.html?projectId='+@el.ExecuteProject.Id}">
-                                            <span ms-if="el.ExecuteProject.FlowTemplateId">{{el.ExecuteProject.LastStepStateName}}</span>
+                                            <span ms-if="el.ExecuteProject.FlowTemplateId" ms-text="el.ExecuteProject.LastStepStateName"></span>
                                             <span ms-if="!el.ExecuteProject.FlowTemplateId">开始实施</span>
                                         </a>
                                         <a ms-if="!el.ExecuteProject.IsCanOperate"
                                            ms-attr="{'href':'edit_acceptance_check_and_acceptance.html?projectId='+@el.ExecuteProject.Id}">
-                                            <span ms-if="el.ExecuteProject.FlowTemplateId">{{el.ExecuteProject.LastStepStateName}}</span>
+                                            <span ms-if="el.ExecuteProject.FlowTemplateId" ms-text="el.ExecuteProject.LastStepStateName"></span>
                                         </a>
                                         <span ms-if="!el.ExecuteProject.IsCanOperate&&!el.ExecuteProject.FlowTemplateId">开始实施</span>
                                     </li>

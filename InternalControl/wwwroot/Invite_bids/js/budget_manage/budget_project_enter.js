@@ -102,7 +102,7 @@ $(function () {
                         vm.budgetList = obj.reverse();
                         for (var i = 0; i < obj.length; i++) {
                             if (obj[i].BudgetTypeId == 1) {
-                                vm.allBudget = obj[i].BudgetAmount;
+                                vm.allBudget = obj[i].BudgetAmount - obj[i].TotleAlreadySpent;
                                 vm.BudgetId = obj[i].Id
                             }
                         }
@@ -123,7 +123,7 @@ $(function () {
                     if (success) {
                         vm.ranking = obj;
                     } else {
-                        console.info('获取当前归口部门的某年度的预算失败！')
+                        console.info('获取排名失败！')
                         console.info(strErro)
                     }
                 })

@@ -30,6 +30,12 @@ namespace InternalControl.Models
         [DisplayName("专家编号")]
         [Required(ErrorMessage ="请提供[ExpertId]")]
 		public int ExpertId { get; set; }
+        /// <summary>
+		/// 是否备用
+		/// </summary>
+        [DisplayName("是否备用")]
+        [Required(ErrorMessage ="请提供[IsBackup]")]
+		public int IsBackup { get; set; }
         
         
         #endregion

@@ -19,6 +19,10 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
+        public int IsBackup { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
         public int Id { get; set; }
         /// <summary>
 		/// 

@@ -327,8 +327,10 @@ namespace InternalControl.Controllers
                 throw new Exception("没有选中项目");
 
             //后台指定归口部门的过滤条件;
-            var filterExtend = new BudgetProjectExtendFilter();
-            filterExtend.WhereInId = listOfId.ToStringIdWithSpacer();
+            var filterExtend = new BudgetProjectExtendFilter
+            {
+                WhereInId = listOfId.ToStringIdWithSpacer()
+            };
 
             var list = (await Db.GetListSpAsync<VBudgetProject, BudgetProjectExtendFilter>(filterExtend)).ToList();
             var listOfExportWhenBudgetProjectOfEnter = new List<ExportWhenBudgetProjectOfEnter>();
@@ -411,7 +413,8 @@ namespace InternalControl.Controllers
             var filterExtend = Tool.ModelToModel<BudgetProjectExtendFilter, BudgetProjectFilter>(filter);
             filterExtend.State = (int)StepState.Stay;
             filterExtend.LastStepTemplateId = Config.GetValue<int>("StepTemplateId:BudgetProjectOfEnter");
-            var budgetProjectList = await Db.GetListSpAsync<VTFNBudgetProject, BudgetProjectExtendFilter>(filterExtend);
+            filterExtend.RelevantDepartmentId = CurrentUser.DepartmentId;
+            var budgetProjectList = await Db.GetListSpAsync<VTFNBudgetProject, BudgetProjectExtendFilter>(filterExtend, $"TFNBudgetProject({CurrentUser.Id})");
             var listOfId = budgetProjectList.Select(i => i.Id);
 
 

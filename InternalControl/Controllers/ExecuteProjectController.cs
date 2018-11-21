@@ -145,7 +145,9 @@ namespace InternalControl.Controllers
                            //StepTemplateId = joinedItem?.Id,  没有发生的暂时取不到这个玩意儿
                            StepTemplateName = item,
                            IsPassed = joinedItem?.Name == null ? false : true,
-                           ISCurrentStepTemplate = currentStepTemplateId == joinedItem?.Id,
+                           //当state=0时,才有当前步骤
+                           ISCurrentStepTemplate = (executeProjectBaseInfo.State== null ||  executeProjectBaseInfo.State == (int)StepState.Stay) ?
+                                                   (currentStepTemplateId == joinedItem?.Id) : false,
                            //如果此步骤是前步骤,且当前步骤为可执行(如果当前步骤是否可执行IsCanOperate为null,则说明是还没开始实施,则判断当前 登录人是否为可执行项目的归口部门),则为可执行的状态;
                            IsCanOperate = currentStepTemplateId == joinedItem?.Id &&
                                         (executeProjectBaseInfo.IsCanOperate ??
@@ -250,7 +252,7 @@ namespace InternalControl.Controllers
                     PackageOfAcceptanceCheckAndAcceptance = await Db.GetListSpAsync<PackageOfAcceptanceCheckAndAcceptance, PackageFilter>(packageFilter)
 
                 },
-                RejectedPackage = await Db.GetListSpAsync<PackageOfRejected, PackageFilter>(packageFilterWithExecuteProjectId),
+                RejectedPackage = await Db.GetListSpAsync<VPackageOfRejected, PackageFilter>(packageFilterWithExecuteProjectId),
                 Menu = ListOfMenu,
                 //CurrentStepTemplateId = currentStepTemplateId,
 
@@ -353,7 +355,7 @@ namespace InternalControl.Controllers
                 CurrentUser.Id,
                 spList,
                 isHold || stepDone.IsHold);
-             
+
             //如果全部结束了,返回true,方便前台跳转/刷新
             return !isHold;
         }
@@ -460,14 +462,15 @@ namespace InternalControl.Controllers
         /// <param name="stepDone"></param>
         /// <returns></returns>
         [HttpPost]
-        async public Task PassExecuteProjectExperts([FromBody]StepDone<PredefindedIdList<int>> stepDone)
+        async public Task PassExecuteProjectExperts([FromBody]StepDone<EMExecuteProjectExperts> stepDone)
         {
             var spList = new List<PredefindedSPStructure>();
             spList.AddItem(
                 new SPExecuteProjectExpertsMerge()
                 {
-                    ExecuteProjectId = stepDone.Data.Id,
-                    IdListOfExecuteProjectExperts = stepDone.Data.List.ToPredefindedKeyFieldsList().ToDataTable()
+                    ExecuteProjectId = stepDone.Data.ExecuteProjectId,
+                    IdListOfExecuteProjectExperts = stepDone.Data.IdListOfExecuteProjectExperts.ToPredefindedKeyFieldsList().ToDataTable(),
+                    BackupIdListOfExecuteProjectExperts = stepDone.Data.BackupIdListOfExecuteProjectExperts.ToPredefindedKeyFieldsList().ToDataTable()
                 });
 
             await MyWorkFlowBusiness.DoneStep(
@@ -490,15 +493,28 @@ namespace InternalControl.Controllers
             stepDone.Data.ModelOfExecuteProjectOfResultNotice.CreatorId = CurrentUser.Id;
 
             //是否在这次操作后,处理完这个项目所有包的结果信息;
-            var listOfId = stepDone.Data.ListOfPackageOfResultNotice.Select(i => i.Id).Union(stepDone.Data.ListOfRejectPackageId);
-            var result = await Db.QuerySpAsync<SPIsPackageOfResultNoticeWillDone, bool>(new SPIsPackageOfResultNoticeWillDone()
+            //var listOfId = stepDone.Data.ListOfPackageOfResultNotice.Select(i => i.Id).Union(stepDone.Data.ListOfRejectPackageId);
+            var isAllWillBeDone = (await Db.QuerySpAsync<SPIsPackageOfResultNoticeWillDone, bool>(new SPIsPackageOfResultNoticeWillDone()
             {
-                IdList = listOfId.ToPredefindedKeyFieldsList().ToDataTable()
-            });
-            //返回true表示这次所有的包都会被处理,项目应该推进;返回false表示还没有完全结束,则需要hold
-            var isAllPackageWillbeDone = result.FirstOrDefault();
+                IdList = stepDone.Data.ListOfPackageOfResultNotice.Select(i => i.Id).ToPredefindedKeyFieldsList().ToDataTable()
+            })).FirstOrDefault();
+
+            var isAllWillBeRejected = (await Db.QuerySpAsync<SPIsPackageOfResultNoticeWillDone, bool>(new SPIsPackageOfResultNoticeWillDone()
+            {
+                IdList = stepDone.Data.ListOfRejectPackageId.ToPredefindedKeyFieldsList().ToDataTable()
+            })).FirstOrDefault();
+
+            bool isHold = (!isAllWillBeDone) || isAllWillBeRejected;
 
             var spList = new List<PredefindedSPStructure>();
+
+            //2018-11-16 所有的包都可以继续增改
+            spList.AddItem(
+                    new SPExecuteProjectOfResultNoticeMerge()
+                    {
+                        List = stepDone.Data.ModelOfExecuteProjectOfResultNotice.ToDataTable(),
+                        ListOfPackageOfResultNotice = stepDone.Data.ListOfPackageOfResultNotice.ToDataTable()
+                    });
 
             //如果有废包
             if (stepDone.Data.ListOfRejectPackageId.Count() > 0)
@@ -512,26 +528,27 @@ namespace InternalControl.Controllers
                });
             }
 
-            //如果有正常包.则完成这个步骤
-            //如果没有正常包,则意味着所有的包都被废了,也会造成项目废标.这里继续执行只会提示错误;
-            if (stepDone.Data.ListOfPackageOfResultNotice.Count() > 0)
-            {
-                spList.AddItem(
-                    new SPExecuteProjectOfResultNoticeMerge()
-                    {
-                        List = stepDone.Data.ModelOfExecuteProjectOfResultNotice.ToDataTable(),
-                        ListOfPackageOfResultNotice = stepDone.Data.ListOfPackageOfResultNotice.ToDataTable()
-                    });
-            }
+            //2018-11-16 所有的包都可以继续增改
+            ////如果有正常包.则完成这个步骤
+            ////如果没有正常包,则意味着所有的包都被废了,也会造成项目废标.这里继续执行只会提示错误;
+            //if (stepDone.Data.ListOfPackageOfResultNotice.Count() > 0)
+            //{
+            //    spList.AddItem(
+            //        new SPExecuteProjectOfResultNoticeMerge()
+            //        {
+            //            List = stepDone.Data.ModelOfExecuteProjectOfResultNotice.ToDataTable(),
+            //            ListOfPackageOfResultNotice = stepDone.Data.ListOfPackageOfResultNotice.ToDataTable()
+            //        });
+            //}
 
             await MyWorkFlowBusiness.DoneStep(
                stepDone.ToSimple((int)StepState.Forward),
                CurrentUser.Id,
                spList,
-               !isAllPackageWillbeDone || stepDone.IsHold);
+               isHold);
 
             //项目是否被推进了;
-            return isAllPackageWillbeDone;
+            return isHold;
         }
 
         //2018-10-13 为结果信息增加废包前;

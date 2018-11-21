@@ -576,7 +576,7 @@
             <param name="stepDone"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.ExecuteProjectController.PassExecuteProjectExperts(InternalControl.Models.StepDone{InternalControl.Infrastucture.PredefindedIdList{System.Int32}})">
+        <member name="M:InternalControl.Controllers.ExecuteProjectController.PassExecuteProjectExperts(InternalControl.Models.StepDone{InternalControl.Models.EMExecuteProjectExperts})">
             <summary>
             抽取专家,Id是执行项目的id,数组是专家id构成的数组
             </summary>
@@ -926,7 +926,7 @@
         </member>
         <member name="M:InternalControl.Infrastucture.PredefinedSpExtention.ToStringIdWithSpacer(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
             <summary>
-            根据idlist得到一个用逗号分隔的字符串,count=0则返回"0"
+            根据idlist得到一个用逗号分隔的字符串,count=0则返回"0",其中每一项都是数字;
             </summary>
             <param name="idList"></param>
             <param name="Spacer"></param>
@@ -1239,11 +1239,6 @@
             模糊:姓名
             </summary>
         </member>
-        <member name="P:InternalControl.Models.ExpertFilter.LikeItemKey">
-            <summary>
-            模糊:专业品目编号key
-            </summary>
-        </member>
         <member name="P:InternalControl.Models.ExpertFilter.LikeItemName">
             <summary>
             模糊:专业品目名称
@@ -1257,6 +1252,21 @@
         <member name="P:InternalControl.Models.ExpertFilter.IsOurCompany">
             <summary>
             是否本单位
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExpertFilter.WhereNotInDepartmentId">
+            <summary>
+            回避的部门id,用逗号分隔数字
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExpertFilter.WhereNotInId">
+            <summary>
+            回避的专家id,用逗号分隔数字
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExpertFilter.WhereNotInCompany">
+            <summary>
+            回避的单位,用逗号分隔的单位名称
             </summary>
         </member>
         <member name="T:InternalControl.Models.ItemFilter">
@@ -1620,7 +1630,7 @@
         </member>
         <member name="P:InternalControl.Models.ModelOfPassExecuteProjectOfResultNotice.ListOfPackageOfResultNotice">
             <summary>
-            消息结果成功的包的信息
+            消息结果包的信息
             </summary>
         </member>
         <member name="P:InternalControl.Models.ModelOfPassExecuteProjectOfResultNotice.ListOfRejectPackageId">
@@ -1766,6 +1776,26 @@
         <member name="P:InternalControl.Models.PackageOfResultNoticeOfCorrectionFilter.ExecuteProjectOfCorrectionId">
             <summary>
             归属的更正id
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.EMExecuteProjectExperts">
+            <summary>
+            增改专家抽取
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.EMExecuteProjectExperts.ExecuteProjectId">
+            <summary>
+            执行项目id
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.EMExecuteProjectExperts.IdListOfExecuteProjectExperts">
+            <summary>
+            正选专家id列表
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.EMExecuteProjectExperts.BackupIdListOfExecuteProjectExperts">
+            <summary>
+            备选专家id列表
             </summary>
         </member>
         <member name="T:InternalControl.Models.NoticeFilter">
@@ -2237,6 +2267,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.SPExecuteProjectExpertsMerge.IdListOfExecuteProjectExperts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPExecuteProjectExpertsMerge.BackupIdListOfExecuteProjectExperts">
             <summary>
             
             </summary>
@@ -3631,6 +3666,11 @@
             专家编号
             </summary>
         </member>
+        <member name="P:InternalControl.Models.ExecuteProjectExperts.IsBackup">
+            <summary>
+            是否备用
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.ExecuteProjectOfArgument">
             <summary>
             ExecuteProjectOfArgument[330 执行论证   如果采购方式为单一来源,则"是否进行需求论证"文字改为"是否进行单一来源论证"      项目中有分包为进口产品时,需求展示"是否进行进口产品论证"类]
@@ -3784,6 +3824,16 @@
         <member name="P:InternalControl.Models.ExecuteProjectOfBidEvaluation.PlaceOfGetExperts">
             <summary>
             专家抽取地点
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectOfBidEvaluation.TimeOfExpertReview">
+            <summary>
+            专家评审时间
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectOfBidEvaluation.PlaceOfExpertReview">
+            <summary>
+            专家评审地点
             </summary>
         </member>
         <member name="P:InternalControl.Models.ExecuteProjectOfBidEvaluation.BidOpeningDateTime">
@@ -4244,6 +4294,21 @@
         <member name="P:InternalControl.Models.ExecuteProjectOfResultNotice.ResultAnnouncementScreenshot">
             <summary>
             结果公告截图
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectOfResultNotice.ProcurementTeam">
+            <summary>
+            采购小组
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectOfResultNotice.Inspectors">
+            <summary>
+            监督人员
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectOfResultNotice.ProcurementProcessDocument">
+            <summary>
+            采购流程文件
             </summary>
         </member>
         <member name="P:InternalControl.Models.ExecuteProjectOfResultNotice.CreatorId">
@@ -4816,6 +4881,11 @@
             包id
             </summary>
         </member>
+        <member name="P:InternalControl.Models.PackageOfBidEvaluation.IsSatisfiedBidCompanyNumber">
+            <summary>
+            是否满足报名家数
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.PackageOfBidEvaluation.BidCompanyNumber">
             <summary>
             投标报名家数
@@ -5189,6 +5259,11 @@
         <member name="P:InternalControl.Models.PackageOfRejected.ExtractSupplierLibraryNname">
             <summary>
             抽取供应商库名称
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.PackageOfRejected.IsSatisfiedBidCompanyNumber">
+            <summary>
+            是否满足报名家数
             </summary>
         </member>
         <member name="P:InternalControl.Models.PackageOfRejected.BidCompanyNumber">
@@ -6921,6 +6996,11 @@
             
             </summary>
         </member>
+        <member name="P:InternalControl.Models.VExecuteProjectExperts.IsBackup">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.VExecuteProjectExperts.Id">
             <summary>
             
@@ -7927,6 +8007,391 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VPackageOfExcuteBudget.ExecutePurchaseMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.VPackageOfRejected">
+            <summary>
+            VPackageOfRejected[类]
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PackageName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ItemName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareCreatorId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareCreatorName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareDepartmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareDepartmentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExecutePurchaseMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareProjectId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetProjectId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExecuteProjectId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ItemId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.IsImported">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareTechnicalRequirements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.DeclareUnitPrice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.Attachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetTechnicalRequirements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetUnitPrice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.SerialNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExecuteTechnicalRequirements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExecuteNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExecuteUnitPrice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExecuteAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.IsMSE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BiddingMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.IsAcceptCombo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.IsTakeBidBond">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BidBond">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.IsTakePerformanceBond">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PerformanceBond">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.LinkmanName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.LinkmanPhone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.TermOfService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.Prerequisites">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PaymentMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.TechnicalRequirementsAttachment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.TechnicalRequirements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.GradingStandard">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExtractSupplierLlist">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.WrittenRecommendationLetter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.RandomlyExtractRecordFiles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ExtractSupplierLibraryNname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.IsSatisfiedBidCompanyNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BidCompanyNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BidCompanyWithMarginNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.WinningBidder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.TypeOfEnterprise">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BudgetAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.WinningBidAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.BiddingDocuments">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.TypeOfContract">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.LawyersOpinionSheet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.SchoolCountersignedRecordForm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ContractApproval">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ContractSigningTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PurchaseContractAnnex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PerformanceAcceptanceDays">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ContractPublicAddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ContractPublicityWebsite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ContractOpeningTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.ContractPublicScreeningScreenshot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PerformanceBeginPeriod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PerformanceEndPeriod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.AcceptanceTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PerformanceAcceptanceInformation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.PerformanceAcceptanceAnnex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.Times">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.CreatorId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.CreateDatetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VPackageOfRejected.Remark">
             <summary>
             
             </summary>

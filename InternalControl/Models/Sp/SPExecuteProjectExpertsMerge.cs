@@ -19,6 +19,10 @@ namespace InternalControl.Models
 		/// 
 		/// </summary>
 		public DataTable IdListOfExecuteProjectExperts { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		public DataTable BackupIdListOfExecuteProjectExperts { get; set; }
         
           
         #endregion

@@ -40,6 +40,9 @@ $(function () {
                 addVm.getCategoryDictionary();
                 addVm.getUsersList();
             },
+            changeContact: function (e) {
+                addVm.info.LinkmanId = e.target.value;
+            },
             getCategoryDictionary: function () {
                 Dictionary.getCategoryDictionary('get', '代理方式', function getCategoryDictionaryListener(success, obj, strErro) {
                     if (success) {

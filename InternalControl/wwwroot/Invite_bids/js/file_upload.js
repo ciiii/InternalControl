@@ -95,6 +95,7 @@ function fileUploadArr(data, inputFile, item) {
 
                 var data = e.data[0];
                 item.push(data);
+                console.info(data);
             }
             $(inputFile).parent().find('.loading').hide();
 

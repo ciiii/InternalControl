@@ -109,7 +109,7 @@ namespace InternalControl.Infrastucture
         }
 
         /// <summary>
-        /// 根据idlist得到一个用逗号分隔的字符串,count=0则返回"0"
+        /// 根据idlist得到一个用逗号分隔的字符串,count=0则返回"0",其中每一项都是数字;
         /// </summary>
         /// <param name="idList"></param>
         /// <param name="Spacer"></param>

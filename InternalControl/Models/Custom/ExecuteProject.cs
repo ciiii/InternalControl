@@ -119,7 +119,7 @@ namespace InternalControl.Models
         public ExecuteProjectOfResultNotice ModelOfExecuteProjectOfResultNotice { get; set; }
 
         /// <summary>
-        /// 消息结果成功的包的信息
+        /// 消息结果包的信息
         /// </summary>
         public IEnumerable<PackageOfResultNotice> ListOfPackageOfResultNotice { get; set; }
 
@@ -254,7 +254,7 @@ namespace InternalControl.Models
         /// <summary>
         /// 废包列表
         /// </summary>
-        public IEnumerable<PackageOfRejected> RejectedPackage { get; set; }
+        public IEnumerable<VPackageOfRejected> RejectedPackage { get; set; }
 
         /// <summary>
         /// 左侧树的数据
@@ -271,5 +271,26 @@ namespace InternalControl.Models
         /// 归属的更正id
         /// </summary>
         public int? ExecuteProjectOfCorrectionId { get; set; }
+    }
+
+    /// <summary>
+    /// 增改专家抽取
+    /// </summary>
+    public class EMExecuteProjectExperts
+    {
+        /// <summary>
+        /// 执行项目id
+        /// </summary>
+        public int ExecuteProjectId { get; set; }
+
+        /// <summary>
+        /// 正选专家id列表
+        /// </summary>
+        public IEnumerable<int> IdListOfExecuteProjectExperts { get; set; }
+
+        /// <summary>
+        /// 备选专家id列表
+        /// </summary>
+        public IEnumerable<int> BackupIdListOfExecuteProjectExperts { get; set; }
     }
 }

@@ -19,6 +19,12 @@ namespace InternalControl.Models
         [Required(ErrorMessage ="请提供[Id]")]
 		public int Id { get; set; }
         /// <summary>
+		/// 是否满足报名家数
+		/// </summary>
+        [DisplayName("是否满足报名家数")]
+        [Required(ErrorMessage ="请提供[IsSatisfiedBidCompanyNumber]")]
+		public bool IsSatisfiedBidCompanyNumber { get; set; }
+        /// <summary>
 		/// 投标报名家数
 		/// </summary>
         [DisplayName("投标报名家数")]

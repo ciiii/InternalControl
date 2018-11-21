@@ -145,6 +145,18 @@ var Set = {
             }
         });
     },
+    //随机获取满足条件的N个专家
+    getRandomExpertList: function (type, options, getRandomExpertListListener) {
+        var url = Code.URL_GET_RANDOM_EXPERT_LIST;
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getRandomExpertListListener(true, obj.data, '');
+            } else {
+                getRandomExpertListListener(false, '', strErro);
+
+            }
+        });
+    },
     //获取模板文件
     getTemplateFileList: function (type, options, getTemplateFileListListener) {
         var url = Code.URL_GET_TEMPLATE_FILE_LIST;
@@ -677,20 +689,19 @@ var ProjectExecute = {
             }
         });
     },
-    //开始执行,同时可能会合并多个符合条件的执行项目
+    //开始实施
     beginExecuteProject: function (type, options, beginExecuteProjectListener) {
         var url = Code.URL_POST_BEGIN_EXECUTE_PROJECT;
 
         Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
             if (success) {
-                debugger;
                 beginExecuteProjectListener(true, obj, '')
             } else {
                 beginExecuteProjectListener(false, '', strErro)
             }
         });
     },
-    //执行方式,IsHold设为false,目前没有暂存的功能
+    //执行方式
     passExecuteProjectOfGetRunMode: function (type, options, passExecuteProjectOfGetRunModeListener) {
         var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_GET_RUN_MODE;
 
@@ -702,7 +713,7 @@ var ProjectExecute = {
             }
         });
     },
-    //技术确认如果全部包的技术确认都结束了,返回true,方便前台跳转/刷新IsHold设为false,目前没有暂存的功能
+    //技术确认
     passPackageOfTechnicalConfirmation: function (type, options, passPackageOfTechnicalConfirmationListener) {
         var url = Code.URL_POST_PASS_PACKAGE_OF_TECHNICAL_CONFIRMATION;
 
@@ -714,7 +725,162 @@ var ProjectExecute = {
             }
         });
     },
+    //执行论证通过
+    passExecuteProjectOfArgument: function (type, options, passExecuteProjectOfArgumentListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_ARGUMENT;
 
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectOfArgumentListener(true, obj, '')
+            } else {
+                passExecuteProjectOfArgumentListener(false, '', strErro)
+            }
+        });
+    },
+    //采购确认通过
+    passExecuteProjectOfConfirm: function (type, options, passExecuteProjectOfConfirmListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_CONFIRM;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectOfConfirmListener(true, obj, '')
+            } else {
+                passExecuteProjectOfConfirmListener(false, '', strErro)
+            }
+        });
+    },
+    //采购邀请
+    passExecuteProjectOfInvitation: function (type, options, passExecuteProjectOfInvitationListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_INVITAION;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectOfInvitationListener(true, obj, '')
+            } else {
+                passExecuteProjectOfInvitationListener(false, '', strErro)
+            }
+        });
+    },
+    //开标评标
+    passExecuteProjectOfBidEvaluation: function (type, options, passExecuteProjectOfBidEvaluationListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_BID_EVALUATION;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectOfBidEvaluationListener(true, obj, '')
+            } else {
+                passExecuteProjectOfBidEvaluationListener(false, '', strErro)
+            }
+        });
+    },
+    //抽取专家,Id是执行项目的id,数组是专家id构成的数组
+    passExecuteProjectExperts: function (type, options, passExecuteProjectExpertsListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_EXPERS;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectExpertsListener(true, obj, '')
+            } else {
+                passExecuteProjectExpertsListener(false, '', strErro)
+            }
+        });
+    },
+    //结果信息
+    passExecuteProjectOfResultNotice: function (type, options, passExecuteProjectOfResultNoticeListener) {
+        var url = Code.URL_POST_PASS_EXECUTE_PROJECT_OF_RESULT_NOTICE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passExecuteProjectOfResultNoticeListener(true, obj, '')
+            } else {
+                passExecuteProjectOfResultNoticeListener(false, '', strErro)
+            }
+        });
+    },
+    //拟定合同
+    passPackageOfDrawUpContract: function (type, options, passPackageOfDrawUpContractListener) {
+        var url = Code.URL_POST_PASS_PACKAGE_OF_DRAW_UP_CONTRACT;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passPackageOfDrawUpContractListener(true, obj, '')
+            } else {
+                passPackageOfDrawUpContractListener(false, '', strErro)
+            }
+        });
+    },
+    //合同签订
+    passPackageOfContractSigning: function (type, options, passPackageOfContractSigningListener) {
+        var url = Code.URL_POST_PASS_PACKAGE_OF_CONTRACT_SIGNING;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passPackageOfContractSigningListener(true, obj, '')
+            } else {
+                passPackageOfContractSigningListener(false, '', strErro)
+            }
+        });
+    },
+    //合同公示
+    passPackageOfContractPublicity: function (type, options, passPackageOfContractPublicityListener) {
+        var url = Code.URL_POST_PASS_PACKAGE_OF_CONTRACT_PUBLICITY;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passPackageOfContractPublicityListener(true, obj, '')
+            } else {
+                passPackageOfContractPublicityListener(false, '', strErro)
+            }
+        });
+    },
+    //履约验收
+    passPackageOfAcceptanceCheckAndAcceptance: function (type, options, passPackageOfAcceptanceCheckAndAcceptanceListener) {
+        var url = Code.URL_POST_PASS_PACKAGE_OF_ACCEPTAN_CHECK_AND_ACCEPTANCE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                passPackageOfAcceptanceCheckAndAcceptanceListener(true, obj, '')
+            } else {
+                passPackageOfAcceptanceCheckAndAcceptanceListener(false, '', strErro)
+            }
+        });
+    },
+    //增改质疑
+    questionExecuteProject: function (type, options, questionExecuteProjectListener) {
+        var url = Code.URL_POST_QUESTOPM_EXECUTE_PROJECT;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                questionExecuteProjectListener(true, obj, '')
+            } else {
+                questionExecuteProjectListener(false, '', strErro)
+            }
+        });
+    },
+    //新增更正,注意没有修改和删除;
+    addExecuteProjectOfCorrection: function (type, options, addExecuteProjectOfCorrectionListener) {
+        var url = Code.URL_POST_ADD_EXECUTE_PROJECT_OF_CORRECTION;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                addExecuteProjectOfCorrectionListener(true, obj, '')
+            } else {
+                addExecuteProjectOfCorrectionListener(false, '', strErro)
+            }
+        });
+    },
+    //根据更正id,获取这个更正的详情
+    getExecuteProjectOfCorrectionById: function (type, options, getExecuteProjectOfCorrectionByIdListener) {
+        var url = Code.URL_GET_EXECUTE_PROJECT_OF_CORRECTION_BY_ID;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getExecuteProjectOfCorrectionByIdListener(true, obj.data, '')
+            } else {
+                getExecuteProjectOfCorrectionByIdListener(false, '', strErro)
+            }
+        });
+    },
 }
 
 

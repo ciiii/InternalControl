@@ -125,8 +125,8 @@ namespace InternalControl.Models
 
         /// <summary>
         /// 模糊:专业品目编号key
-        /// </summary>
-        public string  LikeItemKey { get; set; }
+        ///// </summary>
+        //public string  LikeItemKey { get; set; }
 
         /// <summary>
         /// 模糊:专业品目名称
@@ -142,6 +142,21 @@ namespace InternalControl.Models
         /// 是否本单位
         /// </summary>
         public bool? IsOurCompany { get; set; }
+
+        /// <summary>
+        /// 回避的部门id,用逗号分隔数字
+        /// </summary>
+        public string WhereNotInDepartmentId { get; set; }
+
+        /// <summary>
+        /// 回避的专家id,用逗号分隔数字
+        /// </summary>
+        public string WhereNotInId { get; set; }
+
+        /// <summary>
+        /// 回避的单位,用逗号分隔的单位名称
+        /// </summary>
+        public string WhereNotInCompany { get; set; }
     }
 
     /// <summary>
