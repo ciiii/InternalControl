@@ -237,14 +237,21 @@ var Code = {
 
 
 
+    //添加或更新通知
+    URL_POST_ADD_OR_UPDATE_NOTICE: getApiHost + '/Notice/AddOrUpdateNotice',
 
+    //启用禁用通知;
+    URL_POST_SWITCH_NOCTICE: getApiHost + '/Notice/SwitchNoctice',
 
+    //通知管理页面获取到的自己发送的通知列表
+    URL_GET_PAGING_NOTICE_FOR_MANAGE_LIST: getApiHost + '/Notice/GetPagingNoticeForManageList',
 
+    //分页获取当前登录人可以看到的通知列表,包括了是否已经查看的数据
+    URL_GET_PAGING_NOTICE_FOR_VIEW_LIST: getApiHost + '/Notice/GetPagingNotcieForViewList',
 
+    //分页获取任务通知
+    URL_GET_PAGING_PROJECT_BACKLOG: getApiHost + '/Notice/GetPagingProjectBacklog',
 
-    //测试
-    URL_GET_EXECUTE_PROJECT_DESSSSTAIL: 'http://192.168.0.72:20004/MnfIms/User/GetUsers',
-
-
-
+    //分页获取任务预警
+    URL_GET_PAGING_EXECUTE_PROJECT_WARNING: getApiHost + '/Notice/GetPagingExecuteProjectWithDayDiffOfEarlyWarning',
 }

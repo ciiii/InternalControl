@@ -883,4 +883,79 @@ var ProjectExecute = {
     },
 }
 
+var Notice ={
+    //添加或更新通知
+    AddOrUpdateNotice: function (type, options, AddOrUpdateNoticeListener) {
+        var url = Code.URL_POST_ADD_OR_UPDATE_NOTICE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                AddOrUpdateNoticeListener(true, obj, '')
+            } else {
+                AddOrUpdateNoticeListener(false, '', strErro)
+            }
+        });
+    },
+    //启用禁用通知
+    SwitchNoctice: function (type, options, SwitchNocticeListener) {
+        var url = Code.URL_POST_SWITCH_NOCTICE;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                SwitchNocticeListener(true, obj, '')
+            } else {
+                SwitchNocticeListener(false, '', strErro)
+            }
+        });
+    },
+    //通知管理页面获取到的自己发送的通知列表
+    GetPagingNoticeForManageList: function (type, options, GetPagingNoticeForManageListListener) {
+        var url = Code.URL_GET_PAGING_NOTICE_FOR_MANAGE_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                GetPagingNoticeForManageListListener(true, obj.data, '')
+            } else {
+                GetPagingNoticeForManageListListener(false, '', strErro)
+            }
+        });
+    },
+    //分页获取当前登录人可以看到的通知列表
+    GetPagingNotcieForViewList: function (type, options, GetPagingNotcieForViewListListener) {
+        var url = Code.URL_GET_PAGING_NOTICE_FOR_VIEW_LIST;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                GetPagingNotcieForViewListListener(true, obj.data, '')
+            } else {
+                GetPagingNotcieForViewListListener(false, '', strErro)
+            }
+        });
+    },
+    //分页获取任务通知
+    GetPagingProjectBacklog: function (type, options, GetPagingProjectBacklogListener) {
+        var url = Code.URL_GET_PAGING_PROJECT_BACKLOG;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                GetPagingProjectBacklogListener(true, obj.data, '')
+            } else {
+                GetPagingProjectBacklogListener(false, '', strErro)
+            }
+        });
+    },
+    //分页获取任务预警
+    GetPagingExecuteProjectWarning: function (type, options, GetPagingExecuteProjectWarningListener) {
+        var url = Code.URL_GET_PAGING_EXECUTE_PROJECT_WARNING;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                GetPagingExecuteProjectWarningListener(true, obj.data, '')
+            } else {
+                GetPagingExecuteProjectWarningListener(false, '', strErro)
+            }
+        });
+    },
+}
+
 

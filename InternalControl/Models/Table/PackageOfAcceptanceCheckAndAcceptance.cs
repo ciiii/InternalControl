@@ -22,13 +22,11 @@ namespace InternalControl.Models
 		/// 履约开始期限
 		/// </summary>
         [DisplayName("履约开始期限")]
-        [Required(ErrorMessage ="请提供[PerformanceBeginPeriod]")]
 		public DateTime? PerformanceBeginPeriod { get; set; }
         /// <summary>
 		/// 履约结束期限
 		/// </summary>
         [DisplayName("履约结束期限")]
-        [Required(ErrorMessage ="请提供[PerformanceEndPeriod]")]
 		public DateTime? PerformanceEndPeriod { get; set; }
         /// <summary>
 		/// 验收时间

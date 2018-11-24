@@ -28,6 +28,7 @@ $(function () {
             nextYear: new Date().getFullYear() + 1,
             thisYaer: false,
             yearList: [],
+            allPriceDX: '零',
             model: {
                 Data: {
                     Model: {
@@ -83,6 +84,8 @@ $(function () {
                     vm.apply.Url = vm.model.Data.Model.Attachment;
                     vm.apply.FileName = vm.getHtmlDocName(vm.model.Data.Model.Attachment);
                     vm.allPrice = vm.model.Data.Model.TotalDeclareAmount;
+                    vm.allPriceDX = numberDX(vm.allPrice);
+
                 }
                 vm.GetRelevantDepartmentList();
                 vm.getCategoryDictionary();
@@ -128,6 +131,7 @@ $(function () {
                     }
                     return total + parseInt(item.DeclareNumber) * parseInt(item.DeclareUnitPrice);
                 }, 0)
+                vm.allPriceDX = numberDX(vm.allPrice);
             },
             removeCollectionEl: function (el) {
                 vm.model.Data.List.remove(el);
@@ -185,6 +189,7 @@ $(function () {
                 }
                 vm.declareNumber = 1;
                 vm.allPrice = 0;
+                vm.allPriceDX = '零';
             },
             changeIsImported: function (e, el) {
                 el.IsImported = e.target.value;
@@ -308,13 +313,14 @@ $(function () {
                     }
                 }
                 var isTime;
-                if (vm.yearList.IsCanChooseThisYear) {
+                if (vm.model.Data.Model.Year == new Date().getFullYear()) {
                     isTime = vm.compareTime(vm.yearList.SupplementBeginDatetime, vm.yearList.SupplementEndDatetime, new Date());
                 } else {
+
                     isTime = vm.compareTime(vm.yearList.DeclareBeginDatetime, vm.yearList.DeclareEndDatetime, new Date());
                 }
                 if (!isTime) {
-                    if (vm.yearList.IsCanChooseThisYear) {
+                    if (vm.model.Data.Model.Year == new Date().getFullYear()) {
                         $.oaNotify.error('没有在申报时间内，申报时间为：【' + vm.yearList.SupplementBeginDatetime + ' 至 ' + vm.yearList.DeclareEndDatetime + '】');
                     } else {
                         $.oaNotify.error('没有在申报时间内，申报时间为：【' + vm.yearList.DeclareBeginDatetime + ' 至 ' + vm.yearList.DeclareEndDatetime + '】');
@@ -376,6 +382,9 @@ $(function () {
                 vm.model.Data.Model.ProjectType = e.target.innerText;
                 console.info(vm.model.Data.Model.ProjectType);
             },
+            changeDeclareYear: function () {
+                $('.form-month').val('');
+            },
             getHtmlDocName: function (url) {
                 if (url) {
                     var arr = url.split('\\');
@@ -406,7 +415,11 @@ $(function () {
             forceParse: false,
             language: 'zh-CN',
             linkField: "mirror_field"
+        }).on('show', function (ev) {
+            $('.form-month').datetimepicker('setStartDate', vm.model.Data.Model.Year + '-01');
+            $('.form-month').datetimepicker('setEndDate', vm.model.Data.Model.Year + '-12');
         });
+        ;
         vm.onLoad();
         avalon.scan(document.body);
     });

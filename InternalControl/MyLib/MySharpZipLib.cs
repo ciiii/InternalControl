@@ -9,22 +9,29 @@ namespace MyLib
 {
     public static class MySharpZipLib
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="zipFilePath"></param>
+        /// <param name="filenames"></param>
         async public static void CreateZipFile(string zipFilePath, params string[] filenames)
         {
             try
             {
-
-                using (ZipOutputStream s = new ZipOutputStream(File.Create(zipFilePath)))
+                using (ZipOutputStream zipOutputStreams = new ZipOutputStream(File.Create(zipFilePath)))
                 {
 
-                    s.SetLevel(9); // 压缩级别 0-9
+                    zipOutputStreams.SetLevel(9); // 压缩级别 0-9
                     //s.Password = "123"; //Zip压缩文件密码
                     byte[] buffer = new byte[4096]; //缓冲区大小
                     foreach (string file in filenames)
                     {
-                        ZipEntry entry = new ZipEntry(Path.GetFileName(file));
-                        entry.DateTime = DateTime.Now;
-                        s.PutNextEntry(entry);
+                        ZipEntry entry = new ZipEntry(Path.GetFileName(file))
+                        {
+                            DateTime = DateTime.Now
+                        };
+
+                        await Task.Run(() => zipOutputStreams.PutNextEntry(entry));
 
                         //using (FileStream fs = File.OpenRead(file))
                         //{
@@ -36,8 +43,8 @@ namespace MyLib
                         //    } while (sourceBytes > 0);
                         //}
                     }
-                    s.Finish();
-                    s.Close();
+                    zipOutputStreams.Finish();
+                    zipOutputStreams.Close();
                 }
             }
             catch (Exception ex)

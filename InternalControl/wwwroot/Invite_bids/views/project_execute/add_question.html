@@ -1,0 +1,211 @@
+<div class="modal-content ms-controller add-user add_question" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">添加质疑</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12">
+                <h5 class="title"><span>质疑信息</span></h5>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>质疑人：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.QuestionerName">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>质疑时间：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.QuestioningTime">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>质疑附件：
+                    </label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.QuestionAttachment!=''"
+                           ms-attr="{'href':@model.QuestionAttachment}"
+                           download="">{{@getHtmlDocName(@model.QuestionAttachment)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadQuestionAttachment($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>被质疑人：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.QuestionedPersonName">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>回复时间：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.QuestionReplyTime">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>回复附件：
+                    </label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.QuestionReplyAttachment!=''"
+                           ms-attr="{'href':@model.QuestionReplyAttachment}"
+                           download="">{{@getHtmlDocName(@model.QuestionReplyAttachment)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadQuestionReplyAttachment($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>质疑类型：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.QuestionType" readonly>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>质疑结论：
+                    </label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="3" ms-duplex="@model.QuestionConclusion"></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否有投诉：
+                    </label>
+                    <div class="col-sm-7">
+                        <ul class="select-ul">
+                            <li ms-class="getClass(true)" ms-on-click="clickThereScomplaint(true)">
+                                <a href="javascript:;">是</a>
+                            </li>
+                            <li ms-class="getClass(false)" ms-on-click="clickThereScomplaint(false)">
+                                <a href="javascript:;">否</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 notice-content" ms-if="@model.IsThereScomplaint">
+                <h5 class="title"><span>投诉信息</span></h5>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>投诉人：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.ComplainantName">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>投诉时间：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.ComplainantTime">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>投诉附件：
+                    </label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.ComplainantAttachment!=''"
+                           ms-attr="{'href':@model.ComplainantAttachment}"
+                           download="">{{@getHtmlDocName(@model.ComplainantAttachment)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadComplainantAttachment($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>被投诉人：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.RespondentName">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>回复部门：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.ComplainantReplyDepartment">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>回复时间：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.ComplainantReplyTime">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>回复附件：
+                    </label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.ComplainantReplyAttachment!=''"
+                           ms-attr="{'href':@model.ComplainantReplyAttachment}"
+                           download="">{{@getHtmlDocName(@model.ComplainantReplyAttachment)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadComplainantReplyAttachment($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>投诉公示地址：
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ms-duplex="@model.ComplainantPublicityAddress">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>投诉公示网站：
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ms-duplex="@model.ComplainantPublicityWebsite">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/project_execute/add_question.js"></script>

@@ -20,8 +20,7 @@
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
-    <script type="text/javascript"
-            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
@@ -612,7 +611,7 @@
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
                                 <th>预算金额(元)</th>
-                                <th>采购品目</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -621,7 +620,6 @@
                                 <td class="number text-center">第{{$index+1}}包</td>
                                 <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
-                                <td>{{el.Unit}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
                                     {{el.ExecuteUnitPrice|currency}}
@@ -635,17 +633,17 @@
                 </div>
                 <div class="tab">
                     <ul class="nav nav-tabs">
-                        <li ms-for="($index,el) in @modelThree.Data"
+                        <li ms-for="($index,el) in @modelThree.Data" ms-if="el.IsCanOperate"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tab'+$index,'aria-controls':'tab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">第{{el.SerialNumber}}包</a>
                         </li>
                     </ul>
                 </div>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
-                         ms-for="($index,el) in @modelThree.Data"
-                         ms-attr="{'id':'tab'+$index}" ms-if="el.IsCanOperate">
+                         ms-for="($index,el) in @modelThree.Data" ms-attr="{'id':'tab'+$index}"
+                         ms-if="@modelThree.Data&&@modelThree.Data.length!=0">
                         <div class="item row col-md-12 col-sm-12">
                             <div class="form-group col-md-6 col-sm-6">
                                 <label class="control-label col-md-3 col-sm-3">采购方式</label>
@@ -847,9 +845,8 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="item col-md-12 col-sm-12"
-                             ms-if="@ExecuteProject.IsCenterPurchase&&@ExecuteProject.ProjectType=='货物'">
+                             ms-if="@el.IsCenterPurchase&&@el.ProjectType=='货物')">
                             <div class="form-group col-md-12 col-sm-12 item-title">
                                 <label class="control-label col-md-3 col-sm-3">
                                     <i class="icon iconfont icon-text-sign icon-sign"></i>采购需求
@@ -868,7 +865,7 @@
                             </div>
                         </div>
                         <div class="item col-md-12 col-sm-12"
-                             ms-if="(@ExecuteProject.IsCenterPurchase&&@mExecuteProject.ProjectType!='货物')||!@ExecuteProject.IsCenterPurchase">
+                             ms-if="(@el.IsCenterPurchase&&@el.ProjectType!='货物')||!@el.IsCenterPurchase">
                             <div class="form-group col-md-12 col-sm-12 item-title">
                                 <label class="control-label col-md-3 col-sm-3">
                                     <i class="icon iconfont icon-text-sign icon-sign"></i>采购需求
@@ -894,8 +891,8 @@
                                         <div class="file">
                                             <div class="column" ms-if="el.Attachment!=''">
                                                 <a class="file-name col-md-11 col-sm-11"
-                                                   ms-attr="{'href':el}"
-                                                   download="">{{@getHtmlDocName(el.Attachment)}}</a>
+                                                   ms-attr="{'href':el.Attachment}" download=""
+                                                   ms-if="el.Attachment!=''">{{@getHtmlDocName(el.Attachment)}}</a>
                                                 <a class="btn-del" href="javascript:;" ms-if="el.Attachment!=''"
                                                    ms-on-click="el.Attachment=null">
                                                     <i class="icon iconfont icon-shanchu"></i>
@@ -932,8 +929,10 @@
                                         <div class="file">
                                             <div class="column" ms-if="el.GradingStandard!=''">
                                                 <a class="file-name col-md-11 col-sm-11"
-                                                   ms-attr="{'href':el.GradingStandard}" download="">{{@getHtmlDocName(el.GradingStandard)}}</a>
-                                                <a class="btn-del" href="javascript:;" ms-if="el.GradingStandard!=''"
+                                                   ms-attr="{'href':el.GradingStandard}"
+                                                   download="">{{@getHtmlDocName(el.GradingStandard)}}</a>
+                                                <a class="btn-del" href="javascript:;"
+                                                   ms-if="el.GradingStandard!=''"
                                                    ms-on-click="el.GradingStandard=null">
                                                     <i class="icon iconfont icon-shanchu"></i>
                                                 </a>
@@ -1004,22 +1003,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfTechnicalConfirmation">
+                            <tr ms-for="($index,el) in @PackageConfirmation"
+                                ms-if="@PackageConfirmation&&@PackageConfirmation.length!=0">
                                 <td class="number text-center">第{{$index+1}}包</td>
                                 <td>
-                                    {{getExecutePackage(el.Id).IsCenterPurchase?getExecutePackage(el.Id).ItemName:getExecutePackage(el.Id).PackageName}}
+                                    {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
                                 </td>
-                                <td>{{getExecutePackage(el.Id).DeclareDepartmentName}}</td>
+                                <td>{{@getExecutePackage(el.Id).DeclareDepartmentName}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
-                                    {{getExecutePackage(el.Id).ExecuteNumber}}
+                                    {{@getExecutePackage(el.Id).ExecuteNumber}}
                                 </td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
-                                    {{getExecutePackage(el.Id).ExecuteUnitPrice|currency}}
+                                    {{@getExecutePackage(el.Id).ExecuteUnitPrice|currency}}
                                 </td>
                                 <td>
-                                    {{(getExecutePackage(el.Id).ExecuteNumber*getExecutePackage(el.Id).ExecuteUnitPrice)|currency}}
+                                    {{(@getExecutePackage(el.Id).ExecuteNumber*@getExecutePackage(el.Id).ExecuteUnitPrice)|currency}}
                                 </td>
-                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{getExecutePackage(el.Id).ItemName}}</td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{@getExecutePackage(el.Id).ItemName}}
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -1027,7 +1028,7 @@
                 </div>
                 <div class="tab">
                     <ul class="nav nav-tabs">
-                        <li ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfTechnicalConfirmation"
+                        <li ms-for="($index,el) in @PackageConfirmation"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tab'+$index,'aria-controls':'tab'+$index}" role="tab"
                                data-toggle="tab">第{{$index+1}}包</a>
@@ -1036,8 +1037,8 @@
                 </div>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
-                         ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfTechnicalConfirmation"
-                         ms-if="@myDetails.ExecutePackage.PackageOfTechnicalConfirmation&&@myDetails.ExecutePackage.PackageOfTechnicalConfirmation.length!=0"
+                         ms-for="($index,el) in @PackageConfirmation"
+                         ms-if="@PackageConfirmation&&@PackageConfirmation.length!=0"
                          ms-attr="{'id':'tab'+$index}">
                         <div class="item row col-md-12 col-sm-12">
                             <div class="form-group col-md-6 col-sm-6">
@@ -1168,7 +1169,7 @@
                              ms-if="(@ExecuteProject.IsCenterPurchase&&@ExecuteProject.ProjectType!='货物')||!@ExecuteProject.IsCenterPurchase">
                             <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
                                 <label class="control-label col-md-3 col-sm-3">采购需求</label>
-                                <div class="col-md-12 col-sm-12">
+                                <div class="col-md-9 col-sm-9">
                                     <a class="name" ms-attr="{'href':@el.Attachment}" download="">{{@getHtmlDocName(el.Attachment)}}</a>
                                 </div>
                             </div>
@@ -3688,7 +3689,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget">
+                            <tr ms-for="($index,el) in @ExcuteBudget">
                                 <td class="number text-center">{{$index+1}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
@@ -3706,7 +3707,7 @@
                 <div class="clearfix"></div>
                 <div class="tab">
                     <ul class="nav nav-tabs">
-                        <li ms-for="($index,el) in @modelTen.Data"
+                        <li ms-for="($index,el) in @modelTen.Data" ms-if="el.IsCanOperate"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tentab'+$index,'aria-controls':'tentab'+$index}" role="tab"
                                data-toggle="tab">第{{$index+1}}包</a>
@@ -3892,7 +3893,120 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget">
+                            <tr ms-for="($index,el) in @PackageOfDrawUpContract">
+                                <td class="number text-center">{{$index+1}}</td>
+                                <td>
+                                    {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
+                                </td>
+                                <td>{{@getExecutePackage(el.Id).DeclareDepartmentName}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteNumber}}
+                                </td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteUnitPrice|currency}}
+                                </td>
+                                <td>
+                                    {{(@getExecutePackage(el.Id).ExecuteNumber*@getExecutePackage(el.Id).ExecuteUnitPrice)|currency}}
+                                </td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{@getExecutePackage(el.Id).ItemName}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="nav nav-tabs">
+                        <li ms-for="($index,el) in @PackageOfDrawUpContract"
+                            role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
+                            <a ms-attr="{'href':'#tentab'+$index,'aria-controls':'tentab'+$index}" role="tab"
+                               data-toggle="tab">第{{$index+1}}包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
+                         ms-for="($index,el) in @PackageOfDrawUpContract"
+                         ms-attr="{'id':'tentab'+$index}"
+                         ms-if="@PackageOfDrawUpContract&&@PackageOfDrawUpContract.length!=0">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">包号/包名</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同类型</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.TypeOfContract}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">律师审核意见表</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name" ms-attr="{'href':@el.LawyersOpinionSheet}" download="">{{@getHtmlDocName(el.LawyersOpinionSheet)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">校内会签记录表</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name" ms-attr="{'href':@el.SchoolCountersignedRecordForm}" download="">{{@getHtmlDocName(el.SchoolCountersignedRecordForm)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">合同审定稿</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name" ms-attr="{'href':@el.ContractApproval}" download="">{{@getHtmlDocName(el.ContractApproval)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane model-eleven" ms-class="getTabClass('合同签订')">
+            <div class="form-horizontal content" ms-if="isEdit">
+                <div class="item progress row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
+                        <div class="col-md-9 col-sm-9"></div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item table-box row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6 item-title">
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
+                                <th>预算金额(元)</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @ExcuteBudget">
                                 <td class="number text-center">{{$index+1}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
@@ -3907,20 +4021,19 @@
                         </table>
                     </div>
                 </div>
-                <div class="clearfix"></div>
                 <div class="tab">
                     <ul class="nav nav-tabs">
-                        <li ms-for="($index,el) in @modelTen.Data"
+                        <li ms-for="($index,el) in @modelEleven.Data"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
-                            <a ms-attr="{'href':'#tentab'+$index,'aria-controls':'tentab'+$index}" role="tab"
+                            <a ms-attr="{'href':'#eleventab'+$index,'aria-controls':'eleventab'+$index}" role="tab"
                                data-toggle="tab">第{{$index+1}}包</a>
                         </li>
                     </ul>
                 </div>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
-                         ms-for="($index,el) in  @modelTen.Data"
-                         ms-attr="{'id':'tentab'+$index}" ms-if="@modelTen.Data&&@modelTen.Data.length!=0">
+                         ms-for="($index,el) in  @modelEleven.Data"
+                         ms-attr="{'id':'eleventab'+$index}" ms-if="@modelEleven.Data&&@modelEleven.Data.length!=0">
                         <div class="item row col-md-12 col-sm-12">
                             <div class="form-group col-md-6 col-sm-6">
                                 <label class="control-label col-md-3 col-sm-3">包号/包名</label>
@@ -3928,94 +4041,341 @@
                                     <span>{{el.ItemName}}</span>
                                 </div>
                             </div>
+                            <hr class="col-md-12 col-sm-12"/>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label class="control-label col-md-3 col-sm-3">
-                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同类型
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同签订时间
                                 </label>
                                 <div class="col-md-7 col-sm-7">
-                                    <select class="form-control" ms-duplex="@el.TypeOfContract">
-                                        <option value="">请选择</option>
-                                        <option ms-for="item in @typeOfContract" ms-if="@typeOfContract.length!=0"
-                                                ms-attr="{'value',item.Value}">{{item.Value}}
-                                        </option>
+                                    <input type="text" class="form-control form-hour"
+                                           ms-duplex="@el.ContractSigningTime" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>采购合同附件
+                                </label>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
+                                        <div class="item-top">
+                                            <div class="file-box">
+                                                <input type="file" class="input-file" name="fileUpload"
+                                                       ms-on-change="uploadPurchaseContractAnnex($event,el)">
+
+                                                <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                                            </div>
+                                        </div>
+                                        <div class="file">
+                                            <div class="column" ms-if="el.PurchaseContractAnnex!=''">
+                                                <a class="file-name col-md-11 col-sm-11"
+                                                   ms-attr="{'href':el.PurchaseContractAnnex}"
+                                                   download="">{{@getHtmlDocName(el.PurchaseContractAnnex)}}</a>
+                                                <a class="btn-del" href="javascript:;"
+                                                   ms-if="el.PurchaseContractAnnex!=''"
+                                                   ms-on-click="el.PurchaseContractAnnex=null">
+                                                    <i class="icon iconfont icon-shanchu"></i>
+                                                </a>
+                                            </div>
+                                            <span class="file-name" ms-if="el.PurchaseContractAnnex==''">暂未上传附件</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>履约验收期限
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                               ms-duplex="@el.PerformanceAcceptanceDays" value=""
+                                               ms-on-keyup="@changeContractSigningTime(el)" onkeyup="onlyNum(this)">
+                                        <div class="input-group-addon">天</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">履约验收期限计算方式</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <select class="form-control" ms-duplex="@el.CalculationType">
+                                        <option value="自然天">自然天</option>
+                                        <!--<option value="工作日">工作日</option>-->
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item col-md-12 col-sm-12">
-                            <div class="form-group col-md-12 col-sm-12 item-title">
-                                <label class="control-label col-md-3 col-sm-3">
-                                    <i class="icon iconfont icon-text-sign icon-sign"></i>律师审核意见表
-                                </label>
-                            </div>
                             <hr class="col-md-12 col-sm-12"/>
-                            <div class="form-group col-md-12 col-sm-12">
-                                <div class="form-group col-md-6 col-sm-6">
-                                    <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
-                                        <div class="item-top">
-                                            <div class="file-box">
-                                                <input type="file" class="input-file" name="fileUpload"
-                                                       ms-on-change="uploadLawyersOpinionSheet($event,@el)">
-
-                                                <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
-                                            </div>
-                                        </div>
-                                        <div class="file">
-                                            <div class="column" ms-if="el.LawyersOpinionSheet!=''">
-                                                <a class="file-name col-md-11 col-sm-11"
-                                                   ms-attr="{'href':el.LawyersOpinionSheet}"
-                                                   download="">{{@getHtmlDocName(el.LawyersOpinionSheet)}}</a>
-                                                <a class="btn-del" href="javascript:;"
-                                                   ms-if="el.LawyersOpinionSheet!=''"
-                                                   ms-on-click="el.LawyersOpinionSheet=null">
-                                                    <i class="icon iconfont icon-shanchu"></i>
-                                                </a>
-                                            </div>
-                                            <span class="file-name" ms-if="el.LawyersOpinionSheet==''">暂未上传附件</span>
-                                        </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">履约验收时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control" ms-duplex="@el.AcceptanceTime" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="submit-wrapper">
+                                <div class="form-group">
+                                    <div class="submit-box text-center">
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-submit"
+                                                ms-on-click="@clickSubmitEleven">
+                                            提交
+                                        </button>
+                                        <div class="tip-box"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="item col-md-12 col-sm-12">
-                            <div class="form-group col-md-12 col-sm-12 item-title">
-                                <label class="control-label col-md-3 col-sm-3">
-                                    <i class="icon iconfont icon-text-sign icon-sign"></i>校内会签记录表
-                                </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-horizontal content" ms-if="!isEdit">
+                <div class="item progress row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
+                        <div class="col-md-9 col-sm-9"></div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item table-box row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6 item-title">
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
+                                <th>预算金额(元)</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @PackageOfContractSigning">
+                                <td class="number text-center">{{$index+1}}</td>
+                                <td>
+                                    {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
+                                </td>
+                                <td>{{@getExecutePackage(el.Id).DeclareDepartmentName}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteNumber}}
+                                </td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteUnitPrice|currency}}
+                                </td>
+                                <td>
+                                    {{(@getExecutePackage(el.Id).ExecuteNumber*@getExecutePackage(el.Id).ExecuteUnitPrice)|currency}}
+                                </td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{@getExecutePackage(el.Id).ItemName}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="nav nav-tabs">
+                        <li ms-for="($index,el) in @PackageOfContractSigning"
+                            role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
+                            <a ms-attr="{'href':'#eleventab'+$index,'aria-controls':'eleventab'+$index}" role="tab"
+                               data-toggle="tab">第{{$index+1}}包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
+                         ms-for="($index,el) in  @PackageOfContractSigning"
+                         ms-attr="{'id':'eleventab'+$index}"
+                         ms-if="@PackageOfContractSigning&&@PackageOfContractSigning.length!=0">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">包号/包名</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}</span>
+                                </div>
                             </div>
-                            <hr class="col-md-12 col-sm-12"/>
-                            <div class="form-group col-md-12 col-sm-12">
-                                <div class="form-group col-md-6 col-sm-6">
-                                    <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
-                                        <div class="item-top">
-                                            <div class="file-box">
-                                                <input type="file" class="input-file" name="fileUpload"
-                                                       ms-on-change="@uploadSchoolCountersignedRecordForm($event,@el)">
-
-                                                <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
-                                            </div>
-                                        </div>
-                                        <div class="file">
-                                            <div class="column" ms-if="el.SchoolCountersignedRecordForm!=''">
-                                                <a class="file-name col-md-11 col-sm-11"
-                                                   ms-attr="{'href':el.SchoolCountersignedRecordForm}" download="">{{@getHtmlDocName(el.SchoolCountersignedRecordForm)}}</a>
-                                                <a class="btn-del" href="javascript:;"
-                                                   ms-if="el.SchoolCountersignedRecordForm!=''"
-                                                   ms-on-click="el.SchoolCountersignedRecordForm=null">
-                                                    <i class="icon iconfont icon-shanchu"></i>
-                                                </a>
-                                            </div>
-                                            <span class="file-name"
-                                                  ms-if="el.SchoolCountersignedRecordForm==''">暂未上传附件</span>
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同签订时间
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.ContractSigningTime}}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="item col-md-12 col-sm-12">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">采购合同附件</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name" ms-attr="{'href':@el.PurchaseContractAnnex}" download="">{{@getHtmlDocName(el.PurchaseContractAnnex)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">履约验收期限</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <div class="input-group">
+                                        <span>{{el.PerformanceAcceptanceDays}} 天</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">履约验收期限计算方式</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>自然天</span>
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">履约验收时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@changeContractSigningTime(el)}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane model-twelve" ms-class="getTabClass('合同公示')">
+            <div class="form-horizontal content" ms-if="isEdit">
+                <div class="item progress row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
+                        <div class="col-md-9 col-sm-9"></div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item table-box row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6 item-title">
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
+                                <th>预算金额(元)</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @ExcuteBudget">
+                                <td class="number text-center">{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{el.DeclareDepartmentName}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{el.ExecuteUnitPrice|currency}}
+                                </td>
+                                <td>{{(el.ExecuteNumber*el.ExecuteUnitPrice)|currency}}</td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{el.ItemName}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="nav nav-tabs">
+                        <li ms-for="($index,el) in @modelTwelve.Data"
+                            role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
+                            <a ms-attr="{'href':'#twelvetab'+$index,'aria-controls':'twelvetab'+$index}" role="tab"
+                               data-toggle="tab">第{{$index+1}}包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
+                         ms-for="($index,el) in  @modelTwelve.Data"
+                         ms-attr="{'id':'twelvetab'+$index}" ms-if="@modelTwelve.Data&&@modelTwelve.Data.length!=0">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">包号/包名</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.ItemName}}</span>
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同签订时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@getPackage(el.Id,@PackageOfContractSigning).ContractSigningTime}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">采购合同附件</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name"
+                                       ms-attr="{'href':@getPackage(el.Id,@PackageOfContractSigning).PurchaseContractAnnex}"
+                                       download="">{{@getHtmlDocName(@getPackage(el.Id,@PackageOfContractSigning).PurchaseContractAnnex)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同公示地址
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control" ms-duplex="@el.ContractPublicAddress">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同公示网站
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control" ms-duplex="@el.ContractPublicityWebsite">
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同公示时间
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control form-hour"
+                                           ms-duplex="@el.ContractOpeningTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
                             <div class="form-group col-md-12 col-sm-12 item-title">
                                 <label class="control-label col-md-3 col-sm-3">
-                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同审定稿
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>合同公示截图
                                 </label>
                             </div>
                             <hr class="col-md-12 col-sm-12"/>
@@ -4025,21 +4385,23 @@
                                         <div class="item-top">
                                             <div class="file-box">
                                                 <input type="file" class="input-file" name="fileUpload"
-                                                       ms-on-change="@uploadContractApproval($event,@el)">
+                                                       ms-on-change="uploadContractPublicScreeningScreenshot($event,el)">
 
                                                 <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
                                             </div>
                                         </div>
                                         <div class="file">
-                                            <div class="column" ms-if="el.ContractApproval!=''">
+                                            <div class="column" ms-if="el.ContractPublicScreeningScreenshot!=''">
                                                 <a class="file-name col-md-11 col-sm-11"
-                                                   ms-attr="{'href':el.ContractApproval}" download="">{{@getHtmlDocName(el.ContractApproval)}}</a>
-                                                <a class="btn-del" href="javascript:;" ms-if="el.ContractApproval!=''"
-                                                   ms-on-click="el.ContractApproval=null">
+                                                   ms-attr="{'href':el.ContractPublicScreeningScreenshot}"
+                                                   download="">{{@getHtmlDocName(el.ContractPublicScreeningScreenshot)}}</a>
+                                                <a class="btn-del" href="javascript:;"
+                                                   ms-if="el.ContractPublicScreeningScreenshot!=''"
+                                                   ms-on-click="el.ContractPublicScreeningScreenshot=null">
                                                     <i class="icon iconfont icon-shanchu"></i>
                                                 </a>
                                             </div>
-                                            <span class="file-name" ms-if="el.ContractApproval==''">暂未上传附件</span>
+                                            <span class="file-name" ms-if="el.ContractPublicScreeningScreenshot==''">暂未上传附件</span>
                                         </div>
                                     </div>
                                 </div>
@@ -4051,7 +4413,7 @@
                                     <div class="submit-box text-center">
                                         </button>
                                         <button type="button" class="btn btn-primary btn-submit"
-                                                ms-on-click="@clickSubmitTen">
+                                                ms-on-click="@clickSubmitTwelve">
                                             提交
                                         </button>
                                         <div class="tip-box"></div>
@@ -4062,26 +4424,446 @@
                     </div>
                 </div>
             </div>
+            <div class="form-horizontal content" ms-if="!isEdit">
+                <div class="item progress row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
+                        <div class="col-md-9 col-sm-9"></div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item table-box row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6 item-title">
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
+                                <th>预算金额(元)</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @PackageOfContractPublicity">
+                                <td class="number text-center">{{$index+1}}</td>
+                                <td>
+                                    {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
+                                </td>
+                                <td>{{@getExecutePackage(el.Id).DeclareDepartmentName}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteNumber}}
+                                </td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteUnitPrice|currency}}
+                                </td>
+                                <td>
+                                    {{(@getExecutePackage(el.Id).ExecuteNumber*@getExecutePackage(el.Id).ExecuteUnitPrice)|currency}}
+                                </td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{@getExecutePackage(el.Id).ItemName}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="nav nav-tabs">
+                        <li ms-for="($index,el) in @PackageOfContractPublicity"
+                            role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
+                            <a ms-attr="{'href':'#twelvetab'+$index,'aria-controls':'twelvetab'+$index}" role="tab"
+                               data-toggle="tab">第{{$index+1}}包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
+                         ms-for="($index,el) in  @PackageOfContractPublicity"
+                         ms-attr="{'id':'twelvetab'+$index}"
+                         ms-if="@PackageOfContractPublicity&&@PackageOfContractPublicity.length!=0">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">包号/包名</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同签订时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@getPackage(el.Id,@PackageOfContractSigning).ContractSigningTime}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">采购合同附件</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name"
+                                       ms-attr="{'href':@getPackage(el.Id,@PackageOfContractSigning).PurchaseContractAnnex}"
+                                       download="">{{@getHtmlDocName(@getPackage(el.Id,@PackageOfContractSigning).PurchaseContractAnnex)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同公示地址</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.ContractPublicAddress}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同公示网站</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.ContractPublicityWebsite}}</span>
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同公示时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.ContractOpeningTime}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">合同公示截图</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name"
+                                       ms-attr="{'href':el.ContractPublicScreeningScreenshot}"
+                                       download="">{{@getHtmlDocName(el.ContractPublicScreeningScreenshot)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass('合同签订')">
-            <div ms-if="isEdit">编辑11</div>
-            <div ms-if="!isEdit">详情11</div>
+        <div class="tab-pane model-thirteen" ms-class="getTabClass('履约验收')">
+            <div class="form-horizontal content" ms-if="isEdit">
+                <div class="item progress row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
+                        <div class="col-md-9 col-sm-9"></div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item table-box row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6 item-title">
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
+                                <th>预算金额(元)</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @ExcuteBudget">
+                                <td class="number text-center">{{$index+1}}</td>
+                                <td>{{el.ItemName}}</td>
+                                <td>{{el.DeclareDepartmentName}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{el.ExecuteUnitPrice|currency}}
+                                </td>
+                                <td>{{(el.ExecuteNumber*el.ExecuteUnitPrice)|currency}}</td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{el.ItemName}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="nav nav-tabs">
+                        <li ms-for="($index,el) in @modelThirteen.Data"
+                            role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
+                            <a ms-attr="{'href':'#thirteentab'+$index,'aria-controls':'thirteentab'+$index}" role="tab"
+                               data-toggle="tab">第{{$index+1}}包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
+                         ms-for="($index,el) in  @modelThirteen.Data"
+                         ms-attr="{'id':'thirteentab'+$index}"
+                         ms-if="@modelThirteen.Data&&@modelThirteen.Data.length!=0">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">包号/包名</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.ItemName}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同签订时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <div class="input-group">
+                                        <span>{{el.ContractSigningTime}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>验收时间
+                                </label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control form-hour" ms-duplex="@el.AcceptanceTime">
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>履约验收信息
+                                </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" class="form-control"
+                                           ms-duplex="@el.PerformanceAcceptanceInformation">
+                                </div>
+                                <span>（验收小组成员信息）</span>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title">
+                                <label class="control-label col-md-3 col-sm-3">
+                                    <i class="icon iconfont icon-text-sign icon-sign"></i>履约验收附件
+                                </label>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <div class="fileUpload-box  col-md-7 col-sm-7 col-md-offset-3">
+                                        <div class="item-top">
+                                            <div class="file-box">
+                                                <input type="file" class="input-file" name="fileUpload"
+                                                       ms-on-change="uploadPerformanceAcceptanceAnnex($event,el)">
+
+                                                <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                                            </div>
+                                        </div>
+                                        <div class="file">
+                                            <div class="column" ms-if="el.PerformanceAcceptanceAnnex!=''">
+                                                <a class="file-name col-md-11 col-sm-11"
+                                                   ms-attr="{'href':el.PerformanceAcceptanceAnnex}"
+                                                   download="">{{@getHtmlDocName(el.PerformanceAcceptanceAnnex)}}</a>
+                                                <a class="btn-del" href="javascript:;"
+                                                   ms-if="el.PerformanceAcceptanceAnnex!=''"
+                                                   ms-on-click="el.PerformanceAcceptanceAnnex=null">
+                                                    <i class="icon iconfont icon-shanchu"></i>
+                                                </a>
+                                            </div>
+                                            <span class="file-name"
+                                                  ms-if="el.PerformanceAcceptanceAnnex==''">暂未上传附件</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="submit-wrapper">
+                                <div class="form-group">
+                                    <div class="submit-box text-center">
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-submit"
+                                                ms-on-click="@clickSubmitThirteen">
+                                            提交
+                                        </button>
+                                        <div class="tip-box"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-horizontal content" ms-if="!isEdit">
+                <div class="item progress row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
+                        <div class="col-md-9 col-sm-9"></div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item table-box row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6 item-title">
+                        <label class="control-label col-md-3 col-sm-3">分包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
+                                <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">单价(元)</th>
+                                <th>预算金额(元)</th>
+                                <th ms-if="!@ExecuteProject.IsCenterPurchase">采购品目</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @PackageAcceptance">
+                                <td class="number text-center">{{$index+1}}</td>
+                                <td>
+                                    {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
+                                </td>
+                                <td>{{@getExecutePackage(el.Id).DeclareDepartmentName}}</td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteNumber}}
+                                </td>
+                                <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">
+                                    {{@getExecutePackage(el.Id).ExecuteUnitPrice|currency}}
+                                </td>
+                                <td>{{(@getExecutePackage(el.Id).ExecuteNumber*el.ExecuteUnitPrice)|currency}}</td>
+                                <td ms-if="!@ExecuteProject.IsCenterPurchase">{{@getExecutePackage(el.Id).ItemName}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="nav nav-tabs">
+                        <li ms-for="($index,el) in @PackageAcceptance"
+                            role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
+                            <a ms-attr="{'href':'#thirteentab'+$index,'aria-controls':'thirteentab'+$index}" role="tab"
+                               data-toggle="tab">第{{$index+1}}包</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
+                         ms-for="($index,el) in @PackageAcceptance"
+                         ms-attr="{'id':'thirteentab'+$index}" ms-if="@PackageAcceptance&&@PackageAcceptance.length!=0">
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">包号/包名</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">合同签订时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <div class="input-group">
+                                        <span>{{@getPackage(el.Id,@PackageOfContractSigning).ContractSigningTime}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">验收时间</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>{{el.AcceptanceTime}}</span>
+                                </div>
+                            </div>
+                            <hr class="col-md-12 col-sm-12"/>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="control-label col-md-3 col-sm-3">履约验收信息</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <span>{{el.PerformanceAcceptanceInformation}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">履约验收附件</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name"
+                                       ms-attr="{'href':el.PerformanceAcceptanceAnnex}"
+                                       download="">{{@getHtmlDocName(el.PerformanceAcceptanceAnnex)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass('合同公示')">
-            <div ms-if="isEdit">编辑12</div>
-            <div ms-if="!isEdit">详情12</div>
-        </div>
-        <div class="tab-pane" ms-class="getTabClass('履约验收')">
-            <div ms-if="isEdit">编辑13</div>
-            <div ms-if="!isEdit">详情13</div>
-        </div>
-        <div class="tab-pane" ms-class="getTabClass('更正情况')">
+        <div class="tab-pane model-fourteen" ms-class="getTabClass('更正情况')">
             <div ms-if="isEdit">编辑14</div>
             <div ms-if="!isEdit">详情14</div>
         </div>
-        <div class="tab-pane" ms-class="getTabClass('质疑投诉')">
-            <div ms-if="isEdit">编辑15</div>
-            <div ms-if="!isEdit">详情15</div>
+        <div class="tab-pane model-fifteen" ms-class="getTabClass('质疑投诉')">
+            <div class="form-horizontal content">
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12 question-box">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">质疑投诉</label>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 text-right">
+                        <a class="btn btn-success" data-toggle="modal" data-target=".modal-add"
+                           href="add_question.html" onclick="changeUrl(this)" ms-on-click="@clickBtnEdit(el)">
+                            <i class="icon iconfont icon-tianjia"></i> 添加质疑
+                        </a>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12"
+                         ms-if="@ExecuteProjectOfQuestion&&@ExecuteProjectOfQuestion.length!=0">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>质疑名称</th>
+                                <th>质疑时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @ExecuteProjectOfQuestion">
+                                <td class="number text-center">第{{$index+1}}次质疑</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal fade modal-add" tabindex="-1" role="dialog"

@@ -187,7 +187,7 @@ $(function () {
             layout: function () {
                 var width = $(window).width();
                 var height = $(window).height();
-                $('#subpage').css('height', height - 85);
+                $('#subpage').css('height', height - 80);
                 $('.nav-sidebar-box').css('height', height - 80);
                 if (width <= 1280) {
                     vm.toggle = true

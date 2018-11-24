@@ -95,6 +95,8 @@ namespace InternalControl.Infrastucture
         /// </summary>
         private const string PredefindedKeyFields = "Id";
 
+        private static string PrdefindeSpMergeName<T>() { return $"SP{typeof(T).Name}Merge"; }
+
         /// <summary>
         /// 把IEnumerable int类型的编号列表,转为PredefindedKeyFieldsList列表,后者可以转为一个dataTable,是只有一个字段 编号 的表
         /// </summary>
@@ -224,7 +226,7 @@ namespace InternalControl.Infrastucture
                 keyFields = keyFields ?? PredefindedKeyFields,
                 PageSize = paging.Size,
                 PageIndex = paging.Index,
-                OrderType = orderType??paging.OrderType,
+                OrderType = orderType ?? paging.OrderType,
                 OrderStr = orderStr,
                 tbFields = "*"
             });
@@ -299,6 +301,34 @@ namespace InternalControl.Infrastucture
             IDbTransaction transaction = null) where T : class
         {
             return cnn.QueryMultipleAsync(typeof(T).Name, model, transaction, commandType: CommandType.StoredProcedure);
+        }
+
+        /// <summary>
+        /// 按约定SPxxxMerge执行一个merge
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cnn"></param>
+        /// <param name="model"></param>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        async public static Task<T> Merge<T>(this IDbConnection cnn, T model, IDbTransaction transaction = null) where T : new()
+        {
+            var result = await cnn.QueryAsync<T>(PrdefindeSpMergeName<T>(), new
+            {
+                List = model.ToDataTable()
+            }, transaction, commandType: CommandType.StoredProcedure);
+
+            return result.SingleOrDefault();
+        }
+
+        async public static Task<IEnumerable<T>> Merge<T>(this IDbConnection cnn, IEnumerable<T> model, IDbTransaction transaction = null) where T : new()
+        {
+            var result = await cnn.QueryAsync<T>(PrdefindeSpMergeName<T>(), new
+            {
+                List = model.ToDataTable()
+            }, transaction, commandType: CommandType.StoredProcedure);
+
+            return result;
         }
     }
 }

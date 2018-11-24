@@ -157,9 +157,33 @@ $(function () {
                 Remark: '',
                 Data: []
             },
+            modelEleven: {
+                StepId: 0,
+                IsHold: false,
+                Remark: '',
+                Data: []
+            },
+            modelTwelve: {
+                StepId: 0,
+                IsHold: false,
+                Remark: '',
+                Data: []
+            },
+            modelThirteen: {
+                StepId: 0,
+                IsHold: false,
+                Remark: '',
+                Data: []
+            },
             ProjectOfArgument: {},
             ProjectOfConfirm: {},
+            PackageConfirmation: {},
             ProjectOfInvitation: {},
+            PackageOfDrawUpContract: {},
+            PackageOfContractSigning: {},
+            PackageOfContractPublicity: {},
+            PackageAcceptance: {},
+            ExecuteProjectOfQuestion: [],
             luckyList: [
                 '田**，135********',
                 '李**，158********',
@@ -179,7 +203,14 @@ $(function () {
                 vm.ProjectOfArgument = vm.myDetails.ExecuteProject.ExecuteProjectOfArgument;
                 vm.ProjectOfConfirm = vm.myDetails.ExecuteProject.ExecuteProjectOfConfirm;
                 vm.ProjectOfInvitation = vm.myDetails.ExecuteProject.ExecuteProjectOfInvitation;
+                vm.ExecuteProjectOfQuestion = vm.myDetails.ExecuteProject.ExecuteProjectOfQuestion;
                 vm.ExcuteBudget = vm.myDetails.ExecutePackage.PackageOfExcuteBudget;
+                vm.PackageConfirmation = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation;
+                vm.PackageOfDrawUpContract = vm.myDetails.ExecutePackage.PackageOfDrawUpContract;
+                vm.PackageOfContractSigning = vm.myDetails.ExecutePackage.PackageOfContractSigning;
+                vm.PackageOfContractPublicity = vm.myDetails.ExecutePackage.PackageOfContractPublicity;
+                vm.PackageAcceptance = vm.myDetails.ExecutePackage.PackageOfAcceptanceCheckAndAcceptance;
+
                 if (vm.ExecuteProject.ProjectType == '货物') {
                     vm.isGoods = true;
                 } else {
@@ -187,10 +218,15 @@ $(function () {
                 }
                 if (vm.ExecuteProject.State != 0 && vm.ExecuteProject.State) {
                     vm.ExcuteBudget = vm.ExcuteBudget.concat(vm.myDetails.RejectedPackage);
+                    vm.PackageConfirmation = vm.PackageConfirmation.concat(vm.myDetails.RejectedPackage);
+                    vm.PackageOfDrawUpContract = vm.PackageOfDrawUpContract.concat(vm.myDetails.RejectedPackage);
+                    vm.PackageOfContractSigning = vm.PackageOfContractSigning.concat(vm.myDetails.RejectedPackage);
+                    vm.PackageOfContractPublicity = vm.PackageOfContractPublicity.concat(vm.myDetails.RejectedPackage);
+                    vm.PackageAcceptance = vm.PackageAcceptance.concat(vm.myDetails.RejectedPackage);
+
                 }
-                console.info(vm.ExcuteBudget);
                 if (vm.activeText == '开始实施') {
-                    vm.getCategoryDictionary();
+                    vm.getPurchaseMethoOne();
                     vm.modelOne.Model = matchingProperty(vm.modelOne.Model, vm.ExecuteProject);
                     vm.modelOne.Model.CeilingPrice = vm.modelOne.Model.TotalExecuteAmount;
                     vm.modelOne.Model.InspectionMethods = vm.ExecuteProject.InspectionMethods;
@@ -220,51 +256,50 @@ $(function () {
                         vm.modelThree.Data = [];
                         if (vm.ExcuteBudget && vm.ExcuteBudget.length > 0) {
                             for (var i = 0; i < vm.ExcuteBudget.length; i++) {
-                                if (vm.ExcuteBudget[i].IsCanOperate) {
-                                    var data = {
-                                        Id: vm.ExcuteBudget[i].Id,
-                                        IsMSE: true,
-                                        BiddingMethod: '总价招标',
-                                        IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
-                                        IsAcceptCombo: true,
-                                        IsTakeBidBond: true,
-                                        BidBond: 0,
-                                        IsTakePerformanceBond: true,
-                                        PerformanceBond: 0,
-                                        LinkmanName: '',
-                                        LinkmanPhone: '',
-                                        BudgetTypeName: vm.ExcuteBudget[i].BudgetTypeName,
-                                        ExecuteUnitPrice: vm.ExcuteBudget[i].ExecuteUnitPrice,
-                                        IsImported: vm.ExcuteBudget[i].IsImported,
-                                        TermOfService: '合同签订生效之日起______日内',
-                                        Prerequisites: '一、《中华人民共和国政府采购法》第二十二条规定：\n' +
-                                        '1.具有独立承担民事责任的能力；\n' +
-                                        '2.具有良好的商业信誉和健全的财务会计制度；\n' +
-                                        '3.具有履行合同所必需的设备和专业技术能力；\n' +
-                                        '4.有依法缴纳税收和社会保障资金的良好记录；\n' +
-                                        '5.参加政府采购活动前三年内，在经营活动中没有重大违法记录；\n' +
-                                        '6.法律、行政法规规定的其他条件。\n' +
-                                        '二、根据本项目所拟定的特定资格条件：\n' +
-                                        '1.',
-                                        PaymentMethod: '合同签订生效之日起_____日内支付合同总金额的_____%，' +
-                                        '项目验收合格之日起__________支付合同总金额的_____%，剩余_____%作为质量' +
-                                        '保证金，验收合格之日起无约定的质量问题，_____日内无质量问题支付。',
-                                        TechnicalRequirements: vm.ExcuteBudget[i].ExecuteTechnicalRequirements,
-                                        Attachment: vm.ExcuteBudget[i].Attachment,
-                                        GradingStandard: '',
-                                        Remark: ''
-                                    }
-                                    var Project = vm.getConfirmationPackage(data.Id);
-                                    if (vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation && vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation.length != 0) {
+                                var data = {
+                                    Id: vm.ExcuteBudget[i].Id,
+                                    IsMSE: true,
+                                    BiddingMethod: '总价招标',
+                                    IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
+                                    IsAcceptCombo: true,
+                                    IsTakeBidBond: true,
+                                    IsCenterPurchase: vm.ExcuteBudget[i].IsCenterPurchase,
+                                    BidBond: 0,
+                                    IsTakePerformanceBond: true,
+                                    PerformanceBond: 0,
+                                    LinkmanName: '',
+                                    LinkmanPhone: '',
+                                    ProjectType: vm.ExecuteProject.ProjectType,
+                                    BudgetTypeName: vm.ExcuteBudget[i].BudgetTypeName,
+                                    ExecuteUnitPrice: vm.ExcuteBudget[i].ExecuteUnitPrice,
+                                    SerialNumber: vm.ExcuteBudget[i].SerialNumber,
+                                    IsImported: vm.ExcuteBudget[i].IsImported,
+                                    TermOfService: '合同签订生效之日起______日内',
+                                    Prerequisites: '一、《中华人民共和国政府采购法》第二十二条规定：\n' +
+                                    '1.具有独立承担民事责任的能力；\n' +
+                                    '2.具有良好的商业信誉和健全的财务会计制度；\n' +
+                                    '3.具有履行合同所必需的设备和专业技术能力；\n' +
+                                    '4.有依法缴纳税收和社会保障资金的良好记录；\n' +
+                                    '5.参加政府采购活动前三年内，在经营活动中没有重大违法记录；\n' +
+                                    '6.法律、行政法规规定的其他条件。\n' +
+                                    '二、根据本项目所拟定的特定资格条件：\n' +
+                                    '1.',
+                                    PaymentMethod: '合同签订生效之日起_____日内支付合同总金额的_____%，' +
+                                    '项目验收合格之日起__________支付合同总金额的_____%，剩余_____%作为质量' +
+                                    '保证金，验收合格之日起无约定的质量问题，_____日内无质量问题支付。',
+                                    TechnicalRequirements: vm.ExcuteBudget[i].ExecuteTechnicalRequirements,
+                                    Attachment: vm.ExcuteBudget[i].Attachment,
+                                    GradingStandard: '',
+                                    Remark: ''
+                                }
+                                var Project = vm.getConfirmationPackage(data.Id);
+                                if (vm.PackageConfirmation && vm.PackageConfirmation.length != 0) {
+                                    if (Project) {
                                         matchingProperty(data, Project);
                                     }
-                                    vm.modelThree.Data.push(data);
                                 }
+                                vm.modelThree.Data.push(data);
                             }
-                        }
-                    } else {
-                        if (vm.ExecuteProject.State != 0 && vm.ExecuteProject.State) {
-                            vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation.concat(vm.myDetails.RejectedPackage);
                         }
                     }
                 }
@@ -475,6 +510,7 @@ $(function () {
                         }
                     } else {
                         vm.PackageOfResultNotice = [];
+                        vm.transactionAmount = 0;
                         for (var i = 0; i < vm.myDetails.ExecutePackage.PackageOfResultNotice.length; i++) {
                             var item = vm.getExecutePackage(vm.myDetails.ExecutePackage.PackageOfResultNotice[i].Id);
                             if (vm.ExecuteProject.IsCenterPurchase) {
@@ -487,6 +523,7 @@ $(function () {
                             vm.PackageOfResultNotice.push(vm.myDetails.ExecutePackage.PackageOfResultNotice[i]);
                         }
                         vm.capitalSave = 100 - (Math.round(parseInt(vm.transactionAmount) / parseInt(vm.ExecuteProject.TotalExecuteAmount) * 100));
+                        debugger;
                     }
                 }
                 if (vm.activeText == '拟定合同') {
@@ -505,6 +542,7 @@ $(function () {
                                 var data = {
                                     Id: vm.ExcuteBudget[i].Id,
                                     ItemName: ItemName,
+                                    IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
                                     TypeOfContract: '',
                                     LawyersOpinionSheet: '',
                                     SchoolCountersignedRecordForm: '',
@@ -515,6 +553,91 @@ $(function () {
                         }
                     }
                 }
+                if (vm.activeText == '合同签订') {
+                    if (vm.isEdit) {
+                        vm.modelEleven.StepId = vm.ExecuteProject.LastStepId;
+                        vm.modelEleven.Data = [];
+                        if (vm.ExcuteBudget && vm.ExcuteBudget.length > 0) {
+                            for (var i = 0; i < vm.ExcuteBudget.length; i++) {
+                                var ItemName;
+                                if (vm.ExecuteProject.IsCenterPurchase) {
+                                    ItemName = vm.ExcuteBudget[i].ItemName;
+                                } else {
+                                    ItemName = vm.ExcuteBudget[i].PackageName;
+                                }
+                                var data = {
+                                    Id: vm.ExcuteBudget[i].Id,
+                                    ItemName: ItemName,
+                                    IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
+                                    ContractSigningTime: '',
+                                    PurchaseContractAnnex: '',
+                                    PerformanceAcceptanceDays: '',
+                                    AcceptanceTime: '',
+                                    CalculationType: '自然天'
+                                }
+                                vm.modelEleven.Data.push(data);
+                            }
+                        }
+                    }
+                }
+                if (vm.activeText == '合同公示') {
+                    if (vm.isEdit) {
+                        vm.modelTwelve.StepId = vm.ExecuteProject.LastStepId;
+                        vm.modelTwelve.Data = [];
+                        if (vm.ExcuteBudget && vm.ExcuteBudget.length > 0) {
+                            for (var i = 0; i < vm.ExcuteBudget.length; i++) {
+                                var ItemName;
+                                if (vm.ExecuteProject.IsCenterPurchase) {
+                                    ItemName = vm.ExcuteBudget[i].ItemName;
+                                } else {
+                                    ItemName = vm.ExcuteBudget[i].PackageName;
+                                }
+                                var data = {
+                                    Id: vm.ExcuteBudget[i].Id,
+                                    ItemName: ItemName,
+                                    IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
+                                    ContractPublicAddress: '',
+                                    ContractPublicityWebsite: '',
+                                    ContractOpeningTime: '',
+                                    ContractPublicScreeningScreenshot: ''
+                                }
+                                vm.modelTwelve.Data.push(data);
+                            }
+                        }
+                    }
+                }
+                if (vm.activeText == '履约验收') {
+                    if (vm.isEdit) {
+                        vm.modelThirteen.StepId = vm.ExecuteProject.LastStepId;
+                        vm.modelThirteen.Data = [];
+                        if (vm.ExcuteBudget && vm.ExcuteBudget.length > 0) {
+                            for (var i = 0; i < vm.ExcuteBudget.length; i++) {
+                                var ItemName;
+                                if (vm.ExecuteProject.IsCenterPurchase) {
+                                    ItemName = vm.ExcuteBudget[i].ItemName;
+                                } else {
+                                    ItemName = vm.ExcuteBudget[i].PackageName;
+                                }
+                                var item = vm.getPackage(vm.ExcuteBudget[i].Id, vm.PackageOfContractSigning);
+                                var data = {
+                                    Id: vm.ExcuteBudget[i].Id,
+                                    ItemName: ItemName,
+                                    IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
+                                    PerformanceBeginPeriod: '',
+                                    PerformanceEndPeriod:'',
+                                    ContractSigningTime:item.ContractSigningTime,
+                                    AcceptanceTime: '',
+                                    PerformanceAcceptanceInformation: '',
+                                    PerformanceAcceptanceAnnex: ''
+                                }
+                                var timestamp = new Date(item.ContractSigningTime).getTime() + (item.PerformanceAcceptanceDays * 24 * 60 * 60 * 1000);
+                                data.AcceptanceTime = getStrTime(timestamp);
+                                vm.modelThirteen.Data.push(data);
+                            }
+                        }
+                    }
+                }
+                $('.datetimepicker.datetimepicker-dropdown-bottom-right').remove();
                 vm.getTime();
             },
             getRefresh: function () {
@@ -525,6 +648,7 @@ $(function () {
                 $('.main').css('width', width - 240);
             },
             getTime: function () {
+                //选择到某一天
                 $('.form-time').datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
@@ -532,6 +656,7 @@ $(function () {
                     autoclose: 1,
                     language: 'zh-CN'
                 });
+                //选择到某一天 上午/下午
                 $('.form-hour').datetimepicker({
                     format: 'yyyy-mm-dd hh:00:00',
                     showMeridian: true,
@@ -542,7 +667,7 @@ $(function () {
                 });
             },
             getConfirmationPackage: function (id) {
-                var Package = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation;
+                var Package = vm.PackageConfirmation;
                 for (var i = 0; i < Package.length; i++) {
                     var item = Package[i]
                     if (item.Id == id) {
@@ -552,9 +677,9 @@ $(function () {
                 }
             },
             getExecutePackage: function (id) {
-                var bag = vm.ExcuteBudget;
-                for (var i = 0; i < bag.length; i++) {
-                    var item = bag[i]
+                var Package = vm.ExcuteBudget;
+                for (var i = 0; i < Package.length; i++) {
+                    var item = Package[i]
                     if (item.Id == id) {
                         return item
                         break
@@ -565,6 +690,15 @@ $(function () {
                 var bag = vm.myDetails.RejectedPackage;
                 for (var i = 0; i < bag.length; i++) {
                     var item = bag[i]
+                    if (item.Id == id) {
+                        return item
+                        break
+                    }
+                }
+            },
+            getPackage: function (id, package) {
+                for (var i = 0; i < package.length; i++) {
+                    var item = package[i]
                     if (item.Id == id) {
                         return item
                         break
@@ -587,7 +721,7 @@ $(function () {
                     }
                 });
             },
-            getCategoryDictionary: function () {
+            getPurchaseMethoOne: function () {
                 Dictionary.getCategoryDictionary('get', '采购方式', function getCategoryDictionaryListener(success, obj, strErro) {
                     if (success) {
                         vm.purchaseMethoOne = obj;
@@ -1853,6 +1987,163 @@ $(function () {
                     }
                 });
             },
+            uploadPurchaseContractAnnex: function (e, el) {
+                var data = new FormData();
+                data.append('file', e.target.files[0]);
+                fileUpload(data, function (success, data, resulstMsg) {
+                    if (success) {
+                        el.PurchaseContractAnnex = data;
+                        $.oaNotify.ok(resulstMsg);
+                    } else {
+                        $.oaNotify.error('上传失败：' + resulstMsg);
+                    }
+                })
+            },
+            changeContractSigningTime: function (el) {
+                var timestamp = new Date(el.ContractSigningTime).getTime() + (el.PerformanceAcceptanceDays * 24 * 60 * 60 * 1000);
+                return el.AcceptanceTime = getStrTime(timestamp);
+
+            },
+            clickSubmitEleven: function () {
+                var data = vm.modelEleven.Data;
+                for (var i = 0; i < data.length; i++) {
+                    if (!data[i].ContractSigningTime || data[i].ContractSigningTime == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，【合同签订时间】不能为空！');
+                        return
+                        break
+                    }
+                    if (!data[i].PurchaseContractAnnex || data[i].PurchaseContractAnnex == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请上传【采购合同附件】！');
+                        return
+                        break
+                    }
+                    data[i].PerformanceAcceptanceDays = parseInt(data[i].PerformanceAcceptanceDays);
+                    if (!data[i].PerformanceAcceptanceDays || data[i].PerformanceAcceptanceDays == '') {
+
+                        $.oaNotify.error(' 第' + (i + 1) + '包，【履约验收期限】！');
+                        return
+                        break
+                    }
+                    if (!data[i].CalculationType || data[i].CalculationType == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请选择【履约验收期限计算方式】！');
+                        return
+                        break
+                    }
+                }
+                vm.passPackageOfContractSigning(vm.modelEleven.$model);
+            },
+            passPackageOfContractSigning: function (data) {
+                ProjectExecute.passPackageOfContractSigning('post', data, function passPackageOfContractSigningListener(success, obj, strErro) {
+                    if (success) {
+                        $.oaNotify.ok(' 提交成功，进入下一步!');
+                        vm.isFirst = true;
+                        vm.getExecuteProjectDetail();
+                    } else {
+                        $.oaNotify.error(' 提交失败：' + strErro);
+                    }
+                });
+            },
+            uploadContractPublicScreeningScreenshot: function (e, el) {
+                var data = new FormData();
+                data.append('file', e.target.files[0]);
+                fileUpload(data, function (success, data, resulstMsg) {
+                    if (success) {
+                        el.ContractPublicScreeningScreenshot = data;
+                        $.oaNotify.ok(resulstMsg);
+                    } else {
+                        $.oaNotify.error('上传失败：' + resulstMsg);
+                    }
+                })
+            },
+            clickSubmitTwelve: function () {
+                var data = vm.modelTwelve.Data;
+                for (var i = 0; i < data.length; i++) {
+                    if (!data[i].ContractPublicAddress || data[i].ContractPublicAddress == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，【合同公示地址】不能为空！');
+                        return
+                        break
+                    }
+                    if (!data[i].ContractPublicityWebsite || data[i].ContractPublicityWebsite == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请填写【合同公示网站】！');
+                        return
+                        break
+                    }
+                    if (!data[i].ContractOpeningTime || data[i].ContractOpeningTime == '') {
+
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请填写【合同公示时间】！');
+                        return
+                        break
+                    }
+                    if (!data[i].ContractPublicScreeningScreenshot || data[i].ContractPublicScreeningScreenshot == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请上传【合同公示截图】文件！');
+                        return
+                        break
+                    }
+                }
+                vm.passPackageOfContractPublicity(vm.modelTwelve.$model);
+            },
+            passPackageOfContractPublicity: function (data) {
+                ProjectExecute.passPackageOfContractPublicity('post', data, function passPackageOfContractPublicityListener(success, obj, strErro) {
+                    if (success) {
+                        $.oaNotify.ok(' 提交成功，进入下一步!');
+                        vm.isFirst = true;
+                        vm.getExecuteProjectDetail();
+                    } else {
+                        $.oaNotify.error(' 提交失败：' + strErro);
+                    }
+                });
+            },
+            uploadPerformanceAcceptanceAnnex: function (e, el) {
+                var data = new FormData();
+                data.append('file', e.target.files[0]);
+                fileUpload(data, function (success, data, resulstMsg) {
+                    if (success) {
+                        el.PerformanceAcceptanceAnnex = data;
+                        $.oaNotify.ok(resulstMsg);
+                    } else {
+                        $.oaNotify.error('上传失败：' + resulstMsg);
+                    }
+                })
+            },
+            changeAcceptanceTime: function (el) {
+                var timestamp = new Date(el.ContractSigningTime).getTime() + (el.PerformanceEndPeriod * 24 * 60 * 60 * 1000);
+                return el.AcceptanceTime = getStrTime(timestamp);
+
+            },
+            clickSubmitThirteen: function () {
+                var data = vm.modelThirteen.Data;
+                for (var i = 0; i < data.length; i++) {
+                    if (!data[i].AcceptanceTime || data[i].AcceptanceTime == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请填写【验收时间】！');
+                        return
+                        break
+                    }
+                    if (!data[i].PerformanceAcceptanceInformation || data[i].PerformanceAcceptanceInformation == '') {
+
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请填写【履约验收信息】！');
+                        return
+                        break
+                    }
+                    if (!data[i].PerformanceAcceptanceAnnex || data[i].PerformanceAcceptanceAnnex == '') {
+                        $.oaNotify.error(' 第' + (i + 1) + '包，请上传【履约验收附件】文件！');
+                        return
+                        break
+                    }
+                }
+                console.info(vm.modelThirteen.$model);
+                vm.passPackageOfAcceptanceCheckAndAcceptance(vm.modelThirteen.$model);
+            },
+            passPackageOfAcceptanceCheckAndAcceptance: function (data) {
+                ProjectExecute.passPackageOfAcceptanceCheckAndAcceptance('post', data, function passPackageOfAcceptanceCheckAndAcceptanceListener(success, obj, strErro) {
+                    if (success) {
+                        $.oaNotify.ok(' 提交成功，进入下一步!');
+                        vm.isFirst = true;
+                        vm.getExecuteProjectDetail();
+                    } else {
+                        $.oaNotify.error(' 提交失败：' + strErro);
+                    }
+                });
+            },
             getHtmlDocName: function (url) {
                 if (url) {
                     var arr = url.split('\\');
@@ -1885,14 +2176,10 @@ $(function () {
              forceParse: false,
              language: 'zh-CN',
              linkField: "mirror_field"
-         });
-         $('.form-time').datetimepicker({
-             format: 'yyyy-mm-dd',
-             minView: "month", //选择日期后，不会再跳转去选择时分秒
-             todayBtn: 1,
-             autoclose: 1,
-             language: 'zh-CN'
          });*/
+        $('.page-edit-execute .left-nav').mCustomScrollbar({
+            theme: 'dark-3',
+        });
         $(window).resize(function () {
             vm.getWidth();
         });

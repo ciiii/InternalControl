@@ -147,6 +147,13 @@ namespace InternalControl.Controllers
 
         }
 
+        [HttpPost]
+        async public Task<object> TestMerge([FromBody]Expert model)
+        {
+            var x = Db.Merge(model);
+            return x.GetAwaiter().GetResult();
+        }
+
 
         public class MyClass1
         {
