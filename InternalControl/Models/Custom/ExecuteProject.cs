@@ -186,7 +186,7 @@ namespace InternalControl.Models
     }
 
     /// <summary>
-    /// 执行项目的包的多个组成部门
+    /// 执行项目的包的多个组成部分
     /// </summary>
     public class MultiPartOfExecutePackage
     {
@@ -260,6 +260,27 @@ namespace InternalControl.Models
         /// 左侧树的数据
         /// </summary>
         public IEnumerable<MenuOfExecuteProject> Menu { get; set; }
+    }
+
+    /// <summary>
+    /// 更正时的接口数据结构
+    /// </summary>
+    public class DataOfExecuteProjectOfCorrection
+    {
+        /// <summary>
+        /// 更正的主体数据
+        /// </summary>
+        public ExecuteProjectOfCorrection ModelOfExecuteProjectOfCorrection { get; set; }
+
+        /// <summary>
+        /// 更正包的信息
+        /// </summary>
+        public IEnumerable<PackageOfResultNoticeOfCorrection> ListOfPackageOfResultNoticeOfCorrection { get; set; }
+
+        /// <summary>
+        /// 这次废包的id的信息
+        /// </summary>
+        public IEnumerable<int> ListOfRejectPackageId { get; set; }
     }
 
     /// <summary>

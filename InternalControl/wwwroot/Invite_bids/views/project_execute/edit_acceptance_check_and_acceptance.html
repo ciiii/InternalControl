@@ -20,7 +20,8 @@
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
-    <script type="text/javascript" src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
@@ -175,7 +176,7 @@
                             <tbody>
                             <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget"
                                 ms-attr="{'id':'items-'+$index}">
-                                <td class="number text-center">第{{el.SerialNumber}}包</td>
+                                <td class="number text-center">第{{$index+1}}包</td>
                                 <td>{{el.ProjectName}}</td>
                                 <td>{{@modelOne.Model.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
@@ -1358,7 +1359,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item row col-md-12 col-sm-12" ms-if="@modelFour.Data.IsNeedArgumentFile">
+                <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">是否进行进口产品论证</label>
                         <div class="col-md-7 col-sm-7">
@@ -2070,7 +2071,7 @@
                                 </thead>
                                 <tbody>
                                 <tr ms-for="($index,el) in @modelSix.Data.List" ms-if="@modelSix.Data.List.length!=0">
-                                    <td class="number text-center">第{{el.SerialNumber}}包</td>
+                                    <td class="number text-center">第{{$index+1}}包</td>
                                     <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                     <td>
                                         <input type="text" class="form-control" ms-duplex="el.ExtractSupplierLlist"/>
@@ -2646,7 +2647,7 @@
                             </label>
                             <div class="col-md-7 col-sm-7">
                                 <input type="text" class="form-control form-hour"
-                                       ms-duplex="@modelSeven.Data.Model.BidOpeningDateTime">
+                                       ms-duplex="@modelSeven.Data.Model.BidOpeningDateTime" readonly>
                             </div>
                         </div>
                         <div class="form-group col-md-6 col-sm-6">
@@ -3390,7 +3391,7 @@
                                     </tr>
                                     <tr>
                                         <th>投标文件</th>
-                                        <td class="fileUpload-box">
+                                        <td class="fileUpload-box fileUpload-box-more">
                                             <div class="file-box">
                                                 <input type="file" class="input-file" name="fileUpload"
                                                        ms-on-change="@uploadBiddingDocuments($event,el)">
@@ -3398,8 +3399,13 @@
                                             </div>
                                             <ul>
                                                 <li ms-for="file in @el.BiddingDocumentsList">
-                                                    <a ms-attr="{'href':file}"
+                                                    <a class="file-name" ms-attr="{'href':file}"
                                                        download="">{{@getHtmlDocName(file)}}</a>
+                                                    <a class="btn-del" href="javascript:;"
+                                                       ms-if="@file!=''"
+                                                       ms-on-click="@el.BiddingDocumentsList.remove(file)">
+                                                        <i class="icon iconfont icon-shanchu"></i>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </td>
@@ -4820,8 +4826,117 @@
             </div>
         </div>
         <div class="tab-pane model-fourteen" ms-class="getTabClass('更正情况')">
-            <div ms-if="isEdit">编辑14</div>
-            <div ms-if="!isEdit">详情14</div>
+            <div class="form-horizontal content">
+                <div class="item row col-md-12 col-sm-12">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.Name}}</span>
+                        </div>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">采购方式</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.PurchaseMethod}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">预算金额</label>
+                        <div class="col-md-9 col-sm-9">
+                            <span>{{@ExecuteProject.TotalExecuteAmount|currency}} 元</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12 correct-box">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">更正情况</label>
+                    </div>
+                    <div class="text-right btn-box">
+                        <a class="btn btn-success" data-toggle="modal" data-target=".modal-add"
+                           href="add_correct.html" onclick="changeUrl(this)" ms-on-click="@addCorrect"
+                           ms-if="@myDetails.ExecutePackage.PackageOfExcuteBudget.length!=0">
+                            <i class="icon iconfont icon-tianjia"></i> 添加更正
+                        </a>
+                        <a class="btn btn-danger" data-toggle="modal" data-target=".modal-add"
+                           href="scrap_bag.html" onclick="changeUrl(this)" ms-on-click="@scrapBag"
+                           ms-if="@myDetails.ExecutePackage.PackageOfExcuteBudget.length!=0">
+                            <i class="icon iconfont icon-shanchu1"></i> 分包废标重招
+                        </a>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12"
+                         ms-if="@ExecuteProjectOfCorrection&&@ExecuteProjectOfCorrection.length!=0">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>更正名称</th>
+                                <th>更正类型</th>
+                                <th>更正原因</th>
+                                <th>更正内容</th>
+                                <th>记录日期</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @ExecuteProjectOfCorrection">
+                                <td class="number text-center">第{{$index+1}}次更正</td>
+                                <td>{{el.Type}}</td>
+                                <td>{{el.Reason}}</td>
+                                <td>{{el.Content}}</td>
+                                <td>{{el.CreateDatetime}}</td>
+                                <td class="operation">
+                                    <ul>
+                                        <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
+                                            title="查看详情">
+                                            <a data-toggle="modal" data-target=".modal-details"
+                                               href="correct_details.html" ms-on-click="@clickCorrectionsDetails(el)"
+                                               onclick="changeUrlChoice(this,'.modal-details')">
+                                                <i class="icon iconfont icon-16"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12 col-sm-12"
+                         ms-if="!@ExecuteProjectOfCorrection||@ExecuteProjectOfCorrection.length==0">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                    </div>
+                </div>
+                <div class="item row col-md-12 col-sm-12 correct-box" ms-if="@myDetails.RejectedPackage&&@myDetails.RejectedPackage.length!=0">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label col-md-3 col-sm-3">废包信息</label>
+                    </div>
+                    <hr class="col-md-12 col-sm-12"/>
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>包号</th>
+                                <th>单项名称/包名</th>
+                                <th>申报部门</th>
+                                <th>预算金额</th>
+                                <th>状态</th>
+                                <th>记录日期</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @myDetails.RejectedPackage">
+                                <td class="number text-center">第{{$index+1}}包</td>
+                                <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
+                                <td>{{el.DeclareDepartmentName}}</td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
+                                <td style="color: red">废标</td>
+                                <td>{{el.CreateDatetime}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab-pane model-fifteen" ms-class="getTabClass('质疑投诉')">
             <div class="form-horizontal content">
@@ -4833,13 +4948,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="item row col-md-12 col-sm-12 question-box">
+                <div class="item row col-md-12 col-sm-12 correct-box">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">质疑投诉</label>
                     </div>
-                    <div class="form-group col-md-6 col-sm-6 text-right">
+                    <div class="text-right btn-box">
                         <a class="btn btn-success" data-toggle="modal" data-target=".modal-add"
-                           href="add_question.html" onclick="changeUrl(this)" ms-on-click="@clickBtnEdit(el)">
+                           href="add_question.html" onclick="changeUrl(this)">
                             <i class="icon iconfont icon-tianjia"></i> 添加质疑
                         </a>
                     </div>
@@ -4850,17 +4965,41 @@
                             <thead>
                             <tr>
                                 <th>质疑名称</th>
-                                <th>质疑时间</th>
+                                <th>质疑人</th>
+                                <th>质疑类型</th>
+                                <th>是否被投诉</th>
+                                <th>投诉人</th>
+                                <th>记录日期</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @ExecuteProjectOfQuestion">
-                                <td class="number text-center">第{{$index+1}}次质疑</td>
-                                <td></td>
+                                <td class="number text-center">第{{$index+1}}次质疑投诉</td>
+                                <td>{{el.QuestionerName}}</td>
+                                <td>{{el.QuestionType}}</td>
+                                <td>{{el.IsThereScomplaint?'是':'否'}}</td>
+                                <td>{{el.ComplainantName}}</td>
+                                <td>{{el.CreateDatetime}}</td>
+                                <td class="operation">
+                                    <ul>
+                                        <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
+                                            title="查看详情">
+                                            <a data-toggle="modal" data-target=".modal-details"
+                                               href="question_details.html" ms-on-click="@clickDetails(el)"
+                                               onclick="changeUrlChoice(this,'.modal-details')">
+                                                <i class="icon iconfont icon-16"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="col-md-12 col-sm-12"
+                         ms-if="!@ExecuteProjectOfQuestion||@ExecuteProjectOfQuestion.length==0">
+                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                     </div>
                 </div>
             </div>

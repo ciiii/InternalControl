@@ -30,16 +30,23 @@
 
     <script>
         document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
-        document.write(' <script type="text/javascript" src="/Invite_bids/js/home/tast_warning.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/home/task_warning.js?time=' + new Date().getTime() + '"></s' + 'cript>');
 
     </script>
 
 </head>
 <body ms-controller="root" class="ms-controller" onload="IFrameResize()">
-<div class="page-declare page-common page-paper">
+<div class="page-declare page-common page-paper page-notice">
     <div class="main">
         <div class="row screen-box">
             <div class="form-inline">
+                <div class="form-group">
+                    <div class="btn-group" >
+                        <button class="btn btn-default active" ms-class="getClass(0)" ms-on-click="@clickType($event)" data-id="0">全部</button>
+                        <button class="btn btn-default" ms-class="getClass(1)" ms-on-click="@clickType($event)" data-id="1">申报项目</button>
+                        <button class="btn btn-default" ms-class="getClass(2)" ms-on-click="@clickType($event)" data-id="2">执行项目</button>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>管理部门</label>
                     <select class="form-control department" ms-on-change="changeDepartment($event)"
@@ -65,112 +72,106 @@
                 <a class="btn btn-primary btn-search" href="javascript:;" ms-on-click="@search()">查询</a>
             </div>
         </div>
-    </div>
-    <div class="personnel-box">
-        <div class="personnel-list">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <!--<th class="checkbox-box">-->
-                        <!--<div class="checkbox">-->
-                        <!--<label class="bs-tooltip" href="javascript:;" title="全选" data-toggle="tooltip" data-placement="bottom">-->
-                        <!--<input class="select-all" type="checkbox" ms-duplex-checked="@allchecked"-->
-                        <!--data-duplex-changed="@checkAll"/>-->
-                        <!--</label>-->
-                        <!--</div>-->
-                        <!--</th>-->
-                        <th class="number">序号</th>
-                        <th class="name">标题内容</th>
-                        <th>消息来源</th>
-                        <th>消息发送时间</th>
-                        <th class="operation">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">
-                        <!--<td class="checkbox-box">-->
-                        <!--<div class="checkbox">-->
-                        <!--<label>-->
-                        <!--<input type="checkbox" class="item-checkbox" ms-duplex-checked="el.checked"-->
-                        <!--data-duplex-changed="@checkOne"/>-->
-                        <!--</label>-->
-                        <!--</div>-->
-                        <!--</td>-->
-                        <td class="number text-center">{{el.number}}</td>
-                        <td>{{el.DeclareProject.Name}}</td>
-                        <td>{{el.DeclareProject.TotalDeclareAmount|currency}}</td>
-                        <td>{{el.DeclareProject.RelevantDepartmentName}}</td>
-                        <td>{{el.DeclareProject.IsCenterPurchase?'政府集中采购目录':'非政府集中采购目录'}}</td>
-                        <td>{{el.DeclareProject.PlanPurchaseMethod}}</td>
-                        <td>{{el.DeclareProject.CreateDatetime}}</td>
-                        <td ms-class="getStateClass(el.DeclareProject.LastStepStateName)">
-                            {{el.DeclareProject.StateName}} - {{el.DeclareProject.LastStepStateName}}
-                        </td>
-                        <td class="operation">
-                            <ul>
-                                <li class="bs-tooltip" ms-class="getFlowClass(el.DeclareProject.LastStepStateName)"
-                                    data-toggle="tooltip" data-placement="bottom"
-                                    ms-attr="{'title':el.DeclareProject.LastStepStateName}"
-                                    ms-if="el.DeclareProject.IsCanOperate">
-                                    <a href="javascript:;" ms-on-click="@clickBtnEdit(el)">
-                                        <i class="icon iconfont"
-                                           ms-class="@el.DeclareProject.LastStepTemplateStyle"></i>
-                                    </a>
-                                </li>
-                                <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
-                                    title="查看详情">
-                                    <a data-toggle="modal" data-target=".modal-details"
-                                       href="declare_details.html" ms-on-click="@clickDetails(el)"
-                                       onclick="changeUrlChoice(this,'.modal-details')">
-                                        <i class="icon iconfont icon-16"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="personnel-box">
+            <div class="personnel-list">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="checkbox-box">
+                            <div class="checkbox">
+                            <label class="bs-tooltip" href="javascript:;" title="全选" data-toggle="tooltip" data-placement="bottom">
+                            <input class="select-all" type="checkbox" ms-duplex-checked="@allchecked"
+                            data-duplex-changed="@checkAll"/>
+                            </label>
+                            </div>
+                            </th>
+                            <th class="number">序号</th>
+                            <th class="name">标题内容</th>
+                            <th>消息来源</th>
+                            <th>消息发送时间</th>
+                            <th class="operation">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">
+                            <td class="checkbox-box">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="item-checkbox" ms-duplex-checked="el.checked"
+                                               data-duplex-changed="@checkOne"/>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="number text-center">{{el.number}}</td>
+                            <td class="text-left">{{el.Name}}</td>
+                            <td>{{el.FlowTemplateName}} - {{el.RelevantDepartmentName}}</td>
+                            <td>{{el.CreateDatetime}}</td>
+                            <td class="operation">
+                                <ul>
+                                    <li class="bs-tooltip" ms-class="getFlowClass(el.LastStepStateName)"
+                                        data-toggle="tooltip" data-placement="bottom"
+                                        ms-attr="{'title':el.LastStepStateName}"
+                                        ms-if="el.IsCanOperate">
+                                        <a href="javascript:;" ms-on-click="@clickBtnEdit(el)">
+                                            <i class="icon iconfont"
+                                               ms-class="@el.LastStepTemplateStyle"></i>
+                                        </a>
+                                    </li>
+                                    <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
+                                        title="查看详情">
+                                        <a data-toggle="modal" data-target=".modal-details"
+                                           href="declare_details.html" ms-on-click="@clickDetails(el)"
+                                           onclick="changeUrlChoice(this,'.modal-details')">
+                                            <i class="icon iconfont icon-16"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ms-if="@nothing">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                </div>
             </div>
-            <div ms-if="@nothing">
-                <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+            <div class="page paging text-center">
+                <a class="btn btn-primary btn-sign" href="javascript:;" ms-on-click="@search()">标记已读</a>
+                <div class="pager paging"></div>
             </div>
         </div>
-        <div class="page paging text-center">
-            <div class="pager paging"></div>
-        </div>
     </div>
-</div>
-<div class="modal fade modal-del" tabindex="-1" role="dialog"
-     aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">您确定要执行删除操作吗？</h4>
-            </div>
-            <div class="modal-footer submit-wrapper">
-                <div class="submit-box text-center">
-                    <button type="submit" class="btn btn-primary btn-submit" ms-on-click="@confirmDel(@arr)">提交
-                    </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"
-                            ms-on-click="@clickBtnReturn">返回
-                    </button>
-                    <div class="tip-box"></div>
+    <div class="modal fade modal-del" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">您确定要执行删除操作吗？</h4>
+                </div>
+                <div class="modal-footer submit-wrapper">
+                    <div class="submit-box text-center">
+                        <button type="submit" class="btn btn-primary btn-submit" ms-on-click="@confirmDel(@arr)">提交
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                ms-on-click="@clickBtnReturn">返回
+                        </button>
+                        <div class="tip-box"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade modal-add" tabindex="-1" role="dialog"
-     aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog"></div>
-</div>
-<div class="modal fade modal-details" tabindex="-1" role="dialog"
-     aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg"></div>
-</div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+    <div class="modal fade modal-details" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
+    </div>
 </div>
 </body>
 </html>

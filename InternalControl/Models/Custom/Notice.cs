@@ -37,10 +37,37 @@ namespace InternalControl.Models
         /// 模糊:发送人姓名
         /// </summary>
         public string LikeSendorName { get; set; }
+
+        /// <summary>
+        /// 创建时间大于等于此时间的
+        /// </summary>
+        public DateTime? BeginCreateDatetime { get; set; }
+
+        /// <summary>
+        /// 创建时间小于等于此时间的
+        /// </summary>
+        public DateTime? EndCreateDatetime { get; set; }
     }
 
     public class NoticeReceivingConditionFilter
     {
         public int? NoticeId { get; set; }
+    }
+
+    /// <summary>
+    /// 任务通知的搜索条件
+    /// </summary>
+    public class ProjectBacklogFilter
+    {
+        /// <summary>
+        /// 模糊:名称
+        /// </summary>
+        public string LikeMessage { get; set; }
+
+        /// <summary>
+        /// 项目类型只有:项目申报 项目预算 项目执行
+        /// </summary>
+        public string FlowTemplateName { get; set; }
+
     }
 }

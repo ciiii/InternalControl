@@ -1,0 +1,46 @@
+<div class="modal-content ms-controller add-user add_question" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">分包废标</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12 notice-content">
+                <h5 class="title"><span>包信息</span></h5>
+                <div class="form-group col-sm-11">
+                    <ul>
+                        <li ms-for="($index,el) in @model.List" ms-if="@model.List&&model.List.length!=0">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="item-checkbox" ms-duplex-checked="el.checked" ms-if="@isResult"
+                                           data-duplex-changed="@checkOne"/>
+                                    <input type="checkbox" class="item-checkbox" ms-duplex-checked="el.checked" ms-if="!@isResult" disabled />
+                                    第{{$index+1}}包 - {{@IsCenterPurchase?el.ItemName:el.PackageName}}
+                                </label>
+                            </div>
+                            <!--<span ms-if="!@isResult">第{{$index+1}}包 - {{@IsCenterPurchase?el.ItemName:el.PackageName}}</span>-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 notice-content">
+                <h5 class="title"><span>所选分包废标原因</span></h5>
+                <div class="form-group col-sm-11">
+                    <textarea class="form-control" rows="4" ms-duplex="@Remark"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">确认重新招标</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/project_execute/add_correct.js"></script>

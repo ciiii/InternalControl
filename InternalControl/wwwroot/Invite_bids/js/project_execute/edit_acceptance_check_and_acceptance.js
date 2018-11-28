@@ -62,6 +62,9 @@ $(function () {
             modelNineType: true,
             typeOfContract: [],
             PackageOfResultNotice: [],
+            questionId: '',
+            correctId: '',
+            isScrapBag: false,
             modelOne: {
                 Model: {
                     Id: 0,
@@ -184,6 +187,7 @@ $(function () {
             PackageOfContractPublicity: {},
             PackageAcceptance: {},
             ExecuteProjectOfQuestion: [],
+            ExecuteProjectOfCorrection: [],
             luckyList: [
                 '田**，135********',
                 '李**，158********',
@@ -203,14 +207,13 @@ $(function () {
                 vm.ProjectOfArgument = vm.myDetails.ExecuteProject.ExecuteProjectOfArgument;
                 vm.ProjectOfConfirm = vm.myDetails.ExecuteProject.ExecuteProjectOfConfirm;
                 vm.ProjectOfInvitation = vm.myDetails.ExecuteProject.ExecuteProjectOfInvitation;
-                vm.ExecuteProjectOfQuestion = vm.myDetails.ExecuteProject.ExecuteProjectOfQuestion;
+
                 vm.ExcuteBudget = vm.myDetails.ExecutePackage.PackageOfExcuteBudget;
                 vm.PackageConfirmation = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation;
                 vm.PackageOfDrawUpContract = vm.myDetails.ExecutePackage.PackageOfDrawUpContract;
                 vm.PackageOfContractSigning = vm.myDetails.ExecutePackage.PackageOfContractSigning;
                 vm.PackageOfContractPublicity = vm.myDetails.ExecutePackage.PackageOfContractPublicity;
                 vm.PackageAcceptance = vm.myDetails.ExecutePackage.PackageOfAcceptanceCheckAndAcceptance;
-
                 if (vm.ExecuteProject.ProjectType == '货物') {
                     vm.isGoods = true;
                 } else {
@@ -404,6 +407,8 @@ $(function () {
                                 ProcurementOnBehalfOfNumber: Project.ProcurementOnBehalfOfNumber,
                                 TImeOfGetExperts: Project.TImeOfGetExperts,
                                 PlaceOfGetExperts: Project.PlaceOfGetExperts,
+                                TimeOfExpertReview: Project.TimeOfExpertReview,
+                                PlaceOfExpertReview: Project.PlaceOfExpertReview,
                                 BidOpeningDateTime: Project.BidOpeningDateTime,
                                 BidOpeningPlace: Project.BidOpeningPlace,
                                 CreatorId: Project.CreatorId,
@@ -431,6 +436,8 @@ $(function () {
                                 ProcurementOnBehalfOfNumber: 0,
                                 TImeOfGetExperts: '',
                                 PlaceOfGetExperts: '',
+                                TimeOfExpertReview: '',
+                                PlaceOfExpertReview: '',
                                 BidOpeningDateTime: '',
                                 BidOpeningPlace: '',
                                 CreatorId: vm.ExecuteProject.CreatorId,
@@ -523,7 +530,6 @@ $(function () {
                             vm.PackageOfResultNotice.push(vm.myDetails.ExecutePackage.PackageOfResultNotice[i]);
                         }
                         vm.capitalSave = 100 - (Math.round(parseInt(vm.transactionAmount) / parseInt(vm.ExecuteProject.TotalExecuteAmount) * 100));
-                        debugger;
                     }
                 }
                 if (vm.activeText == '拟定合同') {
@@ -624,8 +630,8 @@ $(function () {
                                     ItemName: ItemName,
                                     IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
                                     PerformanceBeginPeriod: '',
-                                    PerformanceEndPeriod:'',
-                                    ContractSigningTime:item.ContractSigningTime,
+                                    PerformanceEndPeriod: '',
+                                    ContractSigningTime: item.ContractSigningTime,
                                     AcceptanceTime: '',
                                     PerformanceAcceptanceInformation: '',
                                     PerformanceAcceptanceAnnex: ''
@@ -636,6 +642,12 @@ $(function () {
                             }
                         }
                     }
+                }
+                if (vm.activeText == '质疑投诉') {
+                    vm.ExecuteProjectOfQuestion = vm.myDetails.ExecuteProject.ExecuteProjectOfQuestion;
+                }
+                if (vm.activeText == '更正情况') {
+                    vm.ExecuteProjectOfCorrection = vm.myDetails.ExecuteProject.ExecuteProjectOfCorrection.reverse();
                 }
                 $('.datetimepicker.datetimepicker-dropdown-bottom-right').remove();
                 vm.getTime();
@@ -2143,6 +2155,18 @@ $(function () {
                         $.oaNotify.error(' 提交失败：' + strErro);
                     }
                 });
+            },
+            clickCorrectionsDetails: function (el) {
+                vm.correctId = el.Id;
+            },
+            clickDetails: function (el) {
+                vm.questionId = el.Id;
+            },
+            addCorrect: function () {
+                vm.isScrapBag = false;
+            },
+            scrapBag: function () {
+                vm.isScrapBag = true;
             },
             getHtmlDocName: function (url) {
                 if (url) {

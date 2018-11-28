@@ -36,42 +36,36 @@ namespace InternalControl.Models
 		/// 旧的中标供应商
 		/// </summary>
         [DisplayName("旧的中标供应商")]
-        [Required(ErrorMessage ="请提供[OldWinningBidder]")]
         [MaxLength(200,ErrorMessage ="OldWinningBidder不能超过[100]字")]
 		public string OldWinningBidder { get; set; }
         /// <summary>
 		/// 新的中标供应商
 		/// </summary>
         [DisplayName("新的中标供应商")]
-        [Required(ErrorMessage ="请提供[NewWinningBidder]")]
         [MaxLength(200,ErrorMessage ="NewWinningBidder不能超过[100]字")]
 		public string NewWinningBidder { get; set; }
         /// <summary>
 		/// 旧的企业类型
 		/// </summary>
         [DisplayName("旧的企业类型")]
-        [Required(ErrorMessage ="请提供[OldTypeOfEnterprise]")]
         [MaxLength(50,ErrorMessage ="OldTypeOfEnterprise不能超过[25]字")]
 		public string OldTypeOfEnterprise { get; set; }
         /// <summary>
 		/// 新的企业类型
 		/// </summary>
         [DisplayName("新的企业类型")]
-        [Required(ErrorMessage ="请提供[NewTypeOfEnterprise]")]
         [MaxLength(50,ErrorMessage ="NewTypeOfEnterprise不能超过[25]字")]
 		public string NewTypeOfEnterprise { get; set; }
         /// <summary>
 		/// 旧的中标金额
 		/// </summary>
         [DisplayName("旧的中标金额")]
-        [Required(ErrorMessage ="请提供[OldWinningBidAmount]")]
-		public int OldWinningBidAmount { get; set; }
+		public int? OldWinningBidAmount { get; set; }
         /// <summary>
 		/// 新的中标金额
 		/// </summary>
         [DisplayName("新的中标金额")]
-        [Required(ErrorMessage ="请提供[NewWinningBidAmount]")]
-		public int NewWinningBidAmount { get; set; }
+		public int? NewWinningBidAmount { get; set; }
         /// <summary>
 		/// Remark
 		/// </summary>

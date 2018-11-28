@@ -41,6 +41,7 @@ $(function () {
                         }
                     }
                 }
+                addVm.getTime();
             },
             getClass: function (value) {
                 if (addVm.model.IsThereScomplaint == value) {
@@ -49,6 +50,9 @@ $(function () {
             },
             clickThereScomplaint: function (value) {
                 addVm.model.IsThereScomplaint = value;
+                if (addVm.model.IsThereScomplaint) {
+                    addVm.getTime();
+                }
             },
             uploadQuestionAttachment: function (e) {
                 var data = new FormData();
@@ -171,7 +175,8 @@ $(function () {
             questionExecuteProject: function (data) {
                 ProjectExecute.questionExecuteProject('post', data, function questionExecuteProjectListener(success, obj, strErro) {
                     postBack(success, strErro, '提交成功！', '提交失败：', '.modal-add', function callBack() {
-                        vm.query();
+                        vm.ExecuteProjectOfQuestion.push(addVm.model.$model);
+                        vm.clickBtnReturn();
                     });
                 });
             },
@@ -184,18 +189,21 @@ $(function () {
                     return arr[arr.length - 1];
                 }
             },
+            getTime: function () {
+                $('.form-hour').datetimepicker({
+                    format: 'yyyy-mm-dd hh:00:00',
+                    showMeridian: true,
+                    autoclose: true,
+                    minView: 1,
+                    todayBtn: true,
+                    language: 'zh-CN'
+                });
+            }
         });
         $('.modal-add .tab-pane').mCustomScrollbar({
             theme: 'dark-3',
         });
-        $('.form-hour').datetimepicker({
-            format: 'yyyy-mm-dd hh:00:00',
-            showMeridian: true,
-            autoclose: true,
-            minView: 1,
-            todayBtn: true,
-            language: 'zh-CN'
-        });
+
         addVm.onLoad();
         avalon.scan(document.body);
     });

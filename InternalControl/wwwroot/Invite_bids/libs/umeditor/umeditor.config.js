@@ -19,7 +19,7 @@
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      *
      */
-    window.UMEDITOR_HOME_URL = "/Internal_control/libs/umeditor/";
+    window.UMEDITOR_HOME_URL = "/Invite_bids/libs/umeditor/";
     var URL = window.UMEDITOR_HOME_URL || (function () {
 
         function PathStack() {
@@ -132,7 +132,7 @@
 
         //图片上传配置区
         // , imageUrl: URL + "net/imageUp.ashx"             //图片上传提交地址
-        , imageUrl: url + "/Office/上传通知公告图片"             //图片上传提交地址
+        , imageUrl: url + "/Upload/UploadEditorPicture"             //图片上传提交地址
         , imagePath: url   //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         , imageFieldName: "upfile"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
         , focus: true
@@ -142,7 +142,7 @@
             'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
             'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize',
             '| justifyleft justifycenter justifyright justifyjustify |',
-            ' map emotion image |',
+            ' emotion image |',
             'horizontal print preview ', 'drafts', 'formula'
         ]
 
@@ -168,7 +168,7 @@
 
         //,initialContent:'欢迎使用UMEDITOR!'    //初始化编辑器的内容,也可以通过textarea/script给值，看官网例子
 
-        , initialFrameWidth: 800 //初始化编辑器宽度,默认500
+        // , initialFrameWidth: 100 //初始化编辑器宽度,默认500
         , initialFrameHeight: 300  //初始化编辑器高度,默认500
 
         //,autoClearinitialContent:true //是否自动清除编辑器初始内容，注意：如果focus属性设置为true,这个也为真，那么编辑器一上来就会触发导致初始化的内容看不到了

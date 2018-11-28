@@ -122,7 +122,6 @@ $(function () {
                 li.find('.treeview-menu').slideToggle(500);
                 if (vm.openIndex == index) {
                     vm.openIndex = 100;
-
                 } else {
                     vm.openIndex = index;
                 }

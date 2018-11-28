@@ -56,7 +56,7 @@ namespace InternalControl.Controllers
             await Db.ExecuteSpAsync(new SPNoticeSwith()
             {
                 IsEnabled = data.Model,
-                NoticeIdList = data.List.ToDataTable()
+                NoticeIdList = data.List.ToPredefindedKeyFieldsList().ToDataTable()
             });
         }
 
@@ -113,9 +113,9 @@ namespace InternalControl.Controllers
         /// <param name="paging"></param>
         /// <returns></returns>
         [HttpGet]
-        async public Task<object> GetPagingProjectBacklog(Paging paging)
+        async public Task<object> GetPagingProjectBacklog(Paging paging, ProjectBacklogFilter filter)
         {
-            return await Db.GetPagingListSpAsync<VTFNProjectBacklog>(paging, $"TFNProjectBacklog({CurrentUser.Id})");
+            return await Db.GetPagingListSpAsync<VTFNProjectBacklog, ProjectBacklogFilter>(paging, filter, $"TFNProjectBacklog({CurrentUser.Id})");
         }
         #endregion
 

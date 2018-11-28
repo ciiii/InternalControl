@@ -183,6 +183,7 @@
             return me;
         },
         uploadComplete: function(r){
+
             var me = this;
             try{
                 var json = eval('('+r+')');

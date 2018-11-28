@@ -133,6 +133,7 @@ $(function () {
             },
             clickDetails: function (el) {
                 vm.myDetails = el.$model;
+                vm.projecId = el.BudgetProject.Id;
             },
             clickSubmit: function () {
                 addVm.postData();

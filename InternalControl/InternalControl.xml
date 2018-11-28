@@ -639,7 +639,7 @@
             <param name="executeProjectOfCorrectionId"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.ExecuteProjectController.AddExecuteProjectOfCorrection(InternalControl.Infrastucture.PredefindedModelList{InternalControl.Models.ExecuteProjectOfCorrection,InternalControl.Models.PackageOfResultNoticeOfCorrection})">
+        <member name="M:InternalControl.Controllers.ExecuteProjectController.AddExecuteProjectOfCorrection(InternalControl.Models.DataOfExecuteProjectOfCorrection)">
             <summary>
             新增更正,注意没有修改和删除;
             </summary>
@@ -693,7 +693,7 @@
             <param name="NoticeId"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.NoticeController.GetPagingProjectBacklog(InternalControl.Models.Paging)">
+        <member name="M:InternalControl.Controllers.NoticeController.GetPagingProjectBacklog(InternalControl.Models.Paging,InternalControl.Models.ProjectBacklogFilter)">
             <summary>
             任务通知
             </summary>
@@ -1705,7 +1705,7 @@
         </member>
         <member name="T:InternalControl.Models.MultiPartOfExecutePackage">
             <summary>
-            执行项目的包的多个组成部门
+            执行项目的包的多个组成部分
             </summary>
         </member>
         <member name="P:InternalControl.Models.MultiPartOfExecutePackage.PackageOfExcuteBudget">
@@ -1778,6 +1778,26 @@
             左侧树的数据
             </summary>
         </member>
+        <member name="T:InternalControl.Models.DataOfExecuteProjectOfCorrection">
+            <summary>
+            更正时的接口数据结构
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.DataOfExecuteProjectOfCorrection.ModelOfExecuteProjectOfCorrection">
+            <summary>
+            更正的主体数据
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.DataOfExecuteProjectOfCorrection.ListOfPackageOfResultNoticeOfCorrection">
+            <summary>
+            更正包的信息
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.DataOfExecuteProjectOfCorrection.ListOfRejectPackageId">
+            <summary>
+            这次废包的id的信息
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.PackageOfResultNoticeOfCorrectionFilter">
             <summary>
             更正中的结果信息的包的信息的搜索条件
@@ -1836,6 +1856,31 @@
         <member name="P:InternalControl.Models.NoticeFilter.LikeSendorName">
             <summary>
             模糊:发送人姓名
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.NoticeFilter.BeginCreateDatetime">
+            <summary>
+            创建时间大于等于此时间的
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.NoticeFilter.EndCreateDatetime">
+            <summary>
+            创建时间小于等于此时间的
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.ProjectBacklogFilter">
+            <summary>
+            任务通知的搜索条件
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ProjectBacklogFilter.LikeMessage">
+            <summary>
+            模糊:名称
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ProjectBacklogFilter.FlowTemplateName">
+            <summary>
+            项目类型只有:项目申报 项目预算 项目执行
             </summary>
         </member>
         <member name="T:InternalControl.Models.Paging">
@@ -2362,6 +2407,11 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.SPExecuteProjectOfCorrectionMerge.ListOfPackageOfResultNoticeOfCorrection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPExecuteProjectOfCorrectionMerge.RejectPackageIdList">
             <summary>
             
             </summary>

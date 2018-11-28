@@ -1,0 +1,203 @@
+<div class="modal-content ms-controller add-user" ms-controller="details">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">查看详情</h4>
+    </div>
+    <div class="modal-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active" ms-if="!@isScrapBag">
+                <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">更正信息</a>
+            </li>
+            <li role="presentation" ms-if="!@isScrapBag">
+                <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">{{@model.ExecuteProjectOfCorrection.Type}}</a>
+            </li>
+            <li role="presentation" class="active" ms-if="@isScrapBag">
+                <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">废标信息</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" id="tab1" class="tab-pane active" ms-if="!@isScrapBag">
+                <form class="form-horizontal">
+                    <div class="col-sm-12">
+                        <h5 class="title"><span>更正信息</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">更正内容：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.Content}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 fileUpload-box">
+                            <label class="col-sm-3 control-label">更正附件：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.ExecuteProjectOfCorrection.Attachment}" download="">{{@getHtmlDocName(@model.ExecuteProjectOfCorrection.Attachment)}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 fileUpload-box">
+                            <label class="col-sm-3 control-label">更正公告确认涵：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.ExecuteProjectOfCorrection.NoticeConfirmationLetter}" download="">{{@getHtmlDocName(@model.ExecuteProjectOfCorrection.NoticeConfirmationLetter)}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">更正公告地址：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.NoticeAddress}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 fileUpload-box">
+                            <label class="col-sm-3 control-label">更正公告截图：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.ExecuteProjectOfCorrection.NoticeScreenShot}" download="">{{@getHtmlDocName(@model.ExecuteProjectOfCorrection.NoticeScreenShot)}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">公示网站名称：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.PublicityWebsite}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">更正类型：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.Type}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab2" class="tab-pane" ms-if="!@isScrapBag">
+                <form class="form-horizontal">
+                    <div class="col-sm-12" ms-if="@model.ExecuteProjectOfCorrection.Type=='更正采购流程'">
+                        <h5 class="title"><span>更正采购流程</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">更正原因：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.Reason}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">报名截止时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.NewTenderOfferDatetime?@model.ExecuteProjectOfCorrection.NewTenderOfferDatetime:@model.ExecuteProjectOfCorrection.OldTenderOfferDatetime}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">投标保证金缴纳截至时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.NewDeadlineOfBidBond?@model.ExecuteProjectOfCorrection.NewDeadlineOfBidBond:@model.ExecuteProjectOfCorrection.OldDeadlineOfBidBond}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">开标时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.NewOpeningBIdTime?@model.ExecuteProjectOfCorrection.NewOpeningBIdTime:@model.ExecuteProjectOfCorrection.OldOpeningBIdTime}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 fileUpload-box">
+                            <label class="col-sm-3 control-label">技术要求：</label>
+                            <div class="form-group col-sm-8 items">
+                                <a class="name" ms-attr="{'href':@model.ExecuteProjectOfCorrection.TechnicalRequirement}" download="">{{@getHtmlDocName(@model.ExecuteProjectOfCorrection.TechnicalRequirement)}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" ms-if="@model.ExecuteProjectOfCorrection.Type=='更正采购结果'">
+                        <h5 class="title"><span>更正采购结果</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">更正原因：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.Reason}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="60">包号</th>
+                                        <th>单项名称/包名</th>
+                                        <th>中标/成交供应商</th>
+                                        <th>中标/成交金额</th>
+                                        <th>企业类型</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ms-for="($index,el) in @model.ListOfPackageOfResultNoticeOfCorrection">
+                                        <td>第{{$index+1}}包</td>
+                                        <td>{{el.ItemName}}</td>
+                                        <td>{{el.NewWinningBidder}}</td>
+                                        <td>{{el.NewWinningBidAmount}}</td>
+                                        <td>{{el.NewTypeOfEnterprise}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab3" class="tab-pane active" ms-if="@isScrapBag">
+                <form class="form-horizontal">
+                    <div class="col-sm-12">
+                        <h5 class="title"><span>废标信息</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">状态：</label>
+                            <div class="col-sm-7">
+                                <span style="color: red">{{@model.ExecuteProjectOfCorrection.Content}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">废标时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.ExecuteProjectOfCorrection.CreateDatetime}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-3 control-label">废标原因：</label>
+                            <div class="col-sm-9">
+                                <span>{{@model.ListOfPackageOfResultNoticeOfCorrection[0].Remark}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <h5 class="title"><span>废标列表</span></h5>
+                        <div class="form-group col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="60">包号</th>
+                                        <th>单项名称/包名</th>
+                                        <th>中标/成交供应商</th>
+                                        <th>中标/成交金额</th>
+                                        <th>企业类型</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ms-for="($index,el) in @model.ListOfPackageOfResultNoticeOfCorrection">
+                                        <td>第{{$index+1}}包</td>
+                                        <td>{{el.ItemName}}</td>
+                                        <td>{{el.NewWinningBidder}}</td>
+                                        <td>{{el.NewWinningBidAmount}}</td>
+                                        <td>{{el.NewTypeOfEnterprise}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">关闭
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/project_execute/correct_details.js"></script>

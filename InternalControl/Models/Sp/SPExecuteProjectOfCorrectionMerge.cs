@@ -19,6 +19,10 @@ namespace InternalControl.Models
 		/// 
 		/// </summary>
 		public DataTable ListOfPackageOfResultNoticeOfCorrection { get; set; }
+        /// <summary>
+		/// 
+		/// </summary>
+		public DataTable RejectPackageIdList { get; set; }
         
           
         #endregion

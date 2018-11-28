@@ -22,7 +22,6 @@ namespace InternalControl.Models
 		/// 中标供应商
 		/// </summary>
         [DisplayName("中标供应商")]
-        [Required(ErrorMessage ="请提供[WinningBidder]")]
         [MaxLength(200,ErrorMessage ="WinningBidder不能超过[100]字")]
 		public string WinningBidder { get; set; }
         /// <summary>

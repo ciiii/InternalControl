@@ -217,7 +217,7 @@ var Set = {
         });
     },
     //执行方式
-    getExecutionMode: function (type,  getExecutionModeListener) {
+    getExecutionMode: function (type, getExecutionModeListener) {
         var url = Code.URL_GET_EXECUTION_MODE;
         Connect_Http.httpDatas(type, url, '', function getBackListener(success, obj, strErro) {
             if (success) {
@@ -870,10 +870,13 @@ var ProjectExecute = {
         });
     },
     //根据更正id,获取这个更正的详情
-    getExecuteProjectOfCorrectionById: function (type, options, getExecuteProjectOfCorrectionByIdListener) {
+    getExecuteProjectOfCorrectionById: function (type, id, getExecuteProjectOfCorrectionByIdListener) {
         var url = Code.URL_GET_EXECUTE_PROJECT_OF_CORRECTION_BY_ID;
+        var postData = {
+            executeProjectOfCorrectionId: id
+        }
 
-        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
             if (success) {
                 getExecuteProjectOfCorrectionByIdListener(true, obj.data, '')
             } else {
@@ -883,7 +886,7 @@ var ProjectExecute = {
     },
 }
 
-var Notice ={
+var Notice = {
     //添加或更新通知
     AddOrUpdateNotice: function (type, options, AddOrUpdateNoticeListener) {
         var url = Code.URL_POST_ADD_OR_UPDATE_NOTICE;

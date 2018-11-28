@@ -1,10 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
 <head>
     <meta charset="UTF-8">
     <title>任务消息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Invite_bids/libs/html5shiv.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/main.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/code.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script type="text/javascript" src="/Invite_bids/js/get_connect/return_data.js"></script>
+
+    <script>
+        document.write(' <link rel="stylesheet" href="/Invite_bids/css/child_pages.css?time=' + new Date().getTime() + '"/>');
+        document.write(' <script type="text/javascript" src="/Invite_bids/js/home/task_message.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+
+    </script>
+
 </head>
-<body>
-任务消息
+<body ms-controller="root" class="ms-controller" onload="IFrameResize()">
+<div class="page-declare page-common page-paper page-notice">
+    <div class="main">
+        <div class="row screen-box">
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="btn-group" >
+                        <button class="btn btn-default active" ms-class="getClass('全部')" ms-on-click="@clickType($event)">全部</button>
+                        <button class="btn btn-default" ms-class="getClass('项目申报')" ms-on-click="@clickType($event)">项目申报</button>
+                        <button class="btn btn-default" ms-class="getClass('项目执行')" ms-on-click="@clickType($event)">项目执行</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>任务标题</label>
+                    <input type="text" class="form-control like-name" ms-duplex="@req.LikeName"
+                           ms-keydown="@submit">
+                    <a class="search-name" href="javascript:;">
+                        <i class="icon iconfont icon-sousuo"></i>
+                    </a>
+                </div>
+
+                <a class="btn btn-primary btn-search" href="javascript:;" ms-on-click="@search()">查询</a>
+            </div>
+        </div>
+        <div class="personnel-box">
+            <div class="personnel-list">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="number">序号</th>
+                            <th class="name">任务标题</th>
+                            <th>消息来源</th>
+                            <th>消息类型</th>
+                            <th>消息发送时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">
+                            <td class="number text-center">{{el.number}}</td>
+                            <td class="text-left">{{el.Message}}</td>
+                            <td>{{el.CreatorDepartmentName}}</td>
+                            <td>{{el.FlowTemplateName}}</td>
+                            <td>{{el.CreateDateTime}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ms-if="@nothing">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
+                </div>
+            </div>
+            <div class="page paging text-center">
+                <div class="pager paging"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-del" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">您确定要执行删除操作吗？</h4>
+                </div>
+                <div class="modal-footer submit-wrapper">
+                    <div class="submit-box text-center">
+                        <button type="submit" class="btn btn-primary btn-submit" ms-on-click="@confirmDel(@arr)">提交
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                ms-on-click="@clickBtnReturn">返回
+                        </button>
+                        <div class="tip-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-add" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog"></div>
+    </div>
+    <div class="modal fade modal-details" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
+    </div>
+</div>
 </body>
 </html>

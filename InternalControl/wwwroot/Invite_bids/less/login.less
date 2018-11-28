@@ -22,48 +22,47 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #24344b url("../images/bg.jpg") no-repeat left top;
+  background: #24344b url("../images/bg.jpg") no-repeat 162px 178px;
   filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
-  -moz-background-size: 1334px 1080px;
-  background-size: 1334px 1080px;
+  -moz-background-size: 761px 547px;
+  background-size: 761px 547px;
   overflow-y: auto;
 }
 
 .logo-box {
   height: 60px;
   line-height: 60px;
-  background: #fff;
-  overflow: hidden;
-  padding: 0 360px;
+  padding-left: 20px;
   .left {
-    float: left;
     img {
       width: 125px;
       height: 38px;
     }
   }
-  .right {
-    float: right;
+}
+
+.content {
+  position: absolute;
+  right: 20%;
+  top: 10%;
+  .title {
+    text-align: center;
     img {
-      width: 30px;
-      height: 34px;
+      width: 39px;
+      height: 44px;
+    }
+    span {
+      font-size: 24px;
+      font-weight: bold;
+      padding-top: 5px;
+      margin-left: 5px;
+      color: #fff;
     }
   }
-  span {
-    font-size: 16px;
-    font-weight: bold;
-    padding-top: 5px;
-    margin-left: 5px;
-    color: #24344b;
-  }
-}
-.content{
-  position: absolute;
-  right: 360px;
-  top: 210px;
   .form-login {
     width: 400px;
     height: 500px;
+    margin-top: 10%;
     border: 1px solid @color;
     background: #fff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -149,12 +148,12 @@ body {
       text-align: center;
       margin-bottom: 10px;
       position: absolute;
-      bottom: 75px;
+      top: 275px;
       left: 0;
       width: 100%;
     }
     .login-tip-success {
-      color: #0cdc0c;
+      color: #02ea38;
     }
     .tip {
       font-size: 14px;
@@ -164,10 +163,10 @@ body {
       display: block;
     }
   }
-  .support{
+  .support {
     font-size: 14px;
     color: #fff;
-    margin-top: 80px;
+    margin-top: 10%;
     text-align: center;
   }
   .login-tip-show {
@@ -223,7 +222,6 @@ body {
   }
 }
 
-
 @keyframes main-move {
   from {
     top: 0;
@@ -240,6 +238,13 @@ body {
   to {
     margin-top: 250px;
   }
+}
+@media (min-width: 992px) and (max-width: 1366px) {
+  .content{
+  }
+
+
+
 }
 
 

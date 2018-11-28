@@ -1,0 +1,255 @@
+<div class="modal-content ms-controller add-user add_question" ms-controller="Add">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">添加更正</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="col-sm-12">
+                <h5 class="title"><span>更正信息</span></h5>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>更正内容：
+                    </label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="3" ms-duplex="@model.Model.Content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>更正附件：
+                    </label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.Model.Attachment!=''"
+                           ms-attr="{'href':@model.Model.Attachment}"
+                           download="">{{@getHtmlDocName(@model.Model.Attachment)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadAttachment($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>更正公告确认涵 （盖章）：
+                    </label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.Model.NoticeConfirmationLetter!=''"
+                           ms-attr="{'href':@model.Model.NoticeConfirmationLetter}"
+                           download="">{{@getHtmlDocName(@model.Model.NoticeConfirmationLetter)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadNoticeConfirmationLetter($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">更正公告地址：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.NoticeAddress">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">更正公告截图：</label>
+                    <div class="col-sm-9">
+                        <a class="file-name col-md-5 col-sm-5" ms-if="@model.Model.NoticeScreenShot!=''"
+                           ms-attr="{'href':@model.Model.NoticeScreenShot}"
+                           download="">{{@getHtmlDocName(@model.Model.NoticeScreenShot)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadNoticeScreenShot($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">公示网站名称：</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.PublicityWebsite">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>更正类型：
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ms-duplex="@model.Model.Type" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 notice-content" ms-if="@model.Model.Type=='更正采购流程'">
+                <h5 class="title"><span>更正采购流程</span></h5>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>更正原因：
+                    </label>
+                    <div class="col-sm-9">
+                        <ul class="select-ul">
+                            <li ms-class="getClass('质疑',@model.Model.Reason)" ms-on-click="clickReason($event)">
+                                <a href="javascript:;">质疑</a>
+                            </li>
+                            <li ms-class="getClass('投诉',@model.Model.Reason)" ms-on-click="clickReason($event)">
+                                <a href="javascript:;">投诉</a>
+                            </li>
+                            <li ms-class="getClass('其他',@model.Model.Reason)" ms-on-click="clickReason($event)">
+                                <a href="javascript:;">其他</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否更正报名截止 时间：
+                    </label>
+                    <div class="col-sm-4">
+                        <ul class="select-ul">
+                            <li ms-class="getClass(true,@isDeadline)" ms-on-click="clickDeadline(true)">
+                                <a href="javascript:;">是</a>
+                            </li>
+                            <li ms-class="getClass(false,@isDeadline)" ms-on-click="clickDeadline(false)">
+                                <a href="javascript:;">否</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-5" ms-if="@isDeadline">
+                        <input type="text" class="form-control form-hour"
+                               ms-duplex="@model.Model.NewTenderOfferDatetime">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否更正投标保证金 缴纳截至时间：
+                    </label>
+                    <div class="col-sm-4">
+                        <ul class="select-ul">
+                            <li ms-class="getClass(true,@isCashDeposit)" ms-on-click="clickCashDeposit(true)">
+                                <a href="javascript:;">是</a>
+                            </li>
+                            <li ms-class="getClass(false,@isCashDeposit)" ms-on-click="clickCashDeposit(false)">
+                                <a href="javascript:;">否</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-5" ms-if="@isCashDeposit">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.Model.NewDeadlineOfBidBond">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否更正开标时间：
+                    </label>
+                    <div class="col-sm-4">
+                        <ul class="select-ul">
+                            <li ms-class="getClass(true,@isOpeningTime)" ms-on-click="clickOpeningTime(true)">
+                                <a href="javascript:;">是</a>
+                            </li>
+                            <li ms-class="getClass(false,@isOpeningTime)" ms-on-click="clickOpeningTime(false)">
+                                <a href="javascript:;">否</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-5" ms-if="@isOpeningTime">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.Model.NewOpeningBIdTime">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否更正技术要求：
+                    </label>
+                    <div class="col-sm-4">
+                        <ul class="select-ul">
+                            <li ms-class="getClass(true,@isRequire)" ms-on-click="clickRequire(true)">
+                                <a href="javascript:;">是</a>
+                            </li>
+                            <li ms-class="getClass(false,@isRequire)" ms-on-click="clickRequire(false)">
+                                <a href="javascript:;">否</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-5" ms-if="@isRequire">
+                        <a class="file-name col-md-9 col-sm-9" ms-if="@model.Model.TechnicalRequirement!=''"
+                           ms-attr="{'href':@model.Model.TechnicalRequirement}"
+                           download="">{{@getHtmlDocName(@model.Model.TechnicalRequirement)}}</a>
+                        <div class="file-box">
+                            <input type="file" class="input-file" name="fileUpload"
+                                   ms-on-change="uploadTechnicalRequirement($event)">
+
+                            <a class="file-text btn btn-primary" href="javascript:;">上传附件</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 notice-content" ms-if="@model.Model.Type=='更正采购结果'">
+                <h5 class="title"><span>更正采购结果</span></h5>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>更正原因：
+                    </label>
+                    <div class="col-sm-9">
+                        <ul class="select-ul">
+                            <li ms-class="getClass('质疑',@model.Model.Reason)" ms-on-click="clickReason($event)">
+                                <a href="javascript:;">质疑</a>
+                            </li>
+                            <li ms-class="getClass('投诉',@model.Model.Reason)" ms-on-click="clickReason($event)">
+                                <a href="javascript:;">投诉</a>
+                            </li>
+                            <li ms-class="getClass('其他',@model.Model.Reason)" ms-on-click="clickReason($event)">
+                                <a href="javascript:;">其他</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="60">包号</th>
+                                <th>单项名称/包名</th>
+                                <th>中标/成交供应商</th>
+                                <th>中标/成交金额</th>
+                                <th>企业类型</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ms-for="($index,el) in @model.List">
+                                <td>第{{$index+1}}包</td>
+                                <td>{{@IsCenterPurchase?el.ItemName:el.PackageName}}</td>
+                                <td><input class="form-control" ms-duplex="el.NewWinningBidder"/></td>
+                                <td>
+                                    <input class="form-control" ms-duplex="el.NewWinningBidAmount" onkeyup="onlyNum(this)"/>
+                                </td>
+                                <td>
+                                    <select class="form-control" ms-duplex="el.NewTypeOfEnterprise">
+                                        <option value="">请选择</option>
+                                        <option ms-for="el in @enterpriseType" ms-attr="{'value':el.Value}">
+                                            {{el.Value}}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-primary btn-submit" ms-on-click="@clickSubmit()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">返回
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/project_execute/add_correct.js"></script>

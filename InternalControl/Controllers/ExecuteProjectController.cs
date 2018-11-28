@@ -753,12 +753,13 @@ namespace InternalControl.Controllers
         /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost]
-        async public Task AddExecuteProjectOfCorrection([FromBody]PredefindedModelList<ExecuteProjectOfCorrection, PackageOfResultNoticeOfCorrection> data)
+        async public Task AddExecuteProjectOfCorrection([FromBody]DataOfExecuteProjectOfCorrection data)
         {
             await Db.ExecuteSpAsync(new SPExecuteProjectOfCorrectionMerge()
             {
-                List = data.Model.ToDataTable(),
-                ListOfPackageOfResultNoticeOfCorrection = data.List.ToDataTable()
+                List = data.ModelOfExecuteProjectOfCorrection.ToDataTable(),
+                ListOfPackageOfResultNoticeOfCorrection = data.ListOfPackageOfResultNoticeOfCorrection.ToDataTable(),
+                RejectPackageIdList = data.ListOfRejectPackageId.ToPredefindedKeyFieldsList().ToDataTable()
             });
         }
     }

@@ -31,6 +31,31 @@ namespace InternalControl.Controllers
                 Config.GetValue<int>("uploadFileMaxSize"));
             return filesNameList;
         }
+
+        [HttpPost]
+        async public Task<object> UploadEditorPicture()
+        {
+            var filesNameList = await UploadFile.Upload(
+                Request.Form.Files,
+                Env.WebRootPath,
+                "Upload",
+                Config.GetValue<int>("uploadFileMaxSize"));
+
+            var obj = new
+            {
+                state = "SUCCESS",
+                url = filesNameList.FirstOrDefault(),
+                //title = "new.png",
+                //original = file.FileName,
+                //type = ".png",
+                //size = 1000
+            };
+
+            var objString = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+            return Content(objString, "text/html");
+            //return filesNameList;
+        }
     }
 
 }
