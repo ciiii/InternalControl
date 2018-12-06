@@ -185,6 +185,7 @@ namespace InternalControl
                         $"FIXME:堆栈信息：\r\n" +
                         $"{ex.StackTrace}\r\n",ex);
 
+                    context.Response.ContentType = "application/json; charset=utf-8";
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(new { error = ex.Message }));
                 }
             });

@@ -31,7 +31,8 @@ $(function () {
             activeMoneyIndex: 0,
             typesTotal: 0,
             isShowDel: false,
-            projecId:'',
+            projecId: '',
+            selectList: [],
             query: function () {
                 vm.loaded = false;
                 $.support.cors = true;
@@ -54,6 +55,13 @@ $(function () {
                                 obj[i].BudgetProject.budgetAmount = obj[i].Package.reduce(function (total, item) {
                                     return total + item.DeclareNumber * item.DeclareUnitPrice;
                                 }, 0)
+                                if (vm.selectList.length != 0) {
+                                    for (var j = 0; j < vm.selectList.length; j++) {
+                                        if (obj[i].BudgetProject.Id == vm.selectList[j].BudgetProject.Id) {
+                                            obj[i].checked = true;
+                                        }
+                                    }
+                                }
                                 number++;
                             }
 
@@ -173,25 +181,56 @@ $(function () {
                     vm.query();
                 }
             },
-            batchExport: function () {
-                $('.btn-export').attr('href', '');
-            },
             checkAll: function (e) {
-                var checked = e.target.checked
-
+                var checked = e.target.checked;
                 vm.model.forEach(function (el) {
-                    el.checked = checked
-                })
+                    el.checked = checked;
+                    var exsit = vm.doWithAddProject(el);
+                    if (checked === false) {
+                        if (exsit) {
+                            vm.removeFn(el);
+                        }
+                    } else {
+                        if (!exsit) {
+                            vm.selectList.push(el);
+                        }
+                    }
+                });
             },
-            checkOne: function (e) {
-                var checked = e.target.checked
+            checkOne: function (e, el) {
+                var checked = e.target.checked;
+                var exsit = vm.doWithAddProject(el);
                 if (checked === false) {
                     vm.allchecked = false
+                    if (exsit) {
+                        vm.removeFn(el);
+                    }
                 } else {
+                    if (!exsit) {
+                        vm.selectList.push(el);
+                    }
                     vm.allchecked = vm.model.every(function (el) {
                         return el.checked
                     })
                 }
+            },
+            removeFn: function (el) {
+                vm.selectList.forEach(function (itme) {
+                    if (itme.BudgetProject.Id == el.BudgetProject.Id) {
+                        vm.selectList.remove(itme);
+                        return
+                    }
+                })
+            },
+            doWithAddProject: function (el) {
+                var exsit = false;
+                for (var i = 0; i < vm.selectList.length; i++) {
+                    if (vm.selectList[i].BudgetProject.Id == el.BudgetProject.Id) {
+                        exsit = true;
+                        break;
+                    }
+                }
+                return exsit;
             },
             clickBtnUp: function (index) {
                 vm.activeMoneyIndex = index;
@@ -223,6 +262,38 @@ $(function () {
             clickBtnReturn: function () {
                 $('.modal').modal('hide');
             },
+            exportProject: function (value) {
+                var list = [];
+                if (value) {
+                    vm.selectList.forEach(function (itme) {
+                        list.push(itme.BudgetProject.Id);
+                    })
+                    if (list.length == 0) {
+                        $.oaNotify.error(' 请先勾选需要导出的项目！');
+                        return;
+                    }
+                }
+                var data = {
+                    LikeName: vm.req.LikeName,
+                    IsCenterPurchase: vm.req.IsCenterPurchase,
+                    MergeTypeWhenBudget: vm.req.MergeTypeWhenBudget,
+                    Year: vm.req.Year,
+                    listOfId: list
+                }
+                vm.selectList = [];
+                vm.query();
+                vm.getExportWhenBudgetProjectOfArgument(data);
+            },
+            getExportWhenBudgetProjectOfArgument: function (data) {
+                Budget.getExportWhenBudgetProjectOfArgument('get', data, function getExportWhenBudgetProjectOfArgumentListener(success, obj, strErro) {
+                    if (success) {
+                        downloadFile('/' + obj);
+                        vm.query();
+                    } else {
+                        $.oaNotify.error(' 导出文件失败：' + strErro);
+                    }
+                });
+            }
         });
         $('.form-year').datetimepicker({
             format: 'yyyy',

@@ -67,7 +67,7 @@ namespace InternalControl.Models
         /// <summary>
 		/// 
 		/// </summary>
-        public int IsReceived { get; set; }
+        public bool? IsReceived { get; set; }
         
           
         #endregion

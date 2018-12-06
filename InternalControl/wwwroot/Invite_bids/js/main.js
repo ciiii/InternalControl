@@ -952,3 +952,23 @@ function numberDX(n) {
     }
     return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
 }
+
+//文件下载，通过表单下载
+function downloadFile(url) {
+    var form = $("<form>");
+    form.attr('style', 'display:none');
+    form.attr('target', '');
+    form.attr('method', 'get');
+    form.attr('action', url);
+    $("body").append(form);
+    form.submit();
+}
+
+function getLastDayTime(time) {
+    var year = time.slice(0, 4);
+    var month = time.slice(5, 7);
+    var day = new Date(year, month, 0);
+    var lastTime = year + '-' + month + '-' + day.getDate()+' 23:59:59';
+    return lastTime;
+
+}

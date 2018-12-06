@@ -8,7 +8,7 @@ $(function () {
                 Index: 1,
                 Size: 16,
                 OrderType: false,
-                LikeName: '',
+                LikeMessage: '',
                 FlowTemplateName: ''
             },
             total: '',
@@ -39,7 +39,6 @@ $(function () {
                                 number++;
                             }
                             vm.model = obj;
-                            console.info(obj);
                             $('.pager').show();
                             vm.nothing = false;
                             vm.allchecked = false;

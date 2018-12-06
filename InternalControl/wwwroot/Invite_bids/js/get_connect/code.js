@@ -24,7 +24,6 @@ var Code = {
     URL_GET_SETTING: getApiHost + '/BaseInfo/GetSetting',
 
 
-
     //获取全部代理机构
     URL_GET_AGENCY_LIST: getApiHost + '/BaseInfo/GetAgencyList',
 
@@ -45,7 +44,6 @@ var Code = {
 
     //随机获取满足条件的N个专家
     URL_GET_RANDOM_EXPERT_LIST: getApiHost + '/BaseInfo/GetRandomExpertList',
-
 
 
     //获取模板文件
@@ -91,7 +89,6 @@ var Code = {
     URL_POST_ADD_OR_EDIT_DEPARTMENT: getApiHost + '/BaseInfo/AddOrUpdateDepartment',
 
 
-
     //获取归口部门，项目申报时用
     URL_GET_RELEVANT_DEPARTMENT_LIST: getApiHost + '/BaseInfo/GetRelevantDepartmentList',
 
@@ -124,7 +121,6 @@ var Code = {
     URL_POST_BACK_AUDIT_DECLARE_PROJECT: getApiHost + '/DeclareProject/BackAuditDeclareProject',
 
 
-
     //获取还没有进入预算流程的集采和非集采预算项目,用于合并
     URL_GET_PAGING_COLLECTION_OR_NON_PROJECT_MERGEABLE_LIST: getApiHost + '/BudgetProject/GetPagingBudgetProjectListCanCombineAndWithPackage',
 
@@ -145,6 +141,10 @@ var Code = {
 
     //新增一个预算项目的必要性论证,同时开始一个预算流程,并不通过这个论证;注意这个是不通过
     URL_POST_ADD_AND_QUIT_BUDGET_PROJECT_OF_ARGUMENT: getApiHost + '/BudgetProject/AddAndQuitBudgetProjectOfArgument',
+
+    //论证时,导出各个项目的包信息
+    URL_GET_EXPORT_WHEN_BUDGET_PROJECT_OF_ARGUMENT: getApiHost + '/BudgetProject/ExportWhenBudgetProjectOfArgument',
+
 
 
 
@@ -175,6 +175,8 @@ var Code = {
     //已完成预算执行的预算项目
     URL_GET_PAGING_FINISHED_BUDGET_PROJECT_OF_EXECUTE_LIST: getApiHost + '/BudgetProject/GetPagingFinishedBudgetProjectOfExecuteList',
 
+    //进入预算时,选中的项目导出
+    URL_GET_EXPORT_WHEN_BUDGET_PROJECT_OF_ENTER: getApiHost + '/BudgetProject/ExportWhenBudgetProjectOfEnter',
 
 
     //获取执行项目列表,带流程,带包还没有进入执行流程的执行项目也会选取出来,方便"开始实施"
@@ -183,12 +185,15 @@ var Code = {
     //根据执行项目id,获取执行项目所有的信息,所有可能的步骤,已经走过的步骤,当前的步骤,是否可以执行当前的步骤
     URL_GET_EXECUTE_PROJECT_DETAIL: getApiHost + '/ExecuteProject/GetExecuteProjectDetail',
 
+    //得到某个执行项目当前的预警天数
+    URL_GET_DAY_DIFF_OF_EARLY_WARNING: getApiHost + '/BudgetProject/GetDayDiffOfEarlyWarning',
+
     //获取还没有进入执行流程的执行项目,用于合并
     URL_GET_PAGING_EXECUTE_PROJECT_LIST_NOTIN_FLOW_AND_WITH_PACKAGE: getApiHost + '/ExecuteProject/GetPagingExecuteProjectListNotInFlowAndWithPackage',
 
-
     //开始执行,同时可能会合并多个符合条件的执行项目
     URL_POST_BEGIN_EXECUTE_PROJECT: getApiHost + '/ExecuteProject/BeginExecuteProject',
+
 
     //执行方式,IsHold设为false,目前没有暂存的功能
     URL_POST_PASS_EXECUTE_PROJECT_OF_GET_RUN_MODE: getApiHost + '/ExecuteProject/PassExecuteProjectOfGetRunMode',
@@ -236,7 +241,6 @@ var Code = {
     URL_GET_EXECUTE_PROJECT_OF_CORRECTION_BY_ID: getApiHost + '/ExecuteProject/GetExecuteProjectOfCorrectionById',
 
 
-
     //添加或更新通知
     URL_POST_ADD_OR_UPDATE_NOTICE: getApiHost + '/Notice/AddOrUpdateNotice',
 
@@ -245,6 +249,9 @@ var Code = {
 
     //通知管理页面获取到的自己发送的通知列表
     URL_GET_PAGING_NOTICE_FOR_MANAGE_LIST: getApiHost + '/Notice/GetPagingNoticeForManageList',
+
+    //获取通知详情
+    URL_GET_NOTICE_DETAIL: getApiHost + '/Notice/GetNoticeDetail',
 
     //分页获取当前登录人可以看到的通知列表,包括了是否已经查看的数据
     URL_GET_PAGING_NOTICE_FOR_VIEW_LIST: getApiHost + '/Notice/GetPagingNotcieForViewList',

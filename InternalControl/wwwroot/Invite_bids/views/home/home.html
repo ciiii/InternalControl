@@ -26,7 +26,8 @@
     <script src="/Invite_bids/libs/ztree/jquery.ztree.all.min.js"></script>
     <script src="/Invite_bids/libs/avalon.min.js"></script>
     <script src="/Invite_bids/libs/Echarts/echarts.js"></script>
-    <script src="/Invite_bids/libs/Echarts/macarons.js"></script>
+    <!--<script src="/Invite_bids/libs/Echarts/macarons.js"></script>-->
+    <script src="/Invite_bids/libs/Echarts/shine.js"></script>
 
     <script src="/Invite_bids/js/pager.js"></script>
     <script src="/Invite_bids/js/main.js"></script>
@@ -42,91 +43,32 @@
     <div class="main">
         <div class="tip-box">
             <div class="col-md-6 module">
-                <span class="text"><img src="/Invite_bids/images/star.png"/>张老师，你好！欢迎登录招标采购管理系统！</span>
+                <span class="text"><img
+                        src="/Invite_bids/images/star.png"/>{{@mUserInfo.user.Name}}，你好！欢迎登录招标采购管理系统！</span>
             </div>
             <div class="col-md-4 module">
-                <span class="text">2018年项目申报截止时间：2018-08-29 20:00:00</span>
-            </div>
-            <div class="col-md-2 module">
-                <div class="year-box">
-                    <span class="year">年度</span>
-                    <div class="time-box">
-                        <a class="left" href="javascript:;" ms-on-click="@ClickLeft">
-                            <i class="icon iconfont icon-left"></i>
-                        </a>
-                        <input class="form-year time" type="text" ms-duplex="@time" readonly/>
-                        <a class="right" href="javascript:;" ms-on-click="@ClickRight">
-                            <i class="icon iconfont icon-right"></i>
-                        </a>
-                    </div>
-                </div>
+                <span class="text">{{@thisYear}}年项目申报截止时间：{{@thisYearEndDatetime}}</span>
             </div>
         </div>
         <div class="col-md-6 module">
-            <div class="notice box">
+            <div class="box">
                 <div class="box-header">
                     <h3>任务消息</h3>
                     <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
-                       ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/我的通知公告.html')}">
+                       href="task_message.html">
                         <img src="/Invite_bids/images/more.png" alt="更多" title="更多"/>
                     </a>
                 </div>
-                <div class="content list">
-                    <!--<ul ms-if="@notice!=null&&@notice.length>0">-->
-                    <!--<li ms-for="el in @notice" ms-class="@getStateClass(el.是否已接收)">-->
-                    <!--<a ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/通知公告详情.html')}" data-toggle="modal"-->
-                    <!--data-target=".modal-add"-->
-                    <!--ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">-->
-                    <!--<span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>-->
-                    <!--<span class="title">【{{el.通知标识}}】{{el.通知名称}}</span>-->
-                    <!--<span class="time">{{el.建立时间}}<i class="icon iconfont icon-xiayibu"></i></span>-->
-                    <!--</a>-->
-                    <!--</li>-->
-                    <!--</ul>-->
+                <div class="content list" ms-if="@TaskMessage&&@TaskMessage.length!=0">
                     <ul>
-                        <li class="not-received">
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">一体机设备项目，已成功发布采购公告。</span>
-                                <span class="time">08-27</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">体机设备项目，招标文件已上传，请确认。</span>
-                                <span class="time">08-27</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">体机设备项目，招标文件已上传，请确认。</span>
-                                <span class="time">08-27</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">体机设备项目，招标文件已上传，请确认。</span>
-                                <span class="time">08-27</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">体机设备项目，招标文件已上传，请确认。</span>
-                                <span class="time">08-27</span>
-                            </a>
+                        <li class="not-received" ms-for="el in @TaskMessage">
+                            <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
+                            <span class="title">{{el.Message}}</span>
+                            <span class="time">{{el.CreateDateTime|date("yyyy-MM-dd")}}</span>
                         </li>
                     </ul>
                 </div>
-                <div ms-if="@nothing">
+                <div ms-if="@nothing" class="nothing">
                     <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                 </div>
             </div>
@@ -136,66 +78,24 @@
                 <div class="box-header">
                     <h3>通知消息</h3>
                     <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
-                       ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/我的通知公告.html')}">
+                       href="notice_message.html">
                         <img src="/Invite_bids/images/more.png" alt="更多"/>
                     </a>
                 </div>
-                <div class="content list">
-                    <!-- <ul ms-if="@notice!=null&&@notice.length>0">
-                         <li ms-for="el in @notice" ms-class="@getStateClass(el.是否已接收)">
-                             <a ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/通知公告详情.html')}" data-toggle="modal"
-                                data-target=".modal-add"
-                                ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                 <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                 <span class="title">【{{el.通知标识}}】{{el.通知名称}}</span>
-                                 <span class="time">{{el.建立时间}}<i class="icon iconfont icon-xiayibu"></i></span>
-                             </a>
-                         </li>
-                     </ul>-->
+                <div class="content list" ms-if="@NoticeList&&@NoticeList.length!=0">
                     <ul>
-                        <li class="not-received">
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
+                        <li ms-for="el in @NoticeList" ms-class="@getStateClass(el.IsReceived)">
+                            <a data-toggle="modal" data-target=".modal-details"
+                               href="../notice_manage/notice_details.html"
+                               ms-on-click="@clickNotiveDetails(el)" onclick="changeUrlChoice(this,'.modal-details')">
                                 <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">2018年度预算已经下达。</span>
-                                <span class="time">采购中心</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">通用设备项目，请安集采目录企情况提交项目。</span>
-                                <span class="time">采购中心</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">通用设备项目，请安集采目录企情况提交项目。</span>
-                                <span class="time">采购中心</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">通用设备项目，请安集采目录企情况提交项目。</span>
-                                <span class="time">采购中心</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="modal" data-target=".modal-add"
-                               ms-on-click="@noticeDetails(el.编号)" onclick="changeUrl(this)">
-                                <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
-                                <span class="title">通用设备项目，请安集采目录企情况提交项目。</span>
-                                <span class="time">采购中心</span>
+                                <span class="title">{{el.Name}}</span>
+                                <span class="time">{{el.SendorDepartmentName}}</span>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <div ms-if="@nothing">
+                <div ms-if="@nothing2" class="nothing">
                     <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                 </div>
             </div>
@@ -205,11 +105,11 @@
                 <div class="box-header">
                     <h3>任务预警</h3>
                     <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
-                       ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/我的通知公告.html')}">
+                       href="task_warning.html">
                         <img src="/Invite_bids/images/more.png" alt="更多"/>
                     </a>
                 </div>
-                <div class="content">
+                <div class="content" ms-if="@TaskWarning&&@TaskWarning.length!=0">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -218,108 +118,57 @@
                                 <th>内部编号</th>
                                 <th>项目状态</th>
                                 <th>当前流程截止时间</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <!--<tr ms-for="($index,el) in @ScientificResearch"
-                                ms-if="@ScientificResearch!= null && @ScientificResearch.length != 0">
-                                <td>{{el.number}}</td>
-                                <td>{{el.流程名称}}</td>
-                                <td>{{el.项目名称}}</td>
-                                <td>{{el.步骤名称}}</td>
-                                <td>{{el.发起人姓名}}</td>
-                                <td>{{el.流程创建时间|date("yyyy-MM-dd")}}</td>
-                                <td ms-class="getClass(el.步骤状态说明)">
-                                    {{el.步骤名称==null?'':el.步骤名称}}-{{el.步骤状态说明==null?'':el.步骤状态说明}}
+                            <tr ms-for="el in @TaskWarning">
+                                <td class="title">{{el.Name}}</td>
+                                <td>{{el.ProjectNumber}}</td>
+                                <td>{{el.LastStepStateName}}</td>
+                                <td class="time-box">
+                                    <p class="day" ms-class="getClass(el)">还剩{{el.day}}天</p>
+                                    <p class="time">{{el.DateOfEarlyWarning}}</p>
                                 </td>
                                 <td class="operation">
-                                    <li class="bs-tooltip" ms-class="getScientificResearchClass(el.步骤链接名称)"
-                                        data-toggle="tooltip" data-placement="bottom" ms-attr="{'title':@el.步骤名称}"
-                                        ms-if="el.是否可处理">
-                                        <a data-toggle="modal" data-target=".modal-add"
-                                           ms-attr="{'href':@getUrl(@el.步骤链接路径)}"
-                                           ms-on-click="@clickBtnEdit(el)" onclick="changeUrl(this)">
-                                            <i class="icon iconfont" ms-class="@el.步骤链接样式"></i>
-                                        </a>
-                                    </li>
-                                    <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
-                                        title="详情">
-                                        <a href="javascript:;" data-toggle="modal" data-target=".modal-details"
-                                           ms-on-click="@details(el)">
-                                            <i class="icon iconfont icon-16"></i>
-                                        </a>
-                                    </li>
-                                </td>
-                            </tr>-->
-                            <tr>
-                                <td class="title">艺术院国庆展览服务</td>
-                                <td>ZSF240234</td>
-                                <td>招标确认</td>
-                                <td class="time-box">
-                                    <p class="day">剩1天</p>
-                                    <p class="time">2018-08-17</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="title">艺术院国庆展览服务</td>
-                                <td>ZSF240234</td>
-                                <td>招标确认</td>
-                                <td class="time-box">
-                                    <p class="day">剩1天</p>
-                                    <p class="time">2018-08-17</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="title">艺术院国庆展览服务</td>
-                                <td>ZSF240234</td>
-                                <td>招标确认</td>
-                                <td class="time-box">
-                                    <p class="day">剩1天</p>
-                                    <p class="time">2018-08-17</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="title">艺术院国庆展览服务</td>
-                                <td>ZSF240234</td>
-                                <td>招标确认</td>
-                                <td class="time-box">
-                                    <p class="day">剩1天</p>
-                                    <p class="time">2018-08-17</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="title">艺术院国庆展览服务</td>
-                                <td>ZSF240234</td>
-                                <td>招标确认</td>
-                                <td class="time-box">
-                                    <p class="day">剩1天</p>
-                                    <p class="time">2018-08-17</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="title">艺术院国庆展览服务</td>
-                                <td>ZSF240234</td>
-                                <td>招标确认</td>
-                                <td class="time-box">
-                                    <p class="day">剩1天</p>
-                                    <p class="time">2018-08-17</p>
+                                    <ul>
+                                        <li class="bs-tooltip btn-edit" data-toggle="tooltip" data-placement="bottom"
+                                            title="进入项目执行">
+                                            <a ms-attr="{'href':'../project_execute/edit_acceptance_check_and_acceptance.html?projectId='+@el.Id}">
+                                                <i class="icon iconfont icon-linecar101"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div ms-if="@nothing3">
-                        <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
-                    </div>
+                </div>
+                <div ms-if="@nothing3" class="nothing">
+                    <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-12 module">
-            <div class="regulation box">
+            <div class="statistics box">
                 <div class="box-header">
                     <h3>数据统计</h3>
+                    <div class="year-box">
+                        <span class="year">年度</span>
+                        <div class="time-box">
+                            <a class="left" href="javascript:;" ms-on-click="@ClickLeft">
+                                <i class="icon iconfont icon-left"></i>
+                            </a>
+                            <input class="form-year time" type="text" ms-duplex="@time" readonly/>
+                            <a class="right" href="javascript:;" ms-on-click="@ClickRight">
+                                <i class="icon iconfont icon-right"></i>
+                            </a>
+                        </div>
+                    </div>
                     <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
-                       ms-attr="{'href':@getUrl('/Invite_bids/views/科研办公/科研办公/我的通知公告.html')}">
+                       href="data_statistics.html">
                         <img src="/Invite_bids/images/more.png" alt="更多"/>
                     </a>
                 </div>
@@ -329,42 +178,9 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-add" tabindex="-1" role="dialog"
-         aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg"></div>
-    </div>
-    <div class="modal fade modal-min" tabindex="-1" role="dialog"
-         aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog"></div>
-    </div>
-    <div class="modal fade modal-choice" tabindex="-1" role="dialog"
-         aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg"></div>
-    </div>
     <div class="modal fade modal-details" tabindex="-1" role="dialog"
-         aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content add-user details">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="NoPermissionModalLabel">查看详情</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="details-content">
-                        <iframe class="detailsPage" scrolling="auto" frameborder="0" src=""></iframe>
-                    </div>
-                </div>
-                <div class="modal-footer submit-wrapper">
-                    <div class="form-group">
-                        <div class="submit-box text-center">
-                            <button type="button" class="btn btn-default" ms-on-click="@clickBtnReturn">返回</button>
-                            <div class="tip-box"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
     </div>
 </div>
 </body>

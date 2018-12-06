@@ -535,6 +535,18 @@ var Budget = {
             }
         });
     },
+    //论证时,导出各个项目的包信息
+    getExportWhenBudgetProjectOfArgument: function (type, options, getExportWhenBudgetProjectOfArgumentListener) {
+        var url = Code.URL_GET_EXPORT_WHEN_BUDGET_PROJECT_OF_ARGUMENT;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getExportWhenBudgetProjectOfArgumentListener(true, obj.data, '')
+            } else {
+                getExportWhenBudgetProjectOfArgumentListener(false, '', strErro)
+            }
+        });
+    },
     //得到当前归口部门的某年度的预算
     getBudgetList: function (type, options, getBudgetListListener) {
         var url = Code.URL_GET_BUDGET_LIST;
@@ -592,6 +604,18 @@ var Budget = {
                 passBudgetProjectOfEnterListener(true, obj, '')
             } else {
                 passBudgetProjectOfEnterListener(false, '', strErro)
+            }
+        });
+    },
+    //进入预算时,选中的项目导出
+    getExportWhenBudgetProjectOfEnter: function (type, options, getExportWhenBudgetProjectOfEnterListener) {
+        var url = Code.URL_GET_EXPORT_WHEN_BUDGET_PROJECT_OF_ENTER;
+
+        Connect_Http.httpDatas(type, url, options, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getExportWhenBudgetProjectOfEnterListener(true, obj.data, '')
+            } else {
+                getExportWhenBudgetProjectOfEnterListener(false, '', strErro)
             }
         });
     },
@@ -686,6 +710,21 @@ var ProjectExecute = {
                 getPagingExecuteProjectListNotInFlowAndWithPackageListener(true, obj.data, '')
             } else {
                 getPagingExecuteProjectListNotInFlowAndWithPackageListener(false, '', strErro)
+            }
+        });
+    },
+    //得到某个执行项目当前的预警天数
+    getDayDiffOfEarlyWarning: function (type, id, getDayDiffOfEarlyWarningListener) {
+        var url = Code.URL_GET_DAY_DIFF_OF_EARLY_WARNING;
+        var postData = {
+            ExecuteProjectId: id
+        }
+
+        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
+            if (success) {
+                getDayDiffOfEarlyWarningListener(true, obj.data, '')
+            } else {
+                getDayDiffOfEarlyWarningListener(false, '', strErro)
             }
         });
     },
@@ -920,6 +959,21 @@ var Notice = {
                 GetPagingNoticeForManageListListener(true, obj.data, '')
             } else {
                 GetPagingNoticeForManageListListener(false, '', strErro)
+            }
+        });
+    },
+    //获取通知详情
+    GetNoticeDetail: function (type, id, GetNoticeDetailListener) {
+        var url = Code.URL_GET_NOTICE_DETAIL;
+        var postData = {
+            NoticeId: id
+        }
+
+        Connect_Http.httpDatas(type, url, postData, function getBackListener(success, obj, strErro) {
+            if (success) {
+                GetNoticeDetailListener(true, obj.data, '')
+            } else {
+                GetNoticeDetailListener(false, '', strErro)
             }
         });
     },

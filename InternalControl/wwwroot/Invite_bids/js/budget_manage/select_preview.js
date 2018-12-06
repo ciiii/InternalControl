@@ -4,6 +4,7 @@ $(function () {
         window.addVm = avalon.define({
             $id: 'Add',
             model: vm.selectList,
+            BudgetTypeName: vm.BudgetTypeName,
             clickRemove: function (index, el) {
                 for (var i = 0; i < vm.model.length; i++) {
                     if (vm.model[i].BudgetProject.Id == el.BudgetProject.Id) {
@@ -14,9 +15,29 @@ $(function () {
                 vm.sortFrontThree();
             },
             clickSubmit: function () {
-                vm.selectList = [];
-                vm.clickBtnReturn();
-                vm.query();
+                var list = [];
+                for (var i = 0; i < addVm.model.length; i++) {
+                    if (vm.model[i].checked == true) {
+                        list.push(vm.model[i].BudgetProject.Id);
+                    }
+                }
+                var data = {
+                    listOfId: list,
+                    BudgetTypeName: addVm.BudgetTypeName
+                }
+                addVm.getExportWhenBudgetProjectOfEnter(data);
+            },
+            getExportWhenBudgetProjectOfEnter: function (data) {
+                Budget.getExportWhenBudgetProjectOfEnter('get', data, function getExportWhenBudgetProjectOfEnterListener(success, obj, strErro) {
+                    if (success) {
+                        downloadFile('/' + obj);
+                        vm.selectList = [];
+                        vm.clickBtnReturn();
+                        vm.query();
+                    } else {
+                        $.oaNotify.error(' 导出文件失败：' + strErro);
+                    }
+                });
             },
             clickBtnReturn: function () {
                 $('.modal').modal('hide');

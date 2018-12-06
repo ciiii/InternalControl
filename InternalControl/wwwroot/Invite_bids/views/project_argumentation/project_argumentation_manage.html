@@ -20,7 +20,8 @@
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
-    <script type="text/javascript" src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript"
+            src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript" src="/Invite_bids/libs/avalon.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/js/pager.js"></script>
@@ -61,18 +62,21 @@
                         </a>
                     </div>
                     <div class="form-group">
-                        <label>预算类型</label>
+                        <label>合并类型</label>
                         <div class="type-box">
                             <select class="form-control input-sm left-types" size="2"
                                     ms-duplex="@req.MergeTypeWhenBudget"></select>
-                            <span class="btn-del" ms-if="isShowDel" ms-on-click="@searchAll"><i class="icon iconfont icon-shanchu"></i></span>
+                            <span class="btn-del" ms-if="isShowDel" ms-on-click="@searchAll"><i
+                                    class="icon iconfont icon-shanchu"></i></span>
                         </div>
 
                     </div>
                     <div class="form-group rise-and-fall">
                         <label>预算金额</label>
-                        <button class="btn btn-default" ms-class="getMoneyClass(0)" ms-on-click="@clickBtnUp(0)">升序</button>
-                        <button class="btn btn-default" ms-class="getMoneyClass(1)"ms-on-click="@clickBtnDown(1)">降序</button>
+                        <button class="btn btn-default" ms-class="getMoneyClass(0)" ms-on-click="@clickBtnUp(0)">升序
+                        </button>
+                        <button class="btn btn-default" ms-class="getMoneyClass(1)" ms-on-click="@clickBtnDown(1)">降序
+                        </button>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2 right">
@@ -90,10 +94,10 @@
                     <p>当前项目总数：{{@total}} 条</p>
                 </div>
                 <div class="col-md-4 col-sm-4 right export-box">
-                    <a class="btn btn-default btn-export" href="javascript:;">
+                    <a class="btn btn-default btn-export" href="javascript:;" ms-on-click="@exportProject(true)">
                         <i class="icon iconfont icon-download"></i> 批量导出
                     </a>
-                    <a class="btn btn-default btn-export" href="javascript:;">
+                    <a class="btn btn-default btn-export" href="javascript:;" ms-on-click="@exportProject(false)">
                         <i class="icon iconfont icon-download"></i> 全部导出
                     </a>
                 </div>
@@ -104,12 +108,13 @@
                         <thead>
                         <tr>
                             <th class="checkbox-box">
-                            <div class="checkbox">
-                            <label class="bs-tooltip" href="javascript:;" title="全选" data-toggle="tooltip" data-placement="bottom">
-                            <input class="select-all" type="checkbox" ms-duplex-checked="@allchecked"
-                            data-duplex-changed="@checkAll"/>
-                            </label>
-                            </div>
+                                <div class="checkbox">
+                                    <label class="bs-tooltip" href="javascript:;" title="全选" data-toggle="tooltip"
+                                           data-placement="bottom">
+                                        <input class="select-all" type="checkbox" ms-duplex-checked="@allchecked"
+                                               data-duplex-changed="@checkAll"/>
+                                    </label>
+                                </div>
                             </th>
                             <th class="number">序号</th>
                             <th class="name">项目名称</th>
@@ -126,7 +131,7 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" class="item-checkbox" ms-duplex-checked="el.checked"
-                                               data-duplex-changed="@checkOne"/>
+                                               data-duplex-changed="@checkOne($event,el)"/>
                                     </label>
                                 </div>
                             </td>
@@ -140,7 +145,8 @@
                                 <ul>
                                     <li class="bs-tooltip btn-examine" data-toggle="tooltip" data-placement="bottom"
                                         title="论证">
-                                        <a href="add_argumentation.html" data-toggle="modal" data-target=".modal-add" ms-on-click="@clickInfo(el)" onclick="changeUrl(this)">
+                                        <a href="add_argumentation.html" data-toggle="modal" data-target=".modal-add"
+                                           ms-on-click="@clickInfo(el)" onclick="changeUrl(this)">
                                             <i class="icon iconfont icon-auth"></i>
                                         </a>
                                     </li>

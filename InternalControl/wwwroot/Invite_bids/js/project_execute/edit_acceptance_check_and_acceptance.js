@@ -65,6 +65,14 @@ $(function () {
             questionId: '',
             correctId: '',
             isScrapBag: false,
+            currentText: '',
+            surplusDay: '',
+            surplusTime: '',
+            isInvitation: false,
+            content: false,
+            width: 0,
+            active: '',
+            isFirstEnter: true,
             modelOne: {
                 Model: {
                     Id: 0,
@@ -203,10 +211,13 @@ $(function () {
                 '林**，159********',
             ],
             onLoad: function () {
+                vm.content = true;
                 vm.ExecuteProject = vm.myDetails.ExecuteProject.ExecuteProject;
                 vm.ProjectOfArgument = vm.myDetails.ExecuteProject.ExecuteProjectOfArgument;
                 vm.ProjectOfConfirm = vm.myDetails.ExecuteProject.ExecuteProjectOfConfirm;
                 vm.ProjectOfInvitation = vm.myDetails.ExecuteProject.ExecuteProjectOfInvitation;
+                vm.BidOpeningDateTime = vm.ProjectOfConfirm.PlanBidOpeningTime;
+
 
                 vm.ExcuteBudget = vm.myDetails.ExecutePackage.PackageOfExcuteBudget;
                 vm.PackageConfirmation = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation;
@@ -214,6 +225,7 @@ $(function () {
                 vm.PackageOfContractSigning = vm.myDetails.ExecutePackage.PackageOfContractSigning;
                 vm.PackageOfContractPublicity = vm.myDetails.ExecutePackage.PackageOfContractPublicity;
                 vm.PackageAcceptance = vm.myDetails.ExecutePackage.PackageOfAcceptanceCheckAndAcceptance;
+
                 if (vm.ExecuteProject.ProjectType == '货物') {
                     vm.isGoods = true;
                 } else {
@@ -226,7 +238,6 @@ $(function () {
                     vm.PackageOfContractSigning = vm.PackageOfContractSigning.concat(vm.myDetails.RejectedPackage);
                     vm.PackageOfContractPublicity = vm.PackageOfContractPublicity.concat(vm.myDetails.RejectedPackage);
                     vm.PackageAcceptance = vm.PackageAcceptance.concat(vm.myDetails.RejectedPackage);
-
                 }
                 if (vm.activeText == '开始实施') {
                     vm.getPurchaseMethoOne();
@@ -438,7 +449,7 @@ $(function () {
                                 PlaceOfGetExperts: '',
                                 TimeOfExpertReview: '',
                                 PlaceOfExpertReview: '',
-                                BidOpeningDateTime: '',
+                                BidOpeningDateTime: vm.ProjectOfConfirm.PlanBidOpeningTime,
                                 BidOpeningPlace: '',
                                 CreatorId: vm.ExecuteProject.CreatorId,
                                 CreateDatetime: formatDate(new Date(), 'YY-MM-DD hh:mm:ss'),
@@ -466,6 +477,7 @@ $(function () {
                         vm.modelEight.StepId = vm.ExecuteProject.LastStepId;
                         vm.modelEight.Data.ExecuteProjectId = vm.ExecuteProject.Id;
                     }
+                    vm.getCategoryDictionary();
                 }
                 if (vm.activeText == '结果信息') {
                     if (vm.ExecuteProject.ExecutionModeId > 1 && vm.ExecuteProject.ExecutionModeId < 5) {
@@ -534,9 +546,9 @@ $(function () {
                 }
                 if (vm.activeText == '拟定合同') {
                     if (vm.isEdit) {
-                        vm.getTypeOfContract();
                         vm.modelTen.StepId = vm.ExecuteProject.LastStepId;
                         vm.modelTen.Data = [];
+                        var pack = vm.PackageOfDrawUpContract.$model;
                         if (vm.ExcuteBudget && vm.ExcuteBudget.length > 0) {
                             for (var i = 0; i < vm.ExcuteBudget.length; i++) {
                                 var ItemName;
@@ -545,17 +557,29 @@ $(function () {
                                 } else {
                                     ItemName = vm.ExcuteBudget[i].PackageName;
                                 }
-                                var data = {
-                                    Id: vm.ExcuteBudget[i].Id,
-                                    ItemName: ItemName,
-                                    IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
-                                    TypeOfContract: '',
-                                    LawyersOpinionSheet: '',
-                                    SchoolCountersignedRecordForm: '',
-                                    ContractApproval: ''
+                                if (vm.ExcuteBudget[i].IsCanOperate) {
+                                    var data = {
+                                        Id: vm.ExcuteBudget[i].Id,
+                                        ItemName: ItemName,
+                                        IsCanOperate: vm.ExcuteBudget[i].IsCanOperate,
+                                        TypeOfContract: '',
+                                        LawyersOpinionSheet: '',
+                                        SchoolCountersignedRecordForm: '',
+                                        ContractApproval: ''
+                                    }
+                                    if (pack && pack.length > 0) {
+                                        var item = vm.getPackage(vm.ExcuteBudget[i].Id, pack);
+                                        if (item) {
+                                            data.TypeOfContract = item.TypeOfContract;
+                                            data.LawyersOpinionSheet = item.LawyersOpinionSheet;
+                                            data.SchoolCountersignedRecordForm = item.SchoolCountersignedRecordForm;
+                                            data.ContractApproval = item.ContractApproval;
+                                        }
+                                    }
+                                    vm.modelTen.Data.push(data);
                                 }
-                                vm.modelTen.Data.push(data);
                             }
+                            console.info(vm.modelTen.Data);
                         }
                     }
                 }
@@ -722,16 +746,105 @@ $(function () {
                     if (success) {
                         for (var i = 0; i < obj.ExecutePackage.PackageOfExcuteBudget.length; i++) {
                             obj.ExecutePackage.PackageOfExcuteBudget[i].ProjectName = obj.ExecuteProject.ExecuteProject.Name;
+
+                            vm.myDetails = obj;
+                            vm.myMenu = [];
+                            vm.myMenu = obj.Menu;
+                            if (vm.isFirstEnter) {
+                                var list = ['开始实施', '执行方式', '技术确认', '项目论证', '采购确认', '采购邀请'];
+                                for (var i = 0; i < vm.myMenu.length; i++) {
+
+                                    if (vm.myMenu[i].StepTemplateName == '采购邀请') {
+                                        if (vm.myMenu[i].IsPassed && !vm.myMenu[i].ISCurrentStepTemplate) {
+                                            vm.isInvitation = true;
+                                            list = ['采购邀请', '开标评标', '结果信息', '合同签订', '合同公示', '履约验收'];
+                                        }
+                                    }
+                                    if (vm.myMenu[i].ISCurrentStepTemplate) {
+                                        vm.currentText = vm.myMenu[i].StepTemplateName;
+                                        if (!vm.isInvitation) {
+                                            for (var j = 0; j < list.length; j++) {
+                                                if (vm.currentText == list[j]) {
+                                                    vm.width = j * 20;
+                                                    break;
+                                                }
+                                            }
+                                        } else {
+                                            var index = 0;
+                                            for (var j = 0; j < list.length; j++) {
+                                                if (vm.currentText == list[j] || vm.currentText == '专家抽取' || vm.currentText == '拟定合同') {
+                                                    index = j;
+                                                    if (vm.currentText == '专家抽取') {
+                                                        index = 2;
+                                                    }
+                                                    if (vm.currentText == '拟定合同') {
+                                                        index = 3;
+                                                    }
+                                                    if (vm.surplusDay <= 0) {
+                                                        vm.width = index * 20 - 10;
+                                                    } else {
+                                                        vm.width = index * 20;
+                                                    }
+                                                    console.info(vm.width)
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                vm.isFirstEnter = false;
+                            }
                         }
-                        vm.myDetails = obj;
-                        vm.myMenu = [];
-                        vm.myMenu = obj.Menu;
                         vm.onLoad();
+                        vm.getDayDiffOfEarlyWarning();
                     } else {
                         console.info('获取执行项目所有的信息失败！');
                         console.info(strErro);
                     }
                 });
+            },
+            getActiveClass: function (e) {
+                if (vm.currentText == '专家抽取') {
+                    vm.active = '结果信息';
+                }
+                if (vm.currentText == '拟定合同') {
+                    vm.active = '合同签订';
+                }
+                if (vm.active == e) {
+                    return 'active';
+                }
+            },
+            getDayDiffOfEarlyWarning: function () {
+                ProjectExecute.getDayDiffOfEarlyWarning('get', projectId, function getDayDiffOfEarlyWarningListener(success, obj, strErro) {
+                    if (success) {
+                        if (obj) {
+                            vm.surplusDay = '还剩' + obj + ' 天';
+                            if (obj == 0) {
+                                vm.surplusDay = '今天';
+                            }
+                            if (obj < 0) {
+                                vm.surplusDay = '已过期';
+                            }
+                            if (obj > 0) {
+                                var time = new Date().getTime() + (obj * 1000 * 60 * 60 * 24);
+                                vm.surplusTime = formatDate(time, 'YY-MM-DD hh:mm:ss');
+                            }
+                        }
+                    } else {
+                        console.info('获取当前流程剩余天数失败！');
+                        console.info(strErro);
+                    }
+                })
+            },
+            getStateClass: function (statue) {
+                switch (statue) {
+                    case '今天':
+                        return 'state-auditing'
+                        break;
+                    case '已过期':
+                        return 'state-over'
+                        break;
+                }
             },
             getPurchaseMethoOne: function () {
                 Dictionary.getCategoryDictionary('get', '采购方式', function getCategoryDictionaryListener(success, obj, strErro) {
@@ -855,6 +968,7 @@ $(function () {
                 if (vm.activeText == '开始实施') {
                     vm.changeAllName();
                 }
+
                 vm.getExecuteProjectDetail();
 
             },
@@ -916,7 +1030,7 @@ $(function () {
                 var isTime = vm.compareTime(vm.modelOne.Model.TimeToImplement, vm.newTimeToImplement);
                 if (!isTime) {
                     $.oaNotify.error('【实施截止时间】只能在' + vm.modelOne.Model.TimeToImplement + '以内！');
-                    vm.newTimeToImplement = vm.modelOne.Model.TimeToImplement;
+                    vm.newTimeToImplement = vm.modelOne.Model.TimeToImplement + ' 23:59:59';
                     return;
                 }
             },
@@ -1092,62 +1206,65 @@ $(function () {
                 }
                 for (var i = 0; i < vm.modelThree.Data.length; i++) {
                     var data = vm.modelThree.Data;
-                    var text = '【第' + (i + 1) + '包】'
-                    if (data[i].IsTakeBidBond) {
-                        if (data[i].BidBond > data[i].ExecuteUnitPrice * 0.02) {
-                            $.oaNotify.error(text + '【投标保证金金额】不能高于【预算金额】的2%！');
-                            return
-                            break;
+                    var text = '【第' + (i + 1) + '包】';
+                    if (data[i].IsCanOperate) {
+                        if (data[i].IsTakeBidBond) {
+                            if (data[i].BidBond > data[i].ExecuteUnitPrice * 0.02) {
+                                $.oaNotify.error(text + '【投标保证金金额】不能高于【预算金额】的2%！');
+                                return
+                                break;
+                            }
+                        } else {
+                            data[i].BidBond = 0;
                         }
-                    } else {
-                        data[i].BidBond = 0;
-                    }
-                    if (data[i].IsTakePerformanceBond) {
-                        if (data[i].PerformanceBond > 10) {
-                            $.oaNotify.error(text + '【履约保证金金额】不能高于10%！');
-                            data[i].PerformanceBond = 10;
-                            return
-                            break;
+                        if (data[i].IsTakePerformanceBond) {
+                            if (data[i].PerformanceBond > 10) {
+                                $.oaNotify.error(text + '【履约保证金金额】不能高于10%！');
+                                data[i].PerformanceBond = 10;
+                                return
+                                break;
+                            }
+                        } else {
+                            data[i].PerformanceBond = 0;
                         }
-                    } else {
-                        data[i].PerformanceBond = 0;
-                    }
 
-                    if (data[i].LinkmanName == '') {
-                        $.oaNotify.error(text + '【联系人】不能为空！');
-                        return
-                        break;
-                    }
-                    if (data[i].LinkmanPhone == '') {
-                        $.oaNotify.error(text + '【联系方式】不能为空！');
-                        return
-                        break;
-                    }
-                    if (data[i].PaymentMethod == '') {
-                        $.oaNotify.error(text + '【付款方式】不能为空！');
-                        return
-                        break;
-                    }
-                    if (data[i].Prerequisites == '') {
-                        $.oaNotify.error(text + '【资格条件】不能为空！');
-                        return
-                        break;
-                    }
-                    if (isCollection) {
-                        if (data[i].TechnicalRequirements == '' || !data[i].TechnicalRequirements) {
-                            $.oaNotify.error(text + '【采购需求】不能为空！');
+                        if (data[i].LinkmanName == '') {
+                            $.oaNotify.error(text + '【联系人】不能为空！');
                             return
                             break;
+                        }
+                        if (data[i].LinkmanPhone == '') {
+                            $.oaNotify.error(text + '【联系方式】不能为空！');
+                            return
+                            break;
+                        }
+                        if (data[i].PaymentMethod == '') {
+                            $.oaNotify.error(text + '【付款方式】不能为空！');
+                            return
+                            break;
+                        }
+                        if (data[i].Prerequisites == '') {
+                            $.oaNotify.error(text + '【资格条件】不能为空！');
+                            return
+                            break;
+                        }
+                        if (isCollection) {
+                            if (data[i].TechnicalRequirements == '' || !data[i].TechnicalRequirements) {
+                                $.oaNotify.error(text + '【采购需求】不能为空！');
+                                return
+                                break;
+                            }
+                        } else {
+                            if (data[i].Attachment == '' || !data[i].Attachment) {
+                                $.oaNotify.error(text + '【采购需求】不能为空！');
+                                return
+                                break;
+                            }
                         }
                     } else {
-                        if (data[i].Attachment == '' || !data[i].Attachment) {
-                            $.oaNotify.error(text + '【采购需求】不能为空！');
-                            return
-                            break;
-                        }
+                        data.splice(i, 1);
                     }
                 }
-                console.info(vm.modelThree)
                 vm.passPackageOfTechnicalConfirmation(vm.modelThree.$model);
             },
             passPackageOfTechnicalConfirmation: function (data) {
@@ -1964,25 +2081,29 @@ $(function () {
             clickSubmitTen: function () {
                 var data = vm.modelTen.Data;
                 for (var i = 0; i < data.length; i++) {
-                    if (!data[i].TypeOfContract || data[i].TypeOfContract == '') {
-                        $.oaNotify.error(' 第' + (i + 1) + '包，请选择【合同类型】！');
-                        return
-                        break
-                    }
-                    if (!data[i].LawyersOpinionSheet || data[i].LawyersOpinionSheet == '') {
-                        $.oaNotify.error(' 第' + (i + 1) + '包，请上传【律师审核意见表】！');
-                        return
-                        break
-                    }
-                    if (!data[i].SchoolCountersignedRecordForm || data[i].SchoolCountersignedRecordForm == '') {
-                        $.oaNotify.error(' 第' + (i + 1) + '包，请上传【校内会签记录表】！');
-                        return
-                        break
-                    }
-                    if (!data[i].ContractApproval || data[i].ContractApproval == '') {
-                        $.oaNotify.error(' 第' + (i + 1) + '包，请上传【合同审定稿】！');
-                        return
-                        break
+                    if (data[i].IsCanOperate) {
+                        if (!data[i].TypeOfContract || data[i].TypeOfContract == '') {
+                            $.oaNotify.error(' 第' + (i + 1) + '包，请选择【合同类型】！');
+                            return
+                            break
+                        }
+                        if (!data[i].LawyersOpinionSheet || data[i].LawyersOpinionSheet == '') {
+                            $.oaNotify.error(' 第' + (i + 1) + '包，请上传【律师审核意见表】！');
+                            return
+                            break
+                        }
+                        if (!data[i].SchoolCountersignedRecordForm || data[i].SchoolCountersignedRecordForm == '') {
+                            $.oaNotify.error(' 第' + (i + 1) + '包，请上传【校内会签记录表】！');
+                            return
+                            break
+                        }
+                        if (!data[i].ContractApproval || data[i].ContractApproval == '') {
+                            $.oaNotify.error(' 第' + (i + 1) + '包，请上传【合同审定稿】！');
+                            return
+                            break
+                        }
+                    } else {
+                        data.splice(i, 1);
                     }
                 }
                 console.info(vm.modelTen.$model)
@@ -2174,40 +2295,30 @@ $(function () {
                     return arr[arr.length - 1];
                 }
             },
+            getDay: function (startTime, endTime) {
+                var start = new Date(startTime).getTime();
+                var end = new Date(endTime).getTime();
+                var day = Math.round((start - end) / 1000 / 60 / 60 / 24);
+                return day;
+            },
             clickBtnReturn: function () {
                 $('.modal').modal('hide');
             },
             clickBtnCancel: function () {
                 parent.vm.toggle = false;
                 parent.vm.isFlow = false;
-                location.href = '/Invite_bids/views/project_execute/execute_list.html';
+                window.history.go(-1);
             },
         });
-        /* $('.form-year').datetimepicker({
-             format: 'yyyy',
-             todayBtn: 1,
-             autoclose: 1,
-             startView: 4,
-             minView: 4,
-             language: 'zh-CN',
-         });
-         $('.form-month').datetimepicker({
-             format: 'yyyy-mm',
-             weekStart: 1,
-             autoclose: true,
-             startView: 3,
-             minView: 3,
-             forceParse: false,
-             language: 'zh-CN',
-             linkField: "mirror_field"
-         });*/
         $('.page-edit-execute .left-nav').mCustomScrollbar({
             theme: 'dark-3',
         });
         $(window).resize(function () {
             vm.getWidth();
         });
-
+        vm.content = false;
+        $.support.cors = true;
+        vm.getTypeOfContract();
         vm.getExecuteProjectDetail();
         vm.getWidth();
         avalon.scan(document.body);

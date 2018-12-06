@@ -157,10 +157,12 @@ namespace InternalControl.Controllers
 
             var zipFileName = $"导出待论证项目_{DateTime.Now.ToString("yyyyMMddHHmmss")}";
             var zipPathName = MyPath.Combine(Env.WebRootPath, "Download", zipFileName);
+
             Directory.CreateDirectory(zipPathName);
 
             zipFileName = $"{zipFileName}.zip";
             var zipPathFileName = MyPath.Combine(Env.WebRootPath, "Download", zipFileName);
+            var relativeZipPathName = MyPath.Combine("Download", zipFileName);
 
             for (int i = 0, countOfList = list.Count(); i < countOfList; i++)
             {
@@ -198,7 +200,7 @@ namespace InternalControl.Controllers
                 }
             }
             ZipFile.CreateFromDirectory(zipPathName, zipPathFileName);
-            return zipPathFileName;
+            return relativeZipPathName;
         }
 
         /// <summary>
@@ -321,7 +323,7 @@ namespace InternalControl.Controllers
         /// <param name="BudgetTypeName">预算类型名称</param>
         /// <returns></returns>
         [HttpGet]
-        async public Task<object> ExportWhenBudgetProjectOfEnter(IEnumerable<int> listOfId,string BudgetTypeName)
+        async public Task<object> ExportWhenBudgetProjectOfEnter(IEnumerable<int> listOfId, string BudgetTypeName)
         {
             if (listOfId.Count() == 0)
                 throw new Exception("没有选中项目");
@@ -335,7 +337,7 @@ namespace InternalControl.Controllers
             var list = (await Db.GetListSpAsync<VBudgetProject, BudgetProjectExtendFilter>(filterExtend)).ToList();
             var listOfExportWhenBudgetProjectOfEnter = new List<ExportWhenBudgetProjectOfEnter>();
 
-            for (int i = 0,count = list.Count(); i < count; i++)
+            for (int i = 0, count = list.Count(); i < count; i++)
             {
                 var vBudgetProject = list[i];
                 var exportWhenBudgetProjectOfEnter = Tool.ModelToModel<ExportWhenBudgetProjectOfEnter, VBudgetProject>(vBudgetProject);
@@ -344,12 +346,12 @@ namespace InternalControl.Controllers
                 exportWhenBudgetProjectOfEnter.BudgetTypeName = BudgetTypeName;
                 listOfExportWhenBudgetProjectOfEnter.Add(exportWhenBudgetProjectOfEnter);
             }
-            var fileName =  $"导出进入预算项目_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
+            var fileName = $"导出进入预算项目_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
             var filePath = MyPath.Combine(Env.WebRootPath, "Download");
 
             var result = MyXls.Export(filePath, listOfExportWhenBudgetProjectOfEnter, fileName);
 
-            return MyPath.Combine(filePath, result);
+            return MyPath.Combine("Download", result);
         }
 
         /// <summary>
@@ -543,6 +545,22 @@ namespace InternalControl.Controllers
             //    stepDone.ToSimple((int)StepState.Forward),
             //    CurrentUser.Id,
             //    spList, stepDone.IsHold);
+        }
+
+        /// <summary>
+        /// 得到某个执行项目当前的预警天数
+        /// 注意：会有可能为null
+        /// </summary>
+        /// <param name="ExecuteProjectId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        async public Task<int?> GetDayDiffOfEarlyWarning(int ExecuteProjectId)
+        {
+            var result = await Db.QuerySpAsync<SPGetDayDiffOfEarlyWarning, int?>(new SPGetDayDiffOfEarlyWarning()
+            {
+                executeProject = ExecuteProjectId
+            });
+            return result.FirstOrDefault();
         }
 
     }

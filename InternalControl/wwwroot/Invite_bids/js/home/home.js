@@ -1,154 +1,146 @@
 $(function () {
     isOverdue(1000 * 60 * 60 * 24);
-    var chartPaper = echarts.init(document.getElementById('myEchart'),'macarons');
+    var chartPaper = echarts.init(document.getElementById('myEchart'), 'macarons');
     chartPaper.showLoading();
     window.vm = null;
     avalon.ready(function () {
         window.vm = avalon.define({
             $id: 'root',
+            time: new Date().getFullYear(),
             req: {
                 Index: 1,
-                Size: 10,
-                OrderType: false
-            },
-            ScientificResearch: [],
-            total: '',
-            time: new Date().getFullYear(),
-            // userInfo: mUserInfo,
-            notice: [],
-            reqNotice: {
-                Index: 1,
-                Size: 5,
-                // 人员编号: mUserId,
-                OrderType: false
-            },
-            downFile: [],
-            reqdownFile: {
-                Index: 1,
-                Size: 5,
-                是否启用: true,
-                OrderType: false
-            },
-            workFlow: [],
-            reqWorkFlow: {
-                Index: 1,
                 Size: 5,
                 OrderType: false
             },
-            noticeTotal: '',
-            downFileTotal: '',
-            WorkFlowTotal: '',
+            TaskMessage: [],
+            nocticeId: '',
+            mUserInfo: mUserInfo,
+            myDetails: {},
+            NoticeList: [],
+            reqTaskWarningt: {
+                Index: 1,
+                Size: 5,
+                OrderType: true
+            },
+            TaskWarning: [],
             nothing: false,
             nothing2: false,
             nothing3: false,
-            nothing4: false,
+            thisYearEndDatetime: '',
+            thisYear: new Date().getFullYear(),
             ClickLeft: function () {
                 vm.time--;
             },
             ClickRight: function () {
                 vm.time++;
             },
-            navList: [
-                {
-                    title: '主办讲座',
-                    url: '学术活动/申请学术讲座/主办讲座.html',
-                    icon: '活动.png'
-                },
-                {
-                    title: '获奖管理',
-                    url: '成果管理/获奖/获奖管理.html',
-                    icon: '获奖.png'
-                },
-                {
-                    title: '参会管理',
-                    url: '学术活动/参加学术会议/参会信息管理.html',
-                    icon: '会议.png'
-                },
-                {
-                    title: '专利管理',
-                    url: '成果管理/专利/专利管理.html',
-                    icon: '专利.png'
-                },
-                {
-                    title: '横向项目',
-                    url: '横向项目/横向项目管理/横向项目列表.html',
-                    icon: '项目.png'
-                },
-                {
-                    title: '纵向项目',
-                    url: '纵向项目/项目立项/纵向项目立项列表.html',
-                    icon: '项目2.png'
-                },
-                {
-                    title: '组织架构',
-                    url: '组织架构/部门人员信息维护.html',
-                    icon: '医院负责人.png'
-                },
-                {
-                    title: '角色管理',
-                    url: '系统管理/权限管理/角色管理.html',
-                    icon: '设置.png'
-                }
-            ],
-            newNavList: [],
-            onload: function () {
-                for (var i = 0; i < vm.navList.length; i++) {
-                    vm.match(mUserInfo.权限, vm.newNavList, vm.navList[i]);
-                }
-            },
-            match: function (arrA, arrB, obj) {
-                for (var j = 0; j < arrA.length; j++) {
-                    var url = arrA[j].菜单;
-                    var arr = arrA[j].子级菜单;
-                    if (url && url.路径 != '') {
-                        if (decodeURI(url.路径) == obj.url) {
-                            arrB.push(obj);
-                        }
-                    }
-                    if (arr && arr.length > 0) {
-                        vm.match(arr, arrB, obj);
-                    }
-                }
-            },
-            query: function () {
-                ScientificResearch.getScientificResearchUntreated('get', vm.req.$model, function getScientificResearchUntreatedListener(success, obj, strErro) {
+            getTaskMessage: function () {
+                Notice.GetPagingProjectBacklog('get', vm.req.$model, function GetPagingProjectBacklogListener(success, obj, strErro) {
                     if (success) {
-                        vm.total = obj.total;
-                        if (obj == null || obj.list.length == 0) {
-                            $('.regulation .pager').hide();
-                            vm.ScientificResearch = [];
-                            vm.nothing3 = true;
+                        if (obj == null || obj.List.length == 0) {
+                            vm.TaskMessage = [];
+                            vm.nothing = true;
                             return;
                         } else {
-                            obj = obj.list;
-                            var number = (vm.req.Index - 1) * vm.req.Size + 1;
-                            for (var i = 0; i < obj.length; i++) {
-                                obj[i].number = number;
-                                number++;
-                            }
-                            vm.ScientificResearch = obj;
-                            $('.regulation .pager').show();
-                            vm.nothing3 = false;
+                            obj = obj.List;
+                            vm.TaskMessage = obj;
+                            vm.nothing = false;
                         }
-                        $('.regulation .pager').mamPager({
-                            pageSize: vm.req.Size,                       //页大小
-                            pageIndex: vm.req.Index,                     //当前页
-                            recordTotal: vm.total,                       //数据总数
-                            type: 1,
-                            prevText: "&laquo;",                         //上一页显示内容
-                            nextText: "&raquo;",
-                            noData: "暂无数据",
-                            pageChange: function (index) {
-                                vm.req.Index = index;
-                                vm.nothing3 = false;
-                                vm.query();
-                            }
-                        });
                     } else {
-                        console.info('获取科研待办列表失败！');
+                        console.info('获取任务消息列表失败！');
                         console.info(strErro);
                     }
                 });
+            },
+            getNoticeList: function () {
+                Notice.GetPagingNotcieForViewList('get', vm.req.$model, function GetPagingNotcieForViewListListener(success, obj, strErro) {
+                    if (success) {
+                        if (obj == null || obj.List.length == 0) {
+                            vm.NoticeList = [];
+                            vm.nothing2 = true;
+                            return;
+                        } else {
+                            obj = obj.List;
+                            for (var i = 0; i < obj.length; i++) {
+                                if (obj[i].Type == '规章制度') {
+                                    obj.splice(i, 1);
+                                }
+                            }
+                            vm.NoticeList = obj;
+                            vm.nothing2 = false;
+                        }
+                    } else {
+                        console.info('获取通知消息列表失败！');
+                        console.info(strErro);
+                    }
+                });
+            },
+            getTaskWarning: function () {
+                Notice.GetPagingExecuteProjectWarning('get', vm.reqTaskWarningt.$model, function GetPagingExecuteProjectWarningListener(success, obj, strErro) {
+                    if (success) {
+                        if (obj == null || obj.List.length == 0) {
+                            vm.TaskWarning = [];
+                            vm.nothing3 = true;
+                            return;
+                        } else {
+                            obj = obj.List;
+                            for (var i = 0; i < obj.length; i++) {
+                                obj[i].day = obj[i].DayDiffOfEarlyWarning;
+                                if (obj[i].DayDiffOfEarlyWarning == 0) {
+                                    obj[i].day = '今天'
+                                }
+                                if (obj[i].DayDiffOfEarlyWarning < 0) {
+                                    obj[i].day = '已过期'
+                                }
+                            }
+                            vm.TaskWarning = obj;
+                            vm.nothing3 = false;
+                            $('.bs-tooltip').tooltip();
+                        }
+                    } else {
+                        console.info('获取任务预警失败！');
+                        console.info(strErro);
+                    }
+                });
+            },
+            getDepartmentsSetting: function () {
+                Department.GetRelevantDepartmentsSetting('get', vm.mUserInfo.user.DepartmentId, function GetRelevantDepartmentsSettingListener(success, obj, strErro) {
+                    if (success) {
+                        if (obj && obj.SupplementEndDatetime && obj.SupplementEndDatetime != '') {
+                            vm.thisYearEndDatetime = obj.SupplementEndDatetime;
+                        } else {
+                            vm.thisYearEndDatetime = '无';
+                        }
+
+                    } else {
+                        alert('获取某个归口部门的时间设置失败！');
+                        console.info(strErro);
+                    }
+                });
+            },
+            clickDetails: function (el) {
+                vm.nocticeId = el.Id;
+                vm.myDetails = el.$model;
+            },
+            clickNotiveDetails: function (el) {
+                vm.nocticeId = el.Id;
+                vm.myDetails = el.$model;
+                if (!el.IsReceived) {
+                    el.IsReceived = true;
+                }
+            },
+            getStateClass: function (State) {
+                if (!State) {
+                    return 'not-received'
+                }
+            },
+            getClass: function (el) {
+                if (el.DayDiffOfEarlyWarning < 3) {
+                    return 'state-over'
+                }
+                if (el.DayDiffOfEarlyWarning >= 3 && el.DayDiffOfEarlyWarning < 6) {
+                    return 'state-auditing'
+                }
             },
             getChart: function (data, series) {
                 //图表配置
@@ -207,85 +199,15 @@ $(function () {
                     chartPaper.resize();
                 }
             },
-            getUserNoticeList: function () {
-                Notice.getUserNoticeList('get', vm.reqNotice.$model, function getUserNoticeListListener(success, obj, strErro) {
-                    if (success) {
-                        vm.noticeTotal = obj.total;
-                        if (obj == null || obj.list.length == 0) {
-                            $('.notice .pager').hide();
-                            vm.notice = [];
-                            vm.nothing = true;
-                            return;
-                        } else {
-                            obj = obj.list;
-                            vm.notice = obj;
-                            $('.notice .pager').show();
-                            vm.nothing = false;
-                        }
-                        $('.notice .pager').mamPager({
-                            pageSize: vm.reqNotice.Size,                       //页大小
-                            pageIndex: vm.reqNotice.Index,                     //当前页
-                            recordTotal: vm.noticeTotal,                       //数据总数
-                            type: 1,
-                            prevText: "&laquo;",                         //上一页显示内容
-                            nextText: "&raquo;",
-                            noData: "暂无数据",
-                            pageChange: function (index) {
-                                vm.reqNotice.Index = index;
-                                vm.nothing = false;
-                                vm.getUserNoticeList();
-                            }
-                        });
-                    } else {
-                        console.info('获取通知公告列表失败！');
-                        console.info(strErro);
-                    }
-                });
-            },
-            clickBtnEdit: function (el) {
-                vm.editType = true;
-                sessionStorage.editInfo = JSON.stringify(el.$model);
-                var details = {
-                    id: el.项目编号,
-                    name: el.发起人姓名,
-                    shenHeUrl: el.步骤链接路径,
-                    步骤编号: el.步骤编号
-                }
-                sessionStorage.xueShuDetails = JSON.stringify(details);
-            },
-            details: function (el) {
-                var details = {
-                    id: el.项目编号,
-                    name: el.发起人姓名,
-                    shenHeUrl: el.步骤链接路径,
-                    步骤编号: el.步骤编号
-                }
-                sessionStorage.xueShuDetails = JSON.stringify(details);
-                $('.modal-details .detailsPage').attr('src', vm.getUrl(el.流程相关项目路径));
-            },
-            getStateClass: function (state) {
-                switch (state) {
-                    case 1:
-                        return 'not-received';
-                }
-            },
-            noticeDetails: function (id) {
-                sessionStorage.noticeId = JSON.stringify(id);
-            },
-            downloadDetails: function (el) {
-                sessionStorage.downloadDetails = JSON.stringify(el);
-            },
             clickBtnReturn: function () {
                 $('.modal').modal('hide');
             },
         });
-
-        // vm.onload();
-        // vm.getUserNoticeList();
-        // vm.getEnableDownloadList();
-        // vm.query();
-        // vm.WorkFlowTotalList();
-            vm.getChart();
+        vm.getNoticeList();
+        vm.getTaskMessage();
+        vm.getTaskWarning();
+        vm.getDepartmentsSetting();
+        vm.getChart();
         avalon.scan(document.body);
     });
     $('.main').mCustomScrollbar({

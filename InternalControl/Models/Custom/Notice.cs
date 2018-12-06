@@ -70,4 +70,40 @@ namespace InternalControl.Models
         public string FlowTemplateName { get; set; }
 
     }
+
+    /// <summary>
+    /// 执行任务预警过滤条件
+    /// </summary>
+    public class ExecuteProjectWithDayDiffOfEarlyWarningFilter
+    {
+        /// <summary>
+        /// 模糊:项目名称
+        /// </summary>
+        public string LikeName { get; set; }
+
+        /// <summary>
+        /// 归口部门id
+        /// </summary>
+        public int? RelevantDepartmentId { get; set; }
+
+        /// <summary>
+        /// 大于等于多少天数之后才需要执行的预警
+        /// </summary>
+        public int? BeginDayDiffOfEarlyWarning { get; set; }
+
+        /// <summary>
+        /// 小于等于多少天数之前就需要执行的预警
+        /// </summary>
+        public int? EndDayDiffOfEarlyWarning { get; set; }
+
+        /// <summary>
+        /// 哪一天之后才需要执行的预警
+        /// </summary>
+        public DateTime? BeginDateOfEarlyWarning { get; set; }
+
+        /// <summary>
+        /// 哪一天之前就需要执行的预警
+        /// </summary>
+        public DateTime? EndDateOfEarlyWarning { get; set; }
+    }
 }

@@ -32,7 +32,6 @@ $(function () {
                 ]
             },
             onLoad: function () {
-                console.info(vm.mUserInfo);
                 if (oa.getUrlParam('editType') == 'true') {
                     vm.editType = true;
                     var myDetails = JSON.parse(sessionStorage.myDetails);
@@ -62,19 +61,6 @@ $(function () {
                 } else {
                     vm.editType = false;
                 }
-                vm.getCategoryDictionary();
-            },
-            getCategoryDictionary: function () {
-                Dictionary.getCategoryDictionary('get', '通知类型', function getCategoryDictionaryListener(success, obj, strErro) {
-                    if (success) {
-                        vm.types = obj;
-                        $('.types').val(vm.model.Model.Type);
-
-                    } else {
-                        console.info('获取通知类型失败！');
-                        console.info(strErro);
-                    }
-                })
             },
             uploadNoticeFlie: function (e) {
                 var data = new FormData();
@@ -98,16 +84,16 @@ $(function () {
                 vm.model.Model.Content = um.getContent();
                 var model = vm.model.Model;
                 if (model.Name == '') {
-                    $.oaNotify.error(' 通知标题不能为空！');
+                    $.oaNotify.error(' 【通知标题】不能为空！');
                     return;
                 }
                 if (model.Type == '') {
-                    $.oaNotify.error(' 请选择通知类型！');
+                    $.oaNotify.error(' 请选择【通知类型】！');
                     return;
                 }
 
                 if (model.Content == '') {
-                    $.oaNotify.error(' 填写通知内容！');
+                    $.oaNotify.error(' 填写【通知内容】！');
                     return;
                 }
                 vm.AddOrUpdateNotice(vm.model.$model);

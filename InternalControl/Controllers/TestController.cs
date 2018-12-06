@@ -144,6 +144,7 @@ namespace InternalControl.Controllers
         [HttpGet]
         public object GetJwt()
         {
+            //return HttpContext.User.Identity.IsAuthenticated;
             return User.Claims.Select(i => i.Type+":::"+i.Value);
 
         }

@@ -46,7 +46,7 @@ namespace InternalControl.Infrastucture
         /// 日志服务
         /// </summary>
         protected ILog Log => HttpContext.RequestServices.GetService<ILog>();
-
+        
         /// <summary>
         /// 
         /// </summary>

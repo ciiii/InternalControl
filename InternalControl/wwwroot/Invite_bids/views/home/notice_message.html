@@ -36,7 +36,7 @@
 
 </head>
 <body ms-controller="root" class="ms-controller" onload="IFrameResize()">
-<div class="page-declare page-common page-paper">
+<div class="page-declare page-common page-paper page-notice-message">
     <div class="main">
         <div class="row screen-box">
             <div class="form-inline">
@@ -53,7 +53,8 @@
                     <label>通知类型</label>
                     <select class="form-control" ms-duplex="@req.Type" ms-on-change="changeTypes($event)">
                         <option value="">全部</option>
-                        <option ms-for="el in @types" ms-attr="{'value':el.Value}">{{el.Value}}</option>
+                        <option value="通知消息">通知消息</option>
+                        <option value="任务消息">任务消息</option>
                     </select>
                 </div>
                 <div class="form-group input-box">
@@ -83,33 +84,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0">
-                            <td class="number text-center">{{el.number}}</td>
-                            <td class="text-left">{{el.Name}}</td>
-                            <td>{{el.Type}}</td>
-                            <td>{{el.SendorDepartmentName}}</td>
+                        <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0" ms-class="@getStateClass(el.IsReceived)">
+                            <td class="number text-center title">{{el.number}}</td>
+                            <td class="text-left title">{{el.Name}}</td>
+                            <td class="title">{{el.Type}}</td>
+                            <td class="title">{{el.SendorDepartmentName}}</td>
                             <td ms-class="getclass(el.IsEnabled)">{{el.IsEnabled?'正常':'已禁用'}}</td>
-                            <td>{{el.CreateDatetime}}</td>
+                            <td class="title">{{el.CreateDatetime}}</td>
                             <td class="operation">
                                 <ul>
-                                    <li class="bs-tooltip btn-edit" data-toggle="tooltip" data-placement="bottom"
-                                        title="编辑">
-                                        <a href="javascript:;" ms-on-click="@clickBtnEdit(el)">
-                                            <i class="icon iconfont icon-bianji"></i>
-                                        </a>
-                                    </li>
-                                    <li class="bs-tooltip btn-disable" data-toggle="tooltip"
-                                        data-placement="bottom" ms-attr="{'title':@el.IsEnabled?'禁用':'启用'}">
-                                        <a ms-class="getStatusClass(el.IsEnabled)" href="javascript:;"
-                                           data-toggle="modal"
-                                           data-target=".modal-disable" ms-on-click="@clickBtnDisable(el)">
-                                            <i class="icon iconfont icon-zhongzhitiaojian"></i>
-                                        </a>
-                                    </li>
                                     <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
                                         title="查看详情">
                                         <a data-toggle="modal" data-target=".modal-details"
-                                           href="notice_details.html" ms-on-click="@clickDetails(el)"
+                                           href="../notice_manage/notice_details.html" ms-on-click="@clickDetails(el)"
                                            onclick="changeUrlChoice(this,'.modal-details')">
                                             <i class="icon iconfont icon-16"></i>
                                         </a>

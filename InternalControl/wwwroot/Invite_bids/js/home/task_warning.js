@@ -8,18 +8,18 @@ $(function () {
                 Index: 1,
                 Size: 16,
                 OrderType: true,
-                type: 0,
                 LikeName: '',
                 RelevantDepartmentId: '',
-                Year: new Date().getFullYear() + 1,
+                BeginDateOfEarlyWarning: '',
+                EndDateOfEarlyWarning: ''
             },
             relevantDepartment: [],
             total: '',
             model: [],
+            endTime: '',
             nothing: false,
             loaded: false,
             allchecked: false,
-            myDetails: {},
             query: function () {
                 vm.loaded = false;
                 $.support.cors = true;
@@ -38,6 +38,13 @@ $(function () {
                             for (var i = 0; i < obj.length; i++) {
                                 obj[i].number = number;
                                 obj[i].checked = false;
+                                obj[i].day = obj[i].DayDiffOfEarlyWarning;
+                                if (obj[i].DayDiffOfEarlyWarning == 0) {
+                                    obj[i].day = '今天'
+                                }
+                                if (obj[i].DayDiffOfEarlyWarning < 0) {
+                                    obj[i].day = '已过期'
+                                }
                                 number++;
                             }
                             vm.model = obj;
@@ -80,6 +87,9 @@ $(function () {
             },
             search: function () {
                 vm.req.Index = 1;
+                if (vm.endTime != '') {
+                    vm.req.EndDateOfEarlyWarning = vm.endTime + ' 23:59:59';
+                }
                 vm.query();
             },
             submit: function () {
@@ -126,63 +136,17 @@ $(function () {
                     return 'btn-primary'
                 }
             },
-            clickState: function (e, index, val) {
-                vm.activeIndex = index;
-                vm.req.State = val
-                vm.search();
-            },
-            changeCenterPurchase: function (e) {
-                vm.req.IsCenterPurchase = e.target.value;
-                vm.search();
+            getClass: function (el) {
+                if (el.DayDiffOfEarlyWarning < 3) {
+                    return 'state-over'
+                }
+                if (el.DayDiffOfEarlyWarning >= 3 && el.DayDiffOfEarlyWarning < 6) {
+                    return 'state-auditing'
+                }
             },
             changeDepartment: function (e) {
                 vm.req.RelevantDepartmentId = e.target.value;
                 vm.search();
-            },
-            changePurchaseMetho: function (e) {
-                vm.req.PlanPurchaseMethod = e.target.value;
-                vm.search();
-            },
-            getFlowClass: function (name) {
-                if (name.indexOf('待完善') != -1) {
-                    return 'btn-edit';
-                } else {
-                    return 'btn-examine';
-                }
-            },
-            getStateClass: function (statue) {
-                switch (statue) {
-                    case '项目审核通过':
-                        return 'state-pass';
-                    case '审核不通过':
-                        return 'state-over';
-                    case '审核已终止':
-                        return 'state-over';
-                    case '待完善项目审核资料':
-                        return 'state-remind';
-                    case '待项目审核':
-                        return 'state-auditing';
-                    default:
-                        return '';
-                }
-            },
-            clickBtnEdit: function (el) {
-                vm.clickInfo(el);
-                var url = el.DeclareProject.LastEditStepComponentName;
-                if (url.indexOf('modal') != -1) {
-                    $('.modal-add').modal('show');
-                    changeUrlNew('/Invite_bids/views/' + url)
-                    vm.stepId = el.DeclareProject.LastStepId;
-                } else {
-                    location.href = '/Invite_bids/views/' + url + '?editType=true';
-                }
-            },
-            clickInfo: function (el) {
-                vm.myDetails = el.$model;
-                sessionStorage.myDetails = JSON.stringify(el.$model);
-            },
-            clickDetails: function (el) {
-                vm.myDetails = el.$model;
             },
             clickBtnReturn: function () {
                 $('.modal').modal('hide');

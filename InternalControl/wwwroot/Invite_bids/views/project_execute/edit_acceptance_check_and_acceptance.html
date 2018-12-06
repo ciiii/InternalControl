@@ -39,7 +39,7 @@
 </head>
 <body>
 <body ms-controller="root" class="ms-controller" onload="IFrameResize()">
-<div class="page-add-declare page-edit-execute page-common page-paper">
+<div class="page-add-declare page-edit-execute page-common page-paper" >
     <div class="left-nav col-md-2 col-sm-2">
         <h4><img src="../../images/down.png"/>项目执行流程</h4>
         <div class="nav-box">
@@ -63,26 +63,77 @@
         <button class="btn btn-primary btn-back" ms-on-click="clickBtnCancel">
             <i class="icon iconfont icon-ai207"></i> 返回列表
         </button>
-        <div class="tab-pane model-one" ms-class="getTabClass('开始实施')">
-            <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
+        <div class="form-horizontal">
+            <div class="item progress-box col-md-12 col-sm-12">
+                <div class="progress-start">
+                    <span ms-if="!@isInvitation" class="title">开始实施</span>
+                    <span ms-if="@isInvitation" class="title">采购邀请</span>
+                </div>
+                <div class="progress form-group">
+                    <div class="progress-bar progress-bar-info" role="progressbar"
+                         aria-valuemin="0" aria-valuemax="100" ms-css="{width:@width+'%'}"
+                         ms-attr="{'aria-valuenow',@width}">
                     </div>
                 </div>
+                <div class="list-box">
+                    <div class="current-state" ms-class="@getStateClass(@surplusDay)" ms-css="{left:@width+'%'}">
+                        {{@surplusDay}}
+                    </div>
+                    <div class="text-list list-one" ms-if="!@isInvitation">
+                        <ul>
+                            <li class="active"><span class="title">执行方式</span></li>
+                            <li><span class="title">技术确认</span></li>
+                            <li><span class="title">项目论证</span></li>
+                            <li><span class="title">采购确认</span></li>
+                        </ul>
+                    </div>
+                    <div class="text-list list-two" ms-if="@isInvitation">
+                        <ul>
+                            <li ms-class="@getActiveClass('开标评标')">
+                                <span class="tiem" ms-if="@active=='开标评标'&&@surplusTime!=''">{{@surplusTime|date("yyyy-MM-dd")}}</span>
+                                <span class="title">开标评标</span>
+                            </li>
+                            <li ms-class="@getActiveClass('结果信息')">
+                                <span class="tiem" ms-if="@active=='结果信息'&&@surplusTime!=''" >{{@surplusTime|date("yyyy-MM-dd")}}</span>
+                                <span class="title">结果信息</span>
+                            </li>
+                            <li ms-class="@getActiveClass('合同签订')">
+                                <span class="tiem" ms-if="@active=='合同签订'&&@surplusTime!=''">{{@surplusTime|date("yyyy-MM-dd")}}</span>
+                                <span class="title">合同签订</span>
+                            </li>
+                            <li ms-class="@getActiveClass('合同公示')">
+                                <span class="tiem" ms-if="@active=='合同公示'&&@surplusTime!=''">{{@surplusTime|date("yyyy-MM-dd")}}</span>
+                                <span class="title">合同公示</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="progress-end" ms-if="!@isInvitation">
+                    <span class="time">{{@newTimeToImplement|truncate(10,'')}}</span>
+                    <span class="title">采购邀请</span>
+                </div>
+                <div class="progress-end" ms-if="@isInvitation">
+                    <span class="title">履约验收</span>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane model-one" ms-class="getTabClass('开始实施')">
+            <div class="form-horizontal content" ms-if="isEdit">
                 <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">项目名称</label>
+                        <label class="control-label col-md-3 col-sm-3">
+                            <i class="icon iconfont icon-text-sign icon-sign"></i>项目名称
+                        </label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@modelOne.Model.Name">
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">内部编号</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@ExecuteProject.ProjectNumber" readonly>
                         </div>
                     </div>
@@ -90,7 +141,7 @@
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目属性</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@modelOne.Model.IsGovernmentPurchase?'政府采购':'非政府采购'" readonly>
                         </div>
                     </div>
@@ -121,14 +172,14 @@
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">采购人</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@modelOne.Model.PurchaserName">
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">采购人地址</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@modelOne.Model.PurchaserAddress">
                         </div>
                     </div>
@@ -136,14 +187,14 @@
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">联系人</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@modelOne.Model.LinkmanName">
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">联系方式</label>
                         <div class="col-md-7 col-sm-7">
-                            <input type="text" class="form-control budget-money"
+                            <input type="text" class="form-control"
                                    ms-duplex="@modelOne.Model.LinkmanPhone">
                         </div>
                     </div>
@@ -281,12 +332,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -449,12 +494,6 @@
         </div>
         <div class="tab-pane model-two" ms-class="getTabClass('执行方式')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3">进度条</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -529,12 +568,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -583,12 +616,6 @@
         </div>
         <div class="tab-pane model-three" ms-class="getTabClass('技术确认')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -637,14 +664,14 @@
                         <li ms-for="($index,el) in @modelThree.Data" ms-if="el.IsCanOperate"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tab'+$index,'aria-controls':'tab'+$index}" role="tab"
-                               data-toggle="tab">第{{el.SerialNumber}}包</a>
+                               data-toggle="tab">第{{$index+1}}包</a>
                         </li>
                     </ul>
                 </div>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane" ms-class="tabClass($index)"
                          ms-for="($index,el) in @modelThree.Data" ms-attr="{'id':'tab'+$index}"
-                         ms-if="@modelThree.Data&&@modelThree.Data.length!=0">
+                         ms-if="@modelThree.Data&&@modelThree.Data.length!=0&&el.IsCanOperate">
                         <div class="item row col-md-12 col-sm-12">
                             <div class="form-group col-md-6 col-sm-6">
                                 <label class="control-label col-md-3 col-sm-3">采购方式</label>
@@ -970,12 +997,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -1197,12 +1218,6 @@
         </div>
         <div class="tab-pane model-four" ms-class="getTabClass('项目论证')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -1542,12 +1557,6 @@
                 </div>
             </div>
             <div class="form-horizontal content content-details" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -1721,12 +1730,6 @@
         </div>
         <div class="tab-pane model-five" ms-class="getTabClass('采购确认')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -1905,12 +1908,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -1989,12 +1986,6 @@
         </div>
         <div class="tab-pane model-six" ms-class="getTabClass('采购邀请')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -2199,12 +2190,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -2363,12 +2348,6 @@
         </div>
         <div class="tab-pane model-seven" ms-class="getTabClass('开标评标')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -2646,7 +2625,7 @@
                                 <i class="icon iconfont icon-text-sign icon-sign"></i>开标时间
                             </label>
                             <div class="col-md-7 col-sm-7">
-                                <input type="text" class="form-control form-hour"
+                                <input type="text" class="form-control"
                                        ms-duplex="@modelSeven.Data.Model.BidOpeningDateTime" readonly>
                             </div>
                         </div>
@@ -2679,12 +2658,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -2892,12 +2865,6 @@
         </div>
         <div class="tab-pane model-eight" ms-class="getTabClass('专家抽取')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">专家评审时间</label>
@@ -3042,12 +3009,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">专家评审时间</label>
@@ -3097,12 +3058,6 @@
         </div>
         <div class="tab-pane model-nine" ms-class="getTabClass('结果信息')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -3431,12 +3386,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -3662,12 +3611,6 @@
         </div>
         <div class="tab-pane model-ten" ms-class="getTabClass('拟定合同')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -3736,10 +3679,10 @@
                                     <i class="icon iconfont icon-text-sign icon-sign"></i>合同类型
                                 </label>
                                 <div class="col-md-7 col-sm-7">
-                                    <select class="form-control" ms-duplex="@el.TypeOfContract">
+                                    <select class="form-control contract-type" ms-duplex="@el.TypeOfContract" ms-attr={'data-value':el.TypeOfContract}>
                                         <option value="">请选择</option>
                                         <option ms-for="item in @typeOfContract" ms-if="@typeOfContract.length!=0"
-                                                ms-attr="{'value',item.Value}">{{item.Value}}
+                                                ms-attr={'value':item.Value}>{{item.Value}}
                                         </option>
                                     </select>
                                 </div>
@@ -3866,12 +3809,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -3979,12 +3916,6 @@
         </div>
         <div class="tab-pane model-eleven" ms-class="getTabClass('合同签订')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -4143,12 +4074,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -4264,12 +4189,6 @@
         </div>
         <div class="tab-pane model-twelve" ms-class="getTabClass('合同公示')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -4431,12 +4350,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -4561,12 +4474,6 @@
         </div>
         <div class="tab-pane model-thirteen" ms-class="getTabClass('履约验收')">
             <div class="form-horizontal content" ms-if="isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条1</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -4714,12 +4621,6 @@
                 </div>
             </div>
             <div class="form-horizontal content" ms-if="!isEdit">
-                <div class="item progress row col-md-12 col-sm-12">
-                    <div class="form-group col-md-12 col-sm-12">
-                        <label class="control-label col-md-3 col-sm-3">进度条2</label>
-                        <div class="col-md-9 col-sm-9"></div>
-                    </div>
-                </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12">
                         <label class="control-label col-md-3 col-sm-3">项目名称</label>
@@ -4906,7 +4807,8 @@
                         <p class="text-center"><img src="/Invite_bids/images/nothing-3.png"></p>
                     </div>
                 </div>
-                <div class="item row col-md-12 col-sm-12 correct-box" ms-if="@myDetails.RejectedPackage&&@myDetails.RejectedPackage.length!=0">
+                <div class="item row col-md-12 col-sm-12 correct-box"
+                     ms-if="@myDetails.RejectedPackage&&@myDetails.RejectedPackage.length!=0">
                     <div class="form-group col-md-6 col-sm-6">
                         <label class="control-label col-md-3 col-sm-3">废包信息</label>
                     </div>
@@ -4927,7 +4829,7 @@
                             <tr ms-for="($index,el) in @myDetails.RejectedPackage">
                                 <td class="number text-center">第{{$index+1}}包</td>
                                 <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
-                                <td>{{el.DeclareDepartmentName}}</td>
+                                <td>{{el.ExecuteUnitPrice|currency}}</td>
                                 <td>{{el.ExecuteUnitPrice|currency}}</td>
                                 <td style="color: red">废标</td>
                                 <td>{{el.CreateDatetime}}</td>
@@ -5017,6 +4919,10 @@
          aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg"></div>
     </div>
+
+</div>
+<div class="not-content" ms-if="!@content">
+    <span class="load">数据加载中...</span>
 </div>
 </body>
 </body>

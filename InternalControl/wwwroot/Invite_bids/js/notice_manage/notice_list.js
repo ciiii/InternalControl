@@ -10,7 +10,7 @@ $(function () {
                 OrderType: false,
                 Type: '',
                 LikeName: '',
-                LikeSendorName:'',
+                LikeSendorName: '',
                 BeginCreateDatetime: '',
                 EndCreateDatetime: '',
 
@@ -24,7 +24,6 @@ $(function () {
             editType: false,
             allchecked: false,
             text: '',
-            types: [],
             nocticeId: '',
             myDetails: {},
             query: function () {
@@ -43,12 +42,15 @@ $(function () {
                             obj = obj.List;
                             var number = (vm.req.Index - 1) * vm.req.Size + 1;
                             for (var i = 0; i < obj.length; i++) {
+                                if (obj[i].Type == '规章制度') {
+                                    obj.splice(i, 1);
+                                }
                                 obj[i].number = number;
                                 obj[i].checked = false;
                                 number++;
                             }
+
                             vm.model = obj;
-                            console.info(obj);
                             $('.pager').show();
                             vm.nothing = false;
                             vm.allchecked = false;
@@ -74,17 +76,6 @@ $(function () {
                         console.info(strErro);
                     }
                 });
-            },
-            getCategoryDictionary: function () {
-                Dictionary.getCategoryDictionary('get', '通知类型', function getCategoryDictionaryListener(success, obj, strErro) {
-                    if (success) {
-                        vm.types = obj;
-
-                    } else {
-                        console.info('获取通知类型失败！');
-                        console.info(strErro);
-                    }
-                })
             },
             search: function () {
                 vm.req.Index = 1;
@@ -175,7 +166,6 @@ $(function () {
         $('.modal-add .tab-pane').mCustomScrollbar({
             theme: 'dark-3',
         });
-        vm.getCategoryDictionary();
         vm.query();
         avalon.scan(document.body);
     });

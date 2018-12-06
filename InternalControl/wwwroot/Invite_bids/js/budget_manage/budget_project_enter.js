@@ -23,6 +23,7 @@ $(function () {
             allchecked: false,
             myDetails: {},
             BudgetId: '',
+            BudgetTypeName: '',
             budgetList: 0,
             allBudget: 0,
             selectedBudget: 0,
@@ -106,6 +107,8 @@ $(function () {
                                 vm.BudgetId = obj[i].Id
                             }
                         }
+                        vm.BudgetName = obj[0].BudgetTypeName;
+                        console.info(vm.BudgetName);
                     } else {
                         console.info('获取当前归口部门的某年度的预算失败！')
                         console.info(strErro)
@@ -216,6 +219,7 @@ $(function () {
                 vm.budgetList.forEach(function (el) {
                     if (vm.BudgetId == el.Id) {
                         vm.allBudget = el.BudgetAmount;
+                        vm.BudgetTypeName = el.BudgetTypeName;
                     }
                 });
             },

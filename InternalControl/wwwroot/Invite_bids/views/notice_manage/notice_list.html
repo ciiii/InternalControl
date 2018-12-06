@@ -49,7 +49,8 @@
                     <label>通知类型</label>
                     <select class="form-control" ms-duplex="@req.Type" ms-on-change="changeTypes($event)">
                         <option value="">全部</option>
-                        <option ms-for="el in @types" ms-attr="{'value':el.Value}">{{el.Value}}</option>
+                        <option value="通知消息">通知消息</option>
+                        <option value="任务消息">任务消息</option>
                     </select>
                 </div>
                 <div class="form-group">

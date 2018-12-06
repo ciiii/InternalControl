@@ -239,7 +239,7 @@ $(function () {
                     ExecuteProjectId: 0,
                     ItemId: 0,
                     ItemName: '请选择品目',
-                    IsImported: true,
+                    IsImported: false,
                     DeclareTechnicalRequirements: '',
                     DeclareNumber: 1,
                     DeclareUnitPrice: 0,
@@ -336,6 +336,7 @@ $(function () {
                         Remark: '',
                         Data: vm.model.Data
                     }
+
                     vm.editDeclareProject(postData);
                 } else {
                     vm.addDeclareProject(vm.model.$model);
@@ -380,7 +381,6 @@ $(function () {
             },
             clickObjType: function (e) {
                 vm.model.Data.Model.ProjectType = e.target.innerText;
-                console.info(vm.model.Data.Model.ProjectType);
             },
             changeDeclareYear: function () {
                 $('.form-month').val('');
@@ -418,8 +418,9 @@ $(function () {
         }).on('show', function (ev) {
             $('.form-month').datetimepicker('setStartDate', vm.model.Data.Model.Year + '-01');
             $('.form-month').datetimepicker('setEndDate', vm.model.Data.Model.Year + '-12');
+        }).on('changeDate', function () {
+            vm.model.Data.Model.DateOfPlanToImplement = getLastDayTime(vm.model.Data.Model.DateOfPlanToImplement)
         });
-        ;
         vm.onLoad();
         avalon.scan(document.body);
     });

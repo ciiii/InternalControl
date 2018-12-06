@@ -1,10 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
 <head>
     <meta charset="UTF-8">
     <title>数据统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/bootstrap/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/ztree/metroStyle/metroStyle.css"/>
+    <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
+    <link rel="stylesheet" href="/Invite_bids/css/child_pages.css"/>
+    <!--[if lt IE 9]>
+    <script src="/Invite_bids/libs/html5shiv.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="/Invite_bids/libs/jquery-1.11.1.min.js"></script>
+    <script src="/Invite_bids/libs/jquery.placeholder.min.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/Invite_bids/libs/bootstrap/js/bootstrap-multiselect.js"></script>
+    <script src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/Invite_bids/libs/ztree/jquery.ztree.all.min.js"></script>
+    <script src="/Invite_bids/libs/avalon.min.js"></script>
+    <script src="/Invite_bids/libs/Echarts/echarts.common.min.js"></script>
+    <script src="/Invite_bids/libs/Echarts/macarons.js"></script>
+
+    <script src="/Invite_bids/js/pager.js"></script>
+    <script src="/Invite_bids/js/main.js"></script>
+    <script src="/Invite_bids/js/get_connect/code.js"></script>
+    <script src="/Invite_bids/js/get_connect/connect_http.js"></script>
+    <script src="/Invite_bids/js/get_connect/return_data.js"></script>
+    <script>
+        document.write(' <script src="/Invite_bids/js/home/data_statistics.js?time=' + new Date().getTime() + '"></s' + 'cript>');
+    </script>
 </head>
-<body>
-数据统计
+<body ms-controller="root" class="ms-controller">
+<div class="page-statistics page-common page-paper page-data_statistics">
+    <div class="main">
+        <div class="col-md-6 module">
+            <div class="box min-box">
+                <div class="content col-md-6">
+                    <div class="left">
+                        <span class="title">申报项目金额</span>
+                        <span class="sum">800万元</span>
+                    </div>
+                    <div class="right">
+                        <img src="../../images/sum.png">
+                    </div>
+                </div>
+                <div class="content col-md-6 box-border">
+                    <div class="left">
+                        <span class="title">申报项目数量</span>
+                        <span class="sum">520个</span>
+                    </div>
+                    <div class="right">
+                        <img src="../../images/number.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 module">
+            <div class="box min-box">
+                <div class="content col-md-6">
+                    <div class="left">
+                        <span class="title">通过论证项目总金额</span>
+                        <span class="sum">600万元</span>
+                    </div>
+                    <div class="right">
+                        <img src="../../images/sum.png">
+                    </div>
+                </div>
+                <div class="content col-md-6 box-border">
+                    <div class="left">
+                        <span class="title">通过论证项目总数量</span>
+                        <span class="sum">360个</span>
+                    </div>
+                    <div class="right">
+                        <img src="../../images/number.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 module">
+            <div class="box">
+                <div class="box-header">
+                    <h3>项目论证</h3>
+                    <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
+                       href="task_message.html">
+                        <img src="/Invite_bids/images/more.png" alt="更多" title="更多"/>
+                    </a>
+                </div>
+                <div class="content">
+                    <div id="chartOone" style="height: 400px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 module">
+            <div class="notice box">
+                <div class="box-header">
+                    <h3>执行方式</h3>
+                    <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
+                       href="notice_message.html">
+                        <img src="/Invite_bids/images/more.png" alt="更多"/>
+                    </a>
+                </div>
+                <div class="content">
+                    <div id="chartTwo" style="height: 400px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 module">
+            <div class="regulation box">
+                <div class="box-header">
+                    <h3>采购方式</h3>
+                    <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
+                       href="task_warning.html">
+                        <img src="/Invite_bids/images/more.png" alt="更多"/>
+                    </a>
+                </div>
+                <div class="content">
+                    <div id="chartThree" style="height: 400px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 module">
+            <div class="regulation box">
+                <div class="box-header">
+                    <h3>资金节约率</h3>
+                    <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
+                       href="task_warning.html">
+                        <img src="/Invite_bids/images/more.png" alt="更多"/>
+                    </a>
+                </div>
+                <div class="content">
+                    <div id="chartFour" style="height: 400px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 module">
+            <div class="statistics box">
+                <div class="box-header">
+                    <h3>每月进入采购程序预算</h3>
+                    <a class="more bs-tooltip" data-toggle="tooltip" data-placement="bottom" title="更多"
+                       href="data_statistics.html">
+                        <img src="/Invite_bids/images/more.png" alt="更多"/>
+                    </a>
+                </div>
+                <div class="content">
+                    <div id="chartFive" style="height: 400px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-details" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"></div>
+    </div>
+</div>
 </body>
 </html>

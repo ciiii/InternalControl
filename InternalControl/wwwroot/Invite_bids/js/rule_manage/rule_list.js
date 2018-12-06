@@ -8,7 +8,7 @@ $(function () {
                 Index: 1,
                 Size: 16,
                 OrderType: false,
-                Type: '',
+                Type: '规章制度',
                 LikeName: '',
                 LikeSendorName:'',
                 BeginCreateDatetime: '',

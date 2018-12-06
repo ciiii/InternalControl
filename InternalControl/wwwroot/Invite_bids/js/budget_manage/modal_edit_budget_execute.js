@@ -94,7 +94,7 @@ $(function () {
             },
             upload: function (e, item) {
                 var id = '#' + e.target.id;
-                fileChange(id, item,true);
+                fileChange(id, item, true);
             },
             inputVal: function (name) {
                 if ($(name).val() != '') {
@@ -192,6 +192,9 @@ $(function () {
             forceParse: false,
             language: 'zh-CN',
             linkField: "mirror_field"
+        }).on('changeDate', function () {
+            vm.newModal.Data.Model.TimeToImplement = getLastDayTime(vm.newModal.Data.Model.TimeToImplement);
+            console.info(vm.newModal.Data.Model.TimeToImplement);
         });
         vm.getCategoryDictionary();
         vm.onLoad();

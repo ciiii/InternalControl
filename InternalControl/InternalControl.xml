@@ -449,6 +449,14 @@
             <param name="data"></param>
             <returns></returns>
         </member>
+        <member name="M:InternalControl.Controllers.BudgetProjectController.GetDayDiffOfEarlyWarning(System.Int32)">
+            <summary>
+            得到某个执行项目当前的预警天数
+            注意：会有可能为null
+            </summary>
+            <param name="ExecuteProjectId"></param>
+            <returns></returns>
+        </member>
         <member name="T:InternalControl.Controllers.DeclareProjectController">
             <summary>
             申报项目
@@ -700,7 +708,7 @@
             <param name="paging"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.NoticeController.GetPagingExecuteProjectWithDayDiffOfEarlyWarning(InternalControl.Models.Paging)">
+        <member name="M:InternalControl.Controllers.NoticeController.GetPagingExecuteProjectWithDayDiffOfEarlyWarning(InternalControl.Models.Paging,InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter)">
             <summary>
             
             </summary>
@@ -1883,6 +1891,41 @@
             项目类型只有:项目申报 项目预算 项目执行
             </summary>
         </member>
+        <member name="T:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter">
+            <summary>
+            执行任务预警过滤条件
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter.LikeName">
+            <summary>
+            模糊:项目名称
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter.RelevantDepartmentId">
+            <summary>
+            归口部门id
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter.BeginDayDiffOfEarlyWarning">
+            <summary>
+            大于等于多少天数之后才需要执行的预警
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter.EndDayDiffOfEarlyWarning">
+            <summary>
+            小于等于多少天数之前就需要执行的预警
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter.BeginDateOfEarlyWarning">
+            <summary>
+            哪一天之后才需要执行的预警
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectWithDayDiffOfEarlyWarningFilter.EndDateOfEarlyWarning">
+            <summary>
+            哪一天之前就需要执行的预警
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.Paging">
             <summary>
             分页请求的类
@@ -2496,6 +2539,16 @@
             
             </summary>
         </member>
+        <member name="T:InternalControl.Models.SPGetDayDiffOfEarlyWarning">
+            <summary>
+            SPGetDayDiffOfEarlyWarning[类]
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPGetDayDiffOfEarlyWarning.executeProject">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:InternalControl.Models.SPGetNextStepTemplateId">
             <summary>
             SPGetNextStepTemplateId[类]
@@ -2687,6 +2740,21 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.SPNoticeMerge.ListOfNoticeReceivingCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.SPNoticeReceived">
+            <summary>
+            SPNoticeReceived[类]
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPNoticeReceived.NoticeId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.SPNoticeReceived.EmpId">
             <summary>
             
             </summary>
@@ -9152,6 +9220,216 @@
             </summary>
         </member>
         <member name="P:InternalControl.Models.VTFNExecuteProject.IsCanOperate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning">
+            <summary>
+            VTFNExecuteProjectWithDayDiffOfEarlyWarning[类]
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.ProjectNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.SourceBudgetProjectId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.Year">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.ProjectType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.MergeTypeWhenExecute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.RelevantDepartmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.RelevantDepartmentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.TimeToImplement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.IsCenterPurchase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.IsGovernmentPurchase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.PurchaseMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.PurchaserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.PurchaserAddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LinkmanName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LinkmanPhone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.CeilingPrice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.InspectionMethods">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.ContractTerms">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.CreatorId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.CreateDatetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.ExecutionModeId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.TotalExecuteAmount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.FlowTemplateId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.FlowTemplateName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.FlowTemplateComponentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.StateName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastStepId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastStepTemplateId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastStepTemplateName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastViewStepComponentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastEditStepComponentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastStepTemplateStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastStepState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.LastStepStateName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.IsCanOperate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.DayDiffOfEarlyWarning">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.VTFNExecuteProjectWithDayDiffOfEarlyWarning.DateOfEarlyWarning">
             <summary>
             
             </summary>

@@ -91,11 +91,18 @@ namespace InternalControl.Controllers
         /// </summary>
         /// <param name="NoticeId"></param>
         /// <returns></returns>
+        [HttpGet]
         async public Task<object> GetNoticeDetail(int NoticeId)
         {
+            await Db.ExecuteSpAsync(new SPNoticeReceived()
+            {
+                NoticeId = NoticeId,
+                EmpId = CurrentUser.Id
+            });
+
             return new
             {
-                Notice = Db.GetModelByIdSpAsync<VNotice>(NoticeId),
+                Notice = await Db.GetModelByIdSpAsync<VNotice>(NoticeId),
                 NoticeReceivingCondition = await Db.GetListSpAsync<VNoticeReceivingCondition, NoticeReceivingConditionFilter>(
                     new NoticeReceivingConditionFilter()
                     {
@@ -126,9 +133,12 @@ namespace InternalControl.Controllers
         /// <returns></returns>
         #region 任务预警
         [HttpGet]
-        async public Task<object> GetPagingExecuteProjectWithDayDiffOfEarlyWarning(Paging paging)
+        async public Task<object> GetPagingExecuteProjectWithDayDiffOfEarlyWarning(
+            Paging paging,
+            ExecuteProjectWithDayDiffOfEarlyWarningFilter filter)
         {
-            return await Db.GetPagingListSpAsync<object>(paging, $"TFNExecuteProjectWithDayDiffOfEarlyWarning({CurrentUser.Id})");
+            return await Db.GetPagingListSpAsync<VTFNExecuteProjectWithDayDiffOfEarlyWarning, ExecuteProjectWithDayDiffOfEarlyWarningFilter>
+                (paging, filter, $"TFNExecuteProjectWithDayDiffOfEarlyWarning({CurrentUser.Id})",orderStr: "DayDiffOfEarlyWarning");
         }
         #endregion
     }

@@ -1,6 +1,5 @@
 var Connect_Http = {
     httpDatas: function (type, url, data, callBackListener) {
-
         if (type == 'get') {
             if (data != null) {
                 var nowTime = new Date().getTime();

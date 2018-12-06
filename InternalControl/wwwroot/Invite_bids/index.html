@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="/Invite_bids/libs/iconfont/iconfont.css"/>
     <link rel="stylesheet" href="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
     <link rel="stylesheet" href="/Invite_bids/css/index.css"/>
-    <!--<link title="black" rel="stylesheet" href="/Invite_bids/css/black.css" ty="theme" disabled="disabled"/>-->
-    <!--<link title="brown" rel="stylesheet" href="/Invite_bids/css/brown.css" ty="theme" disabled="disabled"/>-->
-    <!--[if lt IE 9]>
     <script type="text/javascript" src="/Invite_bids/libs/html5shiv.min.js"></script>
     <script type="text/javascript" src="/Invite_bids/libs/bootstrap/js/respond.min.js"></script>
     <![endif]-->
@@ -41,7 +38,6 @@
     <div class="right">
         <ul class="user-info">
             <li ms-if="userInfo.DepartmentName">部门：{{userInfo.DepartmentName}}</li>
-            <li>日期：{{@time|date("yyyy年MM月dd日 HH:mm:ss")}}</li>
             <li class="user">
                 <a class="dropdown-toggle" href="javascript:;">
                     <img class="userimg" src="images/user.png" alt="user"/>
@@ -66,46 +62,6 @@
                     <img class="userimg" src="images/out.png" alt="退出系统"/>
                 </a>
             </li>
-            <!--<li class="user">
-                <a class="dropdown-toggle" href="javascript:;">
-                    <img class="userimg" src="images/user.png" alt="user"/>
-                    &lt;!&ndash;<span class="caret"></span>&ndash;&gt;
-                </a>
-                <div class="dropdown-menu">
-                    <i class="icon iconfont icon-shangla"></i>
-                    <ul>
-                        <li>
-                            <a href="javascript:;" ms-on-click="@clickBtnEdit(true)">
-                                <i class="icon iconfont icon-account2"></i>个人资料管理</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" ms-on-click="@clickPassWord()">
-                                <i class="icon iconfont icon-xiugaimima1"></i>修改密码
-                            </a>
-                        </li>
-                        <li>
-                            <a ms-attr="{'href':@getUrl('/Invite_bids/views/组织架构/员工学术任职情况.html?name='+@userInfo.姓名)}">
-                                <i class="icon iconfont icon-zhuanjiajiangzuo"></i>我的学术任职
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>-->
-            <!--<li class="theme">-->
-            <!--<a class="dropdown-toggle" href="javascript:;">-->
-            <!--<i class="icon iconfont icon-pifu"></i>-->
-            <!--</a>-->
-            <!--<div class="dropdown-menu">-->
-            <!--<i class="icon iconfont icon-shangla"></i>-->
-            <!--<ul id="styles">-->
-            <!--<li id="default"><a href="javascript:;"><i class="icon iconfont icon-pifu"></i> 默认</a>-->
-            <!--</li>-->
-            <!--<li id="black"><a href="javascript:;"><i class="icon iconfont icon-pifu"></i> 暗夜黑</a></li>-->
-            <!--<li id="brown"><a href="javascript:;"><i class="icon iconfont icon-pifu"></i> 薄荷绿</a>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--</li>-->
         </ul>
     </div>
 </div>

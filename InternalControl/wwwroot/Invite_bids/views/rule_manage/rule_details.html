@@ -1,0 +1,78 @@
+<div class="modal-content ms-controller add-user" ms-controller="details">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="NoPermissionModalLabel">查看详情</h4>
+    </div>
+    <div class="modal-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">规章信息</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">规章内容</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" id="tab1" class="tab-pane active">
+                <form class="form-horizontal">
+                    <div class="col-sm-12">
+                        <h5 class="title"><span>规章信息</span></h5>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">规章标题：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.Name}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">规章类型：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.Type}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">颁发部门：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.SendorName}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-3 control-label">颁发时间：</label>
+                            <div class="col-sm-7">
+                                <span>{{@model.CreateDatetime}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <h5 class="title"><span>规章附件</span></h5>
+                        <div class="item row col-md-12 col-sm-12">
+                            <div class="form-group col-md-12 col-sm-12 item-title fileUpload-box">
+                                <label class="control-label col-md-3 col-sm-3">附件</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <a class="name"
+                                       ms-attr="{'href':@model.FilePath}"
+                                       download="">{{@getHtmlDocName(@model.FilePath)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" id="tab2" class="tab-pane">
+                <form class="form-horizontal content">
+                    <div class="form-group details-content" ms-html="@model.Content"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer submit-wrapper">
+        <div class="form-group">
+            <div class="submit-box text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ms-on-click="@clickBtnReturn">关闭
+                </button>
+                <div class="tip-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Invite_bids/js/notice_manage/notice_details.js"></script>
