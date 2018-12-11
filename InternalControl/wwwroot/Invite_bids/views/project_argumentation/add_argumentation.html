@@ -96,13 +96,11 @@
                                         <td>{{$index+1}}</td>
                                         <td>{{el.ItemName}}</td>
                                         <td class="fileUpload-box">
-                                            <div class="file-box form-control">
-                                                <input type="file" ms-attr="{'id':'collection-'+$index}"
-                                                       class="input-file"
+                                            <a class="file-text" ms-attr="{'href':el.Attachment}" ms-if="el.Attachment!=''" download="">{{@getHtmlDocName(el.Attachment)}}</a>
+                                            <div class="file-box">
+                                                <input type="file" ms-attr="{'id':'collection-'+$index}" class="input-file"
                                                        name="fileUpload" ms-on-click="@upload($event,el)">
-                                                <a class="file-text" href="javascript:;"
-                                                   ms-if="el.Attachment==''">+上传附件</a>
-                                                <a class="file-text" href="javascript:;" ms-if="el.Attachment!=''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                                <button class="btn btn-default btn-upload" href="javascript:;">+上传附件</button>
                                             </div>
                                         </td>
                                         <td width="100" class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
@@ -183,14 +181,11 @@
                                         </td>
                                         <td>{{el.ItemName}}</td>
                                         <td class="fileUpload-box">
-                                            <div class="file-box form-control">
-                                                <input type="file" ms-attr="{'id':'collection-'+$index}"
-                                                       class="input-file"
+                                            <a class="file-text" ms-attr="{'href':el.Attachment}" ms-if="el.Attachment!=''" download="">{{@getHtmlDocName(el.Attachment)}}</a>
+                                            <div class="file-box">
+                                                <input type="file" ms-attr="{'id':'collection-'+$index}" class="input-file"
                                                        name="fileUpload" ms-on-click="@upload($event,el)">
-
-                                                <a class="file-text" href="javascript:;"
-                                                   ms-if="el.Attachment==''">+上传附件</a>
-                                                <a class="file-text" href="javascript:;" ms-if="!el.Attachment==''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                                <button class="btn btn-default btn-upload" href="javascript:;">+上传附件</button>
                                             </div>
                                         </td>
                                     </tr>

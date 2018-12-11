@@ -716,7 +716,7 @@ avalon.config({debug: false});
 String.prototype.format = function (args) {
     var result = this;
     if (arguments.length > 0) {
-        if (arguments.length == 1 && typeof(args) == "object") {
+        if (arguments.length == 1 && typeof (args) == "object") {
             for (var key in args) {
                 if (args[key] != undefined) {
                     var reg = new RegExp("({" + key + "})", "g");
@@ -786,7 +786,7 @@ Array.prototype.findIndex = Array.prototype.findIndex ||
 
 //数组去重复
 function isRepeat(newArr) {
-    for (var i = newArr.length - 1; i >= 0; i--) {
+    for (var i = 0; i < newArr.length; i++) {
         var targetNode = newArr[i];
         for (var j = 0; j < i; j++) {
             if (targetNode == newArr[j]) {
@@ -795,6 +795,7 @@ function isRepeat(newArr) {
             }
         }
     }
+    return newArr;
 }
 
 //只能输入数字格式
@@ -864,7 +865,6 @@ function isOverdue(exp) {
         location.href = '/Invite_bids/login.html';
     } else {
         window.mUserInfo = JSON.parse(localStorage.mUserinfo).data;
-        console.info('mUserInfo');
         console.info(mUserInfo);
         if (new Date().getTime() - mUserInfo.time > exp) {
             localStorage.removeItem('mUserinfo');
@@ -968,7 +968,7 @@ function getLastDayTime(time) {
     var year = time.slice(0, 4);
     var month = time.slice(5, 7);
     var day = new Date(year, month, 0);
-    var lastTime = year + '-' + month + '-' + day.getDate()+' 23:59:59';
+    var lastTime = year + '-' + month + '-' + day.getDate() + ' 23:59:59';
     return lastTime;
 
 }

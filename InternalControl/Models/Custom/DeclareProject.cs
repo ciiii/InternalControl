@@ -24,6 +24,11 @@ namespace InternalControl.Models
         public bool? IsCenterPurchase { get; set; }
 
         /// <summary>
+        /// 申报部门id
+        /// </summary>
+        public int? DeclareDepartmentId { get; set; }
+
+        /// <summary>
         /// 归口部门id
         /// </summary>
         public int? RelevantDepartmentId { get; set; }

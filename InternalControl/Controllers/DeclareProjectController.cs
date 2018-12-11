@@ -99,15 +99,17 @@ namespace InternalControl.Controllers
         /// 分页申报项目列表,包括每个申报项目的流程信息和包信息.
         /// </summary>
         /// <param name="paging"></param>
+        /// <param name="filter"></param>
+        /// <param name="IsOrderByCreateTime">是否按创建时间来排序,否的话按照总金额来排序</param>
         /// <returns></returns>
         [HttpGet]
-        async public Task<object> GetPagingDeclareProjectList(Paging paging, DeclareProjectFilter filter)
+        async public Task<object> GetPagingDeclareProjectList(Paging paging, DeclareProjectFilter filter, bool IsOrderByCreateTime)
         {
             var listOfPaging = await Db.GetPagingListSpAsync<VTFNDeclareProject, DeclareProjectFilter>(
                 paging,
                 filter,
-                $"TFNDeclareProject({CurrentUser.Id})", 
-                orderStr: nameof(VTFNDeclareProject.TotalDeclareAmount));
+                $"TFNDeclareProject({CurrentUser.Id})",
+                orderStr: IsOrderByCreateTime ? "" : nameof(VTFNDeclareProject.TotalDeclareAmount));
 
             var listOfPackage = await Db.GetListSpAsync<VPackageOfDeclareProject, PackageOfDeclareProjectFilter>(
                 new PackageOfDeclareProjectFilter()

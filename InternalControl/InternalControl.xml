@@ -483,11 +483,13 @@
             <param name="stepDone"></param>
             <returns></returns>
         </member>
-        <member name="M:InternalControl.Controllers.DeclareProjectController.GetPagingDeclareProjectList(InternalControl.Models.Paging,InternalControl.Models.DeclareProjectFilter)">
+        <member name="M:InternalControl.Controllers.DeclareProjectController.GetPagingDeclareProjectList(InternalControl.Models.Paging,InternalControl.Models.DeclareProjectFilter,System.Boolean)">
             <summary>
             分页申报项目列表,包括每个申报项目的流程信息和包信息.
             </summary>
             <param name="paging"></param>
+            <param name="filter"></param>
+            <param name="IsOrderByCreateTime">是否按创建时间来排序,否的话按照总金额来排序</param>
             <returns></returns>
         </member>
         <member name="M:InternalControl.Controllers.DeclareProjectController.PassAuditDeclareProject(InternalControl.Models.StepDoneSimple)">
@@ -509,7 +511,7 @@
             执行项目
             </summary>
         </member>
-        <member name="M:InternalControl.Controllers.ExecuteProjectController.GetPagingExecuteProjectList(InternalControl.Models.Paging,InternalControl.Models.ExecuteProjectFilter)">
+        <member name="M:InternalControl.Controllers.ExecuteProjectController.GetPagingExecuteProjectList(InternalControl.Models.Paging,InternalControl.Models.ExecuteProjectFilter,System.Boolean)">
             <summary>
             获取执行项目列表,带流程,带包
             还没有进入执行流程的执行项目也会选取出来,方便"开始实施"
@@ -1516,6 +1518,11 @@
             是否集采
             </summary>
         </member>
+        <member name="P:InternalControl.Models.DeclareProjectFilter.DeclareDepartmentId">
+            <summary>
+            申报部门id
+            </summary>
+        </member>
         <member name="P:InternalControl.Models.DeclareProjectFilter.RelevantDepartmentId">
             <summary>
             归口部门id
@@ -1544,6 +1551,13 @@
         <member name="T:InternalControl.Models.ExecuteProjectFilter">
             <summary>
             执行项目的过滤条件
+            </summary>
+        </member>
+        <member name="P:InternalControl.Models.ExecuteProjectFilter.State">
+            <summary>
+            0未完成
+            1-已完成
+            -2 - 废标
             </summary>
         </member>
         <member name="P:InternalControl.Models.ExecuteProjectFilter.LikeName">
@@ -3087,6 +3101,11 @@
         <member name="T:InternalControl.Models.sp_Rebuild">
             <summary>
             sp_Rebuild[类]
+            </summary>
+        </member>
+        <member name="T:InternalControl.Models.清理数据库中项目和包的信息">
+            <summary>
+            清理数据库中项目和包的信息[类]
             </summary>
         </member>
         <member name="T:InternalControl.Models.Agency">

@@ -25,16 +25,12 @@ namespace InternalControl.Models
         /// 排序类型,true->1是升序,false->0是降序
         /// </summary>
         public bool OrderType { get; set; } = true;
-        
+
         /// <summary>
         ///private string _OrderBy = "";
         /// 排序
         /// </summary>
-        //public string OrderBy
-        //{
-        //    get { return _OrderBy; }
-        //    set { _OrderBy = value; }
-        //}
+        //public string OrderBy { get; set; }
     }
 
     /// <summary>

@@ -116,9 +116,6 @@ $(function () {
                     return;
                 }
                 vm.newModal.Data.Model.Reply = vm.apply.Url;
-                if (vm.newModal.Data.Model.Reply == '') {
-                    $.oaNotify.error(' 请上传预算审核批复文件！');
-                }
                 vm.newModal.Data.List = [];
                 for (var i = 0; i < vm.model.Package.length; i++) {
                     var obj = vm.model.Package[i];

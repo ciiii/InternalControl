@@ -69,7 +69,7 @@ $(function () {
                 return arr[arr.length - 1];
             },
             clickBtnReturn: function () {
-                $('.modal').modal('hide');
+                $('.modal-details').modal('hide');
             },
         });
         vmDetails.getBudgetProjectDetail();

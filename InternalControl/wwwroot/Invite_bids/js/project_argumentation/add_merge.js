@@ -168,6 +168,9 @@ $(function () {
             forceParse: false,
             language: 'zh-CN',
             linkField: "mirror_field"
+        }).on('show', function (ev) {
+            $('.form-month').datetimepicker('setStartDate', addVm.model.Model.Year + '-01');
+            $('.form-month').datetimepicker('setEndDate', addVm.model.Model.Year + '-12');
         });
         addVm.onLoad();
         avalon.scan(document.body);

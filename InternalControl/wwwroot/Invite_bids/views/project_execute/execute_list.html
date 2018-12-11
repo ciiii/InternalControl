@@ -47,11 +47,14 @@
                             <li ms-class="getClass(0)" ms-on-click="clickState($event,0,'')">
                                 <a href="javascript:;">所有</a>
                             </li>
-                            <li ms-class="getClass(1)" ms-on-click="clickState($event,1,true)">
-                                <a href="javascript:;">通过</a>
+                            <li ms-class="getClass(1)" ms-on-click="clickState($event,1,0)">
+                                <a href="javascript:;">已完成</a>
                             </li>
-                            <li ms-class="getClass(2)" ms-on-click="clickState($event,2,false)">
-                                <a href="javascript:;">不通过</a>
+                            <li ms-class="getClass(2)" ms-on-click="clickState($event,2,1)">
+                                <a href="javascript:;">未完成</a>
+                            </li>
+                            <li ms-class="getClass(3)" ms-on-click="clickState($event,3,-2)">
+                                <a href="javascript:;">废标</a>
                             </li>
                         </ul>
                     </div>
@@ -96,19 +99,19 @@
                         <label>项目名称</label>
                         <input type="text" class="form-control like-name" ms-duplex="@req.LikeName"
                                ms-keydown="@submit">
-                        <a class="search-name" href="javascript:;">
+                        <a class="search-name" href="javascript:;" ms-on-click="@search">
                             <i class="icon iconfont icon-sousuo"></i>
                         </a>
                     </div>
                     <!--<div class="form-group">-->
-                        <!--<label>预算指标</label>-->
-                        <!--<select class="form-control roles" ms-on-change="changebudget($event)"-->
-                                <!--ms-duplex="@req.PlanPurchaseMethod">-->
-                            <!--<option value="">全部</option>-->
-                            <!--<option value="常规预算">常规预算</option>-->
-                            <!--<option value="专项预算">专项预算</option>-->
-                            <!--<option value="其他预算">其他预算</option>-->
-                        <!--</select>-->
+                    <!--<label>预算指标</label>-->
+                    <!--<select class="form-control roles" ms-on-change="changebudget($event)"-->
+                    <!--ms-duplex="@req.PlanPurchaseMethod">-->
+                    <!--<option value="">全部</option>-->
+                    <!--<option value="常规预算">常规预算</option>-->
+                    <!--<option value="专项预算">专项预算</option>-->
+                    <!--<option value="其他预算">其他预算</option>-->
+                    <!--</select>-->
                     <!--</div>-->
                     <div class="form-group">
                         <label>采购对象</label>
@@ -125,9 +128,11 @@
                 <div class="col-md-2 col-sm-2 right">
                     <div class="form-group rise-and-fall">
                         <label>预算金额</label>
-                        <button class="btn btn-default" ms-class="getMoneyClass(0)" ms-on-click="@clickBtnUp(0)">升序
+                        <button class="btn btn-default" ms-class="getMoneyClass(0)" ms-on-click="@clickBtnSum(0,true)">
+                            升序
                         </button>
-                        <button class="btn btn-default" ms-class="getMoneyClass(1)" ms-on-click="@clickBtnDown(1)">降序
+                        <button class="btn btn-default" ms-class="getMoneyClass(1)" ms-on-click="@clickBtnSum(1,false)">
+                            降序
                         </button>
                     </div>
                 </div>
@@ -155,7 +160,7 @@
                             <th>归口部门</th>
                             <th>采购目录类型</th>
                             <th>采购对象</th>
-                            <th>预算指标</th>
+                            <th>创建时间</th>
                             <th class="operation">项目执行流程</th>
                         </tr>
                         </thead>
@@ -176,20 +181,19 @@
                             <td>{{el.ExecuteProject.RelevantDepartmentName}}</td>
                             <td>{{el.ExecuteProject.ISCenterPurchase?'政府集中采购目录':'非政府集中采购目录'}}</td>
                             <td>{{el.ExecuteProject.ProjectType}}</td>
-                            <td></td>
+                            <td>{{el.ExecuteProject.CreateDatetime}}</td>
                             <td class="operation">
                                 <ul>
                                     <li class="bs-tooltip btn-details">
-                                        <a ms-if="el.ExecuteProject.IsCanOperate"
+                                        <a ms-if="@el.ExecuteProject.IsCanOperate"
                                            ms-attr="{'href':'edit_acceptance_check_and_acceptance.html?projectId='+@el.ExecuteProject.Id}">
-                                            <span ms-if="el.ExecuteProject.FlowTemplateId" ms-text="el.ExecuteProject.LastStepStateName"></span>
-                                            <span ms-if="!el.ExecuteProject.FlowTemplateId">开始实施</span>
+                                            <span>{{el.ExecuteProject.LastStepStateName}}</span>
                                         </a>
-                                        <a ms-if="!el.ExecuteProject.IsCanOperate"
+                                        <a ms-if="!@el.ExecuteProject.IsCanOperate&&@el.ExecuteProject.FlowTemplateId"
                                            ms-attr="{'href':'edit_acceptance_check_and_acceptance.html?projectId='+@el.ExecuteProject.Id}">
-                                            <span ms-if="el.ExecuteProject.FlowTemplateId" ms-text="el.ExecuteProject.LastStepStateName"></span>
+                                            <span>{{el.ExecuteProject.LastStepStateName}}</span>
                                         </a>
-                                        <span ms-if="!el.ExecuteProject.IsCanOperate&&!el.ExecuteProject.FlowTemplateId">开始实施</span>
+                                        <span ms-if="!@el.ExecuteProject.IsCanOperate&&!@el.ExecuteProject.FlowTemplateId">{{el.ExecuteProject.LastStepStateName}}</span>
                                     </li>
                                 </ul>
                             </td>

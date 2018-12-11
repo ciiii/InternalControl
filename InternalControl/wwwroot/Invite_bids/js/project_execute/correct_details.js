@@ -24,7 +24,9 @@ $(function () {
                             if (vm.ExecuteProject.IsCenterPurchase) {
                                 list[j].ItemName = Package.ItemName;
                             } else {
-                                list[j].ItemName = Package.PackageName;
+                                if (Package&&Package.PackageName) {
+                                    list[j].ItemName = Package.PackageName;
+                                }
                             }
                         }
                         detailsVm.model = obj;

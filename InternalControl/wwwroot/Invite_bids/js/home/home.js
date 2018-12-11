@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     var chartPaper = echarts.init(document.getElementById('myEchart'), 'macarons');
     chartPaper.showLoading();
     window.vm = null;
@@ -85,7 +85,7 @@ $(function () {
                         } else {
                             obj = obj.List;
                             for (var i = 0; i < obj.length; i++) {
-                                obj[i].day = obj[i].DayDiffOfEarlyWarning;
+                                obj[i].day = '还剩' + obj[i].DayDiffOfEarlyWarning + '天';
                                 if (obj[i].DayDiffOfEarlyWarning == 0) {
                                     obj[i].day = '今天'
                                 }

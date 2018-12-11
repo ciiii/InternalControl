@@ -10,6 +10,13 @@ namespace InternalControl.Models
     public class ExecuteProjectFilter
     {
         /// <summary>
+        /// 0未完成
+        /// 1-已完成
+        /// -2 - 废标
+        /// </summary>
+        public int? State { get; set; }
+
+        /// <summary>
         /// 模糊:执行项目名称
         /// </summary>
         public string LikeName { get; set; }

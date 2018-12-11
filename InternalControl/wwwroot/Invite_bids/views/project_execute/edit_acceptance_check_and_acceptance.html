@@ -64,7 +64,7 @@
             <i class="icon iconfont icon-ai207"></i> 返回列表
         </button>
         <div class="form-horizontal">
-            <div class="item progress-box col-md-12 col-sm-12">
+            <div class="item progress-box col-md-12 col-sm-12" ms-if="@ExecuteProject.State == 0 ||!@ExecuteProject.State">
                 <div class="progress-start">
                     <span ms-if="!@isInvitation" class="title">开始实施</span>
                     <span ms-if="@isInvitation" class="title">采购邀请</span>
@@ -150,8 +150,7 @@
                             <i class="icon iconfont icon-text-sign icon-sign"></i>采购方式
                         </label>
                         <div class="col-md-7 col-sm-7">
-                            <select class="form-control roles" ms-on-change="changePurchaseMethoOne($event)"
-                                    ms-duplex="@modelOne.Model.PurchaseMethod">
+                            <select class="form-control purchaseMethod" ms-on-change="changePurchaseMethoOne($event)">
                                 <option value="">请选择</option>
                                 <option ms-for="el in @purchaseMethoOne" ms-attr="{'value':@el.Value}">{{el.Value}}
                                 </option>
@@ -1745,9 +1744,7 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
-                        <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>代理服务费
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3">代理服务费</label>
                         <div class="col-md-7 col-sm-7">
                             <div class="input-group">
                                 <input type="text" class="form-control budget-money"
@@ -1759,9 +1756,7 @@
                 </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-12 col-sm-12 item-title">
-                        <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>代理合同
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3">代理合同</label>
                         <div class="col-md-9 col-sm-9">
                             <span>注：上传加盖双方公章扫描件。</span>
                         </div>
@@ -1832,9 +1827,7 @@
                 </div>
                 <div class="item row col-md-12 col-sm-12">
                     <div class="form-group col-md-6 col-sm-6 item-title">
-                        <label class="control-label col-md-3 col-sm-3">
-                            <i class="icon iconfont icon-text-sign icon-sign"></i>采购文件确认函
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3">采购文件确认函</label>
                     </div>
                     <hr class="col-md-12 col-sm-12"/>
                     <div class="form-group col-md-6 col-sm-6">
@@ -3093,8 +3086,8 @@
                             <span ms-if="!@modelNineType">采购小组人员</span>
                         </label>
                         <div class="col-md-9 col-sm-9">
-                            <input type="text" class="form-control"
-                                   ms-duplex="@modelNine.Data.ModelOfExecuteProjectOfResultNotice.ProcurementTeam">
+                            <textarea type="text" class="form-control" rows="3"
+                                      ms-duplex="@modelNine.Data.ModelOfExecuteProjectOfResultNotice.ProcurementTeam"></textarea>
                         </div>
                     </div>
                     <hr class="col-md-12 col-sm-12" ms-if="!@modelNineType"/>
@@ -4831,7 +4824,7 @@
                                 <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.ExecuteUnitPrice|currency}}</td>
                                 <td>{{el.ExecuteUnitPrice|currency}}</td>
-                                <td style="color: red">废标</td>
+                                <td style="color: red">废包</td>
                                 <td>{{el.CreateDatetime}}</td>
                             </tr>
                             </tbody>
@@ -4856,7 +4849,7 @@
                     </div>
                     <div class="text-right btn-box">
                         <a class="btn btn-success" data-toggle="modal" data-target=".modal-add"
-                           href="add_question.html" onclick="changeUrl(this)">
+                           href="add_question.html" onclick="changeUrl(this)" ms-on-click="addQuestion">
                             <i class="icon iconfont icon-tianjia"></i> 添加质疑
                         </a>
                     </div>
@@ -4885,6 +4878,13 @@
                                 <td>{{el.CreateDatetime}}</td>
                                 <td class="operation">
                                     <ul>
+                                        <li class="bs-tooltip btn-examine" title="添加投诉" data-toggle="tooltip" data-placement="bottom"
+                                            ms-if="!el.IsThereScomplaint">
+                                            <a data-toggle="modal" data-target=".modal-add"
+                                               href="add_question.html" onclick="changeUrl(this)" ms-on-click="@clickBtnEdit(el)">
+                                                <i class="icon iconfont icon-tianjia1"></i>
+                                            </a>
+                                        </li>
                                         <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"
                                             title="查看详情">
                                             <a data-toggle="modal" data-target=".modal-details"

@@ -4,6 +4,8 @@ $(function () {
         window.addVm = avalon.define({
             $id: 'Add',
             myMenu: vm.myMenu,
+            complaint: vm.complaint,
+            isComplaint: vm.isComplaint,
             model: {
                 Id: 0,
                 ExecuteProjectId: vm.ExecuteProject.Id,
@@ -41,7 +43,17 @@ $(function () {
                         }
                     }
                 }
-                addVm.getTime();
+                if (addVm.isComplaint) {
+                    addVm.model = matchingProperty(addVm.model, addVm.complaint);
+                    addVm.model.IsThereScomplaint = true;
+                    addVm.model.CreateDatetime = formatDate(new Date(), 'YY-MM-DD hh:mm:ss');
+                    if (!addVm.model.ComplainantReplyTime) {
+                        addVm.model.ComplainantReplyTime = '';
+                    }
+                    if (!addVm.model.ComplainantTime) {
+                        addVm.model.ComplainantTime = '';
+                    }
+                }
             },
             getClass: function (value) {
                 if (addVm.model.IsThereScomplaint == value) {
@@ -176,6 +188,7 @@ $(function () {
                 ProjectExecute.questionExecuteProject('post', data, function questionExecuteProjectListener(success, obj, strErro) {
                     postBack(success, strErro, '提交成功！', '提交失败：', '.modal-add', function callBack() {
                         vm.ExecuteProjectOfQuestion.push(addVm.model.$model);
+                        vm.getExecuteProjectDetail();
                         vm.clickBtnReturn();
                     });
                 });
@@ -189,8 +202,9 @@ $(function () {
                     return arr[arr.length - 1];
                 }
             },
-            getTime: function () {
-                $('.form-hour').datetimepicker({
+            getTime: function (e) {
+                $(e.target).datetimepicker('remove');
+                $(e.target).datetimepicker({
                     format: 'yyyy-mm-dd hh:00:00',
                     showMeridian: true,
                     autoclose: true,
@@ -198,12 +212,13 @@ $(function () {
                     todayBtn: true,
                     language: 'zh-CN'
                 });
-            }
+
+                $(e.target).datetimepicker('show');
+            },
         });
         $('.modal-add .tab-pane').mCustomScrollbar({
             theme: 'dark-3',
         });
-
         addVm.onLoad();
         avalon.scan(document.body);
     });

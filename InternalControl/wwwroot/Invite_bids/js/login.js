@@ -3,18 +3,6 @@ $(function () {
     //     get('info', 1000 * 60 * 20)//过期时间为20分钟
     // }
 
-    // function get(key, exp) {
-    //     var data = localStorage.getItem(key);
-    //     var dataObj = JSON.parse(data);
-    //     if (new Date().getTime() - dataObj.time < exp) {
-    //         location.href = '/Invite_bids/index.html';
-    //     } else {
-    //         console.log('登录信息已过期');
-    //         localStorage.removeItem('info');
-    //         sessionStorage.removeItem('userInfo');
-    //     }
-    // }
-
     $('input, textarea').placeholder();
     var workNumber, password;
 

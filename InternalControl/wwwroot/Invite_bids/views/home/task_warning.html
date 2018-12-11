@@ -44,7 +44,7 @@
                     <label>项目名称</label>
                     <input type="text" class="form-control like-name" ms-duplex="@req.LikeName"
                            ms-keydown="@submit">
-                    <a class="search-name" href="javascript:;">
+                    <a class="search-name" href="javascript:;" ms-on-click="@search">
                         <i class="icon iconfont icon-sousuo"></i>
                     </a>
                 </div>
@@ -91,7 +91,7 @@
                             <td>{{el.RelevantDepartmentName}}</td>
                             <td>{{el.LastStepStateName}}</td>
                             <td class="time-box">
-                                <p class="day" ms-class="getClass(el)">还剩{{el.day}}天</p>
+                                <p class="day" ms-class="getClass(el)">{{el.day}}</p>
                                 <p class="time">{{el.DateOfEarlyWarning}}</p>
                             </td>
                             <td class="operation">

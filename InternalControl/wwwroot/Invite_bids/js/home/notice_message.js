@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     window.vm = null;
     avalon.ready(function () {
         window.vm = avalon.define({

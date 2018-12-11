@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     var chartOone = echarts.init(document.getElementById('chartOone'), 'macarons');
     var chartTwo = echarts.init(document.getElementById('chartTwo'), 'macarons');
     var chartThree = echarts.init(document.getElementById('chartThree'), 'macarons');

@@ -27,13 +27,14 @@ namespace InternalControl.Controllers
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet]
-        async public Task<object> GetPagingExecuteProjectList(Paging paging, ExecuteProjectFilter filter)
+        async public Task<object> GetPagingExecuteProjectList(Paging paging, ExecuteProjectFilter filter, bool IsOrderByCreateTime)
         {
             //这个不需要后台指定过滤条件;
             var listOfPaging = await Db.GetPagingListSpAsync<VTFNExecuteProject, ExecuteProjectFilter>(
                             paging,
                             filter,
-                            $"TFNExecuteProject({CurrentUser.Id})");
+                            $"TFNExecuteProject({CurrentUser.Id})",
+                            orderStr: IsOrderByCreateTime ? "" : nameof(VTFNExecuteProject.TotalExecuteAmount));
 
             var listOfPackage = await Db.GetListSpAsync<VPackageOfExcuteBudget, PackageFilter>(
                 new PackageFilter()

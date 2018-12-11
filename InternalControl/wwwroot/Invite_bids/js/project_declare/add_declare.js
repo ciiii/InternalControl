@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     window.vm = null;
     avalon.ready(function () {
         window.vm = avalon.define({
@@ -111,6 +111,9 @@ $(function () {
                         names.push(name);
                     }
                 }
+                if (names.length > 0) {
+                    names = isRepeat(names);
+                }
                 vm.allName = names.join();
             },
             countNumber: function () {
@@ -132,6 +135,9 @@ $(function () {
                     return total + parseInt(item.DeclareNumber) * parseInt(item.DeclareUnitPrice);
                 }, 0)
                 vm.allPriceDX = numberDX(vm.allPrice);
+            },
+            selectText: function (e) {
+                e.target.select();
             },
             removeCollectionEl: function (el) {
                 vm.model.Data.List.remove(el);
@@ -190,6 +196,11 @@ $(function () {
                 vm.declareNumber = 1;
                 vm.allPrice = 0;
                 vm.allPriceDX = '零';
+
+                if (type) {
+                    vm.model.Data.Model.PlanPurchaseMethod = null;
+                }
+
             },
             changeIsImported: function (e, el) {
                 el.IsImported = e.target.value;
@@ -282,8 +293,24 @@ $(function () {
                     $.oaNotify.error('请选择归口部门！');
                     return;
                 }
+                if (!vm.model.Data.Model.LinkmanName || vm.model.Data.Model.LinkmanName == '') {
+                    $.oaNotify.error('项目联系人不能为空！');
+                    return;
+                }
+                if (!vm.model.Data.Model.LinkmanPhone || vm.model.Data.Model.LinkmanPhone == '') {
+                    $.oaNotify.error('联系电话不能为空！');
+                    return;
+                }
                 if (!implementTime) {
                     $.oaNotify.error('项目拟实施时间不能为空！');
+                    return;
+                }
+                if (vm.allPrice <= 0) {
+                    $.oaNotify.error('预算金额必须大于0！');
+                    return;
+                }
+                if (!vm.apply.Url || vm.apply.Url == '') {
+                    $.oaNotify.error('请上传申报申请！');
                     return;
                 }
                 if (!declareReason) {
@@ -312,19 +339,26 @@ $(function () {
                         return;
                     }
                 }
-                var isTime;
-                if (vm.model.Data.Model.Year == new Date().getFullYear()) {
-                    isTime = vm.compareTime(vm.yearList.SupplementBeginDatetime, vm.yearList.SupplementEndDatetime, new Date());
-                } else {
+                var isTime, beginTime, endTime;
 
-                    isTime = vm.compareTime(vm.yearList.DeclareBeginDatetime, vm.yearList.DeclareEndDatetime, new Date());
+                if (vm.model.Data.Model.Year == new Date().getFullYear()) {
+                    beginTime = vm.yearList.SupplementBeginDatetime;
+                    endTime = vm.yearList.SupplementEndDatetime;
+
+                } else {
+                    beginTime = vm.yearList.DeclareBeginDatetime;
+                    endTime = vm.yearList.DeclareEndDatetime;
                 }
+
+                if (!beginTime || !endTime) {
+                    $.oaNotify.error('申报时间设置不正确！');
+                    return;
+                }
+
+                isTime = vm.compareTime(beginTime, endTime, new Date());
+
                 if (!isTime) {
-                    if (vm.model.Data.Model.Year == new Date().getFullYear()) {
-                        $.oaNotify.error('没有在申报时间内，申报时间为：【' + vm.yearList.SupplementBeginDatetime + ' 至 ' + vm.yearList.DeclareEndDatetime + '】');
-                    } else {
-                        $.oaNotify.error('没有在申报时间内，申报时间为：【' + vm.yearList.DeclareBeginDatetime + ' 至 ' + vm.yearList.DeclareEndDatetime + '】');
-                    }
+                    $.oaNotify.error('没有在申报时间内，申报时间为：【' + beginTime + ' 至 ' + endTime + '】');
                     return;
                 }
 

@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     window.vm = null;
     avalon.ready(function () {
         window.vm = avalon.define({
@@ -7,13 +7,14 @@ $(function () {
             req: {
                 Index: 1,
                 Size: 16,
-                OrderType: true,
+                OrderType: false,
                 LikeName: '',
                 IsCenterPurchase: '',
                 RelevantDepartmentId: '',
                 PlanPurchaseMethod: '',
                 IsGovernmentPurchase: '',
                 ProjectType: '',
+                IsOrderByCreateTime: true,
                 Year: new Date().getFullYear() + 1,
                 State: '',
             },
@@ -27,7 +28,7 @@ $(function () {
             allchecked: false,
             myDetails: {},
             activeIndex: 0,
-            activeMoneyIndex: 0,
+            activeMoneyIndex: '',
             stepId: '',
             query: function () {
                 vm.loaded = false;
@@ -45,6 +46,9 @@ $(function () {
                             obj = obj.List;
                             var number = (vm.req.Index - 1) * vm.req.Size + 1;
                             for (var i = 0; i < obj.length; i++) {
+                                if (!obj[i].ExecuteProject.FlowTemplateId) {
+                                    obj[i].ExecuteProject.LastStepStateName = '开始实施';
+                                }
                                 obj[i].number = number;
                                 obj[i].checked = false;
                                 number++;
@@ -123,18 +127,20 @@ $(function () {
                     })
                 }
             },
-            clickBtnUp: function (index) {
-                vm.activeMoneyIndex = index;
-                vm.req.OrderType = true;
-                vm.search();
-            },
-            clickBtnDown: function (index) {
-                vm.activeMoneyIndex = index;
-                vm.req.OrderType = false;
+            clickBtnSum: function (index, value) {
+                if (vm.activeMoneyIndex === index) {
+                    vm.activeMoneyIndex = '';
+                    vm.req.IsOrderByCreateTime = true;
+                    vm.req.OrderType = false;
+                } else {
+                    vm.activeMoneyIndex = index;
+                    vm.req.OrderType = value;
+                    vm.req.IsOrderByCreateTime = false;
+                }
                 vm.search();
             },
             getMoneyClass: function (index) {
-                if (index == vm.activeMoneyIndex) {
+                if (index === vm.activeMoneyIndex) {
                     return 'btn-primary'
                 }
             },
@@ -164,10 +170,13 @@ $(function () {
                 vm.req.ProjectType = e.target.value;
                 vm.search();
             },
+            getStateClass: function (el) {
+                if (el.ExecuteProject.State == -2) {
+                    return 'btn-examine'
+                }
+            },
             changebudget: function (e) {
-
                 console.info(e.target.value);
-
             }
         });
         $('.form-year').datetimepicker({

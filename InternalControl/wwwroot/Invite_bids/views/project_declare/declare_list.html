@@ -65,7 +65,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>管理部门</label>
+                        <label>归口部门</label>
                         <select class="form-control department" ms-on-change="changeDepartment($event)"
                                 ms-duplex="@req.RelevantDepartmentId">
                             <option value="">全部</option>
@@ -87,7 +87,7 @@
                         <label>项目名称</label>
                         <input type="text" class="form-control like-name" ms-duplex="@req.LikeName"
                                ms-keydown="@submit">
-                        <a class="search-name" href="javascript:;">
+                        <a class="search-name" href="javascript:;" ms-on-click="@search">
                             <i class="icon iconfont icon-sousuo"></i>
                         </a>
                     </div>
@@ -100,13 +100,12 @@
                             </option>
                         </select>
                     </div>
-                    <!--<a class="btn btn-primary btn-search" href="javascript:;" ms-on-click="@search()">查询</a>-->
                 </div>
                 <div class="col-md-2 col-sm-2 right">
                     <div class="form-group rise-and-fall">
                         <label>预算金额</label>
-                        <button class="btn btn-default" ms-class="getMoneyClass(0)" ms-on-click="@clickBtnUp(0)">升序</button>
-                        <button class="btn btn-default" ms-class="getMoneyClass(1)"ms-on-click="@clickBtnDown(1)">降序</button>
+                        <button class="btn btn-default" ms-class="getMoneyClass(0)" ms-on-click="@clickBtnSum(0,true)">升序</button>
+                        <button class="btn btn-default" ms-class="getMoneyClass(1)"ms-on-click="@clickBtnSum(1,false)">降序</button>
                     </div>
                 </div>
             </div>

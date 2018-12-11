@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     window.vm = null;
     avalon.ready(function () {
         window.vm = avalon.define({
@@ -38,7 +38,7 @@ $(function () {
                             for (var i = 0; i < obj.length; i++) {
                                 obj[i].number = number;
                                 obj[i].checked = false;
-                                obj[i].day = obj[i].DayDiffOfEarlyWarning;
+                                obj[i].day = '还剩' + obj[i].DayDiffOfEarlyWarning + '天';
                                 if (obj[i].DayDiffOfEarlyWarning == 0) {
                                     obj[i].day = '今天'
                                 }

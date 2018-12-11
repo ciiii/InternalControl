@@ -73,13 +73,17 @@
                 </div>
                 <hr class="col-md-12 col-sm-12"/>
                 <div class="form-group col-md-6 col-sm-6">
-                    <label class="control-label col-md-3 col-sm-3">项目联系人</label>
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目联系人
+                    </label>
                     <div class="col-md-7 col-sm-7">
                         <input type="text" class="form-control contacts" ms-duplex="@model.Data.Model.LinkmanName">
                     </div>
                 </div>
                 <div class="form-group col-md-6 col-sm-6">
-                    <label class="control-label col-md-3 col-sm-3">联系电话</label>
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>联系电话
+                    </label>
                     <div class="col-md-7 col-sm-7">
                         <input type="text" class="form-control phone" ms-duplex="@model.Data.Model.LinkmanPhone">
                     </div>
@@ -88,7 +92,7 @@
             <div class="item collection-box col-md-12 col-sm-12">
                 <div class="form-group col-md-6 col-sm-6">
                     <label class="control-label col-md-3 col-sm-3">
-                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否为政府集中采购
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>是否属于政府集中采购目录
                     </label>
                     <div class="col-md-7 col-sm-7">
                         <ul class="select-ul">
@@ -125,10 +129,11 @@
                             <th>技术要求</th>
                             <th>单位</th>
                             <th>数量</th>
-                            <th>单价(元)</th>
-                            <th>合计(元)</th>
-                            <th>是否为进口产品</th>
-                            <th class="operation">操作</th>
+                            <th width="120">单价(元)</th>
+                            <th width="120">合计(元)</th>
+                            <th>备注</th>
+                            <th width="75">是否采购<br/>进口产品</th>
+                            <th width="70" class="operation">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -145,16 +150,16 @@
                                           ms-duplex="el.DeclareTechnicalRequirements"></textarea>
                             </td>
                             <td class="unit">
-                                <input type="text" class="form-control" ms-duplex="el.Unit"/>
+                                <input type="text" class="form-control" ms-duplex="el.Unit" ms-on-focus="@selectText($event)"/>
                             </td>
                             <td class="unit">
                                 <input type="text" class="form-control" ms-duplex="el.DeclareNumber"
-                                       ms-on-keyup="@countNumber" onkeyup="onlyNum(this)" maxlength="12"/>
+                                       ms-on-keyup="@countNumber" onkeyup="onlyNum(this)" maxlength="12" ms-on-focus="@selectText($event)"/>
                             </td>
-                            <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
+                            <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')" width="120"
                                 ms-class="limitOfPrice(el,'warn-tip-info')">
                                 <input type="text" class="form-control" ms-duplex="el.DeclareUnitPrice"
-                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" maxlength="12"/>
+                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" ms-on-focus="@selectText($event)" maxlength="12"/>
                                 <div class="tip-info">
                                     <span class="icon-tabxiala"></span>
                                     <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置标准》川 财资产〔2017〕20号</a>
@@ -175,9 +180,12 @@
                                     </table>
                                 </div>
                             </td>
-                            <td>
+                            <td width="120">
                                 <input type="text" class="form-control"
-                                       ms-duplex="el.DeclareNumber*el.DeclareUnitPrice" readonly/>
+                                       ms-duplex="el.DeclareNumber*el.DeclareUnitPrice" readonly ms-on-focus="@selectText($event)"/>
+                            </td>
+                            <td>
+                                <textarea class="form-control" rows="2" ms-duplex="el.Remark"></textarea>
                             </td>
                             <td>
                                 <select class="form-contro" ms-on-change="changeIsImported($event,el)"
@@ -219,10 +227,10 @@
                             <th>序号</th>
                             <th>单项名称</th>
                             <th>技术要求</th>
-                            <th>合计(元)</th>
+                            <th  width="120">合计(元)</th>
                             <th>备注</th>
-                            <th>是否为进口产品</th>
-                            <th class="operation">操作</th>
+                            <th width="75">是否采购<br/>进口产品</th>
+                            <th width="70" class="operation">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -235,17 +243,17 @@
                                 </a>
                             </td>
                             <td class="fileUpload-box">
-                                <div class="file-box form-control">
+                                <a class="file-text" ms-attr="{'href':el.Attachment}" ms-if="el.Attachment!=''" download="">{{@getHtmlDocName(el.Attachment)}}</a>
+                                <div class="file-box">
                                     <input type="file" ms-attr="{'id':'collection-'+$index}" class="input-file"
                                            name="fileUpload" ms-on-click="@upload($event,el)">
-                                    <a class="file-text" href="javascript:;" ms-if="el.Attachment==''">+上传附件</a>
-                                    <a class="file-text" href="javascript:;" ms-if="el.Attachment!=''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                    <button class="btn btn-default btn-upload" href="javascript:;">+上传附件</button>
                                 </div>
                             </td>
                             <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
                                 ms-class="limitOfPrice(el,'warn-tip-info')">
                                 <input type="text" class="form-control" ms-duplex="el.DeclareUnitPrice"
-                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" maxlength="12"/>
+                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" maxlength="12" ms-on-focus="@selectText($event)"/>
 
                                 <div class="tip-info">
                                     <span class="icon-tabxiala"></span>
@@ -269,7 +277,7 @@
                                 </div>
                             </td>
                             <td>
-                                <input type="text" class="form-control" ms-duplex="el.Remark"/>
+                                <textarea class="form-control" rows="2" ms-duplex="el.Remark"></textarea>
                             </td>
                             <td>
                                 <select class="form-contro" ms-on-change="changeIsImported($event,el)"
@@ -287,7 +295,7 @@
                             </td>
                         </tr>
                         <tr ms-if="@model.Data.List.length==0">
-                            <td colspan="10">
+                            <td colspan="7">
                                 <a href="javascript:;" class="btn-add" ms-on-click="addCollection"> +添加</a>
                             </td>
                         </tr>
@@ -312,11 +320,12 @@
                         <tr>
                             <th>包号</th>
                             <th>包名称</th>
-                            <th>预算金额(元)</th>
+                            <th width="120">预算金额(元)</th>
                             <th>采购品目</th>
                             <th>技术要求</th>
-                            <th>是否为进口产品</th>
-                            <th class="operation">操作</th>
+                            <th>备注</th>
+                            <th width="75">是否采购<br/>进口产品</th>
+                            <th width="70" class="operation">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -328,7 +337,7 @@
                             <td class="pric-box" ms-hover="limitOfPrice(el,'show-tip-info')"
                                 ms-class="limitOfPrice(el,'warn-tip-info')">
                                 <input type="text" class="form-control" ms-duplex="el.DeclareUnitPrice"
-                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" maxlength="12"/>
+                                       ms-on-keyup="countCollectionPrice" onkeyup="onlyNum(this)" maxlength="12" ms-on-focus="@selectText($event)"/>
                                 <div class="tip-info">
                                     <span class="icon-tabxiala"></span>
                                     <a href="javascript:;">《四川省省级行政事业单位通用办公设备和家具配置标准》川 财资产〔2017〕20号</a>
@@ -356,13 +365,15 @@
                                 </a>
                             </td>
                             <td class="fileUpload-box">
-                                <div class="file-box form-control">
+                                <a class="file-text" ms-attr="{'href':el.Attachment}" ms-if="el.Attachment!=''" download="">{{@getHtmlDocName(el.Attachment)}}</a>
+                                <div class="file-box">
                                     <input type="file" ms-attr="{'id':'collection-'+$index}" class="input-file"
                                            name="fileUpload" ms-on-click="@upload($event,el)">
-
-                                    <a class="file-text" href="javascript:;" ms-if="el.Attachment==''">+上传附件</a>
-                                    <a class="file-text" href="javascript:;" ms-if="!el.Attachment==''">{{@getHtmlDocName(el.Attachment)}}</a>
+                                    <button class="btn btn-default btn-upload" href="javascript:;">+上传附件</button>
                                 </div>
+                            </td>
+                            <td>
+                                <textarea class="form-control" rows="2" ms-duplex="el.Remark"></textarea>
                             </td>
                             <td>
                                 <select class="form-contro" ms-on-change="changeIsImported($event,el)"
@@ -380,7 +391,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <a href="javascript:;" class="btn-add" ms-on-click="addCollection"> +添加</a>
                             </td>
                         </tr>
@@ -406,7 +417,7 @@
                 </div>
                 <hr class="col-md-12 col-sm-12"/>
                 <div class="form-group col-md-6 col-sm-6" ms-if="!@model.Data.Model.IsCenterPurchase">
-                    <label class="control-label col-md-3 col-sm-3">采购方式</label>
+                    <label class="control-label col-md-3 col-sm-3">拟采购方式</label>
                     <div class="col-md-7 col-sm-7">
                         <select class="form-control roles" ms-on-change="changePurchaseMetho($event)"
                                 ms-duplex="@model.Data.Model.PlanPurchaseMethod">
@@ -451,7 +462,9 @@
             </div>
             <div class="item col-md-12 col-sm-12">
                 <div class="form-group col-md-6 col-sm-6">
-                    <label class="control-label col-md-3 col-sm-3">申报申请</label>
+                    <label class="control-label col-md-3 col-sm-3">
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>申报申请
+                    </label>
                 </div>
                 <hr class="col-md-12 col-sm-12"/>
                 <div class="form-group col-md-12 col-sm-12">
@@ -493,7 +506,7 @@
                 <hr class="col-md-12 col-sm-12"/>
                 <div class="form-group col-md-6 col-sm-6">
                     <label class="control-label col-md-3 col-sm-3">
-                        <i class="icon iconfont icon-text-sign icon-sign"></i>申报年度
+                        <i class="icon iconfont icon-text-sign icon-sign"></i>项目所属预算年度
                     </label>
                     <div class="col-md-7 col-sm-7">
                         <select class="form-control declare-year" ms-duplex="@model.Data.Model.Year" ms-on-change="@changeDeclareYear">

@@ -22,13 +22,11 @@ namespace InternalControl.Models
 		/// 代理服务费
 		/// </summary>
         [DisplayName("代理服务费")]
-        [Required(ErrorMessage ="请提供[AgencyFee]")]
-		public int AgencyFee { get; set; }
+		public int? AgencyFee { get; set; }
         /// <summary>
 		/// 代理合同
 		/// </summary>
         [DisplayName("代理合同")]
-        [Required(ErrorMessage ="请提供[AgencyContract]")]
         [MaxLength(200,ErrorMessage ="AgencyContract不能超过[100]字")]
 		public string AgencyContract { get; set; }
         /// <summary>
@@ -42,7 +40,6 @@ namespace InternalControl.Models
 		/// 采购文件确认函
 		/// </summary>
         [DisplayName("采购文件确认函")]
-        [Required(ErrorMessage ="请提供[ConfirmationLetter]")]
         [MaxLength(200,ErrorMessage ="ConfirmationLetter不能超过[100]字")]
 		public string ConfirmationLetter { get; set; }
         /// <summary>

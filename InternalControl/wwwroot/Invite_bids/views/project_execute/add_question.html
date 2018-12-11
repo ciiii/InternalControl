@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body">
         <form class="form-horizontal">
-            <div class="col-sm-12">
+            <div class="col-sm-12" ms-if="!@isComplaint">
                 <h5 class="title"><span>质疑信息</span></h5>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-3 control-label">
@@ -21,7 +21,8 @@
                         <i class="icon iconfont icon-text-sign icon-sign"></i>质疑时间：
                     </label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-hour" ms-duplex="@model.QuestioningTime">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.QuestioningTime"
+                               ms-on-click="getTime($event)">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 fileUpload-box">
@@ -53,7 +54,8 @@
                         <i class="icon iconfont icon-text-sign icon-sign"></i>回复时间：
                     </label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-hour" ms-duplex="@model.QuestionReplyTime">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.QuestionReplyTime"
+                               ms-on-click="getTime($event)">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 fileUpload-box">
@@ -88,7 +90,7 @@
                         <textarea class="form-control" rows="3" ms-duplex="@model.QuestionConclusion"></textarea>
                     </div>
                 </div>
-                <div class="form-group col-sm-6">
+                <!--<div class="form-group col-sm-6">
                     <label class="col-sm-3 control-label">
                         <i class="icon iconfont icon-text-sign icon-sign"></i>是否有投诉：
                     </label>
@@ -102,9 +104,60 @@
                             </li>
                         </ul>
                     </div>
+                </div>-->
+            </div>
+            <div class="col-sm-12" ms-if="@isComplaint">
+                <h5 class="title"><span>质疑信息</span></h5>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">质疑人：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.QuestionerName}}</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">质疑时间：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.QuestioningTime}}</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">质疑附件：</label>
+                    <div class="form-group col-sm-8 items">
+                        <a class="name" ms-attr="{'href':@model.QuestionAttachment}" download="">{{@getHtmlDocName(@model.QuestionAttachment)}}</a>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">被质疑人：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.QuestionedPersonName}}</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">回复时间：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.QuestionReplyTime}}</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 fileUpload-box">
+                    <label class="col-sm-3 control-label">回复附件：</label>
+                    <div class="form-group col-sm-8 items">
+                        <a class="name" ms-attr="{'href':@model.QuestionReplyAttachment}" download="">{{@getHtmlDocName(@model.QuestionReplyAttachment)}}</a>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-3 control-label">质疑类型：</label>
+                    <div class="col-sm-7">
+                        <span>{{@model.QuestionType}}</span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label">质疑结论：</label>
+                    <div class="col-sm-9">
+                        <span>{{@model.QuestionConclusion}}</span>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-12 notice-content" ms-if="@model.IsThereScomplaint">
+            <div class="col-sm-12 notice-content" ms-if="@isComplaint">
                 <h5 class="title"><span>投诉信息</span></h5>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-3 control-label">
@@ -119,7 +172,8 @@
                         <i class="icon iconfont icon-text-sign icon-sign"></i>投诉时间：
                     </label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-hour" ms-duplex="@model.ComplainantTime">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.ComplainantTime"
+                               ms-on-click="getTime($event)">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 fileUpload-box">
@@ -159,7 +213,8 @@
                         <i class="icon iconfont icon-text-sign icon-sign"></i>回复时间：
                     </label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-hour" ms-duplex="@model.ComplainantReplyTime">
+                        <input type="text" class="form-control form-hour" ms-duplex="@model.ComplainantReplyTime"
+                               ms-on-click="getTime($event)">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 fileUpload-box">

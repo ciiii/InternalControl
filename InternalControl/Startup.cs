@@ -192,7 +192,8 @@ namespace InternalControl
 
             app.UseResponseCompression();
             app.UseStaticFiles();
-            app.UseSession(new SessionOptions() { IdleTimeout = TimeSpan.FromDays(1) });
+            app.UseSession(new SessionOptions() { IdleTimeout = TimeSpan.FromDays(1
+                ) });
 
             //cors自己写,2018-7-10,将前台结合到了本工程,没用跨域了;
             app.Use(async (context, next) =>

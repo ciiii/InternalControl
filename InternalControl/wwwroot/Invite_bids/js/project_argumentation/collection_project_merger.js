@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     window.vm = null;
     avalon.ready(function () {
         window.vm = avalon.define({
@@ -275,7 +275,6 @@ $(function () {
                         return $.oaNotify.error('所选项目【年度】不一致，不能合并！');
                     }
                 }
-
                 if (isnext) {
                     changeUrlNew('/Invite_bids/views/project_argumentation/add_merge.html')
                     $('.modal-add').modal('show');

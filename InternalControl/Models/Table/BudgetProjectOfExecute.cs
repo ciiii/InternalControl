@@ -45,7 +45,6 @@ namespace InternalControl.Models
 		/// 预算批复,附件
 		/// </summary>
         [DisplayName("预算批复,附件")]
-        [Required(ErrorMessage ="请提供[Reply]")]
         [MaxLength(200,ErrorMessage ="Reply不能超过[100]字")]
 		public string Reply { get; set; }
         /// <summary>

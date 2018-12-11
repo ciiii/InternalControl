@@ -1,5 +1,5 @@
 $(function () {
-    isOverdue(1000 * 60 * 60 * 24);
+    isOverdue(1000 * 60 * 60 * 3);
     var projectId = oa.getUrlParam('projectId');
     parent.vm.toggle = true;
     parent.vm.isFlow = true;
@@ -67,12 +67,15 @@ $(function () {
             isScrapBag: false,
             currentText: '',
             surplusDay: '',
+            day: '',
             surplusTime: '',
             isInvitation: false,
             content: false,
             width: 0,
             active: '',
             isFirstEnter: true,
+            complaint: {},
+            isComplaint: false,
             modelOne: {
                 Model: {
                     Id: 0,
@@ -216,8 +219,9 @@ $(function () {
                 vm.ProjectOfArgument = vm.myDetails.ExecuteProject.ExecuteProjectOfArgument;
                 vm.ProjectOfConfirm = vm.myDetails.ExecuteProject.ExecuteProjectOfConfirm;
                 vm.ProjectOfInvitation = vm.myDetails.ExecuteProject.ExecuteProjectOfInvitation;
-                vm.BidOpeningDateTime = vm.ProjectOfConfirm.PlanBidOpeningTime;
-
+                if (vm.ProjectOfConfirm) {
+                    vm.BidOpeningDateTime = vm.ProjectOfConfirm.PlanBidOpeningTime;
+                }
 
                 vm.ExcuteBudget = vm.myDetails.ExecutePackage.PackageOfExcuteBudget;
                 vm.PackageConfirmation = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation;
@@ -244,10 +248,12 @@ $(function () {
                     vm.modelOne.Model = matchingProperty(vm.modelOne.Model, vm.ExecuteProject);
                     vm.modelOne.Model.CeilingPrice = vm.modelOne.Model.TotalExecuteAmount;
                     vm.modelOne.Model.InspectionMethods = vm.ExecuteProject.InspectionMethods;
+
                     vm.newTimeToImplement = vm.modelOne.Model.TimeToImplement;
                     if (vm.modelOne.Model.ContractTerms && vm.modelOne.Model.ContractTerms != '') {
                         vm.fileArr = vm.modelOne.Model.ContractTerms.split(',');
                     }
+
                     vm.changeAllName();
                 }
                 if (vm.activeText == '执行方式') {
@@ -290,17 +296,17 @@ $(function () {
                                     IsImported: vm.ExcuteBudget[i].IsImported,
                                     TermOfService: '合同签订生效之日起______日内',
                                     Prerequisites: '一、《中华人民共和国政府采购法》第二十二条规定：\n' +
-                                    '1.具有独立承担民事责任的能力；\n' +
-                                    '2.具有良好的商业信誉和健全的财务会计制度；\n' +
-                                    '3.具有履行合同所必需的设备和专业技术能力；\n' +
-                                    '4.有依法缴纳税收和社会保障资金的良好记录；\n' +
-                                    '5.参加政府采购活动前三年内，在经营活动中没有重大违法记录；\n' +
-                                    '6.法律、行政法规规定的其他条件。\n' +
-                                    '二、根据本项目所拟定的特定资格条件：\n' +
-                                    '1.',
+                                        '1.具有独立承担民事责任的能力；\n' +
+                                        '2.具有良好的商业信誉和健全的财务会计制度；\n' +
+                                        '3.具有履行合同所必需的设备和专业技术能力；\n' +
+                                        '4.有依法缴纳税收和社会保障资金的良好记录；\n' +
+                                        '5.参加政府采购活动前三年内，在经营活动中没有重大违法记录；\n' +
+                                        '6.法律、行政法规规定的其他条件。\n' +
+                                        '二、根据本项目所拟定的特定资格条件：\n' +
+                                        '1.',
                                     PaymentMethod: '合同签订生效之日起_____日内支付合同总金额的_____%，' +
-                                    '项目验收合格之日起__________支付合同总金额的_____%，剩余_____%作为质量' +
-                                    '保证金，验收合格之日起无约定的质量问题，_____日内无质量问题支付。',
+                                        '项目验收合格之日起__________支付合同总金额的_____%，剩余_____%作为质量' +
+                                        '保证金，验收合格之日起无约定的质量问题，_____日内无质量问题支付。',
                                     TechnicalRequirements: vm.ExcuteBudget[i].ExecuteTechnicalRequirements,
                                     Attachment: vm.ExcuteBudget[i].Attachment,
                                     GradingStandard: '',
@@ -668,7 +674,7 @@ $(function () {
                     }
                 }
                 if (vm.activeText == '质疑投诉') {
-                    vm.ExecuteProjectOfQuestion = vm.myDetails.ExecuteProject.ExecuteProjectOfQuestion;
+                    vm.ExecuteProjectOfQuestion = vm.myDetails.ExecuteProject.ExecuteProjectOfQuestion.reverse();
                 }
                 if (vm.activeText == '更正情况') {
                     vm.ExecuteProjectOfCorrection = vm.myDetails.ExecuteProject.ExecuteProjectOfCorrection.reverse();
@@ -744,61 +750,57 @@ $(function () {
             getExecuteProjectDetail: function () {
                 ProjectExecute.getExecuteProjectDetail('get', projectId, function getExecuteProjectDetailListener(success, obj, strErro) {
                     if (success) {
-                        for (var i = 0; i < obj.ExecutePackage.PackageOfExcuteBudget.length; i++) {
-                            obj.ExecutePackage.PackageOfExcuteBudget[i].ProjectName = obj.ExecuteProject.ExecuteProject.Name;
+                        vm.myDetails = obj;
+                        vm.myMenu = [];
+                        vm.myMenu = obj.Menu;
+                        if (vm.isFirstEnter) {
+                            var list = ['开始实施', '执行方式', '技术确认', '项目论证', '采购确认', '采购邀请'];
+                            for (var i = 0; i < vm.myMenu.length; i++) {
 
-                            vm.myDetails = obj;
-                            vm.myMenu = [];
-                            vm.myMenu = obj.Menu;
-                            if (vm.isFirstEnter) {
-                                var list = ['开始实施', '执行方式', '技术确认', '项目论证', '采购确认', '采购邀请'];
-                                for (var i = 0; i < vm.myMenu.length; i++) {
-
-                                    if (vm.myMenu[i].StepTemplateName == '采购邀请') {
-                                        if (vm.myMenu[i].IsPassed && !vm.myMenu[i].ISCurrentStepTemplate) {
-                                            vm.isInvitation = true;
-                                            list = ['采购邀请', '开标评标', '结果信息', '合同签订', '合同公示', '履约验收'];
-                                        }
+                                if (vm.myMenu[i].StepTemplateName == '采购邀请') {
+                                    if (vm.myMenu[i].IsPassed && !vm.myMenu[i].ISCurrentStepTemplate) {
+                                        vm.isInvitation = true;
+                                        list = ['采购邀请', '开标评标', '结果信息', '合同签订', '合同公示', '履约验收'];
                                     }
-                                    if (vm.myMenu[i].ISCurrentStepTemplate) {
-                                        vm.currentText = vm.myMenu[i].StepTemplateName;
-                                        if (!vm.isInvitation) {
-                                            for (var j = 0; j < list.length; j++) {
-                                                if (vm.currentText == list[j]) {
-                                                    vm.width = j * 20;
-                                                    break;
-                                                }
+                                }
+                                if (vm.myMenu[i].ISCurrentStepTemplate) {
+                                    vm.currentText = vm.myMenu[i].StepTemplateName;
+                                    if (!vm.isInvitation) {
+                                        for (var j = 0; j < list.length; j++) {
+                                            if (vm.currentText == list[j]) {
+                                                vm.width = j * 20;
+                                                break;
                                             }
-                                        } else {
-                                            var index = 0;
-                                            for (var j = 0; j < list.length; j++) {
-                                                if (vm.currentText == list[j] || vm.currentText == '专家抽取' || vm.currentText == '拟定合同') {
-                                                    index = j;
-                                                    if (vm.currentText == '专家抽取') {
-                                                        index = 2;
-                                                    }
-                                                    if (vm.currentText == '拟定合同') {
-                                                        index = 3;
-                                                    }
-                                                    if (vm.surplusDay <= 0) {
-                                                        vm.width = index * 20 - 10;
-                                                    } else {
-                                                        vm.width = index * 20;
-                                                    }
-                                                    console.info(vm.width)
-                                                    break;
+                                        }
+                                    } else {
+                                        var index = 0;
+                                        for (var j = 0; j < list.length; j++) {
+                                            if (vm.currentText == list[j] || vm.currentText == '专家抽取' || vm.currentText == '拟定合同') {
+                                                index = j;
+                                                if (vm.currentText == '专家抽取') {
+                                                    index = 2;
                                                 }
+                                                if (vm.currentText == '拟定合同') {
+                                                    index = 3;
+                                                }
+                                                if (vm.day <= 0) {
+                                                    vm.width = index * 20 - 10;
+                                                } else {
+                                                    vm.width = index * 20;
+                                                }
+                                                console.info(vm.width)
+                                                break;
                                             }
                                         }
                                     }
                                 }
-                                vm.isFirstEnter = false;
                             }
+                            vm.isFirstEnter = false;
                         }
                         vm.onLoad();
                         vm.getDayDiffOfEarlyWarning();
                     } else {
-                        console.info('获取执行项目所有的信息失败！');
+                        alert('获取执行项目所有的信息失败！');
                         console.info(strErro);
                     }
                 });
@@ -819,6 +821,7 @@ $(function () {
                     if (success) {
                         if (obj) {
                             vm.surplusDay = '还剩' + obj + ' 天';
+                            vm.day = obj;
                             if (obj == 0) {
                                 vm.surplusDay = '今天';
                             }
@@ -850,6 +853,9 @@ $(function () {
                 Dictionary.getCategoryDictionary('get', '采购方式', function getCategoryDictionaryListener(success, obj, strErro) {
                     if (success) {
                         vm.purchaseMethoOne = obj;
+                        vm.modelOne.Model.PurchaseMethod = vm.ExecuteProject.PurchaseMethod;
+                        $('.purchaseMethod').find("option[value='" + vm.modelOne.Model.PurchaseMethod + "']").attr("selected", true);
+
                     } else {
                         console.info('获取计划采购方式失败！');
                         console.info(strErro);
@@ -1475,21 +1481,24 @@ $(function () {
             },
             clickSubmitFive: function () {
                 var data = vm.modelFive.Data;
-                if (data.AgencyFee == '' || data.AgencyFee == 0) {
-                    $.oaNotify.error('请填写【代理服务费】！');
-                    return
-                }
-                if (!data.AgencyContract || data.AgencyContract == '') {
-                    $.oaNotify.error('请上传【代理合同】！');
-                    return
-                }
+
                 if (!data.ProcurementDocuments || data.ProcurementDocuments == '') {
                     $.oaNotify.error('请上传【招标文件】！');
                     return
                 }
-                if (!data.ConfirmationLetter || data.ConfirmationLetter == '') {
-                    $.oaNotify.error('请上传【采购文件确认函】！');
-                    return
+                if (vm.myDetails.ExecuteProject.ExecuteProjectOfGetRunMode.ExecutionModeName == '社会代理机构') {
+                    if (data.AgencyFee == '' || data.AgencyFee == 0) {
+                        $.oaNotify.error('请填写【代理服务费】！');
+                        return
+                    }
+                    if (!data.AgencyContract || data.AgencyContract == '') {
+                        $.oaNotify.error('请上传【代理合同】！');
+                        return
+                    }
+                    if (!data.ConfirmationLetter || data.ConfirmationLetter == '') {
+                        $.oaNotify.error('请上传【采购文件确认函】！');
+                        return
+                    }
                 }
                 if (!data.PlanBidOpeningTime || data.PlanBidOpeningTime == '') {
                     $.oaNotify.error('请选择【拟开标时间】！');
@@ -2300,6 +2309,13 @@ $(function () {
                 var end = new Date(endTime).getTime();
                 var day = Math.round((start - end) / 1000 / 60 / 60 / 24);
                 return day;
+            },
+            addQuestion: function () {
+                vm.isComplaint = false;
+            },
+            clickBtnEdit: function (el) {
+                vm.complaint = el;
+                vm.isComplaint = true;
             },
             clickBtnReturn: function () {
                 $('.modal').modal('hide');

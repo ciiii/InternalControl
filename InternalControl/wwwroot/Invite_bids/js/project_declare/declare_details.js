@@ -6,10 +6,10 @@ $(function () {
             model: vm.myDetails,
             declareNumber: '',
             allName: '',
-            name:'',
+            name: '',
             isGoods: true,
-            allPrice:0,
-            declareNumber:0,
+            allPrice: 0,
+            declareNumber: 0,
             onLoad: function () {
                 for (var i in vmDetails.model.DeclareProject) {
                     if (vmDetails.model.DeclareProject[i] == null || vmDetails.model.DeclareProject[i] == 'undefined') {
@@ -24,9 +24,9 @@ $(function () {
                     vmDetails.isGoods = false;
                 }
                 if (vmDetails.model.DeclareProject.IsCenterPurchase) {
-                    vmDetails.name='项目概况';
-                }else{
-                    vmDetails.name='采购需求';
+                    vmDetails.name = '项目概况';
+                } else {
+                    vmDetails.name = '采购需求';
                 }
                 vmDetails.countCollectionPrice();
                 vmDetails.countNumber();
