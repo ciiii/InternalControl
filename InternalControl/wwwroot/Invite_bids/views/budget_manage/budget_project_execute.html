@@ -144,7 +144,10 @@
                                 </div>
                             </td>
                             <td class="number text-center">{{el.number}}</td>
-                            <td class="text-left">{{el.BudgetProject.Name}}</td>
+                            <td class="text-left">
+                                {{el.BudgetProject.Name}}
+                                <span ms-if="el.Package.length==1">-【{{el.Package[0].ItemName}}】</span>
+                            </td>
                             <td>{{el.BudgetProject.TotalBudgetAmount|currency}}</td>
                             <td>{{el.BudgetProject.RelevantDepartmentName}}</td>
                             <td>{{el.BudgetProject.IsCenterPurchase?'政府集中采购目录':'非政府集中采购目录'}}</td>

@@ -30,7 +30,8 @@
                                     <th>单位</th>
                                     <th>数量</th>
                                     <th>单价（元）</th>
-                                    <th>项目详情</th>
+                                    <th>是否进口</th>
+                                    <th>详情</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +41,7 @@
                                     <td>{{el.Package[0].Unit}}</td>
                                     <td>{{el.BudgetProject.allNumber}}</td>
                                     <td>{{el.BudgetProject.budgetAmount|currency}}</td>
+                                    <td>{{el.IsImported?'是':'否'}}</td>
                                     <td class="operation">
                                         <ul>
                                             <li class="bs-tooltip btn-details" data-toggle="tooltip"

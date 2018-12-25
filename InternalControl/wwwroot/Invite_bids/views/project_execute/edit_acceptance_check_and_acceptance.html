@@ -212,7 +212,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{modelOne.Model.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>项目名称</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
@@ -224,9 +224,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget"
-                                ms-attr="{'id':'items-'+$index}">
-                                <td class="number text-center">第{{$index+1}}包</td>
+                            <tr ms-for="($index,el) in @ExcuteBudget"
+                                ms-if="@ExcuteBudget&&@ExcuteBudget.length!=0" ms-attr="{'id':'items-'+$index}">
+                                <td class="number text-center">
+                                {{modelOne.Model.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                </td>
                                 <td>{{el.ProjectName}}</td>
                                 <td>{{@modelOne.Model.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
@@ -272,8 +274,8 @@
                         </label>
                         <div class="col-md-7 col-sm-7">
                             <ul class="select-ul">
-                                <li ms-class="getClassMethod('综合评分')" ms-on-click="clickMethod($event)">
-                                    <a href="javascript:;">综合评分</a>
+                                <li ms-class="getClassMethod('综合评分法')" ms-on-click="clickMethod($event)">
+                                    <a href="javascript:;">综合评分法</a>
                                 </li>
                                 <li ms-class="getClassMethod('最低评标价法')" ms-on-click="clickMethod($event)">
                                     <a href="javascript:;">最低评标价法</a>
@@ -416,7 +418,7 @@
                             <tr ms-for="($index,el) in @ExcuteBudget"
                                 ms-if="@ExecuteProject.State == 0 || !@ExecuteProject.State">
                                 <td class="number text-center">第{{$index+1}}包</td>
-                                <td>{{el.ProjectName}}</td>
+                                <td>{{@ExecuteProject.Name}}</td>
                                 <td>{{@modelOne.Model.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td>{{el.BudgetTypeName=='常规预算'?'财政资金':'非财政资金'}} - {{el.BudgetTypeName}}</td>
@@ -527,6 +529,7 @@
                             <i class="icon iconfont icon-text-sign icon-sign"></i>执行方式
                         </label>
                         <div class="col-md-9 col-sm-9">
+                            <span class="span-purchase" ms-if="@myDetails.ExecuteProject.ExecuteProject.TotalExecuteAmount >= 50000">自主采购</span>
                             <ul class="select-ul">
                                 <li ms-class="getClassExecutionMode(el.Id)" ms-for="el in @executionMode"
                                     ms-on-click="changeExecutionMode($event)">

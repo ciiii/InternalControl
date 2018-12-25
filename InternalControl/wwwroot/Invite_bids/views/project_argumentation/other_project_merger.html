@@ -76,7 +76,6 @@
                                     </div>
                                 </th>
                                 <th class="number">序号</th>
-                                <!--<th>归口部门</th>-->
                                 <th>申报项目</th>
                                 <th>合并类型</th>
                                 <th>数量</th>
@@ -96,7 +95,6 @@
                                     </div>
                                 </td>
                                 <td rowspan="2" class="number text-center">{{el.number}}</td>
-                                <!--<td>{{el.BudgetProject.RelevantDepartmentName}}</td>-->
                                 <td class="text-left">{{el.BudgetProject.Name}}</td>
                                 <td>{{el.BudgetProject.MergeTypeWhenBudget}}</td>
                                 <td>{{el.BudgetProject.allNumber}}</td>
@@ -123,7 +121,7 @@
                                             <li ms-for="item in @el.Package" >
                                                 <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                                                 <span ms-if="item.DeclareDepartmentName">【{{item.DeclareDepartmentName}}】</span>
-                                                {{item.ItemName}}/{{item.DeclareNumber}}/{{item.DeclareNumber*item.DeclareUnitPrice|currency}}
+                                                {{item.ItemName}}/{{item.DeclareNumber}}/{{item.DeclareNumber*item.DeclareUnitPrice|currency}}/{{el.IsImported?'进口':'非进口'}}
                                             </li>
                                         </ul>
                                     </div>
@@ -171,7 +169,6 @@
                             <thead>
                             <tr>
                                 <th class="number">序号</th>
-                                <!--<th>归口部门</th>-->
                                 <th>申报项目</th>
                                 <th>合并类型</th>
                                 <th>数量</th>
@@ -183,7 +180,6 @@
                             <tbody ms-for="($index,el) in @selectedModel" ms-if="@selectedModel!= null && @selectedModel.length != 0">
                             <tr>
                                 <td rowspan="2" class="number text-center">{{$index+1}}</td>
-                                <!--<td>{{el.BudgetProject.RelevantDepartmentName}}</td>-->
                                 <td class="text-left">{{el.BudgetProject.Name}}</td>
                                 <td>{{el.BudgetProject.MergeTypeWhenBudget}}</td>
                                 <td>{{el.BudgetProject.allNumber}}</td>
@@ -208,7 +204,7 @@
                                             <li>
                                                 <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                                                 <span ms-if="item.DeclareDepartmentName">【{{item.DeclareDepartmentName}}】</span>
-                                                {{item.ItemName}}/{{item.DeclareNumber}}/{{item.DeclareNumber*item.DeclareUnitPrice|currency}}
+                                                {{item.ItemName}}/{{item.DeclareNumber}}/{{item.DeclareNumber*item.DeclareUnitPrice|currency}}/{{el.IsImported?'进口':'非进口'}}
                                             </li>
                                         </ul>
                                     </div>

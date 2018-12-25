@@ -918,13 +918,15 @@ function copy(obj) {
 
 //是否为数组
 function isArray(obj) {
-    return typeof obj == 'object' && obj.constructor == Array
+    return typeof obj == 'object' && Array.isArray(obj)
 }
 
 //两个数组属性匹配
 function matchingProperty(objA, objB) {
     for (var i in objA) {
-        objA[i] = objB[i];
+        if (objB[i] != 'undefined') {
+            objA[i] = objB[i];
+        }
     }
     return objA
 }

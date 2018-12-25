@@ -132,7 +132,7 @@
                             <th width="120">单价(元)</th>
                             <th width="120">合计(元)</th>
                             <th>备注</th>
-                            <th width="75">是否采购<br/>进口产品</th>
+                            <th width="75" ms-if="!@model.Data.Model.IsCenterPurchase">是否采购<br/>进口产品</th>
                             <th width="70" class="operation">操作</th>
                         </tr>
                         </thead>
@@ -187,7 +187,7 @@
                             <td>
                                 <textarea class="form-control" rows="2" ms-duplex="el.Remark"></textarea>
                             </td>
-                            <td>
+                            <td ms-if="!@model.Data.Model.IsCenterPurchase">
                                 <select class="form-contro" ms-on-change="changeIsImported($event,el)"
                                         ms-duplex="el.IsImported">
                                     <option value="true">是</option>
@@ -229,7 +229,7 @@
                             <th>技术要求</th>
                             <th  width="120">合计(元)</th>
                             <th>备注</th>
-                            <th width="75">是否采购<br/>进口产品</th>
+                            <th width="75" ms-if="!@model.Data.Model.IsCenterPurchase">是否采购<br/>进口产品</th>
                             <th width="70" class="operation">操作</th>
                         </tr>
                         </thead>
@@ -279,7 +279,7 @@
                             <td>
                                 <textarea class="form-control" rows="2" ms-duplex="el.Remark"></textarea>
                             </td>
-                            <td>
+                            <td ms-if="!@model.Data.Model.IsCenterPurchase">
                                 <select class="form-contro" ms-on-change="changeIsImported($event,el)"
                                         ms-duplex="el.IsImported">
                                     <option value="true">是</option>
@@ -324,7 +324,7 @@
                             <th>采购品目</th>
                             <th>技术要求</th>
                             <th>备注</th>
-                            <th width="75">是否采购<br/>进口产品</th>
+                            <th width="75" ms-if="!@model.Data.Model.IsCenterPurchase">是否采购<br/>进口产品</th>
                             <th width="70" class="operation">操作</th>
                         </tr>
                         </thead>
@@ -375,7 +375,7 @@
                             <td>
                                 <textarea class="form-control" rows="2" ms-duplex="el.Remark"></textarea>
                             </td>
-                            <td>
+                            <td ms-if="!@model.Data.Model.IsCenterPurchase">
                                 <select class="form-contro" ms-on-change="changeIsImported($event,el)"
                                         ms-duplex="el.IsImported">
                                     <option value="true">是</option>

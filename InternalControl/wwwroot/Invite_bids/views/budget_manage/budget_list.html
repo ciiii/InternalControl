@@ -158,7 +158,10 @@
                                 </div>
                             </td>
                             <td class="number text-center">{{el.number}}</td>
-                            <td class="text-left">{{el.BudgetProject.Name}}</td>
+                            <td class="text-left">
+                                {{el.BudgetProject.Name}}
+                                <span ms-if="el.Package.length==1">-【{{el.Package[0].ItemName}}】</span>
+                            </td>
                             <td>
                                 <span ms-if="@activeIndex==0">{{el.BudgetProject.TotalDeclareAmount|currency}}</span>
                                 <span ms-if="@activeIndex!=0">{{el.BudgetProject.TotalBudgetAmount|currency}}</span>

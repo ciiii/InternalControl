@@ -222,8 +222,13 @@ $(function () {
                 if (vm.ProjectOfConfirm) {
                     vm.BidOpeningDateTime = vm.ProjectOfConfirm.PlanBidOpeningTime;
                 }
-
-                vm.ExcuteBudget = vm.myDetails.ExecutePackage.PackageOfExcuteBudget;
+                var executePackage = vm.myDetails.ExecutePackage.PackageOfExcuteBudget;
+                if (executePackage && executePackage.length > 0) {
+                    for (var i = 0; i < executePackage.length; i++) {
+                        executePackage[i].ProjectName = vm.ExecuteProject.Name;
+                    }
+                }
+                vm.ExcuteBudget = executePackage;
                 vm.PackageConfirmation = vm.myDetails.ExecutePackage.PackageOfTechnicalConfirmation;
                 vm.PackageOfDrawUpContract = vm.myDetails.ExecutePackage.PackageOfDrawUpContract;
                 vm.PackageOfContractSigning = vm.myDetails.ExecutePackage.PackageOfContractSigning;
@@ -243,6 +248,7 @@ $(function () {
                     vm.PackageOfContractPublicity = vm.PackageOfContractPublicity.concat(vm.myDetails.RejectedPackage);
                     vm.PackageAcceptance = vm.PackageAcceptance.concat(vm.myDetails.RejectedPackage);
                 }
+
                 if (vm.activeText == '开始实施') {
                     vm.getPurchaseMethoOne();
                     vm.modelOne.Model = matchingProperty(vm.modelOne.Model, vm.ExecuteProject);
@@ -255,6 +261,7 @@ $(function () {
                     }
 
                     vm.changeAllName();
+
                 }
                 if (vm.activeText == '执行方式') {
                     vm.modelTwo.StepId = vm.ExecuteProject.LastStepId;
@@ -1001,7 +1008,7 @@ $(function () {
             },
             getClassMethod: function (text) {
                 if (!vm.modelOne.Model.InspectionMethods || vm.modelOne.Model.InspectionMethods == '') {
-                    vm.modelOne.Model.InspectionMethods = '综合评分';
+                    vm.modelOne.Model.InspectionMethods = '综合评分法';
                 }
                 if (vm.modelOne.Model.InspectionMethods == text) {
                     return 'active'
@@ -1081,12 +1088,14 @@ $(function () {
             },
             countCollectionPrice: function () {
                 vm.modelOne.Model.TotalExecuteAmount = 0;
-                vm.modelOne.Model.TotalExecuteAmount = vm.selectModel.reduce(function (total, item) {
+                vm.modelOne.Model.TotalExecuteAmount = vm.ExcuteBudget.reduce(function (total, item) {
                     if (item.ExecuteUnitPrice == '') {
                         item.ExecuteUnitPrice = 0;
                     }
+                    vm.modelOne.Model.CeilingPrice = total + parseInt(item.ExecuteNumber) * parseInt(item.ExecuteUnitPrice);
                     return total + parseInt(item.ExecuteNumber) * parseInt(item.ExecuteUnitPrice);
                 }, 0)
+
             },
             clickAddMerge: function () {
                 vm.oneselfId = vm.modelOne.Model.Id;
@@ -1578,6 +1587,17 @@ $(function () {
                     $.oaNotify.error('请填写【开标时间】！');
                     return
                 }
+                var isTime = false;
+                if (data.Model.OpeningBIdTime > data.Model.DeadlineOfBidBond && data.Model.DeadlineOfBidBond > data.Model.TenderOfferDatetime) {
+                    isTime = true;
+                } else {
+                    isTime = false;
+                }
+                if (!isTime) {
+                    $.oaNotify.error('【开标时间】大于【投标保证金缴纳截止时间】大于【标书发售截止时间】！');
+                    return
+                }
+
                 if (data.Model.SupplierInvitationMethod == '发布公告') {
                     data.List = [];
                     if (!data.Model.PurchaseAnnouncementUrl || data.Model.PurchaseAnnouncementUrl == '') {

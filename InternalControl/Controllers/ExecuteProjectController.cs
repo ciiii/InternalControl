@@ -76,7 +76,7 @@ namespace InternalControl.Controllers
             var listOfPackage = await Db.GetListSpAsync<VPackageOfExcuteBudget, PackageFilter>(
                 new PackageFilter()
                 {
-                    WhereInId = listOfPaging.List.Select(i => i.Id).ToStringIdWithSpacer()
+                    WhereInExecuteProjectId = listOfPaging.List.Select(i => i.Id).ToStringIdWithSpacer()
                 });
 
             return new
@@ -483,7 +483,6 @@ namespace InternalControl.Controllers
 
         /// <summary>
         /// 结果信息
-        /// TODO:还没有考虑废标的情况
         /// </summary>
         /// <param name="stepDone"></param>
         /// <returns></returns>

@@ -155,8 +155,12 @@ $(function () {
                     vm.isGoods = true;
                 } else {
                     vm.isGoods = false;
+                    vm.model.Data.List[vm.modelIndex].DeclareNumber = 1;
+                    vm.model.Data.List[vm.modelIndex].Unit = '';
                     vm.model.Data.Model.DeclareNumber = 1;
                 }
+                vm.model.Data.Model.ProjectType = nodes[0].TopItemName;
+
                 vm.changeAllName();
                 addVm.clickBtnReturn();
             },

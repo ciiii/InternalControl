@@ -18,36 +18,6 @@ var Connect_Http = {
             }
         }
         var xhr;
-
-        /*var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
-        var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
-        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
-        reIE.test(userAgent);
-        var fIEVersion = parseFloat(RegExp["$1"]);
-        if (fIEVersion == 8 || fIEVersion == 9) {
-            xhr = new XDomainRequest();
-
-            xhr.onerror = function () {
-                callBackListener(false, null, '错啦');
-            };
-            xhr.onload = function () {
-                Connect_Http.callBack(xhr.responseText, callBackListener);
-            }
-
-            var url = encodeURI(url);
-            console.info(decodeURI(url));
-            xhr.open(type, url);
-            var sendStr = null;
-            if (data != null && data.length != 0) {
-                sendStr = JSON.stringify(data);
-            }
-            if (type == 'get') {
-                xhr.send(null);
-            } else {
-                xhr.send(sendStr);
-            }
-        } else {*/
         if (window.XMLHttpRequest) {
             xhr = new XMLHttpRequest();
         } else {

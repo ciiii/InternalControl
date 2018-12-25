@@ -21,16 +21,10 @@
     <script>
         document.write(' <link rel="stylesheet" href="/Invite_bids/css/login.css?time=' + new Date().getTime() + '"/>');
         document.write(' <script type="text/javascript" src="/Invite_bids/js/login.js?time=' + new Date().getTime() + '"></s' + 'cript>');
-
-        function loadTopWindow() {
-            if (window.top != null && window.top.document.URL != document.URL) {
-                window.top.location = document.URL;
-            }
-        }
     </script>
 
 </head>
-<body onload="loadTopWindow()">
+<body>
 <div class="page-login">
     <div class="logo-box">
         <div class="left">
@@ -66,6 +60,44 @@
             <a class="tip" href="javascript:;">帮助中心</a>
         </form>
         <p class="support">技术支持：四川责派信息技术有限公司</p>
+    </div>
+    <div class="browser-tips">
+        <p class="tip-text"><i class="icon iconfont icon-weiwancheng1"></i>Hi,您的浏览器版本太低了！</p>
+        <p>为了给您提供更优质的网页浏览体验，建议使用IE10及以上版本的浏览器。</p>
+        <p><strong>解决方法：</strong>请升级IE浏览器版本，或者选择以下浏览器下载并安装。</p>
+        <ul class="browser-box">
+            <li>
+                <a href="libs/browserDownload/chrome.zip">
+                    <img src="images/Chrome.jpg"/><span>Chrome下载</span>
+                </a>
+            </li>
+            <li>
+                <a href="libs/browserDownload/360.zip">
+                    <img src="images/360.jpg"/><span>360浏览器下载</span>
+                </a>
+            </li>
+            <li>
+                <a href="libs/browserDownload/firefox.zip">
+                    <img src="images/firefox.jpg"/><span>Firefox下载</span>
+                </a>
+            </li>
+            <li>
+                <a href="libs/browserDownload/sogou.zip">
+                    <img src="images/sogou.jpg"/><span>Sogou下载</span>
+                </a>
+            </li>
+        </ul>
+        <div class="explain">
+            <h4>安装说明：</h4>
+            <div class="item">
+                <p>① 选择下载的文件，点击右键，选择“解压到当前文件夹”。</p>
+                <img src="images/zip.jpg" height="220"/>
+            </div>
+            <div class="item">
+                <p>② 解压完成后，会出现一个和已选文件一样的名字的.exe文件，双击打开文件，根据提示进行安装。</p>
+                <img src="images/exe.jpg" height="220"/>
+            </div>
+        </div>
     </div>
 </div>
 </body>

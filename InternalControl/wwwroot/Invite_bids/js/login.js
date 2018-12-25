@@ -4,6 +4,14 @@ $(function () {
     // }
 
     $('input, textarea').placeholder();
+    window.onload = function () {
+        if (IEVersion()) {
+            $('.page-login').addClass('nonsupport');
+        }else{
+            console.info('eeee');
+            loadTopWindow();
+        }
+    };
     var workNumber, password;
 
     if (localStorage.loginInfo) {
@@ -35,7 +43,27 @@ $(function () {
             localStorage.removeItem('loginInfo');
         }
     });
-
+    function IEVersion() {
+        //取得浏览器的userAgent字符串
+        var userAgent = navigator.userAgent;
+        //判断是否IE浏览器
+        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
+        if (isIE) {
+            var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+            reIE.test(userAgent);
+            var fIEVersion = parseFloat(RegExp["$1"]);
+            if (fIEVersion < 10) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+    function loadTopWindow() {
+        if (window.top != null && window.top.document.URL != document.URL) {
+            window.top.location = document.URL;
+        }
+    }
     function remember(workNumber, password) {
         if ($('.remember').is(':checked')) {
             var loginInfo = {

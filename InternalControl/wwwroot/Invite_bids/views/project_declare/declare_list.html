@@ -146,7 +146,10 @@
                             <!--</div>-->
                             <!--</td>-->
                             <td class="number text-center">{{el.number}}</td>
-                            <td>{{el.DeclareProject.Name}}</td>
+                            <td class="text-left">
+                                {{el.DeclareProject.Name}}
+                                <span ms-if="el.Package.length==1">-【{{el.Package[0].ItemName}}】</span>
+                            </td>
                             <td>{{el.DeclareProject.TotalDeclareAmount|currency}}</td>
                             <td>{{el.DeclareProject.RelevantDepartmentName}}</td>
                             <td>{{el.DeclareProject.IsCenterPurchase?'政府集中采购目录':'非政府集中采购目录'}}</td>
@@ -186,28 +189,6 @@
             </div>
             <div class="page paging text-center">
                 <div class="pager paging"></div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade modal-del" tabindex="-1" role="dialog"
-         aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">您确定要执行删除操作吗？</h4>
-                </div>
-                <div class="modal-footer submit-wrapper">
-                    <div class="submit-box text-center">
-                        <button type="submit" class="btn btn-primary btn-submit" ms-on-click="@confirmDel(@arr)">提交
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"
-                                ms-on-click="@clickBtnReturn">返回
-                        </button>
-                        <div class="tip-box"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

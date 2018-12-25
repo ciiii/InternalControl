@@ -17,33 +17,35 @@ $(function () {
             },
             total: '',
             model: [],
-            selectedModel: vm.selectedModel,
+            selectedModel: vm.selectModel.concat(),
             nothing: false,
             loaded: false,
+            sum:0,
             oneselfId: vm.oneselfId,
             query: function () {
                 addVm.loaded = false;
                 $.support.cors = true;
-                console.info(addVm.selectedModel);
                 ProjectExecute.getPagingExecuteProjectListNotInFlowAndWithPackage('get', addVm.req.$model, function getPagingExecuteProjectListNotInFlowAndWithPackageListener(success, obj, strErro) {
                     if (success) {
                         addVm.loaded = true;
                         addVm.total = obj.Total;
                         if (obj == null || obj.List.length == 0) {
                             $('.add-project-merge .pager').hide();
+                            addVm.sum = 0;
                             addVm.model = [];
                             addVm.nothing = true;
                             return;
                         } else {
                             obj = obj.List;
+                            addVm.sum = addVm.total - 1;
                             var number = (addVm.req.Index - 1) * addVm.req.Size + 1;
                             addVm.nothing = false;
                             for (var i = 0; i < obj.length; i++) {
+                                if (obj[i].ExecuteProject.Id == addVm.oneselfId) {
+                                    obj.splice(i, 1);
+                                }
                                 obj[i].number = number;
                                 obj[i].checked = false;
-                                if (obj[i].ExecuteProject.Id == addVm.oneselfId) {
-                                    addVm.nothing = true;
-                                }
                                 if (addVm.selectedModel && addVm.selectedModel.length != 0) {
                                     for (var a = 0; a < addVm.selectedModel.length; a++) {
                                         if (obj[i].ExecuteProject.Id == addVm.selectedModel[a].ExecuteProject.Id) {
@@ -97,9 +99,11 @@ $(function () {
                     var exsit = addVm.doWithAddProject(el);
                     if (!exsit) {
                         addVm.selectedModel.push(el);
+                        console.info(addVm.selectedModel);
                     }
                 } else {
                     addVm.selectedModel.remove(el);
+                    addVm.removeEl(el);
                 }
             },
             doWithAddProject: function (project) {
@@ -121,6 +125,16 @@ $(function () {
                     }
                 });
                 addVm.selectedModel.remove(el);
+                addVm.removeEl(el);
+
+            },
+            removeEl:function(el){
+                for (var i = 0; i < vm.ExcuteBudget.length; i++) {
+                    if (vm.ExcuteBudget[i].ExecuteProjectId == el.ExecuteProject.Id) {
+                        vm.ExcuteBudget.removeAt(i);
+                        break;
+                    }
+                }
             },
             clickDetails: function (el) {
                 vm.projecId = el.ExecuteProject.Id;
@@ -130,26 +144,26 @@ $(function () {
                     $.oaNotify.error('请选择要添加的项目！');
                     return
                 }
-                vm.selectedModel = addVm.selectedModel;
+                vm.selectModel = addVm.selectedModel;
                 for (var i = 0; i < addVm.selectedModel.length; i++) {
                     var arr = addVm.selectedModel[i].Package;
                     var exsit = addVm.doWithAddPackage(addVm.selectedModel[i]);
-
                     for (var j = 0; j < arr.length; j++) {
                         arr[j].ProjectName = addVm.selectedModel[i].ExecuteProject.Name;
-                        if (!exsit) {
-                            vm.myDetails.ExecutePackage.PackageOfExcuteBudget.push(arr);
-                        }
+                    }
+                    if (!exsit) {
+                        vm.ExcuteBudget.pushArray(arr);
                     }
                 }
                 vm.changeAllName();
+                vm.countCollectionPrice();
                 addVm.clickBtnReturn();
             },
             doWithAddPackage: function (project) {
                 var exsit = false;
-                if (vm.myDetails.ExecutePackage.PackageOfExcuteBudget && vm.myDetails.ExecutePackage.PackageOfExcuteBudget.length > 0) {
-                    for (var i = 0; i < vm.myDetails.ExecutePackage.PackageOfExcuteBudget.length; i++) {
-                        if (vm.myDetails.ExecutePackage.PackageOfExcuteBudget.ExecuteProjectId == project.ExecuteProject.Id) {
+                if (vm.ExcuteBudget && vm.ExcuteBudget.length > 0) {
+                    for (var i = 0; i < vm.ExcuteBudget.length; i++) {
+                        if (vm.ExcuteBudget[i].ExecuteProjectId == project.ExecuteProject.Id) {
                             exsit = true;
                             break;
                         }

@@ -62,7 +62,7 @@ $(function () {
                             DeclareNumber: 1,
                             DeclareUnitPrice: 0,
                             LimitOfPrice: 0,
-                            Unit: '件',
+                            Unit: '',
                             Attachment: '',
                             Remark: ''
                         }
@@ -115,6 +115,9 @@ $(function () {
                     names = isRepeat(names);
                 }
                 vm.allName = names.join();
+                if(vm.allName=='请选择品目'){
+                    vm.allName='';
+                }
             },
             countNumber: function () {
                 vm.declareNumber = 0;
@@ -196,11 +199,11 @@ $(function () {
                 vm.declareNumber = 1;
                 vm.allPrice = 0;
                 vm.allPriceDX = '零';
-
+                vm.allName = '';
+                vm.model.Data.Model.ProjectType = '货物';
                 if (type) {
                     vm.model.Data.Model.PlanPurchaseMethod = null;
                 }
-
             },
             changeIsImported: function (e, el) {
                 el.IsImported = e.target.value;
@@ -255,7 +258,7 @@ $(function () {
                     DeclareNumber: 1,
                     DeclareUnitPrice: 0,
                     LimitOfPrice: 0,
-                    Unit: '件',
+                    Unit: '',
                     Attachment: '',
                     Remark: ''
                 }
@@ -328,6 +331,12 @@ $(function () {
                     var isNotItem = true;
                     var i;
                     vm.model.Data.List.forEach(function (el, index) {
+                        if (el.DeclareNumber == '') {
+                            el.DeclareNumber = 0;
+                        }
+                        if (el.Unit == '') {
+                            el.Unit = '个';
+                        }
                         if (el.ItemId == 0) {
                             isNotItem = false;
                             i = index;
@@ -370,7 +379,6 @@ $(function () {
                         Remark: '',
                         Data: vm.model.Data
                     }
-
                     vm.editDeclareProject(postData);
                 } else {
                     vm.addDeclareProject(vm.model.$model);

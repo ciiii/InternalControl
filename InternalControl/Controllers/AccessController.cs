@@ -33,8 +33,6 @@ namespace InternalControl.Controllers
                    Password = model.Password
                });
 
-            //TODO:估计还要是记录一下登录日志;
-
             var user = result.Read<CurrentUser>().FirstOrDefault();
             var tempPermission = result.Read<Permission>();
 
