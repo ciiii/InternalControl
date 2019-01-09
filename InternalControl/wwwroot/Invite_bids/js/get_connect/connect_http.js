@@ -30,6 +30,13 @@ var Connect_Http = {
                 if (status >= 200 && status < 300) {
                     Connect_Http.callBack(xhr.responseText, callBackListener);
                 } else {
+                    if (status == 401) {
+                        localStorage.removeItem('mUserinfo');
+                        localStorage.removeItem('loginInfo');
+                        alert('登录信息已过期，请重新登录！');
+                        location.href = '/Invite_bids/login.html';
+                        return false;
+                    }
                     callBackListener(false, '', '错误代码: ' + xhr.status);
                 }
             }

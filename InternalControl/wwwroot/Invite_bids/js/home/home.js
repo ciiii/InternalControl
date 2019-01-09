@@ -113,7 +113,8 @@ $(function () {
                         }
 
                     } else {
-                        alert('获取某个归口部门的时间设置失败！');
+                        vm.thisYearEndDatetime = '无';
+                        console.info('获取某个归口部门的时间设置失败！');
                         console.info(strErro);
                     }
                 });

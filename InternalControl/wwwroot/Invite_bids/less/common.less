@@ -1,21 +1,17 @@
-@header:#283444;
-@background: #354052;
-@logobackground: #fff;
-@navfont: #333;
-@sidebarA:#fff;
-@sidebarAB:#283444;
-@navborder: #10AB87;
-@navactiveborder: #10AB87;
-@color: #169BD5;
-@colorActive: #3792ff;
-@tr-color: #ECF5FD;
+@header: #2e3b40;
+@background: #3f4a50;
+@color: #6FC99A;
+@colorActive: #45B97C;
+@tr-color: #eaf4fb;
+@border: #eaedf2;
 @hack: ~"\9";
+
 
 body {
   font-family: "Microsoft YaHei";
   background: #eaedf2;
-  font-size: 12px;
-  color: #333;
+  font-size: 13px;
+  color: #666;
   height: 100%;
 }
 
@@ -26,16 +22,16 @@ body {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: #666;
 }
 
 a:focus {
-  color: #333;
+  color: #666;
   text-decoration: none;
 }
 
 a:hover {
-  color: @color;
+  color: @colorActive;
   text-decoration: none;
 }
 
@@ -48,6 +44,16 @@ input:focus, a:focus, button:focus {
   outline: none !important;
 }
 
+textarea {
+  resize: none;
+}
+
+hr {
+  margin: 5px 0 10px;
+  border-top: 1px solid @border !important;
+  padding: 0;
+}
+
 .btn-primary {
   background-color: #389af0;
   border-color: #348edd;
@@ -55,6 +61,12 @@ input:focus, a:focus, button:focus {
 
 .pagination {
   margin: 5px 0;
+}
+
+.modal {
+  .form-control {
+    border-color: #ddd !important;
+  }
 }
 
 .modal-dialog {
@@ -98,14 +110,14 @@ input:focus, a:focus, button:focus {
     margin-top: 10px;
   }
   a:hover {
-    color: @color;
+    color: @colorActive;
   }
   .icon {
     font-size: 17px;
   }
 }
 
-.modal .checkbox-inline,.modal .radio-inline {
+.modal .checkbox-inline, .modal .radio-inline {
   margin-left: 0 !important;
   margin-right: 10px;
   padding-bottom: 10px;
@@ -115,21 +127,26 @@ input:focus, a:focus, button:focus {
 }
 
 .table {
+  color: #666;
   th {
     border-bottom: none !important;
+    padding: 11px 8px !important;
   }
   tr, th {
     text-align: center;
     vertical-align: middle !important;
+    font-size: 13px;
+
+  }
+  thead tr {
+    background: #ecedf2;
   }
   tbody tr:hover {
     background: @tr-color;
   }
-  thead tr {
-    background: #f5f5f5;
-  }
   td {
     vertical-align: middle !important;
+    padding: 11px 8px !important;
   }
 
   .input-checkbox {
@@ -137,9 +154,12 @@ input:focus, a:focus, button:focus {
   }
 }
 
+.table-striped > tbody > tr:nth-child(odd) {
+  background-color: #f7f8fc;
+}
+
 .btn {
   padding: 4px 8px;
-  font-size: 12px;
 }
 
 .modal-sm {
@@ -210,7 +230,7 @@ input:focus, a:focus, button:focus {
       margin-left: -1px;
       line-height: 1.4;
       border-radius: 0 !important;
-      color: @color;
+      color: @colorActive;
       text-decoration: none;
       background-color: #fff;
       border: 1px solid #ddd;
@@ -221,8 +241,8 @@ input:focus, a:focus, button:focus {
     width: 50px;
     height: 33px;
     padding: 0 5px;
-    border: 1px solid @color;
-    color: @color;
+    border: 1px solid @colorActive;
+    color: @colorActive;
     text-align: center;
   }
   .page-prev {
@@ -230,12 +250,12 @@ input:focus, a:focus, button:focus {
   }
   .active {
     a, span {
-      background: @color !important;
-      border-color: @color;
+      background: @colorActive !important;
+      border-color: @colorActive;
       color: #fff;
     }
     a:hover, span:hover {
-      border-color: @color;
+      border-color: @colorActive;
     }
   }
 }
@@ -428,7 +448,7 @@ input:focus, a:focus, button:focus {
     a:hover {
       background-color: #e0edfb;
       text-decoration: none;
-      color: @color;
+      color: @colorActive;
     }
     span.button.switch {
       width: 25px;

@@ -25,7 +25,7 @@
     <script src="/Invite_bids/libs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/Invite_bids/libs/ztree/jquery.ztree.all.min.js"></script>
     <script src="/Invite_bids/libs/avalon.min.js"></script>
-    <script src="/Invite_bids/libs/Echarts/echarts.js"></script>
+    <script src="/Invite_bids/libs/Echarts/echarts.common.min.js"></script>
     <!--<script src="/Invite_bids/libs/Echarts/macarons.js"></script>-->
     <script src="/Invite_bids/libs/Echarts/shine.js"></script>
 
@@ -61,7 +61,7 @@
                 </div>
                 <div class="content list" ms-if="@TaskMessage&&@TaskMessage.length!=0">
                     <ul>
-                        <li class="not-received" ms-for="el in @TaskMessage">
+                        <li ms-for="el in @TaskMessage">
                             <span class="btn-icon"><i class="icon iconfont icon-yuandianxiao"></i></span>
                             <span class="title">{{el.Message}}</span>
                             <span class="time">{{el.CreateDateTime|date("yyyy-MM-dd")}}</span>

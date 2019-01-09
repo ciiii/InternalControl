@@ -1,14 +1,16 @@
-@color: #87beff;
-@colorActive: #308AF5;
+@color: #6FC99A;
+@colorActive: #45B97C;
 
 @hack: ~"\9";
 
 body {
   font-family: "Microsoft YaHei";
   min-width: 1024px;
+
   a {
     text-decoration: none;
     color: #fafafa;
+
     &:hover {
       text-decoration: none;
       color: #fafafa;
@@ -22,20 +24,24 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #24344b url("../images/bg.jpg") no-repeat 162px 178px;
+  background: #56b9b4 url("../images/bg2.jpg") no-repeat left 45%;
   filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
-  -moz-background-size: 761px 547px;
-  background-size: 761px 547px;
+  -moz-background-size: 1154px 545px;
+  background-size: 1154px 545px;
   overflow-y: auto;
 }
 
 .logo-box {
-  height: 60px;
-  line-height: 60px;
-  padding-left: 20px;
+  padding-top: 20px;
+  position: fixed;
+  left: 20px;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+
   .left {
     img {
-      width: 125px;
+      width: auto;
       height: 38px;
     }
   }
@@ -43,14 +49,17 @@ body {
 
 .content {
   position: absolute;
-  right: 20%;
-  top: 10%;
+  right: 15%;
+  top: 13%;
+
   .title {
     text-align: center;
+
     img {
       width: 39px;
       height: 44px;
     }
+
     span {
       font-size: 24px;
       font-weight: bold;
@@ -59,25 +68,29 @@ body {
       color: #fff;
     }
   }
+
   .form-login {
     width: 400px;
-    height: 500px;
+    height: 400px;
     margin-top: 10%;
     border: 1px solid @color;
     background: #fff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     animation: main-move 0.6s;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#1b1b1b')";
+
     .form-title {
       margin: 80px 0 30px 0;
       text-align: center;
       font-size: 24px;
       color: @color;
     }
+
     .form-group {
       margin-bottom: 20px;
       overflow: hidden;
     }
+
     .control-label {
       color: #fafafa;
       font-size: 14px;
@@ -85,10 +98,12 @@ body {
       float: left;
       padding: 8px 15px 0 0;
     }
+
     .input-box {
       position: relative;
       padding-left: 0;
       text-align: center;
+
       img {
         position: absolute;
         left: 52px;
@@ -97,11 +112,13 @@ body {
         width: auto;
         z-index: 11;
       }
+
       input {
         padding-left: 40px;
         color: #999;
       }
     }
+
     .form-control {
       position: relative;
       height: auto;
@@ -111,9 +128,11 @@ body {
       height: 40px;
       margin: 0 auto;
     }
+
     .form-control:focus {
       z-index: 2;
     }
+
     .checkbox {
       margin-top: -10px;
       margin-left: 40px;
@@ -121,8 +140,10 @@ body {
       overflow: hidden;
       color: #999;
       font-size: 12px;
+
       .forget-password {
         float: right;
+
         &:hover {
           color: #f60;
         }
@@ -137,24 +158,28 @@ body {
       border-color: @color;
       height: 40px;
       display: block;
+
       &:hover {
-        background: #1461ad;
-        border-color: #1461ad;
+        background: @colorActive;
+        border-color: @colorActive;
       }
     }
+
     .login-tip {
       color: #f00;
       font-size: 14px;
       text-align: center;
       margin-bottom: 10px;
       position: absolute;
-      top: 275px;
+      top: 360px;
       left: 0;
       width: 100%;
     }
+
     .login-tip-success {
       color: #02ea38;
     }
+
     .tip {
       font-size: 14px;
       color: #666;
@@ -163,16 +188,19 @@ body {
       display: block;
     }
   }
+
   .support {
     font-size: 14px;
-    color: #fff;
+    color: #666;
     margin-top: 10%;
     text-align: center;
   }
+
   .login-tip-show {
     .login-tip {
       display: block;
     }
+
     .btn-login {
       margin-top: 10px;
     }
@@ -182,6 +210,7 @@ body {
     margin: 250px auto 0;
     width: 920px;
     animation: main-move2 1s;
+
     a {
       display: inline-block;
       margin: 0 50px;
@@ -197,6 +226,7 @@ body {
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
       text-align: center;
       overflow: hidden;
+
       i {
         font-size: 70px;
         margin-right: 10px;
@@ -204,21 +234,130 @@ body {
         padding-left: 62px;
         float: left;
       }
+
       span {
         float: left;
       }
+
       &:hover {
         background: #7bb92d;
       }
     }
+
     .task {
       i {
         font-size: 62px;
       }
     }
+
     .task:hover {
       background: @color;
     }
+  }
+}
+
+.browser-tips {
+  display: none;
+  width: 1000px;
+  margin: 100px auto 0;
+  text-align: center;
+
+  .tip-text {
+    font-size: 26px;
+    color: red;
+    margin-bottom: 25px;
+
+    i {
+      margin-right: 15px;
+      font-size: 28px;
+    }
+  }
+
+  p {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .browser-box {
+    margin-top: 50px;
+
+    li {
+      display: inline-block;
+      overflow: hidden;
+
+      a {
+        display: block;
+        text-align: center;
+        padding: 10px 25px;
+      }
+
+      img {
+        border: none;
+      }
+
+      &:hover {
+        a {
+          background: #ecf5fd;
+        }
+
+        span {
+          color: @color;
+        }
+      }
+    }
+
+    img {
+      width: 100px;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    span {
+      color: #666;
+      font-size: 14px;
+
+    }
+  }
+
+  .explain {
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px dashed #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-left: 80px;
+
+    h4 {
+      text-align: left;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .item {
+      display: inline-block;
+      margin: 10px 15px;
+      float: left;
+    }
+
+    p {
+      width: 386px;
+      margin: 10px 0 20px;
+      text-align: left;
+      font-size: 13px;
+    }
+  }
+}
+
+.nonsupport {
+  background: none;
+
+  .content, .logo-box {
+    display: none;
+  }
+
+  .browser-tips {
+    display: block;
   }
 }
 
@@ -239,12 +378,24 @@ body {
     margin-top: 250px;
   }
 }
+
 @media (min-width: 992px) and (max-width: 1366px) {
-  .content{
+  .page-login{
+    -moz-background-size: 700px 331px;
+    background-size: 700px 331px;
   }
+  .content {
+    right: 10%;
+    top: 5%;
 
+    .title span {
+      font-size: 22px;
+    }
 
-
+    .form-login, .support {
+      margin-top: 5%;
+    }
+  }
 }
 
 

@@ -244,6 +244,7 @@ $(function () {
                     vm.ExcuteBudget = vm.ExcuteBudget.concat(vm.myDetails.RejectedPackage);
                     vm.PackageConfirmation = vm.PackageConfirmation.concat(vm.myDetails.RejectedPackage);
                     vm.PackageOfDrawUpContract = vm.PackageOfDrawUpContract.concat(vm.myDetails.RejectedPackage);
+                    vm.PackageOfInvitation = vm.PackageOfInvitation.concat(vm.myDetails.RejectedPackage);
                     vm.PackageOfContractSigning = vm.PackageOfContractSigning.concat(vm.myDetails.RejectedPackage);
                     vm.PackageOfContractPublicity = vm.PackageOfContractPublicity.concat(vm.myDetails.RejectedPackage);
                     vm.PackageAcceptance = vm.PackageAcceptance.concat(vm.myDetails.RejectedPackage);
@@ -530,7 +531,7 @@ $(function () {
                                     WinningBidder: '',
                                     state: true,
                                     TypeOfEnterprise: '大型企业',
-                                    BudgetAmount: 0,
+                                    BudgetAmount: vm.ExcuteBudget[i].ExecuteUnitPrice,
                                     WinningBidAmount: 0,
                                     SavingRate: 0,
                                     BiddingDocuments: '',

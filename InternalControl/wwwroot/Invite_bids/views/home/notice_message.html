@@ -85,12 +85,18 @@
                         </thead>
                         <tbody>
                         <tr ms-for="el in @model" ms-if="@loaded && @model!= null && @model.length != 0" ms-class="@getStateClass(el.IsReceived)">
-                            <td class="number text-center title">{{el.number}}</td>
-                            <td class="text-left title">{{el.Name}}</td>
-                            <td class="title">{{el.Type}}</td>
-                            <td class="title">{{el.SendorDepartmentName}}</td>
+                            <td class="number text-center">{{el.number}}</td>
+                            <td class="text-left title">
+                                <a data-toggle="modal" data-target=".modal-details"
+                                   href="../notice_manage/notice_details.html" ms-on-click="@clickDetails(el)"
+                                   onclick="changeUrlChoice(this,'.modal-details')">
+                                    {{el.Name}}
+                                </a>
+                            </td>
+                            <td>{{el.Type}}</td>
+                            <td>{{el.SendorDepartmentName}}</td>
                             <td ms-class="getclass(el.IsEnabled)">{{el.IsEnabled?'正常':'已禁用'}}</td>
-                            <td class="title">{{el.CreateDatetime}}</td>
+                            <td>{{el.CreateDatetime}}</td>
                             <td class="operation">
                                 <ul>
                                     <li class="bs-tooltip btn-details" data-toggle="tooltip" data-placement="bottom"

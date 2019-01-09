@@ -39,7 +39,7 @@
 </head>
 <body>
 <body ms-controller="root" class="ms-controller" onload="IFrameResize()">
-<div class="page-add-declare page-edit-execute page-common page-paper" >
+<div class="page-add-declare page-edit-execute page-common page-paper">
     <div class="left-nav col-md-2 col-sm-2">
         <h4><img src="../../images/down.png"/>项目执行流程</h4>
         <div class="nav-box">
@@ -64,7 +64,8 @@
             <i class="icon iconfont icon-ai207"></i> 返回列表
         </button>
         <div class="form-horizontal">
-            <div class="item progress-box col-md-12 col-sm-12" ms-if="@ExecuteProject.State == 0 ||!@ExecuteProject.State">
+            <div class="item progress-box col-md-12 col-sm-12"
+                 ms-if="@ExecuteProject.State == 0 ||!@ExecuteProject.State">
                 <div class="progress-start">
                     <span ms-if="!@isInvitation" class="title">开始实施</span>
                     <span ms-if="@isInvitation" class="title">采购邀请</span>
@@ -94,7 +95,7 @@
                                 <span class="title">开标评标</span>
                             </li>
                             <li ms-class="@getActiveClass('结果信息')">
-                                <span class="tiem" ms-if="@active=='结果信息'&&@surplusTime!=''" >{{@surplusTime|date("yyyy-MM-dd")}}</span>
+                                <span class="tiem" ms-if="@active=='结果信息'&&@surplusTime!=''">{{@surplusTime|date("yyyy-MM-dd")}}</span>
                                 <span class="title">结果信息</span>
                             </li>
                             <li ms-class="@getActiveClass('合同签订')">
@@ -212,7 +213,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>{{modelOne.Model.IsCenterPurchase?'序号':'包号'}}</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>项目名称</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
@@ -227,7 +228,7 @@
                             <tr ms-for="($index,el) in @ExcuteBudget"
                                 ms-if="@ExcuteBudget&&@ExcuteBudget.length!=0" ms-attr="{'id':'items-'+$index}">
                                 <td class="number text-center">
-                                {{modelOne.Model.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                    {{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
                                 </td>
                                 <td>{{el.ProjectName}}</td>
                                 <td>{{@modelOne.Model.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
@@ -403,7 +404,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>项目名称</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
@@ -417,7 +418,9 @@
                             <tbody>
                             <tr ms-for="($index,el) in @ExcuteBudget"
                                 ms-if="@ExecuteProject.State == 0 || !@ExecuteProject.State">
-                                <td class="number text-center">第{{$index+1}}包</td>
+                                <td class="number text-center">
+                                    {{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                </td>
                                 <td>{{@ExecuteProject.Name}}</td>
                                 <td>{{@modelOne.Model.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
@@ -529,7 +532,8 @@
                             <i class="icon iconfont icon-text-sign icon-sign"></i>执行方式
                         </label>
                         <div class="col-md-9 col-sm-9">
-                            <span class="span-purchase" ms-if="@myDetails.ExecuteProject.ExecuteProject.TotalExecuteAmount >= 50000">自主采购</span>
+                            <span class="span-purchase"
+                                  ms-if="@myDetails.ExecuteProject.ExecuteProject.TotalExecuteAmount >= 50000">自主采购</span>
                             <ul class="select-ul">
                                 <li ms-class="getClassExecutionMode(el.Id)" ms-for="el in @executionMode"
                                     ms-on-click="changeExecutionMode($event)">
@@ -635,7 +639,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -647,7 +651,9 @@
                             <tbody>
                             <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfExcuteBudget"
                                 ms-attr="{'id':'items-'+$index}">
-                                <td class="number text-center">第{{$index+1}}包</td>
+                                <td class="number text-center">
+                                    {{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                </td>
                                 <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
@@ -666,7 +672,7 @@
                         <li ms-for="($index,el) in @modelThree.Data" ms-if="el.IsCanOperate"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tab'+$index,'aria-controls':'tab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -1017,7 +1023,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -1029,7 +1035,9 @@
                             <tbody>
                             <tr ms-for="($index,el) in @PackageConfirmation"
                                 ms-if="@PackageConfirmation&&@PackageConfirmation.length!=0">
-                                <td class="number text-center">第{{$index+1}}包</td>
+                                <td class="number text-center">
+                                    {{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                </td>
                                 <td>
                                     {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
                                 </td>
@@ -1055,7 +1063,7 @@
                         <li ms-for="($index,el) in @PackageConfirmation"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tab'+$index,'aria-controls':'tab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -2048,7 +2056,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>包号</th>
+                                    <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                     <th>单项名称/包名</th>
                                     <th>抽取供应商名单</th>
                                     <th ms-if="@modelSix.Data.Model.SupplierInvitationMethod=='书面推荐'">书面推荐函</th>
@@ -2058,7 +2066,9 @@
                                 </thead>
                                 <tbody>
                                 <tr ms-for="($index,el) in @modelSix.Data.List" ms-if="@modelSix.Data.List.length!=0">
-                                    <td class="number text-center">第{{$index+1}}包</td>
+                                    <td class="number text-center">
+                                        {{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                    </td>
                                     <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                     <td>
                                         <input type="text" class="form-control" ms-duplex="el.ExtractSupplierLlist"/>
@@ -2237,7 +2247,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>包号</th>
+                                    <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                     <th>单项名称/包名</th>
                                     <th>抽取供应商名单</th>
                                     <th ms-if="@ProjectOfInvitation.SupplierInvitationMethod=='书面推荐'">书面推荐函</th>
@@ -2246,36 +2256,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfInvitation"
-                                    ms-if="@myDetails.ExecutePackage.PackageOfInvitation&&@myDetails.ExecutePackage.PackageOfInvitation.length!=0">
-                                    <td class="number text-center">第{{@getExecutePackage(el.Id).SerialNumber}}包</td>
+                                <tr ms-for="($index,el) in @PackageConfirmation"
+                                    ms-if="@PackageConfirmation&&@PackageConfirmation.length!=0">
+                                    <td class="number text-center">
+                                        {{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}
+                                    </td>
                                     <td>
                                         {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
-                                    </td>
-                                    <td>{{el.ExtractSupplierLlist}}</td>
-                                    <td class="fileUpload-box"
-                                        ms-if="@ProjectOfInvitation.SupplierInvitationMethod=='书面推荐'">
-                                        <a class="file-text" ms-attr="{'href':el.WrittenRecommendationLetter}"
-                                           download="">
-                                            {{@getHtmlDocName(el.WrittenRecommendationLetter)}}
-                                        </a>
-                                    </td>
-                                    <td class="fileUpload-box"
-                                        ms-if="@ProjectOfInvitation.SupplierInvitationMethod=='供应商库随机抽取'">
-                                        <a class="file-text" ms-attr="{'href':el.RandomlyExtractRecordFiles}"
-                                           download="">
-                                            {{@getHtmlDocName(el.RandomlyExtractRecordFiles)}}
-                                        </a>
-                                    </td>
-                                    <td ms-if="@ProjectOfInvitation.SupplierInvitationMethod=='供应商库随机抽取'">
-                                        {{el.ExtractSupplierLibraryNname}}
-                                    </td>
-                                </tr>
-                                <tr ms-for="($index,el) in @myDetails.RejectedPackage"
-                                    ms-if="@myDetails.RejectedPackage&&myDetails.RejectedPackage.length!=0">
-                                    <td class="number text-center">第{{el.SerialNumber}}包</td>
-                                    <td>
-                                        {{@ExecuteProject.IsCenterPurchase?@getRejectedPackage(el.Id).ItemName:@getRejectedPackage(el.Id).PackageName}}
                                     </td>
                                     <td>{{el.ExtractSupplierLlist}}</td>
                                     <td class="fileUpload-box"
@@ -2680,7 +2667,7 @@
                         <li ms-for="($index,el) in @myDetails.ExecutePackage.PackageOfBidEvaluation"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#senventab'+$index,'aria-controls':'senventab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                         <li ms-for="($index,el) in @myDetails.RejectedPackage"
                             role="presentation"
@@ -2688,7 +2675,9 @@
                             ms-on-click="clickTabClass(@myDetails.ExecutePackage.PackageOfBidEvaluation.length+$index)">
                             <a ms-attr="{'href':'#senventab'+(@myDetails.ExecutePackage.PackageOfBidEvaluation.length+$index),'aria-controls':'senventab'+(@myDetails.ExecutePackage.PackageOfBidEvaluation.length+$index)}"
                                role="tab"
-                               data-toggle="tab">第{{(@myDetails.ExecutePackage.PackageOfBidEvaluation.length+$index+1)}}包</a>
+                               data-toggle="tab">
+                                {{@ExecuteProject.IsCenterPurchase?(@myDetails.ExecutePackage.PackageOfBidEvaluation.length+$index+1)+'号':'第'+(@myDetails.ExecutePackage.PackageOfBidEvaluation.length+$index+1)+'包'}}
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -3276,7 +3265,7 @@
                             <li ms-for="($index,el) in @modelNine.Data.ListOfPackageOfResultNotice"
                                 role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                                 <a ms-attr="{'href':'#ninetab'+$index,'aria-controls':'ninetab'+$index}" role="tab"
-                                   data-toggle="tab">第{{$index+1}}包</a>
+                                   data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                             </li>
                         </ul>
                     </div>
@@ -3289,7 +3278,8 @@
                                 <table class="table table-striped table-bordered">
                                     <tr>
                                         <th>包号包名</th>
-                                        <td>第{{$index+1}}包 - {{el.ItemName}}</td>
+                                        <td>{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}} - {{el.ItemName}}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>成交状态</th>
@@ -3324,17 +3314,14 @@
                                     </tr>
                                     <tr ms-if="@el.state">
                                         <th>预算金额</th>
-                                        <td>
-                                            <input type="text" class="form-control" ms-duplex="el.BudgetAmount"
-                                                   onkeyup="onlyNum(this)"
-                                                   ms-on-keyup="changeSavingRate(el)">
-                                        </td>
+                                        <td>{{el.BudgetAmount|currency}}</td>
                                     </tr>
                                     <tr ms-if="@el.state">
                                         <th>中标成交金额</th>
-                                        <td><input type="text" class="form-control" ms-duplex="el.WinningBidAmount"
-                                                   onkeyup="onlyNum(this)"
-                                                   ms-on-keyup="changeSavingRate(el)"></td>
+                                        <td>
+                                            <input type="text" class="form-control" ms-duplex="el.WinningBidAmount"
+                                                   onkeyup="onlyNum(this)" ms-on-keyup="changeSavingRate(el)">
+                                        </td>
                                     </tr>
                                     <tr ms-if="@el.state">
                                         <th>资金节约率</th>
@@ -3511,7 +3498,7 @@
                                 ms-on-click="clickTabClass(el.SerialNumber)">
                                 <a ms-attr="{'href':'#ninetab'+@el.SerialNumber,'aria-controls':'ninetab'+@el.SerialNumber}"
                                    role="tab"
-                                   data-toggle="tab">第{{el.SerialNumber}}包</a>
+                                   data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?(el.SerialNumber+1)+'号':'第'+(el.SerialNumber)+'包'}}</a>
                             </li>
                             <li class="abolish-li" ms-for="($index,el) in @myDetails.RejectedPackage"
                                 ms-if="@myDetails.RejectedPackage.length!=0"
@@ -3519,7 +3506,7 @@
                                 ms-on-click="clickTabClass(el.SerialNumber)">
                                 <a ms-attr="{'href':'#ninetab'+@el.SerialNumber,'aria-controls':'ninetab'+@el.SerialNumber}"
                                    role="tab"
-                                   data-toggle="tab">第{{el.SerialNumber}}包</a>
+                                   data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?(el.SerialNumber+1)+'号':'第'+(el.SerialNumber)+'包'}}</a>
                             </li>
                         </ul>
                     </div>
@@ -3531,7 +3518,7 @@
                                 <table class="table table-striped table-bordered">
                                     <tr>
                                         <th>包号包名</th>
-                                        <td>第{{el.SerialNumber}}包 - <span ms-text="@el.ItemName"></span></td>
+                                        <td>{{@ExecuteProject.IsCenterPurchase?(el.SerialNumber+1)+'号':'第'+(el.SerialNumber)+'包'}} - <span ms-text="@el.ItemName"></span></td>
                                     </tr>
                                     <tr>
                                         <th>成交状态</th>
@@ -3579,7 +3566,7 @@
                                 <table class="table table-striped table-bordered">
                                     <tr>
                                         <th>包号包名</th>
-                                        <td>第{{el.SerialNumber}}包 -
+                                        <td>{{@ExecuteProject.IsCenterPurchase?(el.SerialNumber+1)+'号':'第'+(el.SerialNumber)+'包'}} -
                                             {{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}
                                         </td>
                                     </tr>
@@ -3624,7 +3611,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -3635,7 +3622,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @ExcuteBudget">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
@@ -3655,7 +3642,7 @@
                         <li ms-for="($index,el) in @modelTen.Data" ms-if="el.IsCanOperate"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tentab'+$index,'aria-controls':'tentab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -3675,7 +3662,8 @@
                                     <i class="icon iconfont icon-text-sign icon-sign"></i>合同类型
                                 </label>
                                 <div class="col-md-7 col-sm-7">
-                                    <select class="form-control contract-type" ms-duplex="@el.TypeOfContract" ms-attr={'data-value':el.TypeOfContract}>
+                                    <select class="form-control contract-type" ms-duplex="@el.TypeOfContract"
+                                            ms-attr={'data-value':el.TypeOfContract}>
                                         <option value="">请选择</option>
                                         <option ms-for="item in @typeOfContract" ms-if="@typeOfContract.length!=0"
                                                 ms-attr={'value':item.Value}>{{item.Value}}
@@ -3822,7 +3810,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -3833,7 +3821,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @PackageOfDrawUpContract">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>
                                     {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
                                 </td>
@@ -3859,7 +3847,7 @@
                         <li ms-for="($index,el) in @PackageOfDrawUpContract"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#tentab'+$index,'aria-controls':'tentab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -3929,7 +3917,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -3940,7 +3928,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @ExcuteBudget">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
@@ -3959,7 +3947,7 @@
                         <li ms-for="($index,el) in @modelEleven.Data"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#eleventab'+$index,'aria-controls':'eleventab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -4087,7 +4075,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -4098,7 +4086,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @PackageOfContractSigning">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>
                                     {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
                                 </td>
@@ -4124,7 +4112,7 @@
                         <li ms-for="($index,el) in @PackageOfContractSigning"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#eleventab'+$index,'aria-controls':'eleventab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -4202,7 +4190,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -4213,7 +4201,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @ExcuteBudget">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
@@ -4232,7 +4220,7 @@
                         <li ms-for="($index,el) in @modelTwelve.Data"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#twelvetab'+$index,'aria-controls':'twelvetab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -4363,7 +4351,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -4374,7 +4362,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @PackageOfContractPublicity">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>
                                     {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
                                 </td>
@@ -4400,7 +4388,7 @@
                         <li ms-for="($index,el) in @PackageOfContractPublicity"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#twelvetab'+$index,'aria-controls':'twelvetab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -4487,7 +4475,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -4498,7 +4486,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @ExcuteBudget">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>{{el.ItemName}}</td>
                                 <td>{{el.DeclareDepartmentName}}</td>
                                 <td ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">{{el.ExecuteNumber}}</td>
@@ -4517,7 +4505,7 @@
                         <li ms-for="($index,el) in @modelThirteen.Data"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#thirteentab'+$index,'aria-controls':'thirteentab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -4634,7 +4622,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th ms-if="@ExecuteProject.IsCenterPurchase&&@isGoods">数量</th>
@@ -4645,7 +4633,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @PackageAcceptance">
-                                <td class="number text-center">{{$index+1}}</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>
                                     {{@ExecuteProject.IsCenterPurchase?@getExecutePackage(el.Id).ItemName:@getExecutePackage(el.Id).PackageName}}
                                 </td>
@@ -4669,7 +4657,7 @@
                         <li ms-for="($index,el) in @PackageAcceptance"
                             role="presentation" ms-class="tabClass($index)" ms-on-click="clickTabClass($index)">
                             <a ms-attr="{'href':'#thirteentab'+$index,'aria-controls':'thirteentab'+$index}" role="tab"
-                               data-toggle="tab">第{{$index+1}}包</a>
+                               data-toggle="tab">{{@ExecuteProject.IsCenterPurchase?($index+1)+'号':'第'+($index+1)+'包'}}</a>
                         </li>
                     </ul>
                 </div>
@@ -4813,7 +4801,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>包号</th>
+                                <th>{{@ExecuteProject.IsCenterPurchase?'序号':'包号'}}</th>
                                 <th>单项名称/包名</th>
                                 <th>申报部门</th>
                                 <th>预算金额</th>
@@ -4823,7 +4811,7 @@
                             </thead>
                             <tbody>
                             <tr ms-for="($index,el) in @myDetails.RejectedPackage">
-                                <td class="number text-center">第{{$index+1}}包</td>
+                                <td class="number text-center">{{@ExecuteProject.IsCenterPurchase?($index+1):'第'+($index+1)+'包'}}</td>
                                 <td>{{@ExecuteProject.IsCenterPurchase?el.ItemName:el.PackageName}}</td>
                                 <td>{{el.ExecuteUnitPrice|currency}}</td>
                                 <td>{{el.ExecuteUnitPrice|currency}}</td>
@@ -4881,10 +4869,12 @@
                                 <td>{{el.CreateDatetime}}</td>
                                 <td class="operation">
                                     <ul>
-                                        <li class="bs-tooltip btn-examine" title="添加投诉" data-toggle="tooltip" data-placement="bottom"
+                                        <li class="bs-tooltip btn-examine" title="添加投诉" data-toggle="tooltip"
+                                            data-placement="bottom"
                                             ms-if="!el.IsThereScomplaint">
                                             <a data-toggle="modal" data-target=".modal-add"
-                                               href="add_question.html" onclick="changeUrl(this)" ms-on-click="@clickBtnEdit(el)">
+                                               href="add_question.html" onclick="changeUrl(this)"
+                                               ms-on-click="@clickBtnEdit(el)">
                                                 <i class="icon iconfont icon-tianjia1"></i>
                                             </a>
                                         </li>
